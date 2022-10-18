@@ -95,7 +95,7 @@
                     <button onclick="alert('Deberas Contestar las siguientes preguntas');" type="submit" class="btn btn-primary btn-block enter-btn">Registrate</button></a>
                   </div>
                   <div class="form-group d-flex align-items-center justify-content-center">
-                    <p class="terms">By creating an account you are accepting our<a href="#"> Terms & Conditions</a></p>
+                    <!-- <p class="terms">By creating an account you are accepting our<a href="#"> Terms & Conditions</a></p> -->
                   </div>
                   <div class="d-flex">
                     <!-- <button class="btn btn-facebook mr-2 col">
