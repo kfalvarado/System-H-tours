@@ -30,7 +30,7 @@
                 <h1 class="card-title text-center mb-2">System H tours</h1>
                 <nav class="nav nav-pills flex-column flex-sm-row">
                   <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#">INGRESA</a>
-                  <a class="flex-sm-fill text-sm-center nav-link" href="register.html">REGISTRATE</a>
+                  <a class="flex-sm-fill text-sm-center nav-link" href="{{route('registro')}}">REGISTRATE</a>
                 </nav>
               </center>
                 <!-- End layout styles <ul class="nav nav-pills nav-stacked">    
@@ -139,7 +139,7 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="{{asset('assets/vendors/js/vendor.bundle.base.js')}}')}}"></script>
+    <script src="{{asset('assets/vendors/js/vendor.bundle.base.js')}}"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->

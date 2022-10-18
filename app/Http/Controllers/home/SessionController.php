@@ -7,7 +7,12 @@ use Illuminate\Http\Request;
 
 class SessionController extends Controller
 {
-    public function inicio(){
+    public function inicio()
+    {
         return view('home.inicio');
-       }   
+    }   
+    public function register()
+    {
+        return view('Auth.register');
+    }   
 }
