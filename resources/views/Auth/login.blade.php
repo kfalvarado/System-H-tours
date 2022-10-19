@@ -72,6 +72,8 @@
                   </div>
                   <div class="form-group d-flex align-items-center justify-content-center">
                     <a href="#" class="forgot-pass text-white" data-toggle="modal" data-target="#dialogo11"><H5>¿Olvidaste tu contraseña?</H5></a> 
+                    
+                    
                     <!-- INICIO MODAL CONTRASEÑA  -->
                <div class="modal-container">
                 <div class="modal fade bd-example-modal-lg" id="dialogo11">

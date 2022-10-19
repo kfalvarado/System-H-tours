@@ -40,17 +40,48 @@
 
               <br>
                 <form>
+                <div class="form-group" >
+                    <label><H4><i class="mdi mdi-account"></i> Nombre Completo </H4></label>
+                    <input type="text" class="form-control p_input text-dark bg-white">
+                  </div>
+                  <div class="form-group" >
+                    <label><H4><i class="mdi mdi-account"></i> Genero
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i class="mdi mdi-account"></i> Edad</h4></label>
+                    <br>
+                    <label for="masculino">Masculino
+                    <input type="radio" id="masculino" class="form-control p_input text-dark bg-white">
+                    </label>
+                    <label for="masculino">Femenino
+                    <input type="radio" id="Femenino" class="form-control p_input text-dark bg-white">
+                    </label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label for="edad">Ingresa tu edad
+                    <input type="number" id="edad" min="0" max="100" class="form-control p_input text-dark bg-white">
+                    </label>
+                  </div>
+                 
+                  <label><H4><i class="mdi mdi-account"></i> Tipo de persona </h4></label>
+                    <Select  class="form-control p_input text-dark bg-white">
+                      <option value=""></option>
+                      <option value="">Normal</option>
+                      <option value="">Juridica</option>
+                    </Select>
+                    <div class="form-group">
+                    <label><H4><i class="mdi mdi-account"></i> Numero de Indentidad </H4></label>
+                    <input type="email" class="form-control p_input text-dark bg-white">
+                  </div>
                   <div class="form-group" >
                     <label><H4><i class="mdi mdi-account"></i> Usuario</H4></label>
                     <input type="text" class="form-control p_input text-dark bg-white">
                   </div>
                   <div class="form-group">
-                    <label><H4><i class="mdi mdi-email"></i> Email</H4></label>
+                    <label><H4><i class="mdi mdi-email"></i> Correo</H4></label>
                     <input type="email" class="form-control p_input text-dark bg-white">
                   </div>
                  <!-- CAMPO DE CONTRASEÑA DE LOGIN MOSTRAR MEDIANTE ICONO CANDADO -->
                   <form class="form-group" method="POST">
-                    <label><H4><i class="mdi mdi-lock" onclick="mostrarContra()"></i> Password</H4></label>
+                    <label><H4><i class="mdi mdi-lock" onclick="mostrarContra()"></i>Contraseña</H4></label>
                     <div class="form-row">
                         <div class="col">
                       <input class="form-control p_input text-dark bg-white" type="password" name="password1" id="password1">
@@ -71,7 +102,7 @@
               <!-- END CONTRASEÑA -->
               <!-- 2 CAMPO DE CONTRASEÑA DE LOGIN MOSTRAR MEDIANTE ICONO CANDADO -->
               <form class="form-group" method="POST">
-                <label><H4><i class="mdi mdi-lock" onclick="mostrarContrasena()"></i> Repeat password</H4></label>
+                <label><H4><i class="mdi mdi-lock" onclick="mostrarContrasena()"></i> Repetir Contraseña</H4></label>
                 <div class="form-row">
                     <div class="col">
                   <input class="form-control p_input text-dark bg-white" type="password" name="password2" id="password2">
