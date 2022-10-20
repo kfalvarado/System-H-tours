@@ -34,7 +34,7 @@ Scarleth
             </div>
             <nav class="nav nav-pills flex-column flex-sm-row">
               <a class="flex-sm-fill text-sm-center nav-link active" href="#">Periodo</a>
-              <a class="flex-sm-fill text-sm-center nav-link"  aria-current="page" href="libro_mayor.html">Libro Mayor</a>
+              <a class="flex-sm-fill text-sm-center nav-link"  aria-current="page" href="{{route('mostrar.libromayor')}}">Libro Mayor</a>
             </nav>
             <p align="right" valign="baseline">
               <button type="button"  class="btn btn-success"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>

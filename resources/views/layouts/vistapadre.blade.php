@@ -113,7 +113,7 @@
                 </a>
                 <div class="collapse" id="periodo-contable">
                   <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/tables/libro_diario.html">Libro Diario</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('mostrar.librodiario')}}">Libro Diario</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{route('periodo.inicio')}}">Periodo/Libro Mayor</a></li>
                     <li class="nav-item"> <a class="nav-link" href="pages/tables/Balance-GL.html">Reporte Balance General</a></li>
                     <li class="nav-item"> <a class="nav-link" href="pages/tables/Consultas-estadoDeResultados.html">Reporte Estado de Resultado</a></li>        

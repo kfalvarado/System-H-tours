@@ -406,7 +406,7 @@ Fabricio
             </div>
             <!-- Control de pestaña --> 
         <nav class="nav nav-pills flex-column flex-sm-row">
-        <a class="flex-sm-fill text-sm-center nav-link" href="tablas-periodo.html">Periodo</a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="{{route('periodo.inicio')}}">Periodo</a>
         <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#">Libro Mayor</a>
         </nav>
 
