@@ -55,6 +55,11 @@
                   alert('Se registro Correctamente tu Usuario porfavor Contacta a un administrador para que pueda brindarte permisos')
                 </script>
                 @endif
+                @if(Session::has('denegado'))
+                <script>
+                  alert('Tu acceso a sido Denegado')
+                </script>
+                @endif
               </div>
               <form action="{{route('Registrar.usuario')}}" method="POST" id="formulario">
                 @csrf

@@ -19,7 +19,7 @@ class SessionController extends Controller
     } 
     public function Registrar(Request $request)
     {
-        $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjYyOTI4ODAsImV4cCI6MTY2NjI5MzE4MH0.mbd8DIyzbmpzz_sXzNIR3NaKMoYBvXUcJFz1Y1QImbQ';
+        $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjYyOTM3MzMsImV4cCI6MTY2NjI5NDAzM30.yyvDUYO1Vzns0zPONdQThvajsUmc8FaeXOW2PmSxbiE';
         $indentidad = $request->primerodigitos."-".$request->segundodigitos."-".$request->tercerodigitos;
         // return $request;
         try {
@@ -44,11 +44,17 @@ class SessionController extends Controller
         } catch (\Exception $e) {
             return 'Ocurrio una error con la  API POST PERSONAS';
         }
-
+        if ($insertarPersona == 'Forbidden'){
+            Session::flash('denegado','Tu acceso a sido Denegado');
+            return back();
+            // return 'Acceso Denegado';
+        }else{
+            Session::flash('correcto','Usuario Registrado Correctamente');
+            return back();
+        }
         
-        // // return $indentidad;
-        Session::flash('correcto','Usuario Registrado Correctamente');
-        return back();
+        // // // return $indentidad;
+       
         
     }  
 }
