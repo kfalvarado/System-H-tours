@@ -19,13 +19,15 @@ class SessionController extends Controller
     } 
     public function Registrar(Request $request)
     {
+        $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjYyOTI4ODAsImV4cCI6MTY2NjI5MzE4MH0.mbd8DIyzbmpzz_sXzNIR3NaKMoYBvXUcJFz1Y1QImbQ';
         $indentidad = $request->primerodigitos."-".$request->segundodigitos."-".$request->tercerodigitos;
-        return $request;
+        // return $request;
         try {
-            $insertarPersona = Http::post('http://localhost:3000/personas/insertar', [
+            $insertarPersona = Http::withToken($token)->post('http://localhost:3000/personas/insertar', [
                 "NOM_PERSONA" => $request->nombre,
                 "SEX_PERSONA" => $request->genero,
                 "EDA_PERSONAL" => $request->edad,
+                "TIP_PERSONA" => $request->tipoPersona,
                 "Num_Identidad" => $indentidad,
                 "IND_CIVIL" => $request->civil,
                 "IND_PERSONA" => 1,
@@ -45,8 +47,8 @@ class SessionController extends Controller
 
         
         // // return $indentidad;
-        // Session::flash('correcto','Usuario Registrado Correctamente');
-        // return back();
+        Session::flash('correcto','Usuario Registrado Correctamente');
+        return back();
         
     }  
 }
