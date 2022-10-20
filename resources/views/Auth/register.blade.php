@@ -130,7 +130,7 @@
                 </Select>
                 <div class="form-group">
                 <label>
-                  <H4><i class="mdi mdi-account"></i> ROL </h4>
+                  <H4><i class="mdi mdi-account"></i> Rol del Usuario</h4>
                 </label>
                 <Select class="form-control p_input text-dark bg-white" id="tipotelefono" name="tipotelefono" required>
                   <option value=""></option>
