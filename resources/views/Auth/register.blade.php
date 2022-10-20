@@ -129,6 +129,13 @@
                   <option value="T">Telfono Fijo</option>
                 </Select>
                 <div class="form-group">
+                <label>
+                  <H4><i class="mdi mdi-account"></i> ROL </h4>
+                </label>
+                <Select class="form-control p_input text-dark bg-white" id="tipotelefono" name="tipotelefono" required>
+                  <option value=""></option>
+                  <option value="2">Contador</option>
+                </Select>
                   <label>
                     <H4><i class="mdi mdi-account"></i> Usuario</H4>
                   </label>
