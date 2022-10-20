@@ -43,6 +43,11 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->prefix('librodiario')
                 ->group(base_path('routes/librodiario.php'));
+
+                
+            Route::middleware('web')
+            ->prefix('libromayor')
+            ->group(base_path('routes/libromayor.php'));
         });
     }
 
