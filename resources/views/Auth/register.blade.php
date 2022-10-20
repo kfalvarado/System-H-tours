@@ -43,11 +43,6 @@
                   <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#">REGISTRATE</a>
                 </nav>
               </center>
-              <!-- End layout styles <ul class="nav nav-pills nav-stacked">    
-                 </ul>
-                 <br>
-                <h3 class="card-title text-center mb-3">LOGIN</h3>-->
-
               <br>
               <div class="card-header">
                 @if(Session::has('correcto'))
