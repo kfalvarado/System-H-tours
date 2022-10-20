@@ -63,7 +63,7 @@ Scarleth
                         </thead>
                         <tbody>
                           <tr class="text-white bg-dark">
-                            <td> 1 <input type="checkbox" name="" id=""></td>
+                            <td> 1 </td>
                             <td>Periodo-2020-ene-1-001</td>
                             <td>01/01/2020</td>
                             <td>01/12/2020</td>
@@ -71,7 +71,7 @@ Scarleth
                             <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>  
                           </tr>
                           <tr class="text-white bg-dark">
-                            <td> 2 <input type="checkbox" name="" id=""></td>
+                            <td> 2 </td>
                             <td>Periodo-2021-ene-1-002</td>
                             <td>01/01/2021</td>
                             <td>01/12/2021</td>
@@ -79,7 +79,7 @@ Scarleth
                             <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
                           </tr>
                           <tr class="text-white bg-dark">
-                            <td> 3 <input type="checkbox" name="" id=""> </td>
+                            <td> 3  </td>
                             <td>Periodo-2022-ene-1-003</td>
                             <td>01/01/2022</td>
                             <td>01/12/2022</td>
