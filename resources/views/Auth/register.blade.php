@@ -15,6 +15,14 @@
   <!-- inject:css -->
   <!-- endinject -->
   <!-- Layout styles -->
+
+
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" media="screen" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+
   <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
   <!-- End layout styles -->
   <link rel="icon" href="{{asset('assets/images/HTOURS.png')}}" />
@@ -25,7 +33,7 @@
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="row w-100 m-0">
         <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
-          <div class="card col-lg-4 mx-auto border border-info" style="background-color:#008a60a1;">
+          <div class="card col-lg-9 mx-auto border border-info" style="background-color:#008a60a1;">
             <div class="card-body px-3 py-2">
               <center>
                 <img class="img-md" width="110" height="110" src="{{asset('assets/images/HTOURS.png')}}" alt="">
@@ -43,99 +51,170 @@
               <br>
               <div class="card-header">
                 @if(Session::has('correcto'))
-                <script> alert('Se registro Correctamente tu Usuario porfavor Contacta a un administrador para que pueda brindarte permisos') </script>  
+                <script>
+                  alert('Se registro Correctamente tu Usuario porfavor Contacta a un administrador para que pueda brindarte permisos')
+                </script>
                 @endif
               </div>
-              <form action="{{route('Registrar.usuario')}}" method="POST">
+              <form action="{{route('Registrar.usuario')}}" method="POST" id="formulario">
                 @csrf
-                <div class="form-group">
-                  <label>
-                    <H4><i class="mdi mdi-account"></i> Nombre Completo </H4>
-                  </label>
-                  <input type="text" id="nombre" name="nombre" class="form-control p_input text-dark bg-white" required>
-                </div>
-                <div class="form-group">
-                  <label>
-                    <H4><i class="mdi mdi-account"></i> Genero
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <i class="mdi mdi-account"></i> Edad
-                    </h4>
-                  </label>
-                  <br>
-                  <label for="masculino">Masculino
-                    <input type="radio" id="genero" name="genero" value="M" class="form-control p_input text-dark bg-white">
-                  </label>
-                  <label for="femenino">Femenino
-                    <input type="radio" id="genero" name="genero" value="F" class="form-control p_input text-dark bg-white">
-                  </label>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <label for="edad">Ingresa tu edad
-                    <input type="number" id="edad" name="edad" min="0" max="100" class="form-control p_input text-dark bg-white" required>
-                  </label>
-                </div>
-                <label>
-                  <H4><i class="mdi mdi-account"></i> Estado Civil</h4>
-                </label>
-                <Select id="civil" name="civil" class="form-control p_input text-dark bg-white" id="tipoPersona" name="tipoPersona" required>
-                  <option value=""></option>
-                  <option value="S">Soltero</option>
-                  <option value="V">Viudo</option>
-                  <option value="C">Casado</option>
-                  <option value="D">Divorciado</option>
-                </Select>
-                <label>
-                  <H4><i class="mdi mdi-account"></i> Tipo de persona </h4>
-                </label>
-                <Select class="form-control p_input text-dark bg-white" id="tipoPersona" name="tipoPersona" required>
-                  <option value=""></option>
-                  <option value="N">Normal</option>
-                  <option value="J">Juridica</option>
-                </Select>
-                <div class="form-group">
-                  <label>
-                    <H4><i class="mdi mdi-account"></i> Numero de Indentidad </H4>
-                    <div id="error"></div>
+                <details>
+                  <summary>Datos Personales</summary>
+                  <div class="form-group">
+                    <label>
+                      <H4><i class="mdi mdi-account"></i> Nombre Completo </H4>
+                    </label>
+                    <input type="text" id="nombre" name="nombre" class="form-control p_input text-dark bg-white" required>
+                  </div>
+                  <div class="form-group">
                     <table>
                       <thead>
-                        <tr>
-                          <th colspan="2">
-                            <input type="number" minlength="0" min="0" pattern="[09]+" id="primerodigitos" name="primerodigitos" onkeypress="return validarprimercampo(event);" class="form-control p_input text-dark bg-white" size="100" required>
-                          </th>
-                          <th>-</th>
-                          <th colspan="2">
-                            <input type="number" minlength="0" min="0" pattern="[09]+" id="segundodigitos" name="segundodigitos" onkeypress="return validarsegundocampo(event);" class="form-control p_input text-dark bg-white" size="100" required>
-                          </th>
-                          <th>-</th>
-                          <th colspan="2">
-                            <input type="number" minlength="0" min="0" pattern="[09]+" id="tercerodigitos" name="tercerodigitos" onkeypress="return validartercercampo(event);" class="form-control p_input text-dark bg-white" size="100" required>
-                          </th>
-                        </tr>
-                      </thead>
-                    </table>
-                  </label>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; </th>
+                    </thead>
+                    <tbody>
+
+
+                      <td colspan="2">
+
+                        <H4>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <i class="mdi mdi-account"></i> Genero</H4>
+
+                        <label for="masculino">
+                          <input type="radio" id="genero" name="genero" value="M" class="form-control p_input text-dark bg-white">
+                          Masculino
+                        </label>
+                        &nbsp; &nbsp;&nbsp;&nbsp;
+                        <label for="femenino">
+                          <input type="radio" id="genero" name="genero" value="F" class="form-control p_input text-dark bg-white">
+                          Femenino
+                        </label>
+                        &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                      </td>
+                      
+                      <td colspan="">
+                        &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                        <label for="">
+                          <center>
+                            <h4><i class="mdi mdi-account"></i> Edad</h4>
+                            <input type="number" id="edad" name="edad" min="0" max="100" class="form-control p_input text-dark bg-white" required>
+                          </center>
+                        </label>
+                        &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                      </td>
+                      
+                      <td colspan="2">
+                        <label for="civil">
+                          <h4>
+                            <i class="mdi mdi-account"></i> Estado Civil
+                          </h4>
+                          <Select id="civil" name="civil" class="form-control p_input text-dark bg-white" id="tipoPersona" name="tipoPersona" required>
+                            <option value=""></option>
+                            <option value="S">Soltero</option>
+                            <option value="V">Viudo</option>
+                            <option value="C">Casado</option>
+                            <option value="D">Divorciado</option>
+                          </Select>
+                        </label>
+                        &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                      </td>
+
+                      <td colspan="2">
+
+                        <label for="">
+
+                          <center>
+                            <h4><i class="mdi mdi-account"></i> Tipo de persona </th>
+                            </h4>
+                          </center>
+                          <Select class="form-control p_input text-dark bg-white" id="tipoPersona" name="tipoPersona" required>
+                            <option value=""></option>
+                            <option value="N">Normal</option>
+                            <option value="J">Juridica</option>
+                          </Select>
+                        </label>
+                      </td>
+
+                    </tbody>
+
+                  </table>     
                 </div>
+              </details>
+              <details>
+                <summary>Informacion Personal</summary>
                 <div class="form-group">
-                  <label>
-                    <H4><i class="mdi mdi-account"></i> Telefono </H4>
-                  </label>
-                  <input type="tel" id="telefono" name="telefono" class="form-control p_input text-dark bg-white" required>
+                  <center>
+                    <label>
+                      <H4><i class="mdi mdi-account"></i> Numero de Indentidad </H4>
+                      <div id="error"></div>
+                      <table>
+                        <thead>
+                          <tr>
+                            <th colspan="2">
+                              <input type="number" minlength="0" min="0" pattern="[09]+" id="primerodigitos" name="primerodigitos" onkeypress="return validarprimercampo(event);" class="form-control p_input text-dark bg-white" size="100" required>
+                            </th>
+                            <th>-</th>
+                            <th colspan="2">
+                              <input type="number" minlength="0" min="0" pattern="[09]+" id="segundodigitos" name="segundodigitos" onkeypress="return validarsegundocampo(event);" class="form-control p_input text-dark bg-white" size="100" required>
+                            </th>
+                            <th>-</th>
+                            <th colspan="2">
+                              <input type="number" minlength="0" min="0" pattern="[09]+" id="tercerodigitos" name="tercerodigitos" onkeypress="return validartercercampo(event);" class="form-control p_input text-dark bg-white" size="100" required>
+                            </th>
+                          </tr>
+                        </thead>
+                      </table>
+                    </label>
+                  </center>
                 </div>
-                <label>
-                  <H4><i class="mdi mdi-account"></i> Tipo de Telefono </h4>
-                </label>
-                <Select class="form-control p_input text-dark bg-white" id="tipotelefono" name="tipotelefono" required>
-                  <option value=""></option>
-                  <option value="C">Celular</option>
-                  <option value="T">Telfono Fijo</option>
-                </Select>
-                <div class="form-group">
-                <label>
-                  <H4><i class="mdi mdi-account"></i> Rol del Usuario</h4>
-                </label>
-                <Select class="form-control p_input text-dark bg-white" id="tipotelefono" name="tipotelefono" required>
-                  <option value=""></option>
-                  <option value="2">Contador</option>
-                </Select>
+                <center>
+
+                  <div class="form-group">
+                    <table>
+                    <thead>
+                      <tr>
+                        <th colspan="2">
+                          
+                          <label>
+                            <H4><i class="mdi mdi-account"></i> Telefono </H4>
+                            <input type="tel" id="telefono" name="telefono" class="form-control p_input text-dark bg-white" required>
+                          </label>
+                          &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                        </th>
+                        <th>
+                          <label>
+                            <H4><i class="mdi mdi-account"></i> Tipo de Telefono </h4>
+                            <Select class="form-control p_input text-dark bg-white" id="tipotelefono" name="tipotelefono" required>
+                              <option value=""></option>
+                              <option value="C">Celular</option>
+                              <option value="T">Telfono Fijo</option>
+                            </Select>
+                          </label>
+                          &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                        </th>
+                        <th>
+                          <label>
+                            <H4><i class="mdi mdi-account"></i> Rol del Usuario</h4>
+                          </label>
+                          <Select class="form-control p_input text-dark bg-white" id="roluser" name="roluser" required>
+                            <option value=""></option>
+                            <option value="2">Contador</option>
+                          </Select>
+                        </th>
+                        </label>
+                    </thead>
+                    </tr>
+                  </table>
+                </div>
+              </center>
+              </details>
+              <details>
+                <summary>Datos del Usuario</summary>
+                <div class="form-group">          
                   <label>
                     <H4><i class="mdi mdi-account"></i> Usuario</H4>
                   </label>
@@ -148,7 +227,9 @@
                   <input type="email" class="form-control p_input text-dark bg-white" id="correo" name="correo" required>
                 </div>
                 <!-- CAMPO DE CONTRASEÑA DE LOGIN MOSTRAR MEDIANTE ICONO CANDADO -->
+                <div id="preguntas">
 
+                </div>
                 <label>
                   <H4><i class="mdi mdi-lock" onclick="mostrarContra()"></i>Contraseña</H4>
                 </label>
@@ -162,7 +243,7 @@
                 <br>
                 <!-- END CONTRASEÑA -->
                 <!-- 2 CAMPO DE CONTRASEÑA DE LOGIN MOSTRAR MEDIANTE ICONO CANDADO -->
-
+                
                 <label>
                   <H4><i class="mdi mdi-lock" onclick="mostrarContrasena()"></i> Repetir Contraseña</H4>
                 </label>
@@ -170,13 +251,25 @@
                   <div class="col">
                     <input class="form-control p_input text-dark bg-white" type="password" name="password2" id="password2" required>
                   </div>
+                  
                 </div>
-
-                <script>
-                  function mostrarContra() {
-                    var tipo = document.getElementById("password1");
-                    if (tipo.type == "password") {
-                      tipo.type = "text";
+              </details>
+              <details>
+                <summary>Método de Recuperación de contraseña</summary>
+                <label>
+                  <H4><i class="mdi mdi-account"></i> Ingresa una pregunta de seguridad</H4>
+                </label>
+                <input type="text" class="form-control p_input text-dark bg-white" id="pregunta" name="pregunta" required>
+                <H4><i class="mdi mdi-account"></i> Ingresa una respuesta a esa pregunta</H4>
+              </label>
+              <input type="text" class="form-control p_input text-dark bg-white" id="Respuesta" name="Respuesta" required>
+            </details>
+              
+              <script>
+                function mostrarContra() {
+                  var tipo = document.getElementById("password1");
+                  if (tipo.type == "password") {
+                    tipo.type = "text";
                     } else {
                       tipo.type = "password";
                     }
@@ -200,7 +293,7 @@
                         return false;
                       }
                     } else {
-                      alert('demasiados numeros en una sola entrada');
+                      alert('No puedes agregar mas numeros en este campo');
                       e.preventDefault();
                     }
                   }
@@ -224,7 +317,7 @@
                         return false;
                       }
                     } else {
-                      alert('demasiados numeros en una sola entrada');
+                      alert('No puedes agregar mas numeros en este campo');
                       e.preventDefault();
                     }
                   }
@@ -248,7 +341,7 @@
                         return false;
                       }
                     } else {
-                      alert('demasiados numeros en una sola entrada');
+                      alert('No puedes agregar mas numeros en este campo');
                       e.preventDefault();
                     }
                   }
@@ -262,24 +355,26 @@
                       tipo.type = "password";
                     }
                   }
+
+                  //detener el evento de registro
                 </script>
                 <br>
                 <!-- 2 END CONTRASEÑA -->
-                <div class="text-center">
-                  <!-- <a class="text-white font-weight-medium" href="../tables/Pregunta_Usuario.html">
+                <!-- <div class="text-center">
+                  <a class="text-white font-weight-medium" href="../tables/Pregunta_Usuario.html">
                     <button onclick="alert('Deberas Contestar las siguientes preguntas');" type="submit" class="btn btn-primary btn-block enter-btn">Registrate</button></a>
                 </div> -->
-                  <button type="submit" class="btn btn-primary btn-block enter-btn">Registrate</button></a>
-                  <div class="form-group d-flex align-items-center justify-content-center">
-                    <!-- <p class="terms">By creating an account you are accepting our<a href="#"> Terms & Conditions</a></p> -->
-                  </div>
-                  <div class="d-flex">
-                    <!-- <button class="btn btn-facebook mr-2 col">
+                <button type="submit" class="btn btn-primary btn-block enter-btn">Registrate</button></a>
+                <div class="form-group d-flex align-items-center justify-content-center">
+                  <!-- <p class="terms">By creating an account you are accepting our<a href="#"> Terms & Conditions</a></p> -->
+                </div>
+                <div class="d-flex">
+                  <!-- <button class="btn btn-facebook mr-2 col">
                       <i class="mdi mdi-facebook"></i> Facebook </button>
                     <button class="btn btn-google col">
                       <i class="mdi mdi-google-plus"></i> Google plus </button>
                   </div> -->
-                    <!-- <p class="sign-up">Don't have an Account?<a href="#"> Sign Up</a></p> -->
+                  <!-- <p class="sign-up">Don't have an Account?<a href="#"> Sign Up</a></p> -->
               </form>
 
 

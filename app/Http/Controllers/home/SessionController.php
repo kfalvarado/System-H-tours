@@ -20,7 +20,7 @@ class SessionController extends Controller
     public function Registrar(Request $request)
     {
         $indentidad = $request->primerodigitos."-".$request->segundodigitos."-".$request->tercerodigitos;
-        // return $request;
+        return $request;
         try {
             $insertarPersona = Http::post('http://localhost:3000/personas/insertar', [
                 "NOM_PERSONA" => $request->nombre,
@@ -31,15 +31,22 @@ class SessionController extends Controller
                 "IND_PERSONA" => 1,
                 "TELEFONO" => $request->telefono,
                 "TIP_TELEFONO" => $request->tipotelefono,
+                "CORREO"=> $request->correo,
+                "PREGUNTA"=>$request->pregunta,
+                "RESPUESTA"=>$request->Respuesta,
+                "USUARIO"=> $request->user,
+                "PASSWORD"=> $request->correo,
+                "ROL"=> $request->roluser
+
             ]);
         } catch (\Exception $e) {
             return 'Ocurrio una error con la  API POST PERSONAS';
         }
 
         
-        // return $indentidad;
-        Session::flash('correcto','Usuario Registrado Correctamente');
-        return back();
+        // // return $indentidad;
+        // Session::flash('correcto','Usuario Registrado Correctamente');
+        // return back();
         
     }  
 }
