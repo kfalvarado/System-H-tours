@@ -22,4 +22,5 @@ Route::get('/', function () {
 Route::get('/inicio',[SessionController::class,'inicio'])->name('home');
 Route::get('/registro',[SessionController::class,'register'])->name('registro');
 Route::post('/registrar',[SessionController::class,'Registrar'])->name('Registrar.usuario');
+Route::post('/recuperacion',[SessionController::class,'Recuperar'])->name('Recuperar.sesion');
 
