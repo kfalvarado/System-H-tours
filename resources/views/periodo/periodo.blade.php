@@ -38,7 +38,7 @@ Scarleth
             </nav>
             <p align="right" valign="baseline">
               <button type="button"  class="btn btn-success"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
-              <button type="button"  class="btn btn-success"  >Generar PDF</button>
+              <a type="button" href="{{route('periodo.pdf')}}" class="btn btn-success"  >Generar PDF</a>
             </p>
             <div class="row">
               <div class="col-lg-12 stretch-card">

@@ -11,5 +11,8 @@ class PeriodoController extends Controller
     {
        return view('periodo.periodo');
     }
-  
+    public function mostrarPDF()
+    {
+        return view('periodo.periodoPDF');
+    }
 }
