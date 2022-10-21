@@ -132,9 +132,7 @@
               <div class="collapse" id="mantenimiento">
                   <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="pages/tables/tablas-Clasificacion.html">Clasificacion</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/tables/estado-cuentas.html">Estado de cuentas</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/tables/estado-sub-cuentas.html">Estado de subcuentas</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/tables/estado-periodo.html">Estado de periodo</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('personas.inicio')}}">Personas</a></li>
                     <li class="nav-item"> <a class="nav-link" href="pages/tables/Objetos.html"> Objetos </a></li>
                   </ul>
               </div>

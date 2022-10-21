@@ -20,7 +20,7 @@ use App\Http\Controllers\librodiario\LibrodiarioController;
 //     return view('Auth.login');
 // });
 
-Route::get('/mostrar',[LibrodiarioController::class,'mostrar'])->name('mostrar.librodiario');
+Route::get('/',[LibrodiarioController::class,'mostrar'])->name('mostrar.librodiario');
 
 
 // Route::get('/inicio',[SessionController::class,'inicio'])->name('home');
