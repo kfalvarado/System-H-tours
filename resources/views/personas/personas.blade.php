@@ -2,7 +2,7 @@
 
 <!-- titulo de la pagina  -->
 @section('titulo')
-Periodo | inicio
+Personas | inicio
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
@@ -52,36 +52,44 @@ Scarleth
                           <tr>
                             
                             <th class="text-dark bg-white">#</th>
-                            <th class="text-dark bg-white"> Nombre de periodo</th>
-                            <th class="text-dark bg-white"> Fecha inicial</th>
-                            <th class="text-dark bg-white"> Fechas final  </th>
-                            <th class="text-dark bg-white"> Estado del periodo  </th>
+                            <th class="text-dark bg-white"> Nombre de persona</th>
+                            <th class="text-dark bg-white"> Genero</th>
+                            <th class="text-dark bg-white"> Edad  </th>
+                            <th class="text-dark bg-white"> Tipo de persona </th>
+                            <th class="text-dark bg-white"> Identidad  </th>
+                            <th class="text-dark bg-white"> Fecha Registro  </th>
                             <th class="text-dark bg-white"> Acciones  </th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr class="text-white bg-dark">
                             <td> 1 </td>
-                            <td>Periodo-2020-ene-1-001</td>
-                            <td>01/01/2020</td>
-                            <td>01/12/2020</td>
-                            <td>Cerrado</td>
+                            <td>Helva vasquez</td>
+                            <td>M</td>
+                            <td>21</td>
+                            <td>J</td>
+                            <td>080129912132</td>
+                            <td>2022-10-12</td>
                             <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>  
                           </tr>
                           <tr class="text-white bg-dark">
                             <td> 2 </td>
-                            <td>Periodo-2021-ene-1-002</td>
-                            <td>01/01/2021</td>
-                            <td>01/12/2021</td>
-                            <td>Cerrado</td>
+                            <td>Helva vasquez</td>
+                            <td>M</td>
+                            <td>21</td>
+                            <td>J</td>
+                            <td>080129912132</td>
+                            <td>2022-10-12</td>
                             <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
                           </tr>
                           <tr class="text-white bg-dark">
                             <td> 3  </td>
-                            <td>Periodo-2022-ene-1-003</td>
-                            <td>01/01/2022</td>
-                            <td>01/12/2022</td>
-                            <td>Activo</td>
+                            <td>Helva vasquez</td>
+                            <td>M</td>
+                            <td>21</td>
+                            <td>J</td>
+                            <td>080129912132</td>
+                            <td>2022-10-12</td>
                             <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
                           </tr>                       
                         </tbody>

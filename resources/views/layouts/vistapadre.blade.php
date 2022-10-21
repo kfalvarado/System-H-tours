@@ -14,6 +14,7 @@
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
+    
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('assets/images/htours.png')}}" />
@@ -206,32 +207,13 @@
                   <p class="p-3 mb-0 text-center">Ajustes Avanzados</p>
                 </div>
               </li>
+
+              <!-- barra de menu en modo celular -->
             </ul>
-            <!-- barra de menu en modo celular -->
-            <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <!-- <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="" alt="logo" /></a> -->
-          </div>
-          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <!-- <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="" alt="logo" /></a> -->
-          </div>
-          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <!-- <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="" alt="logo" /></a> -->
-          </div>
-          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <!-- <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="" alt="logo" /></a> -->
-          </div>
-          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <!-- <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="" alt="logo" /></a> -->
-          </div>
-          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <!-- <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="" alt="logo" /></a> -->
-          </div>
-          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <!-- <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="" alt="logo" /></a> -->
-          </div>
-            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-              <span class="mdi mdi-format-line-spacing"></span>
-            </button>
+          
+              <button class="navbar-toggler   navbar-toggler-right d-lg-none align-self-right" type="button" data-toggle="offcanvas">
+                <span class="mdi mdi-format-line-spacing"></span>
+              </button>
           </div>
         </nav>
         <!-- fin menu -->
