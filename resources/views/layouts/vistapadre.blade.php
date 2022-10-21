@@ -209,8 +209,7 @@
               </li>
 
               <!-- barra de menu en modo celular -->
-            </ul>
-          
+            </ul>         
               <button class="navbar-toggler   navbar-toggler-right d-lg-none align-self-right" type="button" data-toggle="offcanvas">
                 <span class="mdi mdi-format-line-spacing"></span>
               </button>
