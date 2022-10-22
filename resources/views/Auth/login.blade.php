@@ -9,18 +9,32 @@
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css')}}">
+  
   <!-- endinject -->
   <!-- Plugin css for this page -->
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <!-- endinject -->
   <!-- Layout styles -->
+
   <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
   <!-- End layout styles -->
   <link rel="icon" href="{{ asset('assets/images/HTOURS.png')}}" />
 </head>
 
 <body>
+  <div class="card-header">
+    @if(Session::has('exito'))
+    <script>
+      alert('Tu solicitud se esta procesando')
+    </script>
+    @endif
+    @if(Session::has('Fallo'))
+    <script>
+      alert('Ocurrio un error')
+    </script>
+    @endif
+  </div>
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="row w-100 m-0">
@@ -84,7 +98,7 @@
                   </a>
 
 
-        
+
 
                   <!-- INICIO MODAL PARA CONTRASEÑA  -->
                   <div class="modal-container">
@@ -94,37 +108,37 @@
                         <div class="modal-content">
                           <!-- CABECERA DEL DIALOGO EDITAR -->
                           <div class="modal-header">
-                            <h4 class="modal-title">Recuperacion de  Contraseña</h4>
+                            <h4 class="modal-title">Recuperacion de Contraseña</h4>
                             <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                           </div>
                           <!-- CUERPO DEL DIALOGO BORRAR -->
                           <div class="modal-body">
                             <center>
-                              <form action="{{route('Recuperar.sesion')}}" method="post"> 
-                                @csrf                               
+                              <form action="{{route('Recuperar.sesion')}}" method="post">
+                                @csrf
                                 Ingrese su Usuario:<input type="text" id="user" name="user">
                                 <br>
                                 <br>
                                 <label class="form-label">
                                   ¿Metodo de Recuperacion?
                                 </label>
-                              
+
                                 <table>
-                              <tr>
-                                <th>
-                                  &nbsp;
-                                  <label for="form-label">Pregunta de Seguridad
-                                    <input type="radio" value="p" id="recuperacion" name="recuperacion">
-                                  </label>
-                                </th>
-                              </tr>
-                              <tr>
-                                <th>           
-                                  <label for="form-label">&nbsp; Correo Electronico
-                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" value="c" id="recuperacion" name="recuperacion">
-                                  </label>
-                                </th>
-                              </tr>
+                                  <tr>
+                                    <th>
+                                      &nbsp;
+                                      <label for="form-label">Pregunta de Seguridad
+                                        <input type="radio" value="p" id="recuperacion" name="recuperacion">
+                                      </label>
+                                    </th>
+                                  </tr>
+                                  <tr>
+                                    <th>
+                                      <label for="form-label">&nbsp; Correo Electronico
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" value="c" id="recuperacion" name="recuperacion">
+                                      </label>
+                                    </th>
+                                  </tr>
                                 </table>
                                 <br>
                                 <h4>Detallanos tu problema:</h4>

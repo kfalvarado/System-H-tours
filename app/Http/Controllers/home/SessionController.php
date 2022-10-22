@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
-use PhpParser\Node\Stmt\Return_;
+use PHPMailer\PHPMailer\PHPMailer;  
+use PHPMailer\PHPMailer\Exception;
 
 class SessionController extends Controller
 {
@@ -20,7 +21,7 @@ class SessionController extends Controller
     } 
     public function Registrar(Request $request)
     {
-        $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjYyOTM3MzMsImV4cCI6MTY2NjI5NDAzM30.yyvDUYO1Vzns0zPONdQThvajsUmc8FaeXOW2PmSxbiE';
+        $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjY0MjI4OTUsImV4cCI6MTY2NjQyMzE5NX0.TYjNuQ8P7UFQQtF5GQYFV3oFhjZkASQa3UnmFKY5hzE';
         $indentidad = $request->primerodigitos."-".$request->segundodigitos."-".$request->tercerodigitos;
         // return $request;
         try {
@@ -64,8 +65,55 @@ class SessionController extends Controller
             $RecupearusuarioPersona = Http::post('http://localhost:3000/seguridad/recuperar', [
                 "user"=> $request->user
             ]);
+            $arreglo =  json_decode($RecupearusuarioPersona,true);
 
-            return $RecupearusuarioPersona;
+            foreach($arreglo as $data){
+               $correo = $data['CORREO'];
+            }
+            require base_path("vendor/autoload.php");
+            $mail = new PHPMailer(true);
+            try {
+
+                // Email server settings
+                $mail->SMTPDebug = 0;
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';             //  smtp host
+                $mail->SMTPAuth = true;
+                $mail->Username = 'systemhtours@gmail.com';   //  Correo desde donde se enviara el Correo
+                $mail->Password = 'kmbyyqvcgkxfpluj';       // contraseña de Aplicacion
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;                  // encryption - ssl/tls
+                $mail->Port = 465;                          // port - 587/465
+
+                $mail->setFrom('systemhtours@gmail.com', 'Credenciales Htours');
+                $mail->addAddress($correo,$request->user);
+                // $mail->addCC($request->emailCc);
+                // $mail->addBCC($request->emailBcc);
+
+                // $mail->addReplyTo('sender@example.com', 'SenderReplyName');
+
+                if (isset($_FILES['emailAttachments'])) {
+                    for ($i = 0; $i < count($_FILES['emailAttachments']['tmp_name']); $i++) {
+                        $mail->addAttachment($_FILES['emailAttachments']['tmp_name'][$i], $_FILES['emailAttachments']['name'][$i]);
+                    }
+                }
+                $bodyHtml = '<h1> Recibimos una solicitud de cambio de contraseña por favor ingrese al siguiente Enlace para restablecer tu contraseña </h1> <img src="https://tester-security.herokuapp.com/track/laravel" alt="" srcset="">';
+                $mail->isHTML(true);                // Set email content format to HTML
+
+                $mail->Subject = 'Solicitud de recuperacion de credenciales';
+                $mail->Body    = $bodyHtml;
+
+                // $mail->AltBody = plain text version of email body;
+                $mail->send();
+                if (!$mail->send()) {
+                    Session::flash('Fallo','Tu solicitud no puede ser procesada');
+                    return back();
+                } else {
+                    Session::flash('exito','Tu solicitud se esta procesando');
+                    return back();
+                }
+            } catch (Exception $e) {
+                return back();
+            }
         }
     }
 }
