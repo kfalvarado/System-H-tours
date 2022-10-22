@@ -116,13 +116,15 @@
                             <center>
                               <form action="{{route('Recuperar.sesion')}}" method="post">
                                 @csrf
-                                Ingrese su Usuario:<input type="text" id="user" name="user">
-                                <br>
-                                <br>
-                                <label class="form-label">
-                                  ¿Metodo de Recuperacion?
-                                </label>
+                                <div  style="background-color:#008a60a1;">
 
+                                  Ingrese su Usuario:<input type="text" id="user" name="user" required>
+                                  <br>
+                                  <br>
+                                  <label class="form-label">
+                                    ¿Metodo de Recuperacion?
+                                  </label>
+                                  
                                 <table>
                                   <tr>
                                     <th>
@@ -142,10 +144,13 @@
                                 </table>
                                 <br>
                                 <h4>Detallanos tu problema:</h4>
-                                <textarea name="mensaje"> </textarea>
-                                </label>
-                                <button class="btn btn-success">Recuperar</button>
-                              </form>
+                                <textarea name="mensaje" required> </textarea>
+                              </label>
+                              <br>
+                              <button class="btn btn-info btn-md">Recuperar</button>
+                            
+                            </form>
+                          </div>
                           </div>
                           <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                           </center>
