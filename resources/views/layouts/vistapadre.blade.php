@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head> 
-    
+  <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield('titulo')</title>
+
+       <!-- Bootstrap  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  
+
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css')}}">
@@ -18,7 +22,11 @@
     
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/htours.png')}}" />
+    <link rel="shortcut icon" href="{{ asset('assets/images/HTOURS.png')}}" />
+  
+    
+  
+  
   </head>
   <body>
     <div class="container-scroller">
@@ -50,7 +58,7 @@
                     </div>
                   </div>
                   <div class="preview-item-content">
-                    <p class="preview-subject ellipsis mb-1 text-small">Ajustes CUENTA</p>
+                    <p class="preview-subject ellipsis mb-1 text-small">Ajustes Cuenta</p>
                   </div>
                 </a>
                 <div class="dropdown-divider"></div>
@@ -140,7 +148,7 @@
               </div>
           </li>
                       
-            <!-- Seguridad  -->
+            <!-- SEGURIDAD  -->
             <li class="nav-item menu-items">
                 <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                   <span class="menu-icon">
@@ -151,11 +159,13 @@
                 </a>
                 <div class="collapse" id="auth">
                   <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/tables/Usuarios.html"> Usuarios </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('admins.inicio')}}"> Administrador </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('usuarios.inicio')}}"> Usuarios </a></li>
                     <li class="nav-item"> <a class="nav-link" href="pages/tables/Roles.html">Roles</a></li>
                     <li class="nav-item"> <a class="nav-link" href="pages/tables/Permisos.html"> Permisos </a></li>
                     <li class="nav-item"> <a class="nav-link" href="pages/tables/Bitacora.html"> Bitacoras </a></li>
                     <li class="nav-item"> <a class="nav-link" href="pages/tables/Parametros.html">  Parametros </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{route('preguntas.inicio')}}">  Preguntas </a></li>
                   </ul>
                 </div>
               </li> 
@@ -183,14 +193,14 @@
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
                   <h6 class="p-3 mb-0">Opciones</h6>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item preview-item">
+                  <a class="dropdown-item preview-item" href="{{route('ajustes.inicio')}}">
                     <div class="preview-thumbnail">
                       <div class="preview-icon bg-dark rounded-circle">
                         <i class="mdi mdi-settings text-success"></i>
                       </div>
                     </div>
                     <div class="preview-item-content">
-                      <p class="preview-subject mb-1">Ajustes</p>
+                      <p class="preview-subject mb-1" >Ajustes</p>
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>
@@ -201,7 +211,7 @@
                       </div>
                     </div>
                     <div class="preview-item-content">
-                      <p class="preview-subject mb-1">Cerrar Sesion</p>
+                      <button class="preview-subject mb-1" href="{{url('/')}}">Cerrar Sesion</button>
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>
