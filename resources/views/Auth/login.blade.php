@@ -107,8 +107,8 @@
                       <div class="modal-dialog modal-sm">
                         <div class="modal-content">
                           <!-- CABECERA DEL DIALOGO EDITAR -->
-                          <div class="modal-header">
-                            <h4 class="modal-title">Recuperacion de Contraseña</h4>
+                          <div class="modal-header" style="background-color:#D80B0E;">
+                            <h4 class="modal-title" >Recuperacion de Contraseña</h4>
                             <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                           </div>
                           <!-- CUERPO DEL DIALOGO BORRAR -->
@@ -116,7 +116,7 @@
                             <center>
                               <form action="{{route('Recuperar.sesion')}}" method="post">
                                 @csrf
-                                <div  style="background-color:#008a60a1;">
+                                <div  style="background-color:#1A2940;">
 
                                   Ingrese su Usuario:<input type="text" id="user" name="user" required>
                                   <br>
