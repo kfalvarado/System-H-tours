@@ -14,7 +14,7 @@ use App\Http\Controllers\libromayor\LibromayorController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/mostrar',[LibromayorController::class,'mostrar'])->name('mostrar.libromayor');
+Route::get('/',[LibromayorController::class,'mostrar'])->name('mostrar.libromayor');
 
 // Route::get('/', function () {
 //     return view('Auth.login');
