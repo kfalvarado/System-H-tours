@@ -24,4 +24,5 @@ Route::get('/registro',[SessionController::class,'register'])->name('registro');
 Route::post('/registrar',[SessionController::class,'Registrar'])->name('Registrar.usuario');
 Route::post('/recuperacion',[SessionController::class,'recuperar'])->name('Recuperar.sesion');
 Route::post('/respuesta',[SessionController::class,'respuesta'])->name('Recuperar.respuesta');
+Route::get('/logout',[SessionController::class,'logout'])->name('cerrar.sesion');
 
