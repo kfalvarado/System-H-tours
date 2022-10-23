@@ -99,7 +99,7 @@ class SessionController extends Controller
                         $mail->addAttachment($_FILES['emailAttachments']['tmp_name'][$i], $_FILES['emailAttachments']['name'][$i]);
                     }
                 }
-                $bodyHtml = '<h1> Recibimos una solicitud de cambio de contraseña por favor ingrese al siguiente Enlace para restablecer tu contraseña </h1> <img src="https://tester-security.herokuapp.com/track/laravel" alt="" srcset="">';
+                $bodyHtml = '<h1> Recibimos una solicitud de cambio de contraseña por favor ingrese al siguiente Enlace para restablecer tu contraseña </h1>';
                 $mail->isHTML(true);                // Set email content format to HTML
 
                 $mail->Subject = 'Solicitud de recuperacion de credenciales';
