@@ -9,7 +9,7 @@
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css')}}">
-  
+
   <!-- endinject -->
   <!-- Plugin css for this page -->
   <!-- End plugin css for this page -->
@@ -23,18 +23,16 @@
 </head>
 
 <body>
-  <div class="card-header">
-    @if(Session::has('exito'))
-    <script>
-      alert('Tu solicitud se esta procesando')
-    </script>
-    @endif
-    @if(Session::has('Fallo'))
-    <script>
-      alert('Ocurrio un error')
-    </script>
-    @endif
-  </div>
+  @if(Session::has('exito'))
+  <script>
+    alert('Tu solicitud se esta procesando')
+  </script>
+  @endif
+  @if(Session::has('Fallo'))
+  <script>
+    alert('Ocurrio un error')
+  </script>
+  @endif
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="row w-100 m-0">
@@ -108,7 +106,7 @@
                         <div class="modal-content">
                           <!-- CABECERA DEL DIALOGO EDITAR -->
                           <div class="modal-header" style="background-color:#D80B0E;">
-                            <h4 class="modal-title" >Recuperacion de Contraseña</h4>
+                            <h4 class="modal-title">Recuperacion de Contraseña</h4>
                             <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                           </div>
                           <!-- CUERPO DEL DIALOGO BORRAR -->
@@ -116,56 +114,46 @@
                             <center>
                               <form action="{{route('Recuperar.sesion')}}" method="post">
                                 @csrf
-                                <div  style="background-color:#1A2940;">
+                                <div style="background-color:#1A2940;">
 
                                   Ingrese su Usuario:<input type="text" id="user" name="user" required>
                                   <br>
                                   <br>
                                   <label class="form-label">
                                     ¿Metodo de Recuperacion?
+                                    <br>
+                                    <label for="form-label">
+                                      <select class="form-control text-white" name="recuperacion" id="recuperacion">
+                                        <option value="">Seleccionar</option>
+                                        <option value="p">Pregunta de Seguridad</option>
+                                        <option value="c">Correo Electronico</option>
+                                      </select>
+                                    </label>
+
+                                    <br>
+                                    <h4>Detallanos tu problema:</h4>
+                                    <textarea name="mensaje" required> </textarea>
                                   </label>
-                                  
-                                <table>
-                                  <tr>
-                                    <th>
-                                      &nbsp;
-                                      <label for="form-label">Pregunta de Seguridad
-                                        <input type="radio" value="p" id="recuperacion" name="recuperacion">
-                                      </label>
-                                    </th>
-                                  </tr>
-                                  <tr>
-                                    <th>
-                                      <label for="form-label">&nbsp; Correo Electronico
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" value="c" id="recuperacion" name="recuperacion">
-                                      </label>
-                                    </th>
-                                  </tr>
-                                </table>
-                                <br>
-                                <h4>Detallanos tu problema:</h4>
-                                <textarea name="mensaje" required> </textarea>
-                              </label>
-                              <br>
-                              <button class="btn btn-info btn-md">Recuperar</button>
-                            
-                            </form>
+                                  <br>
+                                  <button class="btn btn-info btn-md">Recuperar</button>
+
+                              </form>
                           </div>
-                          </div>
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                          </center>
                         </div>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                        </center>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="d-flex">
-                  <!-- <button class="btn btn-facebook mr-2 col">
+            </div>
+            <div class="d-flex">
+              <!-- <button class="btn btn-facebook mr-2 col">
                       <i class="mdi mdi-facebook"></i> Facebook </button>
                     <button class="btn btn-google col">
                       <i class="mdi mdi-google-plus"></i> Google plus </button>
                   </div> -->
-                  <!-- <p class="sign-up">Don't have an Account?<a href="#"> Sign Up</a></p> -->
+              <!-- <p class="sign-up">Don't have an Account?<a href="#"> Sign Up</a></p> -->
               </form>
 
 

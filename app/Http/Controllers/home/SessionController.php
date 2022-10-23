@@ -11,6 +11,7 @@ use PHPMailer\PHPMailer\Exception;
 
 class SessionController extends Controller
 {
+ 
     public function inicio()
     {
         return view('home.inicio');
@@ -60,8 +61,10 @@ class SessionController extends Controller
     }  
     public function recuperar(Request $request)
     {
-        if ($request->recuperacion = "c") {
-             
+         
+        //metodo de recuperacion por correo unido a PHP MAILER para enviar un correo de recuperacion
+        //falta metodo para generar un token de expiracion
+        if ($request->recuperacion == "c") {
             $RecupearusuarioPersona = Http::post('http://localhost:3000/seguridad/recuperar', [
                 "user"=> $request->user
             ]);
@@ -114,6 +117,42 @@ class SessionController extends Controller
             } catch (Exception $e) {
                 return back();
             }
+
+        }elseif ($request->recuperacion == "p") { //metodo de recuperacion por pregunta secreta
+          //buscar la pregunta relacionada al usuario proporcionado
+            $RecupearusuarioPersona = Http::post('http://localhost:3000/seguridad/preguntas', [
+                "user"=> $request->user
+            ]);
+            $arreglo =  json_decode($RecupearusuarioPersona,true);
+
+            foreach($arreglo as $data){
+               $pregunta = $data['PREGUNTA'];
+            }
+            $user = $request->user;
+            Session::flash('pregunta',$pregunta);
+            Session::flash('user',$user);
+            return view('Auth.preguntas');
+        }
+    }
+
+    public function respuesta(Request $request)
+    {
+        //revisar si la pregunta coincide o no coincide
+        $RecupearusuarioPersona = Http::post('http://localhost:3000/seguridad/respuesta', [
+            "user"=> $request->user,
+            "preg"=> $request->pregunta,
+            "resp"=> $request->respuesta
+        ]);
+    
+        $arreglo =  json_decode($RecupearusuarioPersona,true);
+        foreach($arreglo as $data){
+            $estado = $data['ESTADO'];
+         }
+         //se deja pasar si encuentra coicidencia
+        if($estado == 1){
+            return 'puede pasar';
+        }else{
+            return 'no puede pasar'; // se le niega el acceso si no
         }
     }
 }
