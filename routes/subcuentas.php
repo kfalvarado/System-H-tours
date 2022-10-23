@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\subcuentas\subcuentasController;
+use App\Http\Controllers\subcuentas\SubcuentasController;
 
 
 /*
@@ -16,4 +16,4 @@ use App\Http\Controllers\subcuentas\subcuentasController;
 */
 // hubo un cambio
 
-Route::get('/',[subcuentasController::class,'ver'])->name('mostrar.subcuentas');
+Route::get('/',[SubcuentasController::class,'ver'])->name('mostrar.subcuentas');
