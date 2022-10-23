@@ -39,7 +39,7 @@
                 <img class="img-md" width="110" height="110" src="{{asset('assets/images/HTOURS.png')}}" alt="">
                 <h1 class="card-title text-center mb-2">System H tours</h1>
                 <nav class="nav nav-pills flex-column flex-sm-row">
-                  <a class="flex-sm-fill text-sm-center nav-link text-white" href="{{url('/')}}">INGRESA</a>
+                  <a class="flex-sm-fill text-sm-center nav-link" href="{{url('/')}}">INGRESA</a>
                   <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#">REGISTRATE</a>
                 </nav>
               </center>
@@ -238,13 +238,7 @@
                     <input class="form-control p_input text-dark bg-white" type="password" name="password1" id="password1" required>
                   </div>
                 </div>
-                <ul>
-                  <li>1 mayusculas</li>
-                  <li>3 Caracteres especiales</li>
-                  <li>1 Numero</li>
-                  <li>1 minuscula</li>
-                  <li>8 Longitud</li>
-                </ul>
+
 
                 <br>
                 <!-- END CONTRASEÑA -->
@@ -353,32 +347,6 @@
                   }
                 </script>
                 <script>
-                  
-                  // $(function(){
-            
-                  //   var mayus = new RegExp("^(?=.*[A-Z]");
-                  //   var special = new RegExp("^(?=.*[!@#$%&*].*[!@#$%&*].*[!@#$%&*]");
-                  //   var numbers = new RegExp("^(?=.*[0-9]");
-                  //   var lowers = new RegExp("^(?=.*[a-z]");
-                  //   var len = new RegExp("^(?=.*{8,}");
-
-                  //   var regExp = [mayus,special,numbers,len];
-                  //   var elementos = [$("#mayus"),$("#special"),$("#numbers"),$("#lowers"),$("#len")];
-
-                  //   $("password1").on("keyup",function () {
-                  //     var pass = $('password1').val();
-
-                  //     for (let i = 0; i < 5; i++) {
-                  //       if (regExp[i].test(pass)) {
-                  //         elementos[i].hide();
-                  //       }else{
-                  //         elementos[i].show();
-                  //       }
-                        
-                  //     }
-                  //   })
-                  // })
-
                   function mostrarContrasena() {
                     var tipo = document.getElementById("password2");
                     if (tipo.type == "password") {
