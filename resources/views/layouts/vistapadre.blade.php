@@ -23,7 +23,8 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('assets/images/HTOURS.png')}}" />
   
-    
+  <!-- metodo de cerrar sesion funcional, pero por el metodo GET, se necesita cambiar que sea funcional por el metodo POST
+  para poder enviar el token y destruirlo en la api por medio de FETCH   -->
   <script>
     function presioname() {
       r = {}
