@@ -34,6 +34,14 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
+                ->prefix('cuentas')
+                ->group(base_path('routes/cuentas.php'));
+
+            Route::middleware('web')
+                ->prefix('subcuentas')
+                ->group(base_path('routes/subcuentas.php'));
+
+            Route::middleware('web')
                 ->prefix('periodo')
                 ->group(base_path('routes/periodo.php'));
 
@@ -46,7 +54,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->prefix('usuarios')
                 ->group(base_path('routes/usuarios.php'));
-            
+
             Route::middleware('web')
                 ->prefix('preguntas')
                 ->group(base_path('routes/preguntas.php'));
@@ -54,7 +62,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->prefix('ajustes')
                 ->group(base_path('routes/configs.php'));
-        
+
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
 
@@ -62,7 +70,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('librodiario')
                 ->group(base_path('routes/librodiario.php'));
 
-                
+
             Route::middleware('web')
             ->prefix('libromayor')
             ->group(base_path('routes/libromayor.php'));
