@@ -27,10 +27,11 @@
     
   <script>
     function presioname() {
-      // r = {}
-      // r.ruta = '{{route("cerrar.sesion")}}'
-      confirm('Estas Seguro que deseas salir?')
-      // window.open(r.ruta);
+      r = {}
+      r.ruta = '{{route("cerrar.sesion")}}';
+      if(confirm('Estas Seguro que deseas salir?')){
+        window.location = r.ruta;
+      }
     }
   </script>
   
