@@ -119,6 +119,7 @@ class SessionController extends Controller
             }
 
         }elseif ($request->recuperacion == "p") { //metodo de recuperacion por pregunta secreta
+            
           //buscar la pregunta relacionada al usuario proporcionado
             $RecupearusuarioPersona = Http::post('http://localhost:3000/seguridad/preguntas', [
                 "user"=> $request->user
