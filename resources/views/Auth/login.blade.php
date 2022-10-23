@@ -44,7 +44,7 @@
                 <h1 class="card-title text-center mb-2">System H tours</h1>
                 <nav class="nav nav-pills flex-column flex-sm-row">
                   <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#">INGRESA</a>
-                  <a class="flex-sm-fill text-sm-center nav-link" href="{{route('registro')}}">REGISTRATE</a>
+                  <a class="flex-sm-fill text-sm-center text-white nav-link" href="{{route('registro')}}">REGISTRATE</a>
                 </nav>
               </center>
               <!-- End layout styles <ul class="nav nav-pills nav-stacked">    

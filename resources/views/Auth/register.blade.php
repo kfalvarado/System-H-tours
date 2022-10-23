@@ -39,7 +39,7 @@
                 <img class="img-md" width="110" height="110" src="{{asset('assets/images/HTOURS.png')}}" alt="">
                 <h1 class="card-title text-center mb-2">System H tours</h1>
                 <nav class="nav nav-pills flex-column flex-sm-row">
-                  <a class="flex-sm-fill text-sm-center nav-link" href="{{url('/')}}">INGRESA</a>
+                  <a class="flex-sm-fill text-sm-center nav-link text-white" href="{{url('/')}}">INGRESA</a>
                   <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#">REGISTRATE</a>
                 </nav>
               </center>
