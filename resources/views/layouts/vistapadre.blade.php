@@ -124,8 +124,8 @@
           </a>
           <div class="collapse" id="ui-basic">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="pages/tables/tablas-crear.cuenta.html">Gestion de cuentas</a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/tables/tablas-subcuentas.html">Gestion de subcuentas</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{route('mostrar.cuentas')}}">Gestion de cuentas</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{route('mostrar.subcuentas')}}">Gestion de subcuentas</a></li>
             </ul>
           </div>
         </li>
