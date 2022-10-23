@@ -238,7 +238,13 @@
                     <input class="form-control p_input text-dark bg-white" type="password" name="password1" id="password1" required>
                   </div>
                 </div>
-
+                <ul>
+                  <li>1 mayusculas</li>
+                  <li>3 Caracteres especiales</li>
+                  <li>1 Numero</li>
+                  <li>1 minuscula</li>
+                  <li>8 Longitud</li>
+                </ul>
 
                 <br>
                 <!-- END CONTRASEÑA -->
@@ -347,6 +353,32 @@
                   }
                 </script>
                 <script>
+                  
+                  // $(function(){
+            
+                  //   var mayus = new RegExp("^(?=.*[A-Z]");
+                  //   var special = new RegExp("^(?=.*[!@#$%&*].*[!@#$%&*].*[!@#$%&*]");
+                  //   var numbers = new RegExp("^(?=.*[0-9]");
+                  //   var lowers = new RegExp("^(?=.*[a-z]");
+                  //   var len = new RegExp("^(?=.*{8,}");
+
+                  //   var regExp = [mayus,special,numbers,len];
+                  //   var elementos = [$("#mayus"),$("#special"),$("#numbers"),$("#lowers"),$("#len")];
+
+                  //   $("password1").on("keyup",function () {
+                  //     var pass = $('password1').val();
+
+                  //     for (let i = 0; i < 5; i++) {
+                  //       if (regExp[i].test(pass)) {
+                  //         elementos[i].hide();
+                  //       }else{
+                  //         elementos[i].show();
+                  //       }
+                        
+                  //     }
+                  //   })
+                  // })
+
                   function mostrarContrasena() {
                     var tipo = document.getElementById("password2");
                     if (tipo.type == "password") {
