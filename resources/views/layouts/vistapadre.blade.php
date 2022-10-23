@@ -25,7 +25,14 @@
     <link rel="shortcut icon" href="{{ asset('assets/images/HTOURS.png')}}" />
   
     
-  
+  <script>
+    function presioname() {
+      // r = {}
+      // r.ruta = '{{route("cerrar.sesion")}}'
+      confirm('Estas Seguro que deseas salir?')
+      // window.open(r.ruta);
+    }
+  </script>
   
   </head>
   <body>
@@ -211,7 +218,7 @@
                       </div>
                     </div>
                     <div class="preview-item-content">
-                      <button class="preview-subject mb-1" href="{{url('/')}}">Cerrar Sesion</button>
+                      <p class="preview-subject mb-1" onclick="presioname();" >Cerrar Sesion</p>
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>
