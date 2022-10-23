@@ -14,6 +14,6 @@ use App\Http\Controllers\subcuentas\subcuentasController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// hubo un cambio
 
 Route::get('/',[subcuentasController::class,'ver'])->name('mostrar.subcuentas');
