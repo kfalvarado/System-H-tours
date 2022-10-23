@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\cuentas\cuentasController;
+use App\Http\Controllers\cuentas\CuentasController;
 
 
 /*
@@ -16,4 +16,4 @@ use App\Http\Controllers\cuentas\cuentasController;
 */
 
 
-Route::get('/ver',[cuentasController::class,'ver'])->name('mostrar.cuentas');
+Route::get('/ver',[CuentasController::class,'ver'])->name('mostrar.cuentas');
