@@ -156,8 +156,4 @@ class SessionController extends Controller
             return 'no puede pasar'; // se le niega el acceso si no
         }
     }
-    public function logout()
-    {
-       return redirect('/');
-    }
 }

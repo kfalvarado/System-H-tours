@@ -219,7 +219,7 @@
                       </div>
                     </div>
                     <div class="preview-item-content">
-                      <p class="preview-subject mb-1" onclick="presioname();" >Cerrar Sesion</p>
+                      <button class="preview-subject mb-1" href="{{url('/')}}">Cerrar Sesion</button>
                     </div>
                   </a>
                   <div class="dropdown-divider"></div>
