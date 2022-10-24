@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\clasificacion\clasificacionController;
-// use App\Http\Controllers\home\SessionController;
+use App\Http\Controllers\clasificacion\ClasificacionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +14,4 @@ use App\Http\Controllers\clasificacion\clasificacionController;
 |
 */
 
-
-// Route::get('/', function () {
-//     return view('Auth.login');
-// });
-
-Route::get('/',[clasificacionController::class,'mostrar'])->name('mostrar.clasificacion');
+Route::get('/',[ClasificacionController::class,'mostrar'])->name('mostrar.clasificacion');

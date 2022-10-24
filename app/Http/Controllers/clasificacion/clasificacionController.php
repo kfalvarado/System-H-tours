@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\librodiario;
+namespace App\Http\Controllers\clasificacion;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class LibrodiarioController extends Controller
+class ClasificacionController extends Controller
 {
     public function mostrar()
     {

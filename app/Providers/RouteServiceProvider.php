@@ -39,6 +39,11 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/cuentas.php'));
 
             Route::middleware('web')
+                ->prefix('clasificaciones')
+                ->group(base_path('routes/clasificacion.php'));
+
+
+            Route::middleware('web')
                 ->prefix('subcuentas')
                 ->group(base_path('routes/subcuentas.php'));
                 
