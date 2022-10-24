@@ -142,8 +142,8 @@
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="{{route('mostrar.librodiario')}}">Libro Diario</a></li>
               <li class="nav-item"> <a class="nav-link" href="{{route('periodo.inicio')}}">Periodo/Libro Mayor</a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/tables/Balance-GL.html">Reporte Balance General</a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/tables/Consultas-estadoDeResultados.html">Reporte Estado de Resultado</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{route('balance.inicio')}}">Reporte Balance General</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{route('Resultado.mostrar')}}">Reporte Estado de Resultado</a></li>
             </ul>
           </div>
         </li>
