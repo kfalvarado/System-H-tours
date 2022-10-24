@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\objeto;
+namespace App\Http\Controllers\objetos;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class objetoController extends Controller
+class ObjetosController extends Controller
 {
     public function mostrar()
     {

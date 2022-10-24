@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\clasificacion\objetoController;
-// use App\Http\Controllers\home\SessionController;
+use App\Http\Controllers\objetos\ObjetosController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +18,4 @@ use App\Http\Controllers\clasificacion\objetoController;
 
 
 
-Route::get('/',[objetoController::class,'mostrar'])->name('mostrar.objeto');
+Route::get('/',[ObjetosController::class,'mostrar'])->name('mostrar.objeto');

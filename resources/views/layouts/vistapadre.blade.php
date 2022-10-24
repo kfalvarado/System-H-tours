@@ -160,7 +160,7 @@
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="{{route('mostrar.clasificacion')}}">Clasificacion</a></li>
               <li class="nav-item"> <a class="nav-link" href="{{route('personas.inicio')}}">Personas</a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/tables/Objetos.html"> Objetos </a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{route('mostrar.objeto')}}"> Objetos </a></li>
             </ul>
           </div>
         </li>
