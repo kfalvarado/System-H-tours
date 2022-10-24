@@ -2,7 +2,7 @@
 
 <!-- titulo de la pagina  -->
 @section('titulo')
-Pametros | inicio
+Parametros | inicio
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
