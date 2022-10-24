@@ -145,7 +145,7 @@
                   </div>
                 </details>
                 <details>
-                  <summary>Informacion Personal</summary>
+                  <summary onclick="validacion1();">Informacion Personal</summary>
                   <div class="form-group">
                     <center>
                       <label>
