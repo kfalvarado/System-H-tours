@@ -16,11 +16,5 @@ use App\Http\Controllers\libromayor\LibromayorController;
 */
 Route::get('/',[LibromayorController::class,'mostrar'])->name('mostrar.libromayor');
 
-// Route::get('/', function () {
-//     return view('Auth.login');
-// });
 
-// Route::get('/inicio',[SessionController::class,'inicio'])->name('home');
-// Route::get('/registro',[SessionController::class,'register'])->name('registro');
-// Route::post('/registrar',[SessionController::class,'Registrar'])->name('Registrar.usuario');
 

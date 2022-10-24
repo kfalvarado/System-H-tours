@@ -16,8 +16,6 @@ use App\Http\Controllers\clasificacion\objetoController;
 */
 
 
-// Route::get('/', function () {
-//     return view('Auth.login');
-// });
+
 
 Route::get('/',[objetoController::class,'mostrar'])->name('mostrar.objeto');

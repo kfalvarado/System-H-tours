@@ -93,7 +93,7 @@ Emerson
               
               <p align="right" valign="baseline">
                  
-                  <a type="button" href="libro_mayor.html" class="btn btn-success">Verificar</a> 
+              <a type="button" href="{{route('mostrar.libromayor')}}" class="btn btn-success">Verificar</a>  
                     <button type="button"  class="btn btn-success"  data-toggle="modal" data-target="#dialogo1">Periodo</button>
                 
                 <a type="button"  class="btn btn-success" href="javascript:window.print();">Generar PDF</a>

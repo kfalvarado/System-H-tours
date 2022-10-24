@@ -33,6 +33,24 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
+            // MODULO CONTABLE 
+            Route::middleware('web')
+                ->prefix('cuentas')
+                ->group(base_path('routes/cuentas.php'));
+
+            Route::middleware('web')
+                ->prefix('subcuentas')
+                ->group(base_path('routes/subcuentas.php'));
+                
+            Route::middleware('web')
+                ->prefix('librodiario')
+                ->group(base_path('routes/librodiario.php'));
+
+                
+            Route::middleware('web')
+            ->prefix('libromayor')
+            ->group(base_path('routes/libromayor.php'));
+
             Route::middleware('web')
                 ->prefix('resultado')
                 ->group(base_path('routes/resultado.php'));
@@ -44,13 +62,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->prefix('periodo')
                 ->group(base_path('routes/periodo.php'));
-            Route::middleware('web')
-                ->prefix('cuentas')
-                ->group(base_path('routes/cuentas.php'));
-
-            Route::middleware('web')
-                ->prefix('subcuentas')
-                ->group(base_path('routes/subcuentas.php'));
+            
             /* SEGURIDAD */
 
             Route::middleware('web')
@@ -72,14 +84,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
 
-            Route::middleware('web')
-                ->prefix('librodiario')
-                ->group(base_path('routes/librodiario.php'));
-
-                
-            Route::middleware('web')
-            ->prefix('libromayor')
-            ->group(base_path('routes/libromayor.php'));
+            
             Route::middleware('web')
             ->prefix('personas')
             ->group(base_path('routes/personas.php'));

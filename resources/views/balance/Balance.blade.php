@@ -48,7 +48,7 @@ Emerson
                 <h3>Desde: <input  type="date"  aria-label="Disabled input example" value="2021-01-01"  readonly >  Hasta: <input type="date" value="2021-12-31" readonly></h3>
               </center>
               <p align="right" valign="baseline">
-                <a type="button" href="libro_mayor.html" class="btn btn-success">Verificar</a> 
+                <a type="button" href="{{route('mostrar.libromayor')}}" class="btn btn-success">Verificar</a> 
                 <button type="button"  class="btn btn-success"  data-toggle="modal" data-target="#dialogo1">Periodo</button> 
              <a type="button"  class="btn btn-success" href="javascript:window.print();">Generar PDF</a>
               </p>

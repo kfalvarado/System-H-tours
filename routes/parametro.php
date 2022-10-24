@@ -16,8 +16,6 @@ use App\Http\Controllers\clasificacion\parametroController;
 */
 
 
-// Route::get('/', function () {
-//     return view('Auth.login');
-// });
+
 
 Route::get('/',[parametroController::class,'mostrar'])->name('mostrar.parametro');
