@@ -122,11 +122,8 @@
                           </label>
                           &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
                         </td>
-
                         <td colspan="2">
-
                           <label for="">
-
                             <center>
                               <h4><i class="mdi mdi-account"></i> Tipo de persona </th>
                               </h4>
@@ -138,9 +135,7 @@
                             </Select>
                           </label>
                         </td>
-
                       </tbody>
-
                     </table>
                   </div>
                 </details>
