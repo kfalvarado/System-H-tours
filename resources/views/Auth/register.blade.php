@@ -208,7 +208,7 @@
                   </center>
                 </details>
                 <details>
-                  <summary>Datos del Usuario</summary>
+                  <summary onclick="validacion2();">Datos del Usuario</summary>
                   <div class="form-group">
                     <label>
                       <H4><i class="mdi mdi-account"></i> Usuario</H4>
@@ -250,7 +250,7 @@
                   </div>
                 </details>
                 <details>
-                  <summary>Método de Recuperación de contraseña</summary>
+                  <summary onclick="validacion3();">Método de Recuperación de contraseña</summary>
                   <label>
                     <H4><i class="mdi mdi-account"></i> Ingresa una pregunta de seguridad</H4>
                   </label>
