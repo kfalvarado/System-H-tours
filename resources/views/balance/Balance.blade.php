@@ -29,7 +29,6 @@ Emerson
 <!-- contenido de la pagina  -->
 @section('contenido')
 
-<div class="main-panel">
           <div class="content-wrapper">
             <center> <h1>Balance General H Tours Honduras</h1> </center>
             <h5>________________________________________________________________________________________________________________</h5>
@@ -201,13 +200,6 @@ Emerson
                 </div>
               </div>
             </div>
-          </div>
-          <!-- content-wrapper ends -->
-          <!-- partial:../../partials/_footer.html -->
-          <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-               
-            </div>
-          </footer>
+ 
 
 @endsection
