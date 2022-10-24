@@ -41,15 +41,15 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->prefix('subcuentas')
                 ->group(base_path('routes/subcuentas.php'));
-                
+
             Route::middleware('web')
                 ->prefix('librodiario')
                 ->group(base_path('routes/librodiario.php'));
 
-                
+
             Route::middleware('web')
-            ->prefix('libromayor')
-            ->group(base_path('routes/libromayor.php'));
+                ->prefix('libromayor')
+                ->group(base_path('routes/libromayor.php'));
 
             Route::middleware('web')
                 ->prefix('resultado')
@@ -71,6 +71,10 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->prefix('objetos')
                 ->group(base_path('routes/objeto.php'));
+
+            Route::middleware('web')
+                ->prefix('personas')
+                ->group(base_path('routes/personas.php'));
             /* SEGURIDAD */
 
             Route::middleware('web')
@@ -80,7 +84,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->prefix('usuarios')
                 ->group(base_path('routes/usuarios.php'));
-            
+
             Route::middleware('web')
                 ->prefix('preguntas')
                 ->group(base_path('routes/preguntas.php'));
@@ -88,14 +92,18 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->prefix('ajustes')
                 ->group(base_path('routes/configs.php'));
-        
+
+            Route::middleware('web')
+                ->prefix('parametros')
+                ->group(base_path('routes/parametro.php'));
+
+
+            // default 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
 
             
-            Route::middleware('web')
-            ->prefix('personas')
-            ->group(base_path('routes/personas.php'));
+           
         });
     }
 

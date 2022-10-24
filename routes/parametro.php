@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\clasificacion\parametroController;
-// use App\Http\Controllers\home\SessionController;
-
+use App\Http\Controllers\parametros\ParametrosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,4 +16,4 @@ use App\Http\Controllers\clasificacion\parametroController;
 
 
 
-Route::get('/',[parametroController::class,'mostrar'])->name('mostrar.parametro');
+Route::get('/',[ParametrosController::class,'mostrar'])->name('mostrar.parametro');

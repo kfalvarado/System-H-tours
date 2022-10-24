@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\parametro;
+namespace App\Http\Controllers\parametros;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class parametroController extends Controller
+class ParametrosController extends Controller
 {
     public function mostrar()
     {
