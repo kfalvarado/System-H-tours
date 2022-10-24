@@ -15,6 +15,6 @@ use App\Http\Controllers\resultado\ResultadoController;
 */
 
 
-Route::get('/mostrar', [ResultadoController::class,'mostrar'])->name('Resultado.mostrar');
+Route::get('/', [ResultadoController::class,'mostrar'])->name('Resultado.mostrar');
 
 

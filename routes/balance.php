@@ -15,4 +15,4 @@ use App\Http\Controllers\balance\BalanceController;
 */
 
 
-Route::get('/mostrar', [BalanceController::class,'mostrar'])->name('pintar.datos');
+Route::get('/', [BalanceController::class,'mostrar'])->name('balance.inicio');
