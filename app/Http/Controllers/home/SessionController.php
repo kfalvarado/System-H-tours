@@ -110,7 +110,7 @@ class SessionController extends Controller
                 $mail->Body    = $bodyHtml;
 
                 // $mail->AltBody = plain text version of email body;
-                $mail->send();
+                
                 if (!$mail->send()) {
                     Session::flash('Fallo','Tu solicitud no puede ser procesada');
                     return back();
