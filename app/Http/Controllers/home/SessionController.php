@@ -9,9 +9,12 @@ use Illuminate\Support\Facades\Session;
 use PHPMailer\PHPMailer\PHPMailer;  
 use PHPMailer\PHPMailer\Exception;
 
+
+
 class SessionController extends Controller
 {
- 
+   
+    protected  $url = 'http://localhost:3000';
     public function inicio()
     {
         return view('home.inicio');
@@ -20,13 +23,14 @@ class SessionController extends Controller
     {
         return view('Auth.register');
     } 
+   
     public function Registrar(Request $request)
     {
-        $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjY0MjI4OTUsImV4cCI6MTY2NjQyMzE5NX0.TYjNuQ8P7UFQQtF5GQYFV3oFhjZkASQa3UnmFKY5hzE';
+        $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjY2NjkwNDAsImV4cCI6MTY2NjY2OTM0MH0.DhpegraGFz0hN7nyJSzNRS1nxdluUGKG2e9XUS_dY4o';
         $indentidad = $request->primerodigitos."-".$request->segundodigitos."-".$request->tercerodigitos;
         // return $request;
         try {
-            $insertarPersona = Http::withToken($token)->post('http://localhost:3000/personas/insertar', [
+            $insertarPersona = Http::withToken($token)->post($this->url.'/personas/insertar', [
                 "NOM_PERSONA" => $request->nombre,
                 "SEX_PERSONA" => $request->genero,
                 "EDA_PERSONAL" => $request->edad,
@@ -65,7 +69,7 @@ class SessionController extends Controller
         //metodo de recuperacion por correo unido a PHP MAILER para enviar un correo de recuperacion
         //falta metodo para generar un token de expiracion
         if ($request->recuperacion == "c") {
-            $RecupearusuarioPersona = Http::post('http://localhost:3000/seguridad/recuperar', [
+            $RecupearusuarioPersona = Http::post($this->url.'/seguridad/recuperar', [
                 "user"=> $request->user
             ]);
             $arreglo =  json_decode($RecupearusuarioPersona,true);
@@ -121,7 +125,7 @@ class SessionController extends Controller
         }elseif ($request->recuperacion == "p") { //metodo de recuperacion por pregunta secreta
             
           //buscar la pregunta relacionada al usuario proporcionado
-            $RecupearusuarioPersona = Http::post('http://localhost:3000/seguridad/preguntas', [
+            $RecupearusuarioPersona = Http::post($this->url.'/seguridad/preguntas', [
                 "user"=> $request->user
             ]);
             $arreglo =  json_decode($RecupearusuarioPersona,true);
@@ -139,7 +143,7 @@ class SessionController extends Controller
     public function respuesta(Request $request)
     {
         //revisar si la pregunta coincide o no coincide
-        $RecupearusuarioPersona = Http::post('http://localhost:3000/seguridad/respuesta', [
+        $RecupearusuarioPersona = Http::post($this->url.'/seguridad/respuesta', [
             "user"=> $request->user,
             "preg"=> $request->pregunta,
             "resp"=> $request->respuesta

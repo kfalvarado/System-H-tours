@@ -26,3 +26,4 @@ Route::post('/recuperacion',[SessionController::class,'recuperar'])->name('Recup
 Route::post('/respuesta',[SessionController::class,'respuesta'])->name('Recuperar.respuesta');
 Route::get('/logout',[SessionController::class,'logout'])->name('cerrar.sesion');
 
+
