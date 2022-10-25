@@ -64,7 +64,7 @@
                 <!-- CAMPO DE CONTRASEÑA DE LOGIN MOSTRAR MEDIANTE ICONO CANDADO -->
                 <form class="form-group" method="POST">
                   <label class="form-label">
-                    <H4><i class="mdi mdi-lock" onclick="mostrarContrasena()"></i> Password</H4>
+                    <H4><i class="mdi mdi-lock" onclick="mostrarContrasena()"></i> Contraseña</H4>
                   </label>
                   <div class="form-row">
                     <div class="col">
