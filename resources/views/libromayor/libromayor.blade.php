@@ -116,8 +116,9 @@ Fabricio
             <form action="" method="post">
               <label class="form-label">
                 Clasificacion
-                <input type='text' list="lista-clasificacion" name='nombre-periodo' class="form-control text-white" required>
-                <select name="" id="" >
+                
+                <select  class="form-control text-white" name="" id="" >
+                  <option value=""></option>
                   <option value="">Activo</option>
                   <option value="">Pasivo</option>
                   <option value="">Patrimonio</option>
@@ -127,15 +128,12 @@ Fabricio
             <label class="form-label">
               Nombre de Cuenta
               <input type='text' list="lista-cuentas" name='nombre-periodo' class="form-control text-white" required>
-              <datalist id="lista-cuentas">
-                <option value="Caja">
-                  <option value="Banco">
-                    <option value="Proveedores">
-                      <option value="Capital">
-                      </option>
-                    </option>
-                  </option>
-                </option>
+              <select  class="form-control text-white" name="" id="" >
+                <option value=""></option>
+                <option value="">Bancos</option>
+                <option value="">Proveedores</option>
+                <option value="">Capital Social</option>
+              </select>
                 
               </datalist>
               </input>
