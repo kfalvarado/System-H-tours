@@ -459,7 +459,19 @@ Fabricio
                             <td> 1 </td>
                             <td> Activo </td>
                             <td> 1.1 </td>
-                            <td> Caja </td>
+                            <td> Caja general </td>
+                            <td> 2500.00 </td>
+                            <td>  </td>
+                            <td> May 15, 2022 </td>
+                            <td><button type="button"  class="btn btn-primary"  data-toggle="modal" data-target="#dialogo5">Ingresada</button>
+                           
+                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
+                          </tr>
+                          <tr class="text-white bg-dark">
+                            <td> 2 </td>
+                            <td> Pasivo </td>
+                            <td> 2.1 </td>
+                            <td> Proveedores </td>
                             <td>  </td>
                             <td> 2500.00 </td>
                             <td> May 15, 2022 </td>
@@ -468,24 +480,12 @@ Fabricio
                             <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
                           </tr>
                           <tr class="text-white bg-dark">
-                            <td> 2 </td>
-                            <td> Activo </td>
-                            <td> 1.2 </td>
-                            <td> Banco </td>
-                            <td>  </td>
-                            <td> 3000.00 </td>
-                            <td> May 15, 2022 </td>
-                            <td><button type="button"  class="btn btn-primary"  data-toggle="modal" data-target="#dialogo5">Ingresada</button>
-                           
-                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
-                          </tr>
-                          <tr class="text-white bg-dark">
                             <td> 3 </td>
-                            <td> Activo </td>
-                            <td> 1.3 </td>
-                            <td> Inversiones temporales </td>
+                            <td> Patrimonio </td>
+                            <td> 3.1 </td>
+                            <td> Capital social </td>
+                            <td> 1500.00 </td>
                             <td>  </td>
-                            <td> 500.00 </td>
                             <td> May 15, 2022 </td>
                             <td><button type="button"  class="btn btn-warning"  data-toggle="modal" data-target="#dialogo6">Pendiente</button>
                             
@@ -493,9 +493,9 @@ Fabricio
                           </tr>
                           <tr class="text-white bg-dark">
                             <td> 4 </td>
-                            <td> Pasivo </td>
-                            <td> 2.1 </td>
-                            <td> Proveedores </td>
+                            <td> Activo </td>
+                            <td> 1.2 </td>
+                            <td> Deudores Varios </td>
                             <td> 2500.00 </td>
                             <td>  </td>
                             <td> May 15, 2022 </td>
@@ -506,8 +506,8 @@ Fabricio
                           <tr class="text-white bg-dark">
                             <td> 5 </td>
                             <td> Patrimonio </td>
-                            <td> 3.1 </td>
-                            <td> capital social </td>
+                            <td> 3.2 </td>
+                            <td> Reserva legal </td>
                             <td>  </td>
                             <td> 15000.00 </td>
                             <td> May 15, 2022 </td>
