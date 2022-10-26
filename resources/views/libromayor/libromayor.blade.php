@@ -117,19 +117,12 @@ Fabricio
               <label class="form-label">
                 Clasificacion
                 <input type='text' list="lista-clasificacion" name='nombre-periodo' class="form-control text-white" required>
-                <datalist id="lista-clasificacion">
-                  <option value="Acitvo">
-                    <option value="Pasivo">
-                      <option value="Patrimonio">
-                        <option value="Resultado">
-
-                        </option>
-
-                      </option>
-                    </option>
-                  </option>
-                </datalist>
-                </input>
+                <select name="" id="" >
+                  <option value="">Activo</option>
+                  <option value="">Pasivo</option>
+                  <option value="">Patrimonio</option>
+                </select>
+            
               </label>
             <label class="form-label">
               Nombre de Cuenta
