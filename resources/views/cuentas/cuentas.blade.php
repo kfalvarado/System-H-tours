@@ -127,6 +127,7 @@ ALE
                                                             </select>
                                                         </label>
                                                     </th>
+                                                    &nbsp;
                                                     <th>                                                    
                                                         <label class="form-label">
                                                             Numero de Cuenta
@@ -180,7 +181,6 @@ ALE
                                             Clasificacion
 
                                             <select class="form-control text-white" name="" id="" required>
-                                                <option value=""></option>
                                                 <option value=""> Activo</option>
                                                 <option value=""> Pasivo</option>
                                                 <option value="">Patrimonio </option>
@@ -191,11 +191,11 @@ ALE
 
                                         <label class="form-label">
                                             Numero de Cuenta
-                                            <input type='number' name='UNIDADES' class="form-control text-white" maxlength="3" required></input>
+                                            <input type='number' name='UNIDADES' value="1" class="form-control text-white" maxlength="3" required></input>
                                         </label>
                                         <label class="form-label">
                                             Nombre de la Cuenta
-                                            <input type='text' name='COS PRODUCTO' min="0" class="form-control text-white" required></input>
+                                            <input type='text' name='COS PRODUCTO' value="Caja" min="0" class="form-control text-white" required></input>
                                         </label>
 
 
