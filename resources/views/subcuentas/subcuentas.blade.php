@@ -68,7 +68,7 @@ ALE
                                         <td> 1</td>
                                         <td> Activo</td>
                                         <td> Caja</td>
-                                        <td> 1.1.1 </td>
+                                        <td> 1.1.1.1</td>
                                         <td> Efectivo </td>
                                         <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
 
@@ -77,7 +77,7 @@ ALE
                                         <td> 2 </td>
                                         <td> Pasivo </td>
                                         <td> Proveedores </td>
-                                        <td> 2.1.1</td>
+                                        <td> 2.1.1.1 </td>
                                         <td> Cable color </td>
                                         <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
                                     </tr>
@@ -85,7 +85,7 @@ ALE
                                         <td> 3 </td>
                                         <td> Patrimonio </td>
                                         <td> Capital Social </td>
-                                        <td> 3.1.1</td>
+                                        <td> 3.1.1.1</td>
                                         <td> Aportaciones </td>
                                         <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
                                     </tr>
@@ -117,11 +117,10 @@ ALE
 
                                                 <select class="form-control text-white" name="" id="" required>
                                                     <option value=""></option>
-                                                    <option value=""> Activo</option>
-                                                    <option value=""> Pasivo</option>
+                                                    <option value="">Activo</option>
+                                                    <option value="">Pasivo</option>
                                                     <option value="">Patrimonio </option>
                                                     <option value="">Resultado </option>
-
                                                 </select>
                                             </label>
 
@@ -135,8 +134,6 @@ ALE
                                                     <option value="">Proveedores</option>
                                                     <option value="">Capital</option>
                                                 </Select>
-
-
                                             </label>
 
                                             <label class="form-label">
@@ -183,8 +180,8 @@ ALE
 
                                                 <select class="form-control text-white" name="" id="" required>
 
-                                                    <option value=""> Activo</option>
-                                                    <option value=""> Pasivo</option>
+                                                    <option value="">Activo</option>
+                                                    <option value="">Pasivo</option>
                                                     <option value="">Patrimonio </option>
                                                     <option value="">Resultado </option>
 
