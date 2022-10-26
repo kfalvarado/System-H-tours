@@ -57,8 +57,8 @@ ALE
                                     <tr>
                                         <th class="text-dark bg-white"> # </th>
                                         <th class="text-dark bg-white"> <b>Clasificacion</b> </th>
-                                        <th class="text-dark bg-white"> <b>Nombre de Cuentas</b> </th>
-                                        <th class="text-dark bg-white"> </b>Numero de Sub Cuentas</b> </th>
+                                        <th class="text-dark bg-white"> <b>Cuenta</b> </th>
+                                        <th class="text-dark bg-white"> </b>Codigo</b> </th>
                                         <th class="text-dark bg-white"> </b>Nombre de Sub Cuentas</b> </th>
                                         <th class="text-dark bg-white"> </b>Acciones</b> </th>
 
@@ -69,7 +69,7 @@ ALE
                                     <tr class="text-white bg-dark">
                                         <td> 1</td>
                                         <td> Activo</td>
-                                        <td> Caja general</td>
+                                        <td> Caja</td>
                                         <td> 1.1.1 </td>
                                         <td> Efectivo </td>
                                         <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
