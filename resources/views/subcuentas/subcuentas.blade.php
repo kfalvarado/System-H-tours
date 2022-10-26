@@ -61,8 +61,6 @@ ALE
                                         <th class="text-dark bg-white"> </b>Codigo</b> </th>
                                         <th class="text-dark bg-white"> </b>Nombre de Sub Cuentas</b> </th>
                                         <th class="text-dark bg-white"> </b>Acciones</b> </th>
-
-
                                     </tr>
                                 </thead>
                                 <tbody>
