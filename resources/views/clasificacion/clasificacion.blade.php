@@ -50,10 +50,7 @@ Scarleth
                   
                   <th class="text-dark bg-white"> #  </th>
                   <th class="text-dark bg-white"> Clasificacion  </th>
-                  <th class="text-dark bg-white"> Acciones  </th>
-                  
-
-                 
+                  <th class="text-dark bg-white"> Acciones  </th>                
                 </tr>
               </thead>
               <tbody>
