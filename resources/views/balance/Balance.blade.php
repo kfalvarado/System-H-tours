@@ -154,7 +154,7 @@ Emerson
                           <tr class="text-white bg-dark">
                             <td>3</td>
                             <td>Prestamos Bancarios</td>
-                            <td>30,00</td>
+                            <td>30,000</td>
                             <tr>
                               <td  class="text-dark bg-white"  colspan="3"> <center>Pasivos no corrientes</center>  </td>
                             </tr>
@@ -171,11 +171,11 @@ Emerson
                             <tr class="text-white bg-dark">
                               <td>3</td>
                               <td>PRESTAMOS HIPOTECARIOS</td>
-                              <td>30,0000</td>
+                              <td>30,000</td>
                             </tr>
                             <tr>
                               <td  class="text-dark bg-white"  colspan="2"> <center>Total pasivos</center>  </td>
-                              <td  class="text-dark bg-white"  > <b>54,000</b>   </td>
+                              <td  class="text-dark bg-white"  > <b>70,000</b>   </td>
                             </tr>
                         </tbody>
                       </table>
