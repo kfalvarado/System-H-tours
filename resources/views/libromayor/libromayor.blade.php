@@ -445,8 +445,8 @@ Fabricio
                           <tr>
                             <th class="text-dark bg-white"> # </th>
                             <th class="text-dark bg-white"> Clasificacion </th>
-                            <th class="text-dark bg-white"> Numero de Cuenta </th>
-                            <th class="text-dark bg-white"> Nombre Cuenta </th>
+                            <th class="text-dark bg-white"> Codigo </th>
+                            <th class="text-dark bg-white"> Detalle </th>
                             <th class="text-dark bg-white"> Saldo Debe </th>
                             <th class="text-dark bg-white"> Saldo Haber </th>
                             <th class="text-dark bg-white"> Fecha </th>
