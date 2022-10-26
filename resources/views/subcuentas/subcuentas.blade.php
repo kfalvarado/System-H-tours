@@ -69,18 +69,18 @@ ALE
                                     <tr class="text-white bg-dark">
                                         <td> 1</td>
                                         <td> Activo</td>
-                                        <td> Caja</td>
+                                        <td> Caja general</td>
                                         <td> 1.1.1 </td>
-                                        <td> Efectivo</td>
+                                        <td> Efectivo </td>
                                         <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
 
                                     </tr>
                                     <tr class="text-white bg-dark">
                                         <td> 2 </td>
                                         <td> Pasivo </td>
-                                        <td> Priveedores </td>
+                                        <td> Proveedores </td>
                                         <td> 2.1.1</td>
-                                        <td> Empresa x </td>
+                                        <td> Cable color </td>
                                         <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
                                     </tr>
                                     <tr class="text-white bg-dark">
