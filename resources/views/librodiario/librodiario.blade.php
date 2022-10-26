@@ -517,7 +517,6 @@ Fabricio
                             <td> 5 </td>
                             <td> 3.1.1 </td>
                             <td> Aportaciones </td>
-                            <td>  </td>
                             <td> 9000.00 </td>
                             <td>  </td>
                             <td> <a href="" data-toggle="modal" data-target="#comprobante">   image1651861487718.jpeg  </a> </td>
