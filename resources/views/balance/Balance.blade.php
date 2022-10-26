@@ -68,8 +68,11 @@ Emerson
                     <div class="table-responsive">
                       <table class="table table-bordered table-contextual">
                         <thead>
+                          <tr>
+                            <th class="text-dark bg-white" colspan="3"> <center> Activo Corriente</center></th>
+                          </tr>
                            <tr class="text-dark bg-white">
-                            <th class="text-dark bg-white">Libro Mayor</th>
+                            <th class="text-dark bg-white">#</th>
                             <th class="text-dark bg-white">Cuenta</th>
                             <th class="text-dark bg-white">Total</th>
                           </tr>
@@ -78,19 +81,41 @@ Emerson
                            <tr class="text-white bg-dark">
                             <td>1</td>
                             <td>Bancos</td>
-                            <td>5000</td>
+                            <td>5,000</td>
                             
                           </tr>
                            <tr class="text-white bg-dark">
                             <td>2</td>
                             <td>Caja</td>
-                            <td>6000</td>
+                            <td>6,000</td>
                             
                           </tr>
                            <tr class="text-white bg-dark">
                             <td>3</td>
-                            <td>Efectivo</td>
-                            <td>7000</td>
+                            <td>Documentos por cobrar</td>
+                            <td>7,000</td>
+                            <tr>
+                              <td  class="text-dark bg-white"  colspan="3"> <center>Activo no corrientes</center>  </td>
+                            </tr>
+                            <tr class="text-white bg-dark">
+                              <td>1</td>
+                              <td>Inversiones y valores</td>
+                              <td>3,000</td>
+                            </tr>
+                            <tr class="text-white bg-dark">
+                              <td>2</td>
+                              <td>Depositos a plazo</td>
+                              <td>3,000</td>
+                            </tr>
+                            <tr class="text-white bg-dark">
+                              <td>3</td>
+                              <td>Terrenos</td>
+                              <td>30,0000</td>
+                            </tr>
+                            <tr>
+                              <td  class="text-dark bg-white"  colspan="2"> <center>Total activos</center>  </td>
+                              <td  class="text-dark bg-white"  > <b>54,000</b>   </td>
+                            </tr>
                         </tbody>
                       </table>
                     </div>
@@ -106,27 +131,52 @@ Emerson
                     <div class="table-responsive">
                       <table class="table table-bordered table-contextual">
                         <thead>
+                          <tr>
+                            <th class="text-dark bg-white" colspan="3"> <center> Pasivos Corrientes</center></th>
+                          </tr>
                           <tr class="text-dark bg-white">
-                            <th class="text-dark bg-white">Libro Mayor</th>
+                            <th class="text-dark bg-white">#</th>
                             <th class="text-dark bg-white">Cuentas</th>
                              <th class="text-dark bg-white">Total</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr class="text-white bg-dark">
-                            <td>4</td>
+                            <td>1</td>
                             <td>Proveedores</td>
-                            <td>1000</td>
+                            <td>1,000</td>
                           </tr>
                           <tr class="text-white bg-dark">
-                            <td>5</td>
+                            <td>2</td>
                             <td>Documentos por pagar</td>
-                            <td>3000</td>
+                            <td>3,000</td>
                           </tr>
                           <tr class="text-white bg-dark">
-                            <td>6</td>
+                            <td>3</td>
                             <td>Prestamos Bancarios</td>
-                            <td>3000</td>
+                            <td>30,00</td>
+                            <tr>
+                              <td  class="text-dark bg-white"  colspan="3"> <center>Pasivos no corrientes</center>  </td>
+                            </tr>
+                            <tr class="text-white bg-dark">
+                              <td>1</td>
+                              <td>BENEFICIOS FUNCIONARIOS Y EMPLEADOS</td>
+                              <td>3,000</td>
+                            </tr>
+                            <tr class="text-white bg-dark">
+                              <td>2</td>
+                              <td>PRESTAMOS BANCARIOS </td>
+                              <td>3,000</td>
+                            </tr>
+                            <tr class="text-white bg-dark">
+                              <td>3</td>
+                              <td>PRESTAMOS HIPOTECARIOS</td>
+                              <td>30,0000</td>
+                            </tr>
+                            <tr>
+                              <td  class="text-dark bg-white"  colspan="2"> <center>Total pasivos</center>  </td>
+                              <td  class="text-dark bg-white"  > <b>54,000</b>   </td>
+                            </tr>
                         </tbody>
                       </table>
                     </div>
