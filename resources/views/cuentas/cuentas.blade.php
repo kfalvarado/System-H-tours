@@ -169,7 +169,6 @@ ALE
                                     <form action="" method="post">
                                         <label class="form-label">
                                             Clasificacion
-
                                             <select class="form-control text-white" name="" id="" required>
                                                 <option value=""> Activo</option>
                                                 <option value=""> Pasivo</option>
