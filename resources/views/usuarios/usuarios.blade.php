@@ -41,13 +41,7 @@ Scarleth
     
     <ul class="nav nav-pills nav-stacked">
       <li class="active"><a href="#"></a></li>
-      </ul>
-      
-      
-  
-      
-    
-   
+      </ul>  
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
