@@ -454,13 +454,13 @@ Fabricio
                         <thead>
                           <tr>
                             <th class="text-dark bg-white"> # </th>
-                            <th class="text-dark bg-white"> Numero de Sub Cuenta </th>
-                            <th class="text-dark bg-white"> Nombre Sub Cuenta </th>
+                            <th class="text-dark bg-white"> Codigo </th>
+                            <th class="text-dark bg-white"> Detalle  </th>
                             <th class="text-dark bg-white"> Saldo Debe </th>
                             <th class="text-dark bg-white"> Saldo Haber </th>
                             <th class="text-dark bg-white"> Comprobantes </th>
                             <th class="text-dark bg-white"> Fecha </th>
-                            <th class="text-dark bg-white"> Estado Sub Cuenta </th>
+                            <th class="text-dark bg-white"> Estado </th>
                             <th class="text-dark bg-white"> Acciones </th>
                             
 
@@ -505,7 +505,7 @@ Fabricio
                           <tr class="text-white bg-dark">
                             <td> 4 </td>
                             <td> 2.1.3 </td>
-                            <td> Acreedores </td>
+                            <td> PROVEEDORES </td>
                             <td> 1600.00 </td>
                             <td>  </td>
                             <td> <a href="" data-toggle="modal" data-target="#comprobante">   image1651861487718.jpeg  </a> </td>
@@ -515,8 +515,8 @@ Fabricio
                           </tr>
                           <tr class="text-white bg-dark">
                             <td> 5 </td>
-                            <td> 3.1.1 </td>
-                            <td> Aportaciones </td>
+                            <td> 2.1.1 </td>
+                            <td> DOCUMENTOS POR PAGAR </td>
                             <td>  </td>
                             <td> 9000.00 </td>
                             <td> <a href="" data-toggle="modal" data-target="#comprobante">   image1651861487718.jpeg  </a> </td>
