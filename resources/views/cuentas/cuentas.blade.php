@@ -176,7 +176,6 @@ ALE
                                                 <option value="">Resultado </option>
                                             </select>
                                         </label>
-
                                         <label class="form-label">
                                             Numero de Cuenta
                                             <input type='number' name='UNIDADES' value="1" class="form-control text-white" maxlength="3" required></input>
