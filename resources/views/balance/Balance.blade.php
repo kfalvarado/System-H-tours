@@ -171,11 +171,11 @@ Emerson
                             <tr class="text-white bg-dark">
                               <td>3</td>
                               <td>PRESTAMOS HIPOTECARIOS</td>
-                              <td>30,000</td>
+                              <td>17,000</td>
                             </tr>
                             <tr>
                               <td  class="text-dark bg-white"  colspan="2"> <center>Total pasivos</center>  </td>
-                              <td  class="text-dark bg-white"  > <b>70,000</b>   </td>
+                              <td  class="text-dark bg-white"  > <b>41,000</b>   </td>
                             </tr>
                         </tbody>
                       </table>
