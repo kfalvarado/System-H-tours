@@ -60,21 +60,18 @@ ALE
                                 <tr>
                                     <th class="text-dark bg-white"> # </th>
                                     <th class="text-dark bg-white"> <b>Clasificacion</b> </th>
-                                    <th class="text-dark bg-white"> <b>Numero de Cuentas</b> </th>
+                                    <th class="text-dark bg-white"> <b>Codigo</b> </th>
                                     <th class="text-dark bg-white"> </b>Nombre de Cuentas</b> </th>
                                     <th class="text-dark bg-white"> </b>Acciones</b> </th>
-
-
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="text-white bg-dark">
                                     <td> 1</td>
                                     <td> Activo</td>
-                                    <td> 1.1 </td>
-                                    <td> Caja general </td>
+                                    <td> 1.1</td>
+                                    <td> Caja</td>
                                     <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
-
                                 </tr>
                                 <tr class="text-white bg-dark">
                                     <td> 2 </td>
@@ -112,24 +109,33 @@ ALE
                             <!-- CUERPO DEL DIALOGO NUEVA -->
                             <div class="modal-body">
                                 <center>
-                                    <form action="" method="post">
-                                        <label class="form-label">
-                                            Clasificacion
-
-                                            <select class="form-control text-white" name="" id="" required>
-                                                <option value=""></option>
-                                                <option value=""> Activo</option>
-                                                <option value=""> Pasivo</option>
-                                                <option value="">Patrimonio </option>
-                                                <option value="">Resultado </option>
-
-                                            </select>
-                                        </label>
-
-                                        <label class="form-label">
-                                            Numero de Cuenta
-                                            <input type='number' name='UNIDADES' min="0" class="form-control text-white" maxlength="3" required></input>
-                                        </label>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                             <th>
+                                                    <form action="" method="post">
+                                                        <label class="form-label">
+                                                            Clasificacion
+                                                            
+                                                            <select class="form-control text-white" name="" id="" required>
+                                                                <option value=""></option>
+                                                                <option value=""> Activo</option>
+                                                                <option value=""> Pasivo</option>
+                                                                <option value="">Patrimonio </option>
+                                                                <option value="">Resultado </option>
+                                                                
+                                                            </select>
+                                                        </label>
+                                                    </th>
+                                                    <th>                                                    
+                                                        <label class="form-label">
+                                                            Numero de Cuenta
+                                                            <input type='number' name='UNIDADES' min="0" class="form-control text-white" maxlength="3" required></input>
+                                                        </label>
+                                                    </th>
+                                        </tr>
+                                        </thead>
+                                        </table>
                                         <label class="form-label">
                                             Nombre de la Cuenta
                                             <input type='text' name='COS PRODUCTO' class="form-control text-white" required></input>
