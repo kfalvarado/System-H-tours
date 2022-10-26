@@ -164,4 +164,9 @@ class SessionController extends Controller
     {
         return redirect('/');
     }
+
+    public function pruebas()
+    {
+        return view('vista');
+    }
 }
