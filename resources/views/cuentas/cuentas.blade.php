@@ -165,8 +165,7 @@ ALE
                             </div>
                             <!-- CUERPO DEL DIALOGO EDITAR -->
                             <div class="modal-body">
-                                <center>
-                                    
+                                <center>  
                                     <form action="" method="post">
                                         <label class="form-label">
                                             Clasificacion
