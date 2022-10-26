@@ -36,7 +36,7 @@ Scarleth
       <li class="active"><a href="#"></a></li>
     </ul> -->
     <p align="right" valign="baseline">
-      <button type="button"  class="btn btn-success mr-3"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
+      <button type="button"  class="btn btn-success mr-3"  data-toggle="modal " data-target="#dialogo1">(+) Nuevo</button>
     </p>
     
     <ul class="nav nav-pills nav-stacked">
@@ -44,7 +44,7 @@ Scarleth
       </ul>
       
       
-    
+  
       
     
    
