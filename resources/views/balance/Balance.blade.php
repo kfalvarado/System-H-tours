@@ -244,7 +244,7 @@ Emerson
                         <tbody>
                           <tr class="text-white bg-dark">
                             <td>1</td>
-                            <td>1-2021-ene-1-001</td>
+                            <td>periodo-2021-ene-1-001</td>
                             <td>31/12/2021</td>
                             <td>54,000</td>
                             <td>54,000</td>
