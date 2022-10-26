@@ -141,9 +141,6 @@ ALE
                                             Nombre de la Cuenta
                                             <input type='text' name='COS PRODUCTO' class="form-control text-white" required></input>
                                         </label>
-
-
-                                        <a href="" class="btn btn-secondary">Cancelar</a>
                                         <button type="submit" class="btn btn-primary">Registrar </button>
                                     </form>
                             </div>
@@ -154,13 +151,6 @@ ALE
                 </div>
             </div>
             <!-- FIN DE MODAL PARA NUEVA  -->
-
-
-
-
-
-
-
 
             <!-- INICIO MODAL PARA EDITAR  -->
             <div class="modal-container">
@@ -176,6 +166,7 @@ ALE
                             <!-- CUERPO DEL DIALOGO EDITAR -->
                             <div class="modal-body">
                                 <center>
+                                    
                                     <form action="" method="post">
                                         <label class="form-label">
                                             Clasificacion
@@ -197,11 +188,7 @@ ALE
                                             Nombre de la Cuenta
                                             <input type='text' name='COS PRODUCTO' value="Caja" min="0" class="form-control text-white" required></input>
                                         </label>
-
-
-
-
-                                        <a href="" class="btn btn-secondary">Cancelar</a>
+                                        
                                         <button type="submit" class="btn btn-primary">Registrar </button>
                                     </form>
                             </div>
