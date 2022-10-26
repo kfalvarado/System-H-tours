@@ -175,7 +175,6 @@ ALE
                                                 <option value=""> Pasivo</option>
                                                 <option value="">Patrimonio </option>
                                                 <option value="">Resultado </option>
-
                                             </select>
                                         </label>
 
