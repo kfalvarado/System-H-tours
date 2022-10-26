@@ -144,7 +144,7 @@ Emerson
                           <tr class="text-white bg-dark">
                             <td>1</td>
                             <td>Proveedores</td>
-                            <td>1,000</td>
+                            <td>5,000</td>
                           </tr>
                           <tr class="text-white bg-dark">
                             <td>2</td>
