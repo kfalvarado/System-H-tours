@@ -202,17 +202,22 @@ Emerson
                           <tr class="text-white bg-dark">
                             <td>7</td>
                             <td>Capital</td>
-                            <td>3000</td>
+                            <td>3,000</td>
                           </tr>
                           <tr class="text-white bg-dark">
                             <td>8</td>
                             <td>Reserva Legal</td>
-                            <td>3000</td>
+                            <td>3,000</td>
                           </tr>
                           <tr class="text-white bg-dark">
                             <td>9</td>
                             <td>Otras Reservas</td>
-                            <td>7000</td>
+                            <td>7,000</td>
+                          </tr>
+                          <tr>
+                            <td  class="text-dark bg-white"  colspan="2"> <center>Total Patrimonio</center>  </td>
+                            <td  class="text-dark bg-white"  > <b>13,000</b>   </td>
+                          </tr>
                         </tbody>
                       </table>
                     </div>
@@ -241,7 +246,7 @@ Emerson
                             <td>1</td>
                             <td>1-2021-ene-1-001</td>
                             <td>31/12/2021</td>
-                            <td>18,000</td>
+                            <td>54,000</td>
                             <td>18,000</td>
                           </tr>
                       </table>
