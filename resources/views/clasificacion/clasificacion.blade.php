@@ -32,13 +32,6 @@ Scarleth
 <div class="content-wrapper">
   <div class="page-header">
    <center><h1> Clasificaciones de las cuentas  </h1></center> 
-    <!-- <h1 class="page-title"> Nombre de la Tabla </h1> -->
-    <!-- <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Tables</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Basic tables</li>
-      </ol>
-    </nav> -->
   </div>
   <p align="right" valign="baseline">
     <button type="button"  class="btn btn-success"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
@@ -57,10 +50,7 @@ Scarleth
                   
                   <th class="text-dark bg-white"> #  </th>
                   <th class="text-dark bg-white"> Clasificacion  </th>
-                  <th class="text-dark bg-white"> Acciones  </th>
-                  
-
-                 
+                  <th class="text-dark bg-white"> Acciones  </th>                
                 </tr>
               </thead>
               <tbody>
@@ -84,10 +74,7 @@ Scarleth
                   <td> 4 </td>
                   <td> Resultado </td>
                   <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
-                </tr>
-
-
-                
+                </tr>               
               </tbody>
             </table>
           </div>

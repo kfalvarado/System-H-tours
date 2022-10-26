@@ -85,7 +85,7 @@ ALE
                                     </tr>
                                     <tr class="text-white bg-dark">
                                         <td> 3 </td>
-                                        <td> Patrimonio  </td>
+                                        <td> Patrimonio </td>
                                         <td> Capital Social </td>
                                         <td> 3.1.1</td>
                                         <td> Aportaciones </td>

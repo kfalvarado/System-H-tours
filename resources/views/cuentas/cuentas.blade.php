@@ -87,7 +87,7 @@ ALE
                                     <td> 3 </td>
                                     <td> Patrimonio </td>
                                     <td> 3.1 </td>
-                                    <td> Capital Social</td>
+                                    <td> Capital Social </td>
                                     <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
                                 </tr>
 
