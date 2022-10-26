@@ -110,7 +110,7 @@ Emerson
                             <tr class="text-white bg-dark">
                               <td>3</td>
                               <td>Terrenos</td>
-                              <td>30,0000</td>
+                              <td>30,000</td>
                             </tr>
                             <tr>
                               <td  class="text-dark bg-white"  colspan="2"> <center>Total activos</center>  </td>
