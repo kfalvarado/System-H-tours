@@ -33,16 +33,7 @@ ALE
         <center>
             <h1> Crear Cuentas </h1>
         </center>
-        <!-- <h1 class="page-title"> Nombre de la Tabla </h1> -->
-        <!-- <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Basic tables</li>
-                </ol>
-              </nav> -->
     </div>
-
-
     <p align="right" valign="baseline">
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button> <a type="button" class="btn btn-success" href="javascript:window.print();">Generar PDF</a>
     </p>
@@ -217,13 +208,9 @@ ALE
                                             ¿ Desea Eliminar el Registro ?
 
                                         </label>
-
-
                                         <br>
                                         <a href="" class="btn btn btn-primary">SI</a>
-
                                         <a href="" class="btn btn-secondary">NO</a>
-
                                     </form>
                             </div>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
