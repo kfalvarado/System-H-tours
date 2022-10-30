@@ -13,17 +13,38 @@ use PHPMailer\PHPMailer\Exception;
 
 class SessionController extends Controller
 {
+    /* =========================================================
+        Definicion de Variables Globales
+        ========================================================
+    */
    
     protected  $url = 'http://localhost:3000';
+    protected $intentos = 1; //intentos fallidos del usuario
+
+    /*
+    =========================================================
+    Pantalla de HOME 
+    =========================================================
+    */
     public function inicio()
     {
         return view('home.inicio');
     }   
+
+    /*
+    =========================================================
+    Pantalla de Registro 
+    =========================================================
+    */
     public function register()
     {
         return view('Auth.register');
     } 
-   
+    /*
+    =========================================================
+    Funcion de validacion para registro en API
+    =========================================================
+    */
     public function Registrar(Request $request)
     {
         //validar Datos antes de guardarlos
@@ -91,6 +112,11 @@ class SessionController extends Controller
             return back();
     }    
     }  
+      /*
+    =========================================================
+    Metodo de Recuperacion de sesion por Correo
+    =========================================================
+    */
     public function recuperar(Request $request)
     {
         
@@ -167,7 +193,11 @@ class SessionController extends Controller
             return view('Auth.preguntas');
         }
     }
-
+    /*
+    =========================================================
+     Metodo de Recuperacion de sesion por Pregunta Secreta
+    =========================================================
+    */
     public function respuesta(Request $request)
     {
         //revisar si la pregunta coincide o no coincide
@@ -188,6 +218,11 @@ class SessionController extends Controller
             return 'no puede pasar'; // se le niega el acceso si no
         }
     }
+    /*
+    =========================================================
+     Cierre de Sesion y Destruccion de Toke
+    =========================================================
+    */
     public function logout()
     {
         return redirect('/');
