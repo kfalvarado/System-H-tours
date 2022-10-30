@@ -13,11 +13,11 @@ use PHPMailer\PHPMailer\Exception;
 
 class SessionController extends Controller
 {
-    /* =========================================================
-        Definicion de Variables Globales
-        ========================================================
-    */
-   
+    /*
+    =========================================================
+     Definicion de Variables Globales
+    ========================================================
+    */ 
     protected  $url = 'http://localhost:3000';
     protected $intentos = 1; //intentos fallidos del usuario
 
@@ -112,7 +112,7 @@ class SessionController extends Controller
             return back();
     }    
     }  
-      /*
+    /*
     =========================================================
     Metodo de Recuperacion de sesion por Correo
     =========================================================
