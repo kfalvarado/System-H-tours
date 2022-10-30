@@ -26,46 +26,74 @@ class SessionController extends Controller
    
     public function Registrar(Request $request)
     {
-        $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjY2NjkwNDAsImV4cCI6MTY2NjY2OTM0MH0.DhpegraGFz0hN7nyJSzNRS1nxdluUGKG2e9XUS_dY4o';
-        $indentidad = $request->primerodigitos."-".$request->segundodigitos."-".$request->tercerodigitos;
-        // return $request;
-        try {
-            $insertarPersona = Http::withToken($token)->post($this->url.'/personas/insertar', [
-                "NOM_PERSONA" => $request->nombre,
-                "SEX_PERSONA" => $request->genero,
-                "EDA_PERSONAL" => $request->edad,
-                "TIP_PERSONA" => $request->tipoPersona,
-                "Num_Identidad" => $indentidad,
-                "IND_CIVIL" => $request->civil,
-                "IND_PERSONA" => 1,
-                "TELEFONO" => $request->telefono,
-                "TIP_TELEFONO" => $request->tipotelefono,
-                "CORREO"=> $request->correo,
-                "PREGUNTA"=>$request->pregunta,
-                "RESPUESTA"=>$request->Respuesta,
-                "USUARIO"=> $request->user,
-                "PASSWORD"=> $request->correo,
-                "ROL"=> $request->roluser
-
-            ]);
-        } catch (\Exception $e) {
-            return 'Ocurrio una error con la  API POST PERSONAS';
-        }
-        if ($insertarPersona == 'Forbidden'){
-            Session::flash('denegado','Tu acceso a sido Denegado');
-            return back();
-            // return 'Acceso Denegado';
-        }else{
-            Session::flash('correcto','Usuario Registrado Correctamente');
-            return back();
-        }
+        //validar Datos antes de guardarlos
         
-        // // // return $indentidad;
-           
+        //proteccion extra contra cross-site scripting doble verificacion desde server
+        if (
+            preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/", $request->nombre) &&
+            preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚ ]+$/", $request->tipoPersona) &&
+            preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚ ]+$/", $request->tipotelefono) &&
+            preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚ 0-9]+$/", $request->roluser) &&
+            preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ 0-9.@]+$/", $request->user) &&
+            preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ @.0-9]+$/", $request->correo) &&
+            preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ@.0-9!?#%&*~,]+$/", $request->password1) &&
+            preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ@.0-9!?#%&*~,]+$/", $request->password2) &&
+            preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ?]+$/", $request->pregunta) &&
+            preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/", $request->Respuesta)
+        ) {
+            if ($request->civil =="S" || $request->civil =="V" || $request->civil =="C" || $request->civil =="D") {
+                if ($request->genero == "M" || $request->genero =="F") {
+                    
+                    // return $request; //prueba de funcionalidades de los if
+                                    $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjcxMDE3NDMsImV4cCI6MTY2NzEwMjA0M30.QhL-Ff0m9CR8gbvJ00JRxY74vdgpfrmBg9nRTHTRL7U';
+                                    $indentidad = $request->primerodigitos."-".$request->segundodigitos."-".$request->tercerodigitos;
+                       
+                        try {
+                            $insertarPersona = Http::withToken($token)->post($this->url.'/personas/insertar', [
+                                "NOM_PERSONA" => $request->nombre,
+                                "SEX_PERSONA" => $request->genero,
+                                "EDA_PERSONAL" => $request->edad,
+                                "TIP_PERSONA" => $request->tipoPersona,
+                                "Num_Identidad" => $indentidad,
+                                "IND_CIVIL" => $request->civil,
+                                "IND_PERSONA" => 1,
+                                "TELEFONO" => $request->telefono,
+                                "TIP_TELEFONO" => $request->tipotelefono,
+                                "CORREO"=> $request->correo,
+                                "PREGUNTA"=>$request->pregunta,
+                                "RESPUESTA"=>$request->Respuesta,
+                                "USUARIO"=> $request->user,
+                                "PASSWORD"=> $request->correo,
+                                "ROL"=> $request->roluser
+
+                            ]);
+                        } catch (\Exception $e) {
+                                return 'Ocurrio una error con la  API POST PERSONAS';
+                        }
+                        if ($insertarPersona == 'Forbidden'){
+                            Session::flash('denegado','Tu acceso a sido Denegado');
+                            return back();
+                            // return 'Acceso Denegado';
+                        }else{
+                                Session::flash('correcto','Usuario Registrado Correctamente');
+                                return back();
+                            }
+        }else{
+            Session::flash('denegado','Tu acceso a sido Denegado Manipulacion Genero');
+                return back();
+        }
+        }else{
+            Session::flash('denegado','Tu acceso a sido Denegado Manipulacion Estado civil');
+                return back();
+        }
+        }else {
+            Session::flash('caracteres','Error Caracteres especiales no permitidos');
+            return back();
+    }    
     }  
     public function recuperar(Request $request)
     {
-         
+        
         //metodo de recuperacion por correo unido a PHP MAILER para enviar un correo de recuperacion
         //falta metodo para generar un token de expiracion
         if ($request->recuperacion == "c") {

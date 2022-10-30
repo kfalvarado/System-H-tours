@@ -50,6 +50,13 @@
                   alert('Se registro Correctamente tu Usuario porfavor Contacta a un administrador para que pueda brindarte permisos')
                 </script>
                 @endif
+
+                @if(Session::has('caracteres'))
+                <script>
+                  alert('Error Caracteres especiales no permitidos')
+                </script>
+                @endif
+                
                 @if(Session::has('denegado'))
                 <script>
                   alert('Tu acceso a sido Denegado')
@@ -176,7 +183,7 @@
 
                               <label>
                                 <H4><i class="mdi mdi-account"></i> Telefono </H4>
-                                <input type="tel" id="telefono" name="telefono" class="form-control p_input text-dark bg-white" required>
+                                <input type="number" id="telefono" name="telefono" class="form-control p_input text-dark bg-white" required>
                               </label>
                               &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
                             </th>
@@ -446,24 +453,13 @@
                 </script>
                 <br>
                 <!-- 2 END CONTRASEÑA -->
-                <!-- <div class="text-center">
-                  <a class="text-white font-weight-medium" href="../tables/Pregunta_Usuario.html">
-                    <button onclick="alert('Deberas Contestar las siguientes preguntas');" type="submit" class="btn btn-primary btn-block enter-btn">Registrate</button></a>
-                </div> -->
+            
                 <button type="submit" class="btn btn-primary btn-block enter-btn">Registrate</button></a>
                 <div class="form-group d-flex align-items-center justify-content-center">
                   <!-- <p class="terms">By creating an account you are accepting our<a href="#"> Terms & Conditions</a></p> -->
                 </div>
                 <div class="d-flex">
-                  <!-- <button class="btn btn-facebook mr-2 col">
-                      <i class="mdi mdi-facebook"></i> Facebook </button>
-                    <button class="btn btn-google col">
-                      <i class="mdi mdi-google-plus"></i> Google plus </button>
-                  </div> -->
-                  <!-- <p class="sign-up">Don't have an Account?<a href="#"> Sign Up</a></p> -->
               </form>
-
-
             </div>
           </div>
         </div>

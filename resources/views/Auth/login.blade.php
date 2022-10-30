@@ -58,7 +58,7 @@
                   <label class="form-label">
                     <H4><i class="mdi mdi-account"></i> Usuario</H4>
                   </label>
-                  <input type="text" class="form-control p_input text-dark bg-white" required>
+                  <input type="text" class="form-control p_input text-dark bg-white" onSelect="this.value=''"  required>
                 </div>
 
                 <!-- CAMPO DE CONTRASEÑA DE LOGIN MOSTRAR MEDIANTE ICONO CANDADO -->
@@ -68,7 +68,7 @@
                   </label>
                   <div class="form-row">
                     <div class="col">
-                      <input class="form-control p_input text-dark bg-white" type="password" name="password" id="password" required>
+                      <input class="form-control p_input text-dark bg-white" onSelect="this.value=''" type="password" name="password" id="password" required>
                     </div>
                   </div>
                 </form>

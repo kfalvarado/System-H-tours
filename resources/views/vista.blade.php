@@ -30,8 +30,6 @@ Emerson
 @section('contenido')
 {{ $data = 5 -6; }}
 
-
-
 @if ($data < 0)
  Numero negativo
 @else
