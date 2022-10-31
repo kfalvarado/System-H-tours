@@ -537,10 +537,11 @@
                       document.location.href='#password2'
                     }   
                   }
-
-
-
-
+                    /*
+                  ============================================
+                  Validar todos los inputs
+                  ============================================
+                  */
                   function revalidar() {
                     let pregunta = document.getElementById('pregunta').value;
                     let Respuesta = document.getElementById('Respuesta').value;
