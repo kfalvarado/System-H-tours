@@ -146,12 +146,13 @@
                     </table>
                   </div>
                 </details>
-                <details>
-                  <summary onclick="validacion1();">Informacion Personal</summary>
+                
+                <details>     
+                  <summary  onclick="validacion1();">Informacion Personal</summary>
                   <div class="form-group">
                     <center>
                       <label>
-                        <H4><i class="mdi mdi-account"></i> Numero de Indentidad </H4>
+                        <H4><i class="mdi mdi-account"></i> Numero de Identidad </H4>
                         <div id="error"></div>
                         <table>
                           <thead>
@@ -193,7 +194,7 @@
                                 <Select class="form-control p_input text-dark bg-white" id="tipotelefono" name="tipotelefono" required>
                                   <option value=""></option>
                                   <option value="C">Celular</option>
-                                  <option value="T">Telfono Fijo</option>
+                                  <option value="T">Telefono Fijo</option>
                                 </Select>
                               </label>
                               &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
@@ -220,7 +221,7 @@
                     <label>
                       <H4><i class="mdi mdi-account"></i> Usuario</H4>
                     </label>
-                    <input type="text" onclick="validarol();" class="form-control p_input text-dark bg-white" id="user" name="user" required>
+                    <input type="text" onclick="validarol();" style="text-transform:uppercase"  class="form-control p_input text-dark bg-white" id="user" name="user" required>
                   </div>
                   <div class="form-group">
                     <label>
@@ -266,8 +267,17 @@
                   </label>
                   <input type="text" class="form-control p_input text-dark bg-white" id="Respuesta" name="Respuesta" required>
                 </details>
-
+                <!--
+                ===================================
+                Primer Bloque de javascript
+                ===================================
+               -->
                 <script>
+                  /*
+                  ============================================
+                  Funcion para visibilidad de contraseña
+                  ============================================
+                  */
                   function mostrarContra() {
                     var tipo = document.getElementById("password1");
                     if (tipo.type == "password") {
@@ -276,6 +286,11 @@
                       tipo.type = "password";
                     }
                   }
+                  /*
+                  ============================================
+                  Validar primer campo de indentidad
+                  ============================================
+                  */
 
                   function validarprimercampo(e) {
                     var primero = document.getElementById('primerodigitos').value;
@@ -299,7 +314,11 @@
                       e.preventDefault();
                     }
                   }
-
+                   /*
+                  ============================================
+                  Validar segundo campo de indentidad
+                  ============================================
+                  */
                   function validarsegundocampo(e) {
 
                     var segundo = document.getElementById('segundodigitos').value;
@@ -323,6 +342,11 @@
                       e.preventDefault();
                     }
                   }
+                   /*
+                  ============================================
+                  Validar tercer campo de indentidad
+                  ============================================
+                  */
 
                   function validartercercampo(e) {
 
@@ -348,7 +372,17 @@
                     }
                   }
                 </script>
+                <!--
+                ===================================
+                Segundo Bloque de javascript
+                ===================================
+               -->
                 <script>
+                   /*
+                  ============================================
+                  Mostrar Contraseña
+                  ============================================
+                  */
                   function mostrarContrasena() {
                     var tipo = document.getElementById("password2");
                     if (tipo.type == "password") {
@@ -358,7 +392,11 @@
                     }
                   }
 
-                  //detener el evento de registro
+                   /*
+                  ============================================
+                  Detener el intento de registro primer Bloque
+                  ============================================
+                  */
                   function validacion1() {
                     let nombre = document.getElementById('nombre').value;
                     let genero = document.getElementsByName('genero');
@@ -367,6 +405,8 @@
                     var genero2='';
                     if (nombre == "") {
                       alert('No escribiste un nombre')
+                      document.getElementById("nombre").className = "form-control p_input text-dark bg-warning";
+                      document.location.href='#nombre'
                     }
                     for (var i = 0; i < genero.length; i++) {
                       if (genero[i].checked) {
@@ -376,21 +416,39 @@
                     }
                     if (genero2== "") {
                       alert('No selecciono un genero');
+                      document.getElementById("genero").className = "form-control p_input text-dark bg-warning";
+                      document.location.href='#genero'
                     }
                     if (edad=='') {
                       alert('No escribio una edad')
+                      // let input = document.getElementById('edad').style.background = "red";
+                      document.getElementById("edad").className = "form-control p_input text-dark bg-warning";
+                      document.location.href='#edad'
                     }
                     if (civil == '') {
                       alert('No Seleccion un Estado Civil')
+                      document.getElementById("civil").className = "form-control p_input text-dark bg-warning";
+                      document.location.href='#civil'
                     }   
                   }
+                  /*
+                  ============================================
+                  Detener el intento de registro sin selecion de tipo persona
+                  ============================================
+                  */
                   function tipopersona() {
                     let tipoPersona = document.getElementById('tipoPersona').value;
                     if (tipoPersona=='') {
                       alert('Aun no selecciono un tipo de persona en la pestaña de Datos Personales');
+                      document.getElementById("tipoPersona").className = "form-control p_input text-dark bg-warning";
                       document.location.href='#tipoPersona'
                     }
                   }
+                  /*
+                  ============================================
+                  Detener el intento de registro segundo Bloque
+                  ============================================
+                  */
                   function validacion2() {
             
                     let primerodigitos = document.getElementById('primerodigitos').value;
@@ -401,60 +459,114 @@
                     
                     if (primerodigitos=='' || segundodigitos=='' || tercerodigitos =='') {
                       alert('faltan digitos en la indentidad')
+                      document.getElementById("primerodigitos").className = "form-control p_input text-dark bg-warning";
+                      document.location.href='#primerodigitos'
+                      document.getElementById("segundodigitos").className = "form-control p_input text-dark bg-warning";
+                      document.location.href='#segundodigitos'
+                      document.getElementById("tercerodigitos").className = "form-control p_input text-dark bg-warning";
+                      document.location.href='#tercerodigitos'
                     }
                     if (telefono =='') {
                       alert('No escribio su telefono');
+                      document.getElementById("telefono").className = "form-control p_input text-dark bg-warning";
+                      document.location.href='#telefono'
                     }
                     if (tipotelefono == '') {
                       alert('No selecciono un tipo de telefono')
+                      document.getElementById("tipotelefono").className = "form-control p_input text-dark bg-warning";
+                      document.location.href='#tipotelefono'
                     }
                     
                   }
-                
-                function validarol() {
-                  let roluser = document.getElementById('roluser').value;
-                  
-                  if (roluser=='') {
-                    alert('No selecciono un rol de usuario')
-                    document.location.href='#roluser'
-                  }
-                }
-                function validacion3() {
-                  let user = document.getElementById('user').value;
-                  let correo = document.getElementById('correo').value;
-                  let password1 = document.getElementById('password1').value;
-                  let password2 = document.getElementById('password2').value;
-                  if(user==''){
-                    alert('No escribio su nombre de Usuario')
-                  }
-                  if (correo =='') {
-                    alert('No escribio su correo')
-                  }
-                  if (password1=='') {
-                    alert(
-                      'No escribio una contraseña'
-                      )
+                  /*
+                  ============================================
+                  Detener el intento de registro  Rol
+                  ============================================
+                  */
+                  function validarol() {
+                    let roluser = document.getElementById('roluser').value;
+                    
+                    if (roluser=='') {
+                      alert('No selecciono un rol de usuario')
+                      document.getElementById("roluser").className = "form-control p_input text-dark bg-warning";
+                      document.location.href='#roluser'
                     }
-                  if (password1 != password2) {
-                    alert('Las contraseña no Coinciden ')
-                    document.getElementById("password2").value = "";
                   }
-                  
-                }
-                function validacion4() {
-                  let password2 = document.getElementById('password2').value;
-                  let pregunta = document.getElementById('pregunta').value;
-                  let Respuesta = document.getElementById('Respuesta').value;
-                  if (password2 =='') {
-                    alert('Aun no has repetido la contraseña');
-                    document.location.href='#password2'
+                  /*
+                  ============================================
+                  Detener el intento de registro tercer Bloque
+                  ============================================
+                  */
+                  function validacion3() {
+                    let user = document.getElementById('user').value;
+                    let correo = document.getElementById('correo').value;
+                    let password1 = document.getElementById('password1').value;
+                    let password2 = document.getElementById('password2').value;
+                    if(user==''){
+                      alert('No escribio su nombre de Usuario')
+                      document.getElementById("user").className = "form-control p_input text-dark bg-warning";
+                      document.location.href='#user'
+                    }
+                    if (correo =='') {
+                      alert('No escribio su correo')
+                      document.getElementById("correo").className = "form-control p_input text-dark bg-warning";
+                      document.location.href='#correo'
+                    }
+                    if (password1=='') {
+                      alert('No escribio una contraseña')
+                      document.getElementById("password1").className = "form-control p_input text-dark bg-warning";
+                      document.location.href='#password1'
+                      }
+                    if (password1 != password2) {
+                      alert('Las contraseña no Coinciden ')
+                      document.getElementById("password2").value = "";
+                    }    
                   }
-                }
+                  /*
+                  ============================================
+                  Detener el intento de registro cuarto Bloque
+                  ============================================
+                  */
+                  function validacion4() {
+                    let password2 = document.getElementById('password2').value;
+                    let pregunta = document.getElementById('pregunta').value;
+                    let Respuesta = document.getElementById('Respuesta').value;
+                    if (password2 =='') {
+                      alert('Aun no has repetido la contraseña');
+                      document.getElementById("password2").className = "form-control p_input text-dark bg-warning";
+                      document.location.href='#password2'
+                    }   
+                  }
+
+
+
+
+                  function revalidar() {
+                    let pregunta = document.getElementById('pregunta').value;
+                    let Respuesta = document.getElementById('Respuesta').value;
+                    if (pregunta == '') {
+                      alert('No escribio una Pregunta');
+                      document.getElementById("pregunta").className = "form-control p_input text-dark bg-warning";
+                      document.location.href='#pregunta'
+                    }
+                    if (Respuesta == '') {
+                      alert('No escribio una Respuesta');
+                      document.getElementById("Respuesta").className = "form-control p_input text-dark bg-warning";
+                      document.location.href='#Respuesta'         
+                    }
+                    validacion1();
+                    validacion2();
+                    validacion3();
+                    validacion4();
+                    validarol();
+                    tipopersona();
+                  }
+                
                 </script>
                 <br>
                 <!-- 2 END CONTRASEÑA -->
             
-                <button type="submit" class="btn btn-primary btn-block enter-btn">Registrate</button></a>
+                <button type="submit" onclick="revalidar();" class="btn btn-primary btn-block enter-btn">Registrate</button></a>
                 <div class="form-group d-flex align-items-center justify-content-center">
                   <!-- <p class="terms">By creating an account you are accepting our<a href="#"> Terms & Conditions</a></p> -->
                 </div>

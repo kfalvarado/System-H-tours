@@ -28,6 +28,13 @@ Emerson
 @endsection
 <!-- contenido de la pagina  -->
 @section('contenido')
+<input type="text" id="myinput" onclick="oye();">
+
+<script>
+    function oye() { 
+        let input = document.getElementById('myinput').style.background = "red";
+    }
+</script>
 {{ $data = 5 -6; }}
 
 @if ($data < 0)
@@ -35,6 +42,8 @@ Emerson
 @else
  Numero positivo
 @endif
+
+
 
 
 @endsection
