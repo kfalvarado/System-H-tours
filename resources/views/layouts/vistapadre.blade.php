@@ -178,9 +178,9 @@
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="{{route('admins.inicio')}}"> Administrador </a></li>
               <li class="nav-item"> <a class="nav-link" href="{{route('usuarios.inicio')}}"> Usuarios </a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/tables/Roles.html">Roles</a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/tables/Permisos.html"> Permisos </a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/tables/Bitacora.html"> Bitacoras </a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('mostrar.roles') }}">Roles</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('mostrar.permisos') }}"> Permisos </a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('mostrar.bitacoras') }}"> Bitacoras </a></li>
               <li class="nav-item"> <a class="nav-link" href="{{route('mostrar.parametro')}}"> Parametros </a></li>
               <li class="nav-item"> <a class="nav-link" href="{{route('preguntas.inicio')}}"> Preguntas </a></li>
             </ul>
