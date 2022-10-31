@@ -102,7 +102,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->prefix('permisos')
                 ->group(base_path('routes/permisos.php'));
-                Route::middleware('web')
+            Route::middleware('web')
                 ->prefix('bitacoras')
                 ->group(base_path('routes/bitacoras.php'));
 

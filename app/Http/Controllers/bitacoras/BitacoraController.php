@@ -1,14 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\librodiario;
+namespace App\Http\Controllers\bitacoras;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class BitacorasController extends Controller
+class BitacoraController extends Controller
 {
     public function mostrar()
+
     {
+
         return view('bitacoras.bitacoras');
+
     }
 }
