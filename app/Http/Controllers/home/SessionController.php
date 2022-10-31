@@ -51,62 +51,95 @@ class SessionController extends Controller
         
         //proteccion extra contra cross-site scripting doble verificacion desde server
         if (
+            // preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/", $request->nombre) &&
+            // preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚ ]+$/", $request->tipoPersona) &&
+            // preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚ ]+$/", $request->tipotelefono) &&
+            // preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚ 0-9]+$/", $request->roluser) &&
+            preg_match("/^[A-ZñÑáéíóúÁÉÍÓÚ 0-9.@]+$/", $request->user) &&
             preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/", $request->nombre) &&
-            preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚ ]+$/", $request->tipoPersona) &&
-            preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚ ]+$/", $request->tipotelefono) &&
-            preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚ 0-9]+$/", $request->roluser) &&
-            preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ 0-9.@]+$/", $request->user) &&
             preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ @.0-9]+$/", $request->correo) &&
             preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ@.0-9!?#$`^-_=+|%&*~,]+$/", $request->password1) &&
-            preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ@.0-9!?#%&*~,]+$/", $request->password2) &&
-            preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ?]+$/", $request->pregunta) &&
-            preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/", $request->Respuesta)
+            preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ@.0-9!?#%&*~,]+$/", $request->password2)
+            // preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ?]+$/", $request->pregunta) &&
+            // preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/", $request->Respuesta)
         ) {
-            if ($request->civil =="S" || $request->civil =="V" || $request->civil =="C" || $request->civil =="D") {
-                if ($request->genero == "M" || $request->genero =="F") {
-                    
-                    // return $request; //prueba de funcionalidades de los if
-                                    $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjcxMDE3NDMsImV4cCI6MTY2NzEwMjA0M30.QhL-Ff0m9CR8gbvJ00JRxY74vdgpfrmBg9nRTHTRL7U';
-                                    $indentidad = $request->primerodigitos."-".$request->segundodigitos."-".$request->tercerodigitos;
-                       
-                        try {
-                            $insertarPersona = Http::withToken($token)->post($this->url.'/personas/insertar', [
-                                "NOM_PERSONA" => $request->nombre,
-                                "SEX_PERSONA" => $request->genero,
-                                "EDA_PERSONAL" => $request->edad,
-                                "TIP_PERSONA" => $request->tipoPersona,
-                                "Num_Identidad" => $indentidad,
-                                "IND_CIVIL" => $request->civil,
-                                "IND_PERSONA" => 1,
-                                "TELEFONO" => $request->telefono,
-                                "TIP_TELEFONO" => $request->tipotelefono,
-                                "CORREO"=> $request->correo,
-                                "PREGUNTA"=>$request->pregunta,
-                                "RESPUESTA"=>$request->Respuesta,
-                                "USUARIO"=> $request->user,
-                                "PASSWORD"=> $request->correo,
-                                "ROL"=> $request->roluser
+           
+            // if ($request->civil =="S" || $request->civil =="V" || $request->civil =="C" || $request->civil =="D") {
+            //     if ($request->genero == "M" || $request->genero =="F") {
 
-                            ]);
-                        } catch (\Exception $e) {
-                                return 'Ocurrio una error con la  API POST PERSONAS';
-                        }
-                        if ($insertarPersona == 'Forbidden'){
-                            Session::flash('denegado','Tu acceso a sido Denegado');
-                            return back();
-                            // return 'Acceso Denegado';
-                        }else{
-                                Session::flash('correcto','Usuario Registrado Correctamente');
-                                return back();
-                            }
-        }else{
-            Session::flash('denegado','Tu acceso a sido Denegado Manipulacion Genero');
+            // return $request; //prueba de funcionalidades de los if
+            #############################################################
+
+            //             $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjcxMDE3NDMsImV4cCI6MTY2NzEwMjA0M30.QhL-Ff0m9CR8gbvJ00JRxY74vdgpfrmBg9nRTHTRL7U';
+            //             $indentidad = $request->primerodigitos."-".$request->segundodigitos."-".$request->tercerodigitos;
+
+            # +++++++++++++++++++++++++++++++++++++++++++++++
+            /* Buscar el ROL QUE DIGA SIN ASIGNAR O NUEVO */
+            # +++++++++++++++++++++++++++++++++++++++++++++++
+            
+            # +++++++++++++++++++++++++++++++++++++++++++++++
+            /* Buscar QUE EL USUARIO NO EXISTA ANTES DE INGRESARLO */
+            # +++++++++++++++++++++++++++++++++++++++++++++++
+
+
+            try {
+                $registrarUsuario = Http::post($this->url . '/seguridad/usuarios/registrar', [
+                    "USER" => $request->user,
+                    "NOMBRE_USUARIO" => $request->nombre,
+                    "ROL_USUARIO" => 1,
+                    "CORREO_ELECTRONICO" =>  $request->correo,
+                    "PASS" => $request->password1
+                ]);
+            } catch (\Exception $e) {
+                return 'Ocurrio una error con la  API POST PERSONAS';
+            }
+            if ($registrarUsuario == 'Forbidden') {
+                Session::flash('denegado', 'Tu acceso a sido Denegado');
                 return back();
-        }
-        }else{
-            Session::flash('denegado','Tu acceso a sido Denegado Manipulacion Estado civil');
+                // return 'Acceso Denegado';
+            } else {
+                Session::flash('correcto', 'Usuario Registrado Correctamente');
                 return back();
-        }
+            }
+
+                        //     $insertarPersona = Http::withToken($token)->post($this->url.'/personas/insertar', [
+                        //         "NOM_PERSONA" => $request->nombre,
+                        //         "SEX_PERSONA" => $request->genero,
+                        //         "EDA_PERSONAL" => $request->edad,
+                        //         "TIP_PERSONA" => $request->tipoPersona,
+                        //         "Num_Identidad" => $indentidad,
+                        //         "IND_CIVIL" => $request->civil,
+                        //         "IND_PERSONA" => 1,
+                        //         "TELEFONO" => $request->telefono,
+                        //         "TIP_TELEFONO" => $request->tipotelefono,
+                        //         "CORREO"=> $request->correo,
+                        //         "PREGUNTA"=>$request->pregunta,
+                        //         "RESPUESTA"=>$request->Respuesta,
+                        //         "USUARIO"=> $request->user,
+                        //         "PASSWORD"=> $request->correo,
+                        //         "ROL"=> $request->roluser
+
+                        //     ]);
+                        // } catch (\Exception $e) {
+                        //         return 'Ocurrio una error con la  API POST PERSONAS';
+                        // }
+                        // if ($insertarPersona == 'Forbidden'){
+                        //     Session::flash('denegado','Tu acceso a sido Denegado');
+                        //     return back();
+                        //     // return 'Acceso Denegado';
+                        // }else{
+                        //         Session::flash('correcto','Usuario Registrado Correctamente');
+                        //         return back();
+                        //     }
+    #####################################################################
+        // }else{
+        //     Session::flash('denegado','Tu acceso a sido Denegado Manipulacion Genero');
+        //         return back();
+        // }
+        // }else{
+        //     Session::flash('denegado','Tu acceso a sido Denegado Manipulacion Estado civil');
+        //         return back();
+        // }
         }else {
             Session::flash('caracteres','Error Caracteres especiales no permitidos');
             return back();
