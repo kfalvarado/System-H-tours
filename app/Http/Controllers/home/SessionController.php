@@ -57,7 +57,7 @@ class SessionController extends Controller
             preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚ 0-9]+$/", $request->roluser) &&
             preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ 0-9.@]+$/", $request->user) &&
             preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ @.0-9]+$/", $request->correo) &&
-            preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ@.0-9!?#%&*~,]+$/", $request->password1) &&
+            preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ@.0-9!?#$`^-_=+|%&*~,]+$/", $request->password1) &&
             preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ@.0-9!?#%&*~,]+$/", $request->password2) &&
             preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ?]+$/", $request->pregunta) &&
             preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/", $request->Respuesta)
