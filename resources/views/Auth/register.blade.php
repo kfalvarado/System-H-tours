@@ -46,6 +46,12 @@
     alert('Tu acceso a sido Denegado')
   </script>
   @endif
+  @if(Session::has('existe'))
+  <script>
+    alert('El usuario que indico ya existe')
+  </script>
+  @endif
+
 
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -57,7 +63,7 @@
               <img class="img-md" width="110" height="110"  src="../../assets/images/HTOURS.png" alt="">
               <h1 class="card-title text-center mb-2">System H tours</h1>
               <nav class="nav nav-pills flex-column flex-sm-row">
-                <a class="flex-sm-fill text-sm-center nav-link" href="login.html">INGRESA</a>
+                <a class="flex-sm-fill text-sm-center text-white nav-link" href="{{ route('Auth.login') }}">INGRESA</a>
                 <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#">REGISTRATE</a>
               </nav>
             </center>
@@ -93,7 +99,7 @@
             <!-- END CONTRASEÑA -->
             <!-- 2 CAMPO DE CONTRASEÑA DE LOGIN MOSTRAR MEDIANTE ICONO CANDADO -->
             
-              <label><H4><i class="mdi mdi-lock"  onclick="mostrarContrasena()"></i> Repetir Conttaseña</H4></label>
+              <label><H4><i class="mdi mdi-lock"  onclick="mostrarContrasena()"></i> Repetir Contraseña</H4></label>
               <div class="form-row">
                   <div class="col">
                 <input class="form-control p_input text-dark bg-white" onchange="comparar();" placeholder="Ingresa de nuevo la contraseña" type="password" name="password2" id="password2" required>

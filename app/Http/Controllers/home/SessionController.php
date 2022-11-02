@@ -23,7 +23,7 @@ class SessionController extends Controller
 
     /*
     =========================================================
-    Pantalla de HOME 
+    Inicio de sesion en el sistema
     =========================================================
     */
     public function inicio()
@@ -55,9 +55,9 @@ class SessionController extends Controller
             // preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚ ]+$/", $request->tipoPersona) &&
             // preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚ ]+$/", $request->tipotelefono) &&
             // preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚ 0-9]+$/", $request->roluser) &&
-            preg_match("/^[A-ZñÑáéíóúÁÉÍÓÚ 0-9.@]+$/", $request->user) &&
+            preg_match("/^[A-ZÑÁÉÍÓÚ0-9.@]+$/", $request->user) &&
             preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/", $request->nombre) &&
-            preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ @.0-9]+$/", $request->correo) &&
+            preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ@.0-9]+$/", $request->correo) &&
             preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ@.0-9!?#$`^-_=+|%&*~,]+$/", $request->password1) &&
             preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ@.0-9!?#%&*~,]+$/", $request->password2)
             // preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ?]+$/", $request->pregunta) &&
@@ -73,16 +73,17 @@ class SessionController extends Controller
             //             $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjcxMDE3NDMsImV4cCI6MTY2NzEwMjA0M30.QhL-Ff0m9CR8gbvJ00JRxY74vdgpfrmBg9nRTHTRL7U';
             //             $indentidad = $request->primerodigitos."-".$request->segundodigitos."-".$request->tercerodigitos;
 
+
+
             # +++++++++++++++++++++++++++++++++++++++++++++++
             /* Buscar el ROL QUE DIGA SIN ASIGNAR O NUEVO */
             # +++++++++++++++++++++++++++++++++++++++++++++++
             
-            # +++++++++++++++++++++++++++++++++++++++++++++++
-            /* Buscar QUE EL USUARIO NO EXISTA ANTES DE INGRESARLO */
-            # +++++++++++++++++++++++++++++++++++++++++++++++
+           
 
 
             try {
+                $posicionU = 0;
                 $registrarUsuario = Http::post($this->url . '/seguridad/usuarios/registrar', [
                     "USER" => $request->user,
                     "NOMBRE_USUARIO" => $request->nombre,
@@ -90,6 +91,7 @@ class SessionController extends Controller
                     "CORREO_ELECTRONICO" =>  $request->correo,
                     "PASS" => $request->password1
                 ]);
+                $posicionU = strrpos($registrarUsuario, "EL USUARIO YA EXISTE");
             } catch (\Exception $e) {
                 return 'Ocurrio una error con la  API POST PERSONAS';
             }
@@ -97,9 +99,15 @@ class SessionController extends Controller
                 Session::flash('denegado', 'Tu acceso a sido Denegado');
                 return back();
                 // return 'Acceso Denegado';
+            }
+             if ($posicionU > 0) {
+                 Session::flash('existe', 'Usuario ya  existe');
+                 return back();
+              
             } else {
                 Session::flash('correcto', 'Usuario Registrado Correctamente');
                 return back();
+            
             }
 
                         //     $insertarPersona = Http::withToken($token)->post($this->url.'/personas/insertar', [

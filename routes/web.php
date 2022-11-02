@@ -17,7 +17,7 @@ use App\Http\Controllers\home\SessionController;
 
 Route::get('/', function () {
     return view('Auth.login');
-});
+})->name('Auth.login');
 
 Route::get('/inicio',[SessionController::class,'inicio'])->name('home');
 Route::get('/registro',[SessionController::class,'register'])->name('registro');
