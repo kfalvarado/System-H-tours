@@ -14,4 +14,4 @@ use App\Http\Controllers\permisos\PermisosController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/permisos',[PermisosController::class,'mostrar'])->name('mostrar.permisos');
+Route::get('/',[PermisosController::class,'mostrar'])->name('mostrar.permisos');

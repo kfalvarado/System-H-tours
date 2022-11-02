@@ -6,4 +6,4 @@ use App\Http\Controllers\bitacoras\BitacoraController;
 
 
 
-Route::get('/bitacoras',[BitacoraController::class,'mostrar'])->name('mostrar.bitacoras');
+Route::get('/',[BitacoraController::class,'mostrar'])->name('mostrar.bitacoras');
