@@ -9,6 +9,9 @@
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
   <link rel="stylesheet" href="{{asset('assets/vendors/css/vendor.bundle.base.css')}}">
+  {{-- sweeralert2 --}}
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <!-- endinject -->
   <!-- Plugin css for this page -->
   <!-- End plugin css for this page -->
@@ -31,24 +34,42 @@
 <body>
   @if(Session::has('correcto'))
   <script>
-    alert('Se registro Correctamente tu Usuario porfavor Contacta a un administrador para que pueda brindarte permisos')
+  
+   Swal.fire(
+      '',
+      'Usuario Registrado Correctamente, porfavor ponte en contacto con un administrador para que pueda brindarte los permisos',
+      'question'
+    )
   </script>
   @endif
 
   @if(Session::has('caracteres'))
   <script>
-    alert('Error Caracteres especiales no permitidos')
+     Swal.fire({
+      icon: 'error',
+      text: 'Error Caracteres especiales no permitidos',
+      // footer: '<a href="">Why do I have this issue?</a>'
+    })
   </script>
   @endif
   
   @if(Session::has('denegado'))
   <script>
-    alert('Tu acceso a sido Denegado')
+      Swal.fire({
+      icon: 'error',
+      text: 'Tu acceso a sido Denegado',
+      // footer: '<a href="">Why do I have this issue?</a>'
+    })
   </script>
   @endif
   @if(Session::has('existe'))
   <script>
-    alert('El usuario que indico ya existe')
+    Swal.fire({
+      icon: 'error',
+      text: 'El usuario que indico, no esta disponible',
+      // footer: '<a href="">Why do I have this issue?</a>'
+    })
+    // alert('El usuario que indico ya existe')
   </script>
   @endif
 
