@@ -28,6 +28,10 @@ class SessionController extends Controller
     */
     public function inicio()
     {
+        /*Buscar si existe el usuario
+          Buscar si sus contraseñas coniciden
+          Buscar el rol del usuario
+          redirigir con las variables */
         return view('home.inicio');
     }   
 
