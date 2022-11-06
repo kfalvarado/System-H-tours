@@ -108,9 +108,8 @@ class SessionController extends Controller
                 Cache::flush('intento');
                 Cache::put('token', $token);
                 Cache::put('user', $user);
-                $conteo = Http::post($this->url . '/seguridad/conteo', []);
-                $newconteo = json_decode($conteo, true);
-                return view('home.inicio', compact('newconteo'));
+                
+                return redirect()->route('home');
             }
 
         } catch (\Exception $e) {
@@ -123,9 +122,24 @@ class SessionController extends Controller
 
     public function home()
     {
+        //Contador de registros
         $conteo = Http::post($this->url . '/seguridad/conteo', [
         ]);
         $newconteo = json_decode($conteo,true);
+
+        //Datos Personas
+        $personas =Http::post($this->url . '/personas/usuarios', [
+            "USER"=> Cache::get('user') 
+        ]);
+        $dataPerson = json_decode($personas,true);
+
+        
+        foreach($dataPerson as $array){
+            $genero = $array['SEX_PERSONA'];
+        }
+        Cache::put('genero',$genero);
+        //rol user
+
         return view('home.inicio',compact('newconteo'));
     }
 
@@ -365,6 +379,9 @@ class SessionController extends Controller
     */
     public function logout()
     {
+        
+        Cache::flush('token');
+        Cache::flush('user');
         return redirect('/');
     }
 

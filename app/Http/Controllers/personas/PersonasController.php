@@ -31,6 +31,18 @@ class PersonasController extends Controller
             "TIP_TELEFONO" => $request->tipotelefono
             
         ]);
+
+        //actualizar el estado del usuario a Activo
+        $estactivo = Http::withToken($token)->post($this->url . '/seguridad/estusr/actualizar', [
+            "USER" => Cache::get('user')   
+        ]);
+
+        //cambiar Contraseña
+        $pass = md5($request->password1); //encriptado de contraseña
+        $estactivo = Http::withToken($token)->post($this->url . '/seguridad/estusr/pass', [
+            "USER" => Cache::get('user'),
+            "PASS"=> $pass
+        ]);
         return redirect()->route('home');
     }
 }
