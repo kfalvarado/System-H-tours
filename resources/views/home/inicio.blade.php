@@ -14,7 +14,6 @@ Casa | inicio
 {{ asset('assets/images/dama.png');}}
 @endif
 
- 
 
 @endsection
 
