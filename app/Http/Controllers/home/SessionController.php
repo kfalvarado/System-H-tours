@@ -8,7 +8,10 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use PHPMailer\PHPMailer\PHPMailer;  
 use PHPMailer\PHPMailer\Exception;
+use Illuminate\Support\Facades\Cache;
 
+//encriptar token
+use Illuminate\Support\Facades\Crypt;
 
 
 class SessionController extends Controller
@@ -19,21 +22,112 @@ class SessionController extends Controller
     ========================================================
     */ 
     protected  $url = 'http://localhost:3000';
-    protected $intentos = 1; //intentos fallidos del usuario
 
     /*
     =========================================================
     Inicio de sesion en el sistema
     =========================================================
+
+    Esta funcion se encarga de Validar  si el usuario existe,si el usuario es nuevo,el rol del usuario
+     y los permisos de este usuario
     */
-    public function inicio()
+    public function inicio(Request $request)
     {
-        /*Buscar si existe el usuario
+        
+        /*
+          Validar Mayusculas
+          Buscar si existe el usuario
           Buscar si sus contraseñas coniciden
           Buscar el rol del usuario
           redirigir con las variables */
-        return view('home.inicio');
+          try {
+            // Validar que el usuario llege en Mayusculas
+            if (!preg_match("/^[A-ZÑÁÉÍÓÚ0-9.@]+$/", $request->user)) {
+                Session::flash('accesoDenegado', 'usuario / contraseña incorrectos');
+                return back();
+            }
+
+            $posicionU=0;
+            $codificacion = md5($request->password);
+            $loginUser = Http::post($this->url . '/seguridad/login', [
+                "user" => $request->user,
+                "pass" => $codificacion
+            ]);
+
+            $posicionU = strrpos($loginUser, "pudo obtener resultado");
+            if ($posicionU > 0) {
+                if (Cache::has('intento')) {
+                    $intento = Cache::get('intento');
+                    $intento += 1;
+                    Cache::put('intento', $intento);
+                } else {
+                    $intento = Cache::put('intento', 1);
+                }
+
+                if (Cache::get('intento') > 3) {
+                    Cache::flush('intento');
+                    Session::flash('bloqueado', 'tu usuario a sido desabilitado');
+                    return back();
+                } else {
+                    Session::flash('accesoDenegado', 'usuario / contraseña incorrectos');
+                    return back();
+                }
+            } else {
+
+                // Limpiar datos del usuario
+                
+                
+                $posicion = strpos($loginUser,':')+2;
+                $token = substr($loginUser,$posicion,-2);
+               
+               
+                /*
+                ///////////////////////////////////////////////////////////////////////////////
+                Usuario Correcto 
+                //////////////////////////////////////////////////////////////////////////////
+                */
+                $estado=0;
+                $est = Http::post($this->url . '/seguridad/estadousr', [
+                    "user"=>$request->user
+                ]);
+                $estado = strrpos($est, "NUEVO");
+                
+                if ($estado>0) {
+                    $user = $request->user;
+                    Cache::flush('intento');
+                    //encriptar token
+                    // $cadenaEncriptada = Crypt::encryptString($loginUser);
+
+                    Cache::put('token', $token);
+                    Cache::put('user', $user);
+                    //validar rol del usuario
+                    return view('home.personas');
+                }
+                // Falta validar rol del usuario 
+                $user = $request->user;
+                Cache::flush('intento');
+                Cache::put('token', $token);
+                Cache::put('user', $user);
+                $conteo = Http::post($this->url . '/seguridad/conteo', []);
+                $newconteo = json_decode($conteo, true);
+                return view('home.inicio', compact('newconteo'));
+            }
+
+        } catch (\Exception $e) {
+            return 'Ocurrio una error con la  API POST PERSONAS';
+        }
+
+
+        // return view('home.inicio');
     }   
+
+    public function home()
+    {
+        $conteo = Http::post($this->url . '/seguridad/conteo', [
+        ]);
+        $newconteo = json_decode($conteo,true);
+        return view('home.inicio',compact('newconteo'));
+    }
 
     /*
     =========================================================
@@ -88,12 +182,13 @@ class SessionController extends Controller
 
             try {
                 $posicionU = 0;
+                $codificacion = md5($request->password1);
                 $registrarUsuario = Http::post($this->url . '/seguridad/usuarios/registrar', [
                     "USER" => $request->user,
                     "NOMBRE_USUARIO" => $request->nombre,
                     "ROL_USUARIO" => 1,
                     "CORREO_ELECTRONICO" =>  $request->correo,
-                    "PASS" => $request->password1
+                    "PASS" => $codificacion
                 ]);
                 $posicionU = strrpos($registrarUsuario, "EL USUARIO YA EXISTE");
             } catch (\Exception $e) {

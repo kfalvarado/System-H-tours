@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css')}}">
 
+  {{-- Sweetalert2 --}}
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <!-- endinject -->
   <!-- Plugin css for this page -->
   <!-- End plugin css for this page -->
@@ -23,6 +26,23 @@
 </head>
 
 <body>
+  @if(Session::has('bloqueado'))
+  <script>
+    Swal.fire({
+    iconHtml: '؟',
+    text: 'Tu usuario a sido BLOQUEADO, ponte en contacto con un administrador'
+  })
+</script>
+  @endif
+  @if(Session::has('accesoDenegado'))
+  <script>
+    Swal.fire({
+    icon: 'error',
+    text: 'Usuario o Contraseña Incorrectos'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+</script>
+  @endif
   @if(Session::has('exito'))
   <script>
     alert('Tu solicitud se esta procesando')
@@ -48,16 +68,17 @@
                 </nav>
               </center>
               <br>
-              <form>
+              <form method="POST" action="{{ route('home') }}">
+                @csrf
                 <div class="form-group" method="POST">
                   <label class="form-label">
                     <H4><i class="mdi mdi-account"></i> Usuario</H4>
                   </label>
-                  <input type="text" class="form-control p_input text-dark bg-white" onSelect="this.value=''"  required>
+                  <input type="text" id="user" name="user" class="form-control p_input text-dark bg-white" onSelect="this.value=''"  required>
                 </div>
 
                 <!-- CAMPO DE CONTRASEÑA DE LOGIN MOSTRAR MEDIANTE ICONO CANDADO -->
-                <form class="form-group" method="POST">
+               
                   <label class="form-label">
                     <H4><i class="mdi mdi-lock" onclick="mostrarContrasena()"></i> Contraseña</H4>
                   </label>
@@ -66,7 +87,7 @@
                       <input class="form-control p_input text-dark bg-white" onSelect="this.value=''" type="password" name="password" id="password" required>
                     </div>
                   </div>
-                </form>
+              
                 <script>
                   function mostrarContrasena() {
                     var tipo = document.getElementById("password");
@@ -80,11 +101,12 @@
                 <br>
                 <!-- END CONTRASEÑA -->
                 <div class="text-center">
-                  <a class="text-white font-weight-medium" href="{{route('home')}}">
+                  {{-- <a class="text-white font-weight-medium" href="{{route('home')}}"> --}}
                     <!-- redireccionar a home-->
                     <button type="submit" href="" class="btn btn-primary btn-block enter-btn">Iniciar Sesion</button>
-                  </a>
+                  {{-- </a> --}}
                 </div>
+              </form>
                 <div class="form-group d-flex align-items-center justify-content-center">
                   <a href="#" class="forgot-pass text-white" data-toggle="modal" data-target="#dialogo11">
                     <H5>¿Olvidaste tu contraseña?</H5>

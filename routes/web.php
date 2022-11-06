@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\home\SessionController;
+use App\Http\Controllers\personas\PersonasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,10 @@ Route::get('/', function () {
     return view('Auth.login');
 })->name('Auth.login');
 
-Route::get('/inicio',[SessionController::class,'inicio'])->name('home');
+//inicio sesion
+Route::post('/inicio',[SessionController::class,'inicio'])->name('home');
+Route::get('/inicio',[SessionController::class,'home'])->name('inicio'); //retornar la vista de home
+Route::post('/nuevo',[PersonasController::class,'primeracceso'])->name('primer.acceso');
 Route::get('/registro',[SessionController::class,'register'])->name('registro');
 Route::post('/registrar',[SessionController::class,'Registrar'])->name('Registrar.usuario');
 Route::post('/recuperacion',[SessionController::class,'recuperar'])->name('Recuperar.sesion');

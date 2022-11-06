@@ -11,7 +11,7 @@ Casa | inicio
 
 <!-- nombre del usuario de la barra lateral  -->
 @section('Usuario-Lateral')
-Scarleth
+{{ Cache::get('user') }}
 @endsection
 <!-- rol del usuario de la barra lateral  -->
 @section('rol-usuario')
@@ -24,7 +24,7 @@ Administrador
 @endsection
 <!-- nombre del menu de la derecha  -->
 @section('Usuario-Menu')
-Scarleth
+{{ Cache::get('user') }}
 @endsection
 <!-- contenido de la pagina  -->
 @section('contenido')
@@ -35,9 +35,13 @@ Scarleth
                   <div class="card-body">
                     <div class="row">
                       <div class="col-9">
+
+                        @foreach ($newconteo as $array)
+                          
+                        
                         <div class="d-flex align-items-center align-self-start">
                           <h3 class="mb-0">Usuarios registrados</h3>
-                          <p class="text-success ml-2 mb-0 font-weight-medium">4</p>
+                          <p class="text-success ml-2 mb-0 font-weight-medium">{{ $array['USUARIOS'] }}</p>
                         </div>
                       </div>
                       <div class="col-3">
@@ -58,7 +62,7 @@ Scarleth
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start">
                           <h3 class="mb-0">Cuentas Registradas</h3>
-                          <p class="text-success ml-2 mb-0 font-weight-medium">3</p>
+                          <p class="text-success ml-2 mb-0 font-weight-medium">{{ $array['CUENTAS'] }}</p>
                         </div>
                       </div>
                       <div class="col-3">
@@ -79,7 +83,7 @@ Scarleth
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start">
                           <h3 class="mb-0">Subcuentas Registradas</h3>
-                          <p class="text-success ml-2 mb-0 font-weight-medium">3</p>
+                          <p class="text-success ml-2 mb-0 font-weight-medium">{{ $array['SUBCUENTAS'] }}</p>
                         </div>
                       </div>
                       <div class="col-3">
@@ -100,7 +104,7 @@ Scarleth
                       <div class="col-9">
                         <div class="d-flex align-items-center align-self-start">
                           <h3 class="mb-0">Periodo Activo</h3>
-                          <p class="text-success ml-lg-2 mb-0 font-weight-medium">003</p>
+                          <p class="text-success ml-lg-2 mb-0 font-weight-medium">{{ substr($array['PERIODO'],12)}}</p>
                         </div>
                       </div>
                       <div class="col-3">
@@ -113,7 +117,7 @@ Scarleth
                   </div>
                 </div>
               </div> 
-                  
+              @endforeach
             </div>
          
             <center>

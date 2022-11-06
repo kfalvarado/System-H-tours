@@ -5,7 +5,7 @@
         
         <style>
             body{
-                background-image: url('/assets/images/playa1.jpeg');
+                background-image: url('/assets/images/auth/Login_bg.jpg');
             }
         </style>
         <meta charset="UTF-8">
