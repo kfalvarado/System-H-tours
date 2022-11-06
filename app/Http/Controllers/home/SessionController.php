@@ -140,6 +140,9 @@ class SessionController extends Controller
         Cache::put('genero',$genero);
         //rol user
 
+        //Tiempo de Inicio de sesion
+        // Cache::put('tiempo',);
+
         return view('home.inicio',compact('newconteo'));
     }
 
@@ -382,6 +385,8 @@ class SessionController extends Controller
         
         Cache::flush('token');
         Cache::flush('user');
+        Cache::flush('genero');
+        Cache::flush('tiempo');
         return redirect('/');
     }
 

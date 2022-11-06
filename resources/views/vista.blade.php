@@ -1,4 +1,4 @@
-@extends('layouts.vistapadre')
+{{-- @extends('layouts.vistapadre')
 
 <!-- titulo de la pagina  -->
 @section('titulo')
@@ -46,4 +46,9 @@ Emerson
 
 
 
-@endsection
+@endsection --}}
+
+
+      
+
+

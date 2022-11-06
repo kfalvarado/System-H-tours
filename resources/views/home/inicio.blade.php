@@ -139,4 +139,5 @@ Administrador
             <center>
               <img src="{{asset('assets/images/HTOURS.png')}}" width="300" height="400">
             </center>
+   
 @endsection

@@ -12,6 +12,10 @@
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css')}}">
+
+{{-- sweetaler2 --}}
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <!-- endinject -->
   <!-- Plugin css for this page -->
   <!-- End plugin css for this page -->
@@ -263,6 +267,11 @@
     </div>
     <!-- page-body-wrapper ends -->
   </div>
+  <div style="display: none;" id="number" name="number" >
+
+  </div>
+
+  <script src="{{ asset('assets/js/ab-sesionUser.js') }}"></script>
   <!-- container-scroller -->
   <!-- plugins:js -->
   <script src="{{asset('assets/vendors/js/vendor.bundle.base.js')}}"></script>
