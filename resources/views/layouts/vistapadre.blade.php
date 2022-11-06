@@ -270,7 +270,7 @@
   <div style="display: none;" id="number" name="number" >
 
   </div>
-
+@routes
   <script src="{{ asset('assets/js/ab-sesionUser.js') }}"></script>
   <!-- container-scroller -->
   <!-- plugins:js -->

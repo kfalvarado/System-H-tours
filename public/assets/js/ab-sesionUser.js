@@ -33,6 +33,7 @@ let id = window.setInterval(() => {
                     icon: "success",
                     text: "Tu sesion se a extendido",
                 });
+                window.location.replace(route('pruebas'));
             } else if (result.isDenied) {
                 Swal.fire({
                     icon: "info",
