@@ -173,10 +173,7 @@
                     }
               }
 
-              function Contraseña() {
-                let password1 = document.getElementById("password1").value;
-                
-              }
+              
               function validar() {  
                 let genero = document.getElementById('genero').value;
                 let civil  = document.getElementById('civil').value;
