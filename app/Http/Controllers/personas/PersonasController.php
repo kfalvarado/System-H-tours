@@ -17,13 +17,15 @@ class PersonasController extends Controller
     {
         return view('personas.personas');
     }
+
+    /**
+     * Funcion de primer accrso aqui se va a cambiar la contraseña y se cambiar el estado
+     * a activo
+     */
     public function primeracceso(Request $request)
     {  
         //recuperar el token de sesion
         $token = Cache::get('token');
-
-
-
          //cambiar Contraseña
          $pass = md5($request->password1); //encriptado de contraseña
          $password = Http::withToken($token)->post($this->url . '/seguridad/estusr/pass', [
@@ -51,8 +53,7 @@ class PersonasController extends Controller
             
         ]);
 
-        
-
+    
        
 
         //actualizar el estado del usuario a Activo

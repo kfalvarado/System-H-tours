@@ -14,7 +14,10 @@
         <title>HTOURS | RECUPERACION</title>
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        {{-- sweetalert2 --}}
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        {{-- icono  --}}
+        <link rel="icon" href="{{asset('assets/images/HTOURS.png')}}" />
       </head>
 
     <body>
@@ -28,8 +31,8 @@
            })
         </script>
       @endif
-        <div class="mt-5 conatiner">
-            <div class="text-center">
+        <div class="mt-5 conatiner" >
+            <div class="text-center p-1 mb-1" style="background-color: #029d2988;">
                 <h3 class="text-light">Bienvenido {{ Cache::get('user') }}  a SystemHtours</h3>
                 <h5 class="text-light">Porfavor ingresa los siguientes datos</h5>
             
@@ -45,13 +48,11 @@
                           <div style="background-color: #0778b199">
                             <font color='white'><h5> Genero</h5></font>
                           </div>
-                            <label for="masculino" >
-                              <input type="radio" id="genero" name="genero" value="M" class="form-check-input">
-                            <font color='white'>Masculino</font>  
-                            </label>                 
-                            <label for="femenino">
-                            <input type="radio" id="genero" name="genero" value="F" class="form-check-input">
-                            <font color='white'>Femenino</font>
+                            <select class="form-select form-select-md mb-3" name="genero" id="genero" required>
+                              <option hidden selected>Seleccionar</option>
+                              <option value="F">Femenino</option>
+                              <option value="M">Masculino</option>
+                            </select>
                           </label>
                         </center>
                           <br>
@@ -62,7 +63,7 @@
                                   <label for="civil"  style="background-color: #0778b199">
                                     <center><font color='white'>&nbsp;&nbsp;&nbsp;Estado Civil&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font> </center>
                                   </label>
-                                    <Select id="civil" name="civil" class="form-select form-select-md mb-3" id="tipoPersona" name="tipoPersona" required>
+                                    <Select id="civil" name="civil" class="form-select form-select-md mb-3" required>
                                       <option hidden selected>Seleccionar</option>
                                       <option value="S">Soltero</option>
                                       <option value="V">Viudo</option>
@@ -77,7 +78,7 @@
                       <center>
                         <label style="background-color: #0778b199"> <font color='white'>  Tipo de persona</font>
                         </center>
-                        <Select onchange="validacion1();" class="form-select form-select-md mb-3" id="tipoPersona" name="tipoPersona" required>
+                        <Select  class="form-select form-select-md mb-3" id="tipoPersona" name="tipoPersona" required>
                           <option hidden selected>Seleccionar</option>
                           <option value="N">Normal</option>
                           <option value="J">Juridica</option>
@@ -129,7 +130,7 @@
                         </label>
                         <div class="form-row">
                           <div class="col">
-                            <input class="form-control p_input text-dark bg-white" placeholder="Contraseña" type="password" name="password1" id="password1" required>
+                            <input class="form-control p_input text-dark bg-white" onchange="Contraseña();" placeholder="Contraseña" type="password" name="password1" id="password1" required>
                           </div>
                         </div>
       
@@ -143,13 +144,13 @@
                         </label>
                         <div class="form-row">
                           <div class="col">
-                            <input class="form-control p_input text-dark bg-white" placeholder="Repetir Contraseña" type="password" onchange="validacion3();" name="password2" id="password2" required>
+                            <input class="form-control p_input text-dark bg-white" placeholder="Repetir Contraseña" type="password" onchange="comparar();" name="password2" id="password2" required>
                           </div>
       
                       </div> 
                       <br>
                       <center>
-                        <button class="btn btn-outline-info  text-white" type="submit">Guardar</button>
+                        <button class="btn btn-outline-info  text-white" onclick="validar();" type="submit">Guardar</button>
                       </center>
                     </form>           
                 </div>
@@ -158,7 +159,51 @@
         </div>
 
         <script>
-          
+          /*
+                  ============================================
+                  Detener el intento de registro tercer Bloque
+                  ============================================
+                  */
+                function comparar() {
+                    let password1 = document.getElementById("password1").value;
+                    let password2 = document.getElementById("password2").value;
+                    if (password1 != password2) {
+                        alert("Las contraseña no Coinciden ");
+                        document.getElementById("password2").value = "";
+                    }
+              }
+
+              function Contraseña() {
+                let password1 = document.getElementById("password1").value;
+                
+              }
+              function validar() {  
+                let genero = document.getElementById('genero').value;
+                let civil  = document.getElementById('civil').value;
+                let tipoPersona  = document.getElementById('tipoPersona').value;
+                let tipotelefono  = document.getElementById('tipotelefono').value;
+
+                if (genero=='Seleccionar') {
+                  alert('No selecciono un genero')
+                  document.getElementById("genero").className = "form-select form-select text-dark bg-warning";
+                  document.location.href='#genero'
+                }
+                if (civil=='Seleccionar') {
+                  alert('No selecciono un Estado Civil')
+                  document.getElementById("civil").className = "form-select form-select text-dark bg-warning";
+                  document.location.href='#civil'
+                }
+                if (tipoPersona=='Seleccionar') {
+                  alert('No selecciono un tipo de persona')
+                  document.getElementById("tipoPersona").className = "form-select form-select text-dark bg-warning";
+                  document.location.href='#tipoPersona'
+                }
+                if (tipotelefono=='Seleccionar') {
+                  alert('No selecciono un tipo de Telefono')
+                  document.getElementById("tipotelefono").className = "form-select form-select text-dark bg-warning";
+                  document.location.href='#tipotelefono'
+                }
+              }
         </script>
     </body>
 </html>
