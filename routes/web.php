@@ -31,4 +31,5 @@ Route::post('/respuesta',[SessionController::class,'respuesta'])->name('Recupera
 Route::get('/logout',[SessionController::class,'logout'])->name('cerrar.sesion');
 
 Route::get('/pruebas',[SessionController::class,'pruebas'])->name('pruebas');
+Route::get('/secret',[SessionController::class,'refresToken'])->name('refreshToken');
 

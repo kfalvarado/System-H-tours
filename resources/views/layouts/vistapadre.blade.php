@@ -41,7 +41,7 @@
 
 </head>
 
-<body>
+<body onbeforeunload="return CacheTime();">
   <div class="container-scroller">
     <!-- partial:../../partials/_sidebar.html -->
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -267,11 +267,22 @@
     </div>
     <!-- page-body-wrapper ends -->
   </div>
+@if (Session::has('todo'))
+  <script>
+    localStorage.clear()
+  </script>
+@endif
   <div style="display: none;" id="number" name="number" >
 
   </div>
+
+ <input type="hidden" id="time" name="time">
+
 @routes
   <script src="{{ asset('assets/js/ab-sesionUser.js') }}"></script>
+
+<script src="{{ asset('assets/js/ab-tokensession.js') }}"></script>
+
   <!-- container-scroller -->
   <!-- plugins:js -->
   <script src="{{asset('assets/vendors/js/vendor.bundle.base.js')}}"></script>

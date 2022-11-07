@@ -386,12 +386,27 @@ class SessionController extends Controller
         Cache::flush('token');
         Cache::flush('user');
         Cache::flush('genero');
-        Cache::flush('tiempo');
         return redirect('/');
     }
 
     public function pruebas()
     {
         return view('vista');
+    }
+
+
+    public function refresToken()
+    {
+        $refresToken = Http::post($this->url . '/seguridad/refresh', [
+            "token" => Cache::get('token'),
+            "user" => Cache::get('user')
+        ]);
+       
+        Cache::flush('token');
+        $posicion = strpos($refresToken, ':') + 2;
+        $token = substr($refresToken, $posicion, -2);
+        Cache::put('token', $token);
+        Session::flash('todo','todo bien crack');
+        return back();
     }
 }

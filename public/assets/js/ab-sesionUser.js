@@ -2,17 +2,17 @@
  * Mecanismo para contar la inactividad del usuario
  */
 
-n = 10;
+n = 420;
 contador = document.getElementById("number");
 let id = window.setInterval(() => {
     console.log("paso un seguno");
     document.onmousemove = function name(params) {
         console.log("mouse se movio");
-        n = 10;
+        n = 420;
     };
     contador.innerText = n;
     n--;
-    if (n == 0) {
+    if (n == 30) {
         // Swal.fire({
         // iconHtml: '؟',
         // text: 'Tu sesion a expirado'
@@ -20,10 +20,10 @@ let id = window.setInterval(() => {
 
         Swal.fire({
             title: "Do you want to save the changes?",
-            showDenyButton: true,
+            showDenyButton: false,
             showCancelButton: false,
             iconHtml: "؟",
-            text: "Tu sesion esta a punto de expirar",
+            text: "Tu sesion esta a punto de cerrar por inactividad, presiona extender para evitarlo",
             confirmButtonText: "Extender Sesion",
             denyButtonText: `Salir`,
         }).then((result) => {
@@ -33,14 +33,30 @@ let id = window.setInterval(() => {
                     icon: "success",
                     text: "Tu sesion se a extendido",
                 });
-                window.location.replace(route('pruebas'));
+                
             } else if (result.isDenied) {
                 Swal.fire({
                     icon: "info",
-                    text: "Deberas ingresar nuevaente",
+                    text: "Deberas ingresar nuevamente",
                 });
+                window.location.replace(route('cerrar.sesion'));
             }
         });
-        clearInterval(id);
+
+       
+        // clearInterval(id);
+    }
+
+    //expulsion por inactividad
+    if (n == 0) {
+        window.location.replace(route('cerrar.sesion'));
     }
 }, 1000);
+
+//funcion para guardae en Cache El tiempo de Vencimiento del Token
+function CacheTime() {
+    time = document.getElementById('time').value
+    // console.log(time);
+    localStorage.setItem('time',time)
+    console.log('si se puede otro tipo de codigo bro :o');
+  }
