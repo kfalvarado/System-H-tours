@@ -14,9 +14,20 @@
         <title>HTOURS | RECUPERACION</title>
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    </head>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      </head>
 
     <body>
+
+      @if (Session::has('misma'))
+        <script>
+          Swal.fire({
+             icon: 'error',
+             text: 'No puedes ingresar tu anterior Contraseña'
+    // footer: '<a href="">Why do I have this issue?</a>'
+           })
+        </script>
+      @endif
         <div class="mt-5 conatiner">
             <div class="text-center">
                 <h3 class="text-light">Bienvenido {{ Cache::get('user') }}  a SystemHtours</h3>

@@ -19,7 +19,26 @@ class PersonasController extends Controller
     }
     public function primeracceso(Request $request)
     {  
+        //recuperar el token de sesion
         $token = Cache::get('token');
+
+
+
+         //cambiar Contraseña
+         $pass = md5($request->password1); //encriptado de contraseña
+         $password = Http::withToken($token)->post($this->url . '/seguridad/estusr/pass', [
+             "USER" => Cache::get('user'),
+             "PASS"=> $pass
+         ]);
+         $matchpass = strrpos($password, "INGRESAR LA MISMA");
+ 
+       
+         if ($matchpass > 0) {
+             Session::flash('misma','No puedes ingresar tu misma contraseña');
+             return view('home.personas');
+         }
+
+        //si lo anterior sale bien se ejecuta lo demas
         $acceso = Http::withToken($token)->post($this->url . '/personas/insertar', [
             "USUARIO" => Cache::get('user') ,
             "SEX_PERSONA" => $request->genero,
@@ -32,17 +51,15 @@ class PersonasController extends Controller
             
         ]);
 
+        
+
+       
+
         //actualizar el estado del usuario a Activo
         $estactivo = Http::withToken($token)->post($this->url . '/seguridad/estusr/actualizar', [
             "USER" => Cache::get('user')   
         ]);
-
-        //cambiar Contraseña
-        $pass = md5($request->password1); //encriptado de contraseña
-        $estactivo = Http::withToken($token)->post($this->url . '/seguridad/estusr/pass', [
-            "USER" => Cache::get('user'),
-            "PASS"=> $pass
-        ]);
+        
         return redirect()->route('home');
     }
 }
