@@ -377,7 +377,7 @@ class SessionController extends Controller
     }
     /*
     =========================================================
-     Cierre de Sesion y Destruccion de Toke
+     Cierre de Sesion y Destruccion de Token y Cache
     =========================================================
     */
     public function logout()

@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 //inicio sesion
 Route::post('/inicio',[SessionController::class,'inicio'])->name('home');
-Route::get('/inicio',[SessionController::class,'home'])->name('inicio'); //retornar la vista de home
+Route::get('/inicio',[SessionController::class,'home'])->middleware('CheckToken')->name('inicio'); //retornar la vista de home
 Route::post('/nuevo',[PersonasController::class,'primeracceso'])->name('primer.acceso');
 Route::get('/registro',[SessionController::class,'register'])->name('registro');
 Route::post('/registrar',[SessionController::class,'Registrar'])->name('Registrar.usuario');
@@ -32,4 +32,11 @@ Route::get('/logout',[SessionController::class,'logout'])->name('cerrar.sesion')
 
 Route::get('/pruebas',[SessionController::class,'pruebas'])->name('pruebas');
 Route::get('/secret',[SessionController::class,'refresToken'])->name('refreshToken');
+
+
+//Acceso No autorizado
+Route::get('/no-autorizado', function () {
+    return view('Auth.no-auth');
+})->name('acceso.denegado');
+
 
