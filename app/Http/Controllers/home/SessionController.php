@@ -148,7 +148,7 @@ class SessionController extends Controller
 
     /*
     =========================================================
-    Pantalla de Registro 
+    Pantalla de Registro Vista
     =========================================================
     */
     public function register()
@@ -163,21 +163,39 @@ class SessionController extends Controller
     public function Registrar(Request $request)
     {
         //validar Datos antes de guardarlos
+
+        if (!preg_match("/^[\w\d.]+$/", $request->user) ) {
+            Session::flash('caracteres', 'No Caracteres especiales en el Usuario');
+            return back();
+           
+        }
+        if (!preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/", $request->nombre) ) {
+            Session::flash('caracteres', 'No Caracteres especiales en el nombre');
+            return back();
+           
+        }
+
+        if (!preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ@.0-9]+$/", $request->correo)) {
+            Session::flash('caracteres', 'No Caracteres especiales en el Correo');
+            return back();
+        }
+        if (!preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ@.0-9!?#$`^-_=+|%&*~,]+$/", $request->password1)) {
+            Session::flash('caracteres', 'No Caracteres especiales en la contraseña');
+            return back();
+        }
+       
         
+        return 'llego aqui';
         //proteccion extra contra cross-site scripting doble verificacion desde server
-        if (
-            // preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/", $request->nombre) &&
-            // preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚ ]+$/", $request->tipoPersona) &&
-            // preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚ ]+$/", $request->tipotelefono) &&
-            // preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚ 0-9]+$/", $request->roluser) &&
-            preg_match("/^[A-ZÑÁÉÍÓÚ0-9.@]+$/", $request->user) &&
-            preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/", $request->nombre) &&
-            preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ@.0-9]+$/", $request->correo) &&
-            preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ@.0-9!?#$`^-_=+|%&*~,]+$/", $request->password1) &&
-            preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ@.0-9!?#%&*~,]+$/", $request->password2)
+           
+            
+            
+             
+            
+            
             // preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ?]+$/", $request->pregunta) &&
             // preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/", $request->Respuesta)
-        ) {
+       
            
             // if ($request->civil =="S" || $request->civil =="V" || $request->civil =="C" || $request->civil =="D") {
             //     if ($request->genero == "M" || $request->genero =="F") {
@@ -264,10 +282,10 @@ class SessionController extends Controller
         //     Session::flash('denegado','Tu acceso a sido Denegado Manipulacion Estado civil');
         //         return back();
         // }
-        }else {
-            Session::flash('caracteres','Error Caracteres especiales no permitidos');
-            return back();
-    }    
+    //     }else {
+    //         Session::flash('caracteres','Error Caracteres especiales no permitidos');
+    //         return back();
+    // }    
     }  
     /*
     =========================================================

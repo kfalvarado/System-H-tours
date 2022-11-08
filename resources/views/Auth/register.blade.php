@@ -44,10 +44,12 @@
   @endif
 
   @if(Session::has('caracteres'))
+  <input type="hidden" id="msg" value="{{ Session::get('caracteres') }}">
   <script>
+    msg = document.getElementById('msg').value
      Swal.fire({
       icon: 'error',
-      text: 'Error Caracteres especiales no permitidos',
+      text: `Error ${msg}`,
       // footer: '<a href="">Why do I have this issue?</a>'
     })
   </script>
