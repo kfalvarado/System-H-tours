@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Cache;
 
 //encriptar token
 use Illuminate\Support\Facades\Crypt;
-
+use PhpParser\Node\Stmt\Return_;
 
 class SessionController extends Controller
 {
@@ -131,12 +131,18 @@ class SessionController extends Controller
         $personas =Http::post($this->url . '/personas/usuarios', [
             "USER"=> Cache::get('user') 
         ]);
+        $posicion = strpos($personas,'Datos no Encontrados');
+        if ($posicion >0) {
+           return view('home.personas');
+        }
         $dataPerson = json_decode($personas,true);
 
+        
         
         foreach($dataPerson as $array){
             $genero = $array['SEX_PERSONA'];
         }
+
         Cache::put('genero',$genero);
         //rol user
 
@@ -164,6 +170,9 @@ class SessionController extends Controller
     {
         //validar Datos antes de guardarlos
 
+
+         //proteccion extra contra cross-site scripting doble verificacion desde server
+
         if (!preg_match("/^[\w\d.]+$/", $request->user) ) {
             Session::flash('caracteres', 'No Caracteres especiales en el Usuario');
             return back();
@@ -183,38 +192,7 @@ class SessionController extends Controller
             Session::flash('caracteres', 'No Caracteres especiales en la contraseña');
             return back();
         }
-       
-        
-        return 'llego aqui';
-        //proteccion extra contra cross-site scripting doble verificacion desde server
-           
-            
-            
-             
-            
-            
-            // preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ?]+$/", $request->pregunta) &&
-            // preg_match("/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/", $request->Respuesta)
-       
-           
-            // if ($request->civil =="S" || $request->civil =="V" || $request->civil =="C" || $request->civil =="D") {
-            //     if ($request->genero == "M" || $request->genero =="F") {
-
-            // return $request; //prueba de funcionalidades de los if
-            #############################################################
-
-            //             $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjcxMDE3NDMsImV4cCI6MTY2NzEwMjA0M30.QhL-Ff0m9CR8gbvJ00JRxY74vdgpfrmBg9nRTHTRL7U';
-            //             $indentidad = $request->primerodigitos."-".$request->segundodigitos."-".$request->tercerodigitos;
-
-
-
-            # +++++++++++++++++++++++++++++++++++++++++++++++
-            /* Buscar el ROL QUE DIGA SIN ASIGNAR O NUEVO */
-            # +++++++++++++++++++++++++++++++++++++++++++++++
-            
-           
-
-
+                
             try {
                 $posicionU = 0;
                 $codificacion = md5($request->password1);
@@ -243,49 +221,6 @@ class SessionController extends Controller
                 return back();
             
             }
-
-                        //     $insertarPersona = Http::withToken($token)->post($this->url.'/personas/insertar', [
-                        //         "NOM_PERSONA" => $request->nombre,
-                        //         "SEX_PERSONA" => $request->genero,
-                        //         "EDA_PERSONAL" => $request->edad,
-                        //         "TIP_PERSONA" => $request->tipoPersona,
-                        //         "Num_Identidad" => $indentidad,
-                        //         "IND_CIVIL" => $request->civil,
-                        //         "IND_PERSONA" => 1,
-                        //         "TELEFONO" => $request->telefono,
-                        //         "TIP_TELEFONO" => $request->tipotelefono,
-                        //         "CORREO"=> $request->correo,
-                        //         "PREGUNTA"=>$request->pregunta,
-                        //         "RESPUESTA"=>$request->Respuesta,
-                        //         "USUARIO"=> $request->user,
-                        //         "PASSWORD"=> $request->correo,
-                        //         "ROL"=> $request->roluser
-
-                        //     ]);
-                        // } catch (\Exception $e) {
-                        //         return 'Ocurrio una error con la  API POST PERSONAS';
-                        // }
-                        // if ($insertarPersona == 'Forbidden'){
-                        //     Session::flash('denegado','Tu acceso a sido Denegado');
-                        //     return back();
-                        //     // return 'Acceso Denegado';
-                        // }else{
-                        //         Session::flash('correcto','Usuario Registrado Correctamente');
-                        //         return back();
-                        //     }
-    #####################################################################
-        // }else{
-        //     Session::flash('denegado','Tu acceso a sido Denegado Manipulacion Genero');
-        //         return back();
-        // }
-        // }else{
-        //     Session::flash('denegado','Tu acceso a sido Denegado Manipulacion Estado civil');
-        //         return back();
-        // }
-    //     }else {
-    //         Session::flash('caracteres','Error Caracteres especiales no permitidos');
-    //         return back();
-    // }    
     }  
     /*
     =========================================================
@@ -419,12 +354,14 @@ class SessionController extends Controller
             "token" => Cache::get('token'),
             "user" => Cache::get('user')
         ]);
-       
-        Cache::flush('token');
+    //    $oldToken = Cache::get('token');  // dato de prueba
+        // Cache::flush('token');
         $posicion = strpos($refresToken, ':') + 2;
         $token = substr($refresToken, $posicion, -2);
         Cache::put('token', $token);
+        // $newToken = Cache::get('token');
+        // return 'tu viejo token es:'.$oldToken.'   /n  Tu nuevo token es:'.Cache::get('token');
         Session::flash('todo','todo bien crack');
-        return back();
+        return redirect()->route('inicio');
     }
 }

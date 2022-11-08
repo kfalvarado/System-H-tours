@@ -20,7 +20,7 @@
         <link rel="icon" href="{{asset('assets/images/HTOURS.png')}}" />
       </head>
 
-    <body>
+    <body  onbeforeunload="return donotgo();">
 
       @if (Session::has('misma'))
         <script>
