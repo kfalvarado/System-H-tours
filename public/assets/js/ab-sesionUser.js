@@ -2,17 +2,17 @@
  * Mecanismo para contar la inactividad del usuario
  */
 
-n = 420;
+n = 300; // 5 minutos equivale a 300 
 contador = document.getElementById("number");
 let id = window.setInterval(() => {
     console.log("paso un seguno");
     document.onmousemove = function name(params) {
         console.log("mouse se movio");
-        n = 420;
+        n = 300;
     };
     contador.innerText = n;
     n--;
-    if (n == 30) {
+    if (n == 60) {
         // Swal.fire({
         // iconHtml: '؟',
         // text: 'Tu sesion a expirado'
