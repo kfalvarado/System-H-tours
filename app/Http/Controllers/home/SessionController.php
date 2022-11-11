@@ -128,7 +128,7 @@ class SessionController extends Controller
         $newconteo = json_decode($conteo,true);
 
         //Datos Personas
-        $personas =Http::post($this->url . '/personas/usuarios', [
+        $personas =Http::withToken(Cache::get('token'))->post($this->url . '/personas/usuarios', [
             "USER"=> Cache::get('user') 
         ]);
         $posicion = strpos($personas,'Datos no Encontrados');
@@ -354,13 +354,11 @@ class SessionController extends Controller
             "token" => Cache::get('token'),
             "user" => Cache::get('user')
         ]);
-    //    $oldToken = Cache::get('token');  // dato de prueba
-        // Cache::flush('token');
+
         $posicion = strpos($refresToken, ':') + 2;
         $token = substr($refresToken, $posicion, -2);
         Cache::put('token', $token);
-        // $newToken = Cache::get('token');
-        // return 'tu viejo token es:'.$oldToken.'   /n  Tu nuevo token es:'.Cache::get('token');
+       
         Session::flash('todo','todo bien crack');
         return redirect()->route('inicio');
     }
