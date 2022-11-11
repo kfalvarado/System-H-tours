@@ -11,7 +11,7 @@ Personas | inicio
 
 <!-- nombre del usuario de la barra lateral  -->
 @section('Usuario-Lateral')
-Scarleth
+{{ Cache::get('user') }}
 @endsection
 <!-- rol del usuario de la barra lateral  -->
 @section('rol-usuario')
@@ -24,7 +24,7 @@ Administrador
 @endsection
 <!-- nombre del menu de la derecha  -->
 @section('Usuario-Menu')
-Scarleth
+{{ Cache::get('user') }}
 @endsection
 <!-- contenido de la pagina  -->
 @section('contenido')
@@ -44,7 +44,7 @@ Scarleth
                   <div class="card-body">
                     <h4 class="card-title"> <center>Personas Registradas</center></h4>
                     <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                      <input type="text" class="form-control" placeholder="Buscar periodo">
+                      <input type="text" class="form-control" placeholder="Buscar Usuario">
                     </form>
                     <div class="table-responsive">
                       <table class="table table-bordered table-contextual">
@@ -52,46 +52,34 @@ Scarleth
                           <tr>
                             
                             <th class="text-dark bg-white">#</th>
-                            <th class="text-dark bg-white"> Nombre de persona</th>
+                            <th class="text-dark bg-white"> Usuario</th>
                             <th class="text-dark bg-white"> Genero</th>
                             <th class="text-dark bg-white"> Edad  </th>
-                            <th class="text-dark bg-white"> Tipo de persona </th>
+                            <th class="text-dark bg-white"> Estado Civil </th>
+                            <th class="text-dark bg-white"> Tipo de Persona </th>
                             <th class="text-dark bg-white"> Identidad  </th>
+                            <th class="text-dark bg-white"> Telefono  </th>
                             <th class="text-dark bg-white"> Fecha Registro  </th>
                             <th class="text-dark bg-white"> Acciones  </th>
                           </tr>
                         </thead>
                         <tbody>
+                          @foreach ($personasArray as $persona)
+                            
+                         
                           <tr class="text-white bg-dark">
-                            <td> 1 </td>
-                            <td>Helva vasquez</td>
-                            <td>M</td>
-                            <td>21</td>
-                            <td>J</td>
-                            <td>080129912132</td>
-                            <td>2022-10-12</td>
+                            <td>{{ $persona['COD_PERSONA']  }} </td>
+                            <td>{{ $persona['NOM_USR'] }}</td>
+                            <td>{{ $persona['SEX_PERSONA']  }}</td>
+                            <td>{{ $persona['EDA_PERSONAL'] }}</td>
+                            <td>{{ $persona['IND_CIVIL'] }}</td>
+                            <td>{{ $persona['TIP_PERSONA'] }}</td>
+                            <td>{{ $persona['NUM_IDENTIDAD'] }}</td>
+                            <td>{{ $persona['TELEFONO'] }}</td>
+                            <td>{{ substr( $persona['FEC_REGISTRO'],0,10)}}</td>
                             <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>  
                           </tr>
-                          <tr class="text-white bg-dark">
-                            <td> 2 </td>
-                            <td>Helva vasquez</td>
-                            <td>M</td>
-                            <td>21</td>
-                            <td>J</td>
-                            <td>080129912132</td>
-                            <td>2022-10-12</td>
-                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
-                          </tr>
-                          <tr class="text-white bg-dark">
-                            <td> 3  </td>
-                            <td>Helva vasquez</td>
-                            <td>M</td>
-                            <td>21</td>
-                            <td>J</td>
-                            <td>080129912132</td>
-                            <td>2022-10-12</td>
-                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
-                          </tr>                       
+                          @endforeach                
                         </tbody>
                       </table>
                     </div>

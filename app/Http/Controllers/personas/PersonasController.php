@@ -13,9 +13,15 @@ use Illuminate\Support\Facades\Cache;
 class PersonasController extends Controller
 {
     protected  $url = 'http://localhost:3000';
+
     public function inicio()
     {
-        return view('personas.personas');
+
+        $personas = Http::withToken(Cache::get('token'))->get($this->url.'/personas');
+
+        $personasArray = $personas->json();
+    
+        return view('personas.personas',compact('personasArray'));
     }
 
     /**
@@ -63,4 +69,6 @@ class PersonasController extends Controller
         
         return redirect()->route('home');
     }
+
+    
 }
