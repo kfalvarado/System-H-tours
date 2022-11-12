@@ -77,8 +77,101 @@ Administrador
                             <td>{{ $persona['NUM_IDENTIDAD'] }}</td>
                             <td>{{ $persona['TELEFONO'] }}</td>
                             <td>{{ substr( $persona['FEC_REGISTRO'],0,10)}}</td>
-                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>  
+                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#modal-editar-{{ $persona['COD_PERSONA'] }}">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#modal-eliminar-{{  $persona['COD_PERSONA'] }}">Eliminar</button> </td>  
                           </tr>
+
+                                         
+                <!-- INICIO MODAL PARA EDITAR  -->
+                <div class="modal-container">
+                  <div class="modal fade bd-example-modal-lg" id="modal-editar-{{ $persona['COD_PERSONA'] }}">
+                        <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+                   <div class="modal-dialog modal-md">
+                   <div class="modal-content">
+                        <!-- CABECERA DEL DIALOGO EDITAR -->
+                   <div class="modal-header">
+                   <h4 class="modal-title">Editar Periodo</h4>
+                        <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                   </div>
+                        <!-- CUERPO DEL DIALOGO EDITAR -->
+                   <div class="modal-body">
+                     <center>
+                       <form action="" method="post">
+                         <label class="form-label">
+                           Nombre del Periodo
+                           <input type='text' list="lista-programacion" value="Periodo-2022-ene-1-003" name='nombre-periodo' class="form-control" required>
+                           <datalist id="lista-programacion">
+                             <option value="Periodo-2022-ene-1-004">
+                           </datalist>
+                           </input>
+                         </label>
+                         <br>
+                         <label class="form-label">
+                           Fecha inicial
+                           <input type="date" value="2021-01-01" readonly>
+                         </label>
+                         <label class="form-label">
+                           Fecha final
+                           <input type="date" value="2021-12-31" readonly>
+                         </label>
+                         <br>
+                         <div class="custom-control custom-switch">
+                           <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                           <label class="custom-control-label" for="customSwitch2">Estado <label>
+                         </div>
+                         <br>
+                         
+                         <button type="submit" class="btn btn-primary">Aceptar</button>
+                       </form>
+                   </div> 
+                   <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                   </center>
+                   </div>
+                   </div>
+                   </div>
+                   </div>
+                       <!-- FIN DE MODAL PARA EDITAR  -->
+ 
+ 
+ 
+                     <!-- INICIO MODAL PARA BORRAR  -->
+            <div class="modal-container">
+             <div class="modal fade bd-example-modal-lg" id="modal-eliminar-{{ $persona['COD_PERSONA'] }}">
+                   <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+              <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+                   <!-- CABECERA DEL DIALOGO EDITAR -->
+              <div class="modal-header">
+              <h4 class="modal-title">Eliminar Cuenta</h4>
+                   <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+              </div>
+                   <!-- CUERPO DEL DIALOGO BORRAR -->
+              <div class="modal-body">
+              <center>
+              <form action="" method="post">
+              <label class="form-label">
+              ¿ Desea Eliminar el Registro ?
+               
+              </label>
+              <br>
+          
+  
+              <a href="" class="btn btn btn-primary">SI</a>
+              <a href="" class="btn btn-secondary">NO</a>
+              
+              </form>
+              </div> 
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+              </center>
+              </div>
+              </div>
+              </div>
+              </div>
+                  <!-- FIN DE MODAL PARA BORRAR  --> 
+               </div>
+             </div>
+           </div>
+
+
                           @endforeach                
                         </tbody>
                       </table>
@@ -142,94 +235,5 @@ Administrador
                 
                 
                 
-                
-                <!-- INICIO MODAL PARA EDITAR  -->
-                <div class="modal-container">
-                 <div class="modal fade bd-example-modal-lg" id="dialogo2">
-                       <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-                  <div class="modal-dialog modal-md">
-                  <div class="modal-content">
-                       <!-- CABECERA DEL DIALOGO EDITAR -->
-                  <div class="modal-header">
-                  <h4 class="modal-title">Editar Periodo</h4>
-                       <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
-                  </div>
-                       <!-- CUERPO DEL DIALOGO EDITAR -->
-                  <div class="modal-body">
-                    <center>
-                      <form action="" method="post">
-                        <label class="form-label">
-                          Nombre del Periodo
-                          <input type='text' list="lista-programacion" value="Periodo-2022-ene-1-003" name='nombre-periodo' class="form-control" required>
-                          <datalist id="lista-programacion">
-                            <option value="Periodo-2022-ene-1-004">
-                          </datalist>
-                          </input>
-                        </label>
-                        <br>
-                        <label class="form-label">
-                          Fecha inicial
-                          <input type="date" value="2021-01-01" readonly>
-                        </label>
-                        <label class="form-label">
-                          Fecha final
-                          <input type="date" value="2021-12-31" readonly>
-                        </label>
-                        <br>
-                        <div class="custom-control custom-switch">
-                          <input type="checkbox" class="custom-control-input" id="customSwitch2">
-                          <label class="custom-control-label" for="customSwitch2">Estado <label>
-                        </div>
-                        <br>
-                        
-                        <button type="submit" class="btn btn-primary">Aceptar</button>
-                      </form>
-                  </div> 
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                  </center>
-                  </div>
-                  </div>
-                  </div>
-                  </div>
-                      <!-- FIN DE MODAL PARA EDITAR  -->
-
-
-
-                    <!-- INICIO MODAL PARA BORRAR  -->
-           <div class="modal-container">
-            <div class="modal fade bd-example-modal-lg" id="dialogo3">
-                  <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-             <div class="modal-dialog modal-sm">
-             <div class="modal-content">
-                  <!-- CABECERA DEL DIALOGO EDITAR -->
-             <div class="modal-header">
-             <h4 class="modal-title">Eliminar Cuenta</h4>
-                  <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
-             </div>
-                  <!-- CUERPO DEL DIALOGO BORRAR -->
-             <div class="modal-body">
-             <center>
-             <form action="" method="post">
-             <label class="form-label">
-             ¿ Desea Eliminar el Registro ?
-              
-             </label>
-             <br>
-         
  
-             <a href="" class="btn btn btn-primary">SI</a>
-             <a href="" class="btn btn-secondary">NO</a>
-             
-             </form>
-             </div> 
-             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-             </center>
-             </div>
-             </div>
-             </div>
-             </div>
-                 <!-- FIN DE MODAL PARA BORRAR  --> 
-              </div>
-            </div>
-          </div>
 @endsection
