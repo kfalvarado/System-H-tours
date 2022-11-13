@@ -29,7 +29,8 @@
   <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
   <!-- End layout styles -->
   <link rel="icon" href="{{asset('assets/images/HTOURS.png')}}" />
-</head>
+
+  </head>
 
 <body>
   @if(Session::has('correcto'))
@@ -96,7 +97,7 @@
               <h3 class="card-title text-center mb-3">LOGIN</h3>-->
 
             <br>
-              <form action="{{ route('Registrar.usuario') }}" method="POST">
+              <form action="{{ route('Registrar.usuario') }}" method="POST" id="formregistro">
                 @csrf
                 <div class="form-group" >
                   <label><H4><i class="mdi mdi-account"></i>Nombre Completo</H4></label>
@@ -115,10 +116,15 @@
                   <label><H4><i class="mdi mdi-lock"  onclick="mostrarContra()"></i> Contraseña</H4></label>
                   <div class="form-row">
                       <div class="col">
-                    <input class="form-control p_input text-dark bg-white" placeholder="Ingresa una contraseña" type="password" name="password1" id="password1" required>
+                    <input class="form-control p_input text-dark bg-white" onkeyup="muestra_seguridad_clave(this.value, this.form)" placeholder="Ingresa una contraseña" type="password" name="password1" id="password1" required>
                   </div>
-                    </div>
-            <br>
+                 
+                  
+                </div>
+                <label> <b> Seguridad de Contraseña</b></label>
+                  <input id="seguridad" name="seguridad" type="text" style="background: transparent; border: none; color: #ffffff; " onfocus="blur()">
+             
+                <br>
             <!-- END CONTRASEÑA -->
             <!-- 2 CAMPO DE CONTRASEÑA DE LOGIN MOSTRAR MEDIANTE ICONO CANDADO -->
             
@@ -175,6 +181,12 @@
     </div>
     <!-- page-body-wrapper ends -->
   </div>
+
+  {{-- JQUERY --}}
+<script>
+
+</script>
+  
   <!-- container-scroller -->
   <!-- plugins:js -->
   <script src="{{asset('assets/vendors/js/vendor.bundle.base.js')}}"></script>
