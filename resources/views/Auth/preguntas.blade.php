@@ -17,7 +17,7 @@
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
 
-    <body onbeforeunload="return donotgo();">
+    <body onbeforeunload="return donotgo();" oncopy="return false" onpaste="return false">
         <div class="mt-5 conatiner">
             @if (!Session::has('valida'))
             <div class="text-center">

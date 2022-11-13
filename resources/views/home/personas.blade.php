@@ -16,11 +16,22 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         {{-- sweetalert2 --}}
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        {{-- Campo de iconos del telefono --}}
+        <style>
+          .iti-flag {background-image: url("img/flgs.png");}
+          @media (-webkit-min-device-pixe-ratio: 2),(min-resolution: 192dpi){
+              .iti-flag{background-image: url('img/flag02x.png');}
+          }
+      </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" integrity="sha512-gxWow8Mo6q6pLa1XH/CcH8JyiSDEtiwJV78E+D+QP0EVasFs8wKXq16G8CLD4CJ2SnonHr4Lm/yY2fSI2+cbmw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js" integrity="sha512-+gShyB8GWoOiXNwOlBaYXdLTiZt10Iy6xjACGadpqMs20aJOoh+PJt3bwUVA6Cefe7yF7vblX6QwyXZiVwTWGg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <
         {{-- icono  --}}
         <link rel="icon" href="{{asset('assets/images/HTOURS.png')}}" />
       </head>
 
-    <body  onbeforeunload="return donotgo();">
+    <body  onbeforeunload="return donotgo();"  oncopy="return false" onpaste="return false">
 
       @if (Session::has('misma'))
         <script>
@@ -93,20 +104,20 @@
                                 <th>
 
                                   <label for="" style="background-color: #0778b199"> <font color='white'> &nbsp;  Edad </font>  
-                                    <input type="number" id="edad" name="edad" min="0" max="100" class="form-control" required>
+                                    <input type="number" id="edad" name="edad" placeholder="0" min="0" max="100" class="form-control" required>
                                   </label>  
                                 </th>
                                 <th></th>
                                 <th>
 
                                   <label for="" style="background-color: #0778b199"> <font color='white'> &nbsp; Identidad </font> 
-                                    <input type="number" onclick="tipopersona();"minlength="0" min="0" pattern="[09]+" id="identidad" name="identidad" onkeypress="return validarprimercampo(event);" class="form-control p_input text-dark bg-white" size="100" required>
+                                    <input type="number" onclick="tipopersona();"minlength="0" min="0" placeholder="0801-2000-09115" pattern="[0-9]{4}-[0-9]{4}-[0-9]{5}"id="identidad" name="identidad" onkeypress="return validarprimercampo(event);" class="form-control p_input text-dark bg-white" size="100" required>
                                   </label> 
                                 </th>
                                 <th></th>
                                 <th>
-                                  <label  style="background-color: #0778b199"> <font color='white'>&nbsp; Telefono </font>
-                                    <input type="number" id="telefono" name="telefono" class="form-control p_input text-dark bg-white" required>
+                                  <label  style="background-color: #0778b199"> <font color='white'>Telefono  </font>
+                                    <input type="tel" id="telefono" name="telefono" class="form-control p_input text-dark bg-white" placeholder="+504-9021-3300" pattern="[+0-9]{4}-[0-9]{4}-[0-9]{4}"  required>
                                   </label>
                                 </th>
                               </thead>
@@ -128,12 +139,16 @@
                         <label style="background-color: #0778b199">
                           <font color='white'>Ingresar una nueva Contraseña </font>
                           
-                        </label>
+                        </label> 
                         <div class="form-row">
                           <div class="col">
-                            <input class="form-control p_input text-dark bg-white" onchange="Contraseña();" placeholder="Contraseña" type="password" name="password1" id="password1" required>
+                            <input class="form-control p_input text-dark bg-white" onchange="Contraseña();" onkeyup="muestra_seguridad_clave(this.value, this.form)" placeholder="Contraseña" type="password" name="password1" id="password1" required>
                           </div>
                         </div>
+                        <label> <font color='white'><b> Seguridad de Contraseña</b> </font></label>
+                        <input id="seguridad" name="seguridad" type="text" style="background: transparent; border: none; color: #ffffff; " onfocus="blur()">
+                   
+                      <br>
                         <br>
                         <!-- END CONTRASEÑA -->
                         <!-- 2 CAMPO DE CONTRASEÑA DE LOGIN MOSTRAR MEDIANTE ICONO CANDADO -->
@@ -156,6 +171,7 @@
             </div>
         </div>
         </div>
+
         <script src="{{ asset('assets/js/ab-valpersonas.js') }}"></script>
     </body>
 </html>

@@ -32,7 +32,7 @@
 
   </head>
 
-<body>
+<body oncopy="return false" onpaste="return false">
   @if(Session::has('correcto'))
   <script>
   
