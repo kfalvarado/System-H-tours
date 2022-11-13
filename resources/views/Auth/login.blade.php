@@ -34,6 +34,33 @@
   })
 </script>
   @endif
+  @if(Session::has('no-existe'))
+  <script>
+    Swal.fire({
+    iconHtml: '؟',
+    text: 'Usuario Incorrecto'
+  })
+</script>
+  @endif
+
+  @if(Session::has('invalidos'))
+  <script>
+    Swal.fire({
+    icon: 'error',
+    text: 'Usuario/Contraseña Invalidos'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+</script>
+  @endif
+  @if(Session::has('desactivado'))
+  <script>
+    Swal.fire({
+    icon: 'error',
+    text: 'Tu Usuario esta bloqueado o Inactivo, se debe solicitar al administrador activarlo'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+</script>
+  @endif
   @if(Session::has('accesoDenegado'))
   <script>
     Swal.fire({
@@ -45,7 +72,11 @@
   @endif
   @if(Session::has('exito'))
   <script>
-    alert('Tu solicitud se esta procesando')
+     Swal.fire({
+    icon: 'success',
+    text: 'Se envio un Correo de recuperacion al Correo que indicaste en tu Registro'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
   </script>
   @endif
   @if(Session::has('Fallo'))

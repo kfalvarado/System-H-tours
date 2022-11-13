@@ -22,8 +22,15 @@ Route::get('/', function () {
 
 //inicio sesion
 Route::post('/inicio',[SessionController::class,'inicio'])->name('home');
+
 Route::get('/inicio',[SessionController::class,'home'])->middleware('CheckToken')->name('inicio'); //retornar la vista de home
+
+
+
 Route::post('/nuevo',[PersonasController::class,'primeracceso'])->name('primer.acceso');
+Route::get('/p',[PersonasController::class,'preguntas'])->name('preguntas.personas');
+Route::post('/p',[PersonasController::class,'ins_preguntas'])->name('prinsertar');
+
 Route::get('/registro',[SessionController::class,'register'])->name('registro');
 Route::post('/registrar',[SessionController::class,'Registrar'])->name('Registrar.usuario');
 Route::post('/recuperacion',[SessionController::class,'recuperar'])->name('Recuperar.sesion');

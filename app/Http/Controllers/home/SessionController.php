@@ -32,8 +32,7 @@ class SessionController extends Controller
      y los permisos de este usuario
     */
     public function inicio(Request $request)
-    {
-        
+    {      
         /*
           Validar Mayusculas
           Buscar si existe el usuario
@@ -42,8 +41,8 @@ class SessionController extends Controller
           redirigir con las variables */
           try {
             // Validar que el usuario llege en Mayusculas
-            if (!preg_match("/^[A-ZÑÁÉÍÓÚ0-9.@]+$/", $request->user)) {
-                Session::flash('accesoDenegado', 'usuario / contraseña incorrectos');
+            if (!preg_match("/^[A-ZÑÁÉÍÓÚ0-9.@]+$/",$request->user)) {
+                Session::flash('invalidos', 'usuario/contraseña invalidos');
                 return back();
             }
 
@@ -63,10 +62,22 @@ class SessionController extends Controller
                 } else {
                     $intento = Cache::put('intento', 1);
                 }
+                /** Intentos permitidos para inicio de sesion */
+                $intentos = Http::post($this->url . '/seguridad/parametros/intentos', [
+                 
+                ]);
+                $intenArra = $intentos->JSON();
 
-                if (Cache::get('intento') > 3) {
-                    Cache::flush('intento');
+                foreach($intenArra as $parametro){
+                    $intento = $parametro['VALOR'];
+                }
+
+                
+                if (Cache::get('intento') == $intento) {
+                    Cache::forget('intento');
                     Session::flash('bloqueado', 'tu usuario a sido desabilitado');
+                    /*procedimiento para bloquea usuario */
+
                     return back();
                 } else {
                     Session::flash('accesoDenegado', 'usuario / contraseña incorrectos');
@@ -91,10 +102,11 @@ class SessionController extends Controller
                     "user"=>$request->user
                 ]);
                 $estado = strrpos($est, "NUEVO");
+                $activo = strrpos($est, "ACTIVO");
                 
                 if ($estado>0) {
                     $user = $request->user;
-                    Cache::flush('intento');
+                    Cache::forget('intento');
                     //encriptar token
                     // $cadenaEncriptada = Crypt::encryptString($loginUser);
 
@@ -103,13 +115,20 @@ class SessionController extends Controller
                     //validar rol del usuario
                     return view('home.personas');
                 }
-                // Falta validar rol del usuario 
-                $user = $request->user;
-                Cache::flush('intento');
-                Cache::put('token', $token);
-                Cache::put('user', $user);
-                
-                return redirect()->route('home');
+                //Dejar pasar Usuario Activo
+                if ($activo > 0) {
+                    
+                    // Falta validar rol del usuario 
+                    $user = $request->user;
+                    Cache::forget('intento');
+                    Cache::put('token', $token);
+                    Cache::put('user', $user);
+                    
+                    return redirect()->route('home');
+                }else {
+                    Session::flash('desactivado', 'usuario fuera de servicio');
+                    return back();
+                }
             }
 
         } catch (\Exception $e) {
@@ -236,6 +255,12 @@ class SessionController extends Controller
             $RecupearusuarioPersona = Http::post($this->url.'/seguridad/recuperar', [
                 "user"=> $request->user
             ]);
+            //VALIDAR EXISTENCIA DE USUARIO
+            $existencia = strrpos($RecupearusuarioPersona, "no encontrado");
+            if ($existencia >0) {
+                Session::flash('no-existe', 'Tu usuario no existe');
+                return back();
+            }
             $arreglo =  json_decode($RecupearusuarioPersona,true);
 
             foreach($arreglo as $data){
@@ -292,8 +317,19 @@ class SessionController extends Controller
             $RecupearusuarioPersona = Http::post($this->url.'/seguridad/preguntas', [
                 "user"=> $request->user
             ]);
+            //VALIDAR EXISTENCIA DE USUARIO
+            $existencia = strrpos($RecupearusuarioPersona, "DESCONOCIDO");
+            if ($existencia>0) {
+                Session::flash('no-existe', 'Tu usuario no existe');
+                return back();
+            }
             $arreglo =  json_decode($RecupearusuarioPersona,true);
 
+            if ($RecupearusuarioPersona == ''){
+                Session::flash('no-existe', 'Tu usuario no existe');
+                return back();
+            }
+            return $arreglo;
             foreach($arreglo as $data){
                $pregunta = $data['PREGUNTA'];
             }
@@ -339,6 +375,7 @@ class SessionController extends Controller
         Cache::flush('token');
         Cache::flush('user');
         Cache::flush('genero');
+        // Cache::flush('resp_preg');
         return redirect('/');
     }
 

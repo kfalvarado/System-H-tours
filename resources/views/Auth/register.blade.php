@@ -104,7 +104,7 @@
                 </div>
                 <div class="form-group" >
                   <label><H4><i class="mdi mdi-account"></i>Usuario</H4></label>
-                  <input type="text" style="text-transform:uppercase" id="user" name="user" placeholder="Ingresa nombre de usuario" class="form-control p_input text-dark bg-white" required>
+                  <input type="text" style="text-transform:uppercase"  onkeyup="javascript:this.value=this.value.toUpperCase();" id="user" name="user" placeholder="Ingresa nombre de usuario" class="form-control p_input text-dark bg-white" required>
                 </div>
                 <div class="form-group">
                   <label><H4><i class="mdi mdi-email"></i> Email</H4></label>

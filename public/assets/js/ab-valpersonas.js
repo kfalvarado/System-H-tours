@@ -45,7 +45,12 @@ function validar() {
     // desactivar proteccion anti cierre
     window.onbeforeunload = null;
 }
+function check() {
+    window.onbeforeunload = null;
+}
 
 function donotgo() {
     return "!!Estas seguro de salir sin guardar se perderan los cambios realizados!!";
 }
+
+

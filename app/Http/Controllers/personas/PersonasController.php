@@ -57,17 +57,60 @@ class PersonasController extends Controller
             "TELEFONO" => $request->telefono,
             "TIP_TELEFONO" => $request->tipotelefono
             
-        ]);
-
-    
-       
+        ]);  
 
         //actualizar el estado del usuario a Activo
         $estactivo = Http::withToken($token)->post($this->url . '/seguridad/estusr/actualizar', [
             "USER" => Cache::get('user')   
         ]);
         
-        return redirect()->route('home');
+        return redirect()->route('preguntas.personas');
+    }
+
+    public function preguntas()
+    {
+        
+            Cache::put('resp_preg',1);
+            return view('home.preguntas');
+        
+
+        
+        
+    }
+
+    public function ins_preguntas(Request $request)
+    {
+        //traer la cantidad de preguntas permitidas
+        $parametro = Http::withToken(Cache::get('token'))->post($this->url . '/parametros/buscar', [
+            "PARAMETRO"=>"ADMIN_CANT_PREG"   
+        ]);  
+        $preguntasArr = $parametro->json();
+        foreach($preguntasArr as $data){
+            $cantidad = $data['VALOR'];
+        }
+
+        $insertarP = Http::withToken(Cache::get('token'))->post($this->url.'/seguridad/preguntas/insertar',[
+            "user"=> Cache::get('user'),
+            "preg"=> $request->pregunta,
+            "resp"=> $request->respuesta,
+            "pass"=> ''
+        ]);
+        //ver cuantos intentos a realizado
+        if (Cache::has('resp_preg')) {
+
+            $resp = Cache::get('resp_preg') + 1;
+            if ($resp >= $cantidad) {
+                Cache::forget('resp_preg');
+                return redirect()->route('inicio');
+            }else {
+               Cache::put('resp_preg', $resp);
+               return view('home.preguntas');
+            }
+            
+        }else {
+            return 'ocurrio un error';
+        }
+
     }
 
     

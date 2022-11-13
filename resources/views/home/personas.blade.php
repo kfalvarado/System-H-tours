@@ -11,7 +11,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>HTOURS | RECUPERACION</title>
+        <title>HTOURS | Datos personales</title>
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         {{-- sweetalert2 --}}
@@ -123,6 +123,7 @@
                                   <option value="T">Telefono Fijo</option>
                                 </Select>
                       </div> 
+                      
                       <div class="form-group">
                         <label style="background-color: #0778b199">
                           <font color='white'>Ingresar una nueva Contraseña </font>
@@ -130,11 +131,9 @@
                         </label>
                         <div class="form-row">
                           <div class="col">
-                            <input class="form-control p_input text-dark bg-white" onchange="Contraseña();" placeholder="Contraseña" type="password" name="password1" id="password1" required>
+                            <input class="form-control p_input text-dark bg-white" onchange="Contraseña();" placeholder="Contraseña" type="password" name="password1" id="password1" required disabled>
                           </div>
                         </div>
-      
-      
                         <br>
                         <!-- END CONTRASEÑA -->
                         <!-- 2 CAMPO DE CONTRASEÑA DE LOGIN MOSTRAR MEDIANTE ICONO CANDADO -->
@@ -144,7 +143,7 @@
                         </label>
                         <div class="form-row">
                           <div class="col">
-                            <input class="form-control p_input text-dark bg-white" placeholder="Repetir Contraseña" type="password" onchange="comparar();" name="password2" id="password2" required>
+                            <input class="form-control p_input text-dark bg-white" placeholder="Repetir Contraseña" type="password" onchange="comparar();" name="password2" id="password2" required disabled>
                           </div>
       
                       </div> 
@@ -157,7 +156,6 @@
             </div>
         </div>
         </div>
-
         <script src="{{ asset('assets/js/ab-valpersonas.js') }}"></script>
     </body>
 </html>
