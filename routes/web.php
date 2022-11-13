@@ -33,8 +33,15 @@ Route::post('/p',[PersonasController::class,'ins_preguntas'])->name('prinsertar'
 
 Route::get('/registro',[SessionController::class,'register'])->name('registro');
 Route::post('/registrar',[SessionController::class,'Registrar'])->name('Registrar.usuario');
+
+
 Route::post('/recuperacion',[SessionController::class,'recuperar'])->name('Recuperar.sesion');
 Route::post('/respuesta',[SessionController::class,'respuesta'])->name('Recuperar.respuesta');
+Route::get('/siguiente',[SessionController::class,'siguiente'])->name('Recuperar.respuesta.siguiente');
+Route::post('/pass',[SessionController::class,'password'])->name('actualizar.constraseña');
+
+
+
 Route::get('/logout',[SessionController::class,'logout'])->name('cerrar.sesion');
 
 Route::get('/pruebas',[SessionController::class,'pruebas'])->name('pruebas');

@@ -131,7 +131,7 @@
                         </label>
                         <div class="form-row">
                           <div class="col">
-                            <input class="form-control p_input text-dark bg-white" onchange="Contraseña();" placeholder="Contraseña" type="password" name="password1" id="password1" required disabled>
+                            <input class="form-control p_input text-dark bg-white" onchange="Contraseña();" placeholder="Contraseña" type="password" name="password1" id="password1" required>
                           </div>
                         </div>
                         <br>
@@ -143,7 +143,7 @@
                         </label>
                         <div class="form-row">
                           <div class="col">
-                            <input class="form-control p_input text-dark bg-white" placeholder="Repetir Contraseña" type="password" onchange="comparar();" name="password2" id="password2" required disabled>
+                            <input class="form-control p_input text-dark bg-white" placeholder="Repetir Contraseña" type="password" onchange="comparar();" name="password2" id="password2" required>
                           </div>
       
                       </div> 

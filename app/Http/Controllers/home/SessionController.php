@@ -323,20 +323,14 @@ class SessionController extends Controller
                 Session::flash('no-existe', 'Tu usuario no existe');
                 return back();
             }
+            //METER PREGUNTAS EN ARREGLO
             $arreglo =  json_decode($RecupearusuarioPersona,true);
 
-            if ($RecupearusuarioPersona == ''){
-                Session::flash('no-existe', 'Tu usuario no existe');
-                return back();
-            }
-            return $arreglo;
-            foreach($arreglo as $data){
-               $pregunta = $data['PREGUNTA'];
-            }
+            
+            
             $user = $request->user;
-            Session::flash('pregunta',$pregunta);
             Session::flash('user',$user);
-            return view('Auth.preguntas');
+            return view('Auth.preguntas',compact('arreglo'));
         }
     }
     /*
@@ -357,12 +351,96 @@ class SessionController extends Controller
         foreach($arreglo as $data){
             $estado = $data['ESTADO'];
          }
+
+        $cantpreg = Http::post($this->url.'/seguridad/parametros/cant_preg', [
+        ]);
+        
+        $cantpregArr = $cantpreg->json();
+        foreach ($cantpregArr as $key ) {
+            $cantidad = $key['VALOR'];
+        }
+
+
          //se deja pasar si encuentra coicidencia
         if($estado == 1){
-            return 'puede pasar';
+            if (Cache::has('correctas')) {
+                $increment =  Cache::get('correctas') +1;
+                if ($increment >= $cantidad) {
+                    Cache::forget('correctas');
+                    Session::flash('valida','puede pasar');
+                    Cache::put('paso','todo bien');
+                    return redirect()->route('Recuperar.respuesta.siguiente');
+                }else {
+                    
+                    Session::flash('siguiente',$request->pregunta);
+                    Cache::put('usuario', $request->user);
+                    return redirect()->route('Recuperar.respuesta.siguiente');
+                }
+            }else {
+                Cache::put('correctas',1);
+                Cache::put('usuario', $request->user);
+                Session::flash('siguiente',$request->pregunta);
+                return redirect()->route('Recuperar.respuesta.siguiente');
+            }   
         }else{
-            return 'no puede pasar'; // se le niega el acceso si no
+            Session::flash('invalida','no puede pasar');
+            return redirect()->route('Recuperar.respuesta.siguiente');// se le niega el acceso si no
         }
+    }
+
+    public function siguiente()
+    {
+        //Respodio todas las preguntas Correctas
+        if (Cache::has('paso')) {
+            Cache::forget('paso');
+            Session::flash('valida','puede cambiar la contraseña');
+           return view('Auth.preguntas');
+        }
+        //Tiene  que responder mas de una pregunta
+        if (Session::has('siguiente')) {
+            // return 'mas preguntas por responder';
+            if (Session::has('siguiente'))
+            $array = [];
+
+            $newPreguntas  = Http::post($this->url.'/seguridad/pregunta/ignorada', [
+                "user"=> Cache::get('usuario'),
+                "preg"=> Session::get('siguiente'),
+                "resp"=> ''
+            
+            ]);
+            $preg = $newPreguntas->json();
+            foreach ($preg as $key) {
+                $array[]  = $key['PREGUNTA'];
+            }
+
+            
+            // return $newPreguntas.Cache::get('usuario').Session::get('siguiente');
+            // foreach ($arreglo as $pregunta)
+            // if ($pregunta['PREGUNTA'] != Session::get('siguiente')){
+
+            // }
+        
+            // else{
+
+            // }
+            Session::flash('otrapregunta','v');
+           return view('Auth.preguntas',compact('array'));
+        }
+        if(Session::has('invalida')){
+            return Session::get('invalida');
+        }
+        return 'niguna de las anteriores'.' '.Session::get('invalida').' '.Session::get('siguiente').' '.Cache::has('paso');
+    }
+
+    public function password(Request $request)
+    {
+        $restablecer = Http::post($this->url.'/seguridad/estusr/pass', [
+            "USER"=> $request->user,
+            "PASS"=> $request->password1
+        ]);
+        
+        Session::flash('session-restablecida','nada que decir');
+        return redirect('/');
     }
     /*
     =========================================================

@@ -171,7 +171,7 @@
                                     ¿Metodo de Recuperacion?
                                     <br>
                                     <label for="form-label">
-                                      <select class="form-control text-white" name="recuperacion" id="recuperacion">
+                                      <select class="form-control text-white" name="recuperacion" id="recuperacion" required>
                                         <option value="">Seleccionar</option>
                                         <option value="p">Pregunta de Seguridad</option>
                                         <option value="c">Correo Electronico</option>
