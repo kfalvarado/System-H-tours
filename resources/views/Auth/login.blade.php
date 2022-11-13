@@ -84,6 +84,17 @@
     alert('Ocurrio un error')
   </script>
   @endif
+
+  @if(Session::has('session-restablecida'))
+  <script>
+    Swal.fire({
+   icon: 'success',
+   text: 'Tu Sesion Se restablecio Correctamente'
+   // footer: '<a href="">Why do I have this issue?</a>'
+ })
+ </script>
+  @endif
+  <input type="hidden" name="" value="{{ Cache::forget('correctas') }}">
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="row w-100 m-0">

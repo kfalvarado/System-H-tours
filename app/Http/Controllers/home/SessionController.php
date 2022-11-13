@@ -53,6 +53,7 @@ class SessionController extends Controller
                 "pass" => $codificacion
             ]);
 
+            
             $posicionU = strrpos($loginUser, "pudo obtener resultado");
             if ($posicionU > 0) {
                 if (Cache::has('intento')) {
@@ -71,13 +72,14 @@ class SessionController extends Controller
                 foreach($intenArra as $parametro){
                     $intento = $parametro['VALOR'];
                 }
-
                 
-                if (Cache::get('intento') == $intento) {
+                
+                if (Cache::get('intento') >= $intento) {
                     Cache::forget('intento');
-                    Session::flash('bloqueado', 'tu usuario a sido desabilitado');
                     /*procedimiento para bloquea usuario */
-
+                    $bloquear = Http::post($this->url . '/seguridad/estusr/bloquear', [
+                        "USER"=>  $request->user  ]);
+                        Session::flash('bloqueado', 'tu usuario a sido desabilitado');
                     return back();
                 } else {
                     Session::flash('accesoDenegado', 'usuario / contraseña incorrectos');
@@ -103,6 +105,7 @@ class SessionController extends Controller
                 ]);
                 $estado = strrpos($est, "NUEVO");
                 $activo = strrpos($est, "ACTIVO");
+                $bloqueado = strrpos($est, "BLOQUEADO");
                 
                 if ($estado>0) {
                     $user = $request->user;
@@ -129,6 +132,12 @@ class SessionController extends Controller
                     Session::flash('desactivado', 'usuario fuera de servicio');
                     return back();
                 }
+
+                //No dejar Pasar al bloqueado
+                if ($bloqueado >0) {
+                    Session::flash('bloqueado', 'tu usuario a sido bloqueado');
+                }
+                
             }
 
         } catch (\Exception $e) {
@@ -383,7 +392,47 @@ class SessionController extends Controller
                 return redirect()->route('Recuperar.respuesta.siguiente');
             }   
         }else{
+
+            /**
+             * Respondio las preguntas de Forma Incorrecta
+             */
             Session::flash('invalida','no puede pasar');
+            Cache::put('userbloq',$request->user);
+            
+/**
+ * /////////////////////////////////////////////////////////////////////////////////////////////////////
+ */
+
+        /**
+         *Intentos permitidos antes de bloquear Usuario
+         */
+            // if(Cache::has('bloqueo')){
+            //      /** Cantidad Maxima de Intentos permitidos */
+            //      $intentos = Http::post($this->url . '/seguridad/parametros/intentos', [
+                 
+            //     ]);
+            //     $intenArra = $intentos->JSON();
+
+            //     foreach($intenArra as $parametro){
+            //         $intento = $parametro['VALOR'];
+            //     }
+
+            //     $equivocaciones = Cache::get('bloqueo')+1;
+            //     if ($equivocaciones >= $intento) {
+            //        //bloquear Usuario
+            //        $intentos = Http::post($this->url . '/seguridad/estusr/bloquear', [
+            //         "USER"=> $request->user
+            //     ]);
+            //     }else {
+            //         Cache::put('bloqueo',$equivocaciones);
+            //     }
+
+            // }else{
+            //     Cache::put('bloqueo',1);
+            // }
+/**
+ * /////////////////////////////////////////////////////////////////////////////////////////////////////
+ */
             return redirect()->route('Recuperar.respuesta.siguiente');// se le niega el acceso si no
         }
     }
@@ -427,20 +476,52 @@ class SessionController extends Controller
            return view('Auth.preguntas',compact('array'));
         }
         if(Session::has('invalida')){
-            return Session::get('invalida');
+
+            /**
+             * Bloqueo de usuario
+             */
+           
+            $bloquear = Http::post($this->url . '/seguridad/estusr/bloquear', [
+                        "USER"=>  Cache::get('userbloq')
+            ]);
+            Session::flash('bloqueado', 'tu usuario a sido desabilitado');
+            return redirect()->route('Auth.login');
+            // return 'respuesta invalida intento numero '.Cache::get('bloqueo');
+
         }
         return 'niguna de las anteriores'.' '.Session::get('invalida').' '.Session::get('siguiente').' '.Cache::has('paso');
     }
 
     public function password(Request $request)
     {
+        $codificacion = md5($request->password1);
         $restablecer = Http::post($this->url.'/seguridad/estusr/pass', [
             "USER"=> $request->user,
-            "PASS"=> $request->password1
+            "PASS"=>  $codificacion
         ]);
         
-        Session::flash('session-restablecida','nada que decir');
-        return redirect('/');
+       /**
+        * Validacion que no sea la Contraseña Anterior
+         */ 
+        $contraAnterior = strrpos($restablecer, "INGRESAR LA MISMA");
+            if ($contraAnterior > 0) {
+                Session::flash('valida','vuelva a intentarlo');
+                Session::flash('misma','no puedes ingrear la misma');
+                 return view('Auth.preguntas');
+            }
+
+
+            /*
+            * Activarel  Usuario */
+             $activar = Http::post($this->url.'/seguridad/estusr/actualizar', [
+                 "USER"=> $request->user
+             ]);
+            
+             /**
+              * Rediccionar al Login
+              */
+             Session::flash('session-restablecida','nada que decir');
+             return redirect()->route('Auth.login');
     }
     /*
     =========================================================

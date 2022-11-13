@@ -33,6 +33,7 @@ function validacion() {
         document.location.href = "#password2";
     }
 }
+
 function comparar() {
     let password1 = document.getElementById("password1").value;
     let password2 = document.getElementById("password2").value;
@@ -40,4 +41,13 @@ function comparar() {
         alert("Las contraseña no Coinciden ");
         document.getElementById("password2").value = "";
     }
+}
+
+function go() {
+    // desactivar proteccion anti cierre
+    window.onbeforeunload = null;
+}
+
+function donotgo() {
+    return "!!Estas seguro de salir sin guardar se perderan los cambios realizados!!";
 }

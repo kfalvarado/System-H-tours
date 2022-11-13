@@ -17,12 +17,17 @@
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
 
-    <body>
+    <body onbeforeunload="return donotgo();">
         <div class="mt-5 conatiner">
+            @if (!Session::has('valida'))
             <div class="text-center">
                 <h3 class="text-warning">Responde una de las siguientes Preguntas</h3>
             </div>
-           
+           @else
+           <div class="text-center">
+            <h3 class="text-warning">Restablecer Contraseña</h3>
+        </div>
+           @endif
             <div class=" d-flex align-items-center justify-content-center">
                 <div class="bg-white col-md-4">
                     <div class="p-4 rounded shadow-md">
@@ -75,7 +80,7 @@
                             
                             <br>
                             <center>
-                                <button  type="submit" class="btn btn-outline-success btn-lg">
+                                <button  type="submit" onclick="go();"  class="btn btn-outline-success btn-lg">
                                     Enviar
                                 </button>
                             </center>
@@ -85,8 +90,16 @@
                     <form action="{{route('actualizar.constraseña')}}" method="post">
                         @csrf
                         <div class="mt-3">
-
-                            <label for="user" class="form-label">Nueva Contraseña</label>
+                            @if (Session::has('misma'))
+                            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                                <div>
+                                  No puedes Ingresar la Contraseña Anterior 
+                                </div>
+                              </div>
+                            @endif
+                           
+                            <label for="user" class="form-label">Usuario</label>
                             <input type="text" id="user" name="user" class="form-control" value="{{Cache::get('usuario')}}" readonly>
                             <label for="password1" class="form-label">Nueva Contraseña</label>
                             <input class="form-control" placeholder="Ingresa la nueva contraseña" type="password" name="password1" id="password1" required>
@@ -95,10 +108,9 @@
                             <label for="password2" class="form-label">Repite la Contraseña</label>
                             <input class="form-control p_input text-dark bg-white" onchange="comparar();" placeholder="Ingresa de nuevo la contraseña" type="password" name="password2" id="password2" required>
                         </div class="mt-3">
-                            
                         <br>
                         <center>
-                            <button  type="submit" class="btn btn-outline-success btn-lg">
+                            <button  type="submit" onclick="go();" class="btn btn-outline-success btn-lg">
                                 Enviar
                             </button>
                         </center>
@@ -110,5 +122,11 @@
         </div>
         </div>
     </body>
+    <script>
+        window.onload = function active() {
+            window.onbeforeunload()
+        }
+    </script>
+   
     <script src="{{ asset('assets/js/registro.js') }}"></script>
 </html>
