@@ -38,7 +38,7 @@
   
    Swal.fire(
       '',
-      'Usuario Registrado Correctamente, porfavor ponte en contacto con un administrador para que pueda brindarte los permisos',
+      'Usuario Registrado Correctamente, por favor ponte en contacto con un administrador para que pueda brindarte los permisos',
       'question'
     )
   </script>
@@ -88,7 +88,7 @@
               <h1 class="card-title text-center mb-2">System H tours</h1>
               <nav class="nav nav-pills flex-column flex-sm-row">
                 <a class="flex-sm-fill text-sm-center text-white nav-link" href="{{ route('Auth.login') }}">INGRESA</a>
-                <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#">REGISTRATE</a>
+                <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#">REGÍSTRATE</a>
               </nav>
             </center>
               <!-- End layout styles <ul class="nav nav-pills nav-stacked">    
@@ -109,7 +109,7 @@
                 </div>
                 <div class="form-group">
                   <label><H4><i class="mdi mdi-email"></i> Email</H4></label>
-                  <input type="email" placeholder="Ingresa un Correo Electronico"  id="correo" name="correo"  class="form-control p_input text-dark bg-white" required>
+                  <input type="email" placeholder="Ingresa un Correo Electrónico"  id="correo" name="correo"  class="form-control p_input text-dark bg-white" required>
                 </div>
                <!-- CAMPO DE CONTRASEÑA DE LOGIN MOSTRAR MEDIANTE ICONO CANDADO -->
                 
@@ -136,7 +136,7 @@
                 </div>
                 <br>
                 <div class="text-center">
-                  <button onclick="validacion();"  type="submit" class="btn btn-primary btn-block enter-btn">Registrate</button></a>
+                  <button onclick="validacion();"  type="submit" class="btn btn-primary btn-block enter-btn">Registrarse</button></a>
                 </div>
 
                   <!-- <button class="btn btn-facebook mr-2 col">
