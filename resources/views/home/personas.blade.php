@@ -45,7 +45,7 @@
         <div class="mt-5 conatiner" >
             <div class="text-center p-1 mb-1" style="background-color: #029d2988;">
                 <h3 class="text-light">Bienvenido {{ Cache::get('user') }}  a SystemHtours</h3>
-                <h5 class="text-light">Porfavor ingresa los siguientes datos</h5>
+                <h5 class="text-light">Por favor ingresa los siguientes datos</h5>
             
             </div> 
             <div class=" d-flex align-items-center justify-content-center">
@@ -57,7 +57,7 @@
                         
                         <label for="">
                           <div style="background-color: #0778b199">
-                            <font color='white'><h5> Genero</h5></font>
+                            <font color='white'><h5> Género </h5></font>
                           </div>
                             <select class="form-select form-select-md mb-3" name="genero" id="genero" required>
                               <option hidden selected>Seleccionar</option>
@@ -92,7 +92,7 @@
                         <Select  class="form-select form-select-md mb-3" id="tipoPersona" name="tipoPersona" required>
                           <option hidden selected>Seleccionar</option>
                           <option value="N">Normal</option>
-                          <option value="J">Juridica</option>
+                          <option value="J">Jurídica</option>
                         </Select>
                       </label>
                     </th>
@@ -116,7 +116,7 @@
                                 </th>
                                 <th></th>
                                 <th>
-                                  <label  style="background-color: #0778b199"> <font color='white'>Telefono  </font>
+                                  <label  style="background-color: #0778b199"> <font color='white'>Teléfono  </font>
                                     <input type="tel" id="telefono" name="telefono" class="form-control p_input text-dark bg-white" placeholder="+504-9021-3300" pattern="[+0-9]{4}-[0-9]{4}-[0-9]{4}"  required>
                                   </label>
                                 </th>
@@ -126,12 +126,12 @@
                       <br>
                       <div class="form-group">
                       <label style="background-color: #0778b199">
-                                <font color='white'>&nbsp;&nbsp;Tipo de Telefono &nbsp;&nbsp;</font>
+                                <font color='white'>&nbsp;&nbsp;Tipo de Teléfono &nbsp;&nbsp;</font>
                       </label>
                                 <Select class="form-select form-select mb-3" id="tipotelefono" name="tipotelefono" required>
                                   <option hidden selected>Seleccionar</option>
                                   <option value="C">Celular</option>
-                                  <option value="T">Telefono Fijo</option>
+                                  <option value="T">Teléfono Fijo</option>
                                 </Select>
                       </div> 
                       
@@ -171,7 +171,6 @@
             </div>
         </div>
         </div>
-
         <script src="{{ asset('assets/js/ab-valpersonas.js') }}"></script>
     </body>
 </html>
