@@ -18,18 +18,18 @@ class SessionController extends Controller
 {
     /*
     =========================================================
-     Definicion de Variables Globales
+     Definición de Variables Globales
     ========================================================
     */ 
     protected  $url = 'http://localhost:3000';
 
     /*
     =========================================================
-    Inicio de sesion en el sistema
+    Inicio de sesión en el sistema
     =========================================================
 
-    Esta funcion se encarga de Validar  si el usuario existe,si el usuario es nuevo,el rol del usuario
-     y los permisos de este usuario
+    Esta función se encarga de Validar  si el usuario existe,si el usuario es nuevo,el rol del usuario
+    y los permisos de este usuario.
     */
     public function inicio(Request $request)
     {      
@@ -195,7 +195,7 @@ class SessionController extends Controller
     } 
     /*
     =========================================================
-    Funcion de validacion para registro en API
+    Función de validación para registro en API
     =========================================================
     */
     public function Registrar(Request $request)
@@ -256,16 +256,18 @@ class SessionController extends Controller
     }  
     /*
     =========================================================
-    Metodo de Recuperacion de sesion por Correo
+    Método de Recuperación de sesión por Correo
     =========================================================
     */
     public function recuperar(Request $request)
     {
         
         
-        //metodo de recuperacion por correo unido a PHP MAILER para enviar un correo de recuperacion
-        //falta metodo para generar un token de expiracion
+        //método de recuperación por correo unido a PHP MAILER para enviar un correo de recuperación
+        //falta método para generar un token de expiración
         if ($request->recuperacion == "c") {
+            
+
             $RecupearusuarioPersona = Http::post($this->url.'/seguridad/recuperar', [
                 "user"=> $request->user
             ]);
@@ -314,7 +316,34 @@ class SessionController extends Controller
                         $mail->addAttachment($_FILES['emailAttachments']['tmp_name'][$i], $_FILES['emailAttachments']['name'][$i]);
                     }
                 }
-                $bodyHtml = '<h1> Recibimos una solicitud para iniciar el proceso de recuperacion por correo, para poder Continuar  presiona el boton  <form action="http://127.0.0.1:8000/rce" method="post"> <input type="hidden" id="token" name="token" value="'.$mytoken['token'].'">  <input type="hidden" id="user" name="user" value="'.$request->user.'"><button type="submit">Recuperar</button></form> </h1>  ';
+                $bodyHtml = '
+                 
+                <h1> Recibimos una solicitud para iniciar el proceso de recuperación por correo</h1>
+               
+                <br>
+                <table>
+                <thead>
+                <tr>
+                <th>
+                <h2> Mensaje de motivo de Recuperación de contraseña </h2>
+                </th>
+                </tr>
+                <tr>
+                <th>
+                <h3><b>"'.$request->mensaje.'"</b> <h3/>
+                </th>
+                </tr>
+                </thead>
+                <table>
+                    <div>
+                        <p>El texto que se encuentra entre comillas (") es la Razón por la cual se esta restableciendo tus credenciales si tu no haz realizado esta acción favor ignorar este correo y informa al administrador</p>  
+                </div>
+                </div>
+                <h2>Si desea  Continuar presiona el botón </h2>
+                <form action="http://127.0.0.1:8000/rce" method="post"> 
+                <input type="hidden" id="token" name="token" value="'.$mytoken['token'].'">  
+                <input type="hidden" id="user" name="user" value="'.$request->user.'">
+                <button class="button button2" type="submit">Recuperar</button></form> </h1>';
                 $mail->isHTML(true);                // Set email content format to HTML
 
                 $mail->Subject = 'Solicitud de recuperacion de credenciales';
@@ -357,7 +386,7 @@ class SessionController extends Controller
     }
     /*
     =========================================================
-     Metodo de Recuperacion de sesion por Pregunta Secreta
+     Método de Recuperación de sesión por Pregunta Secreta
     =========================================================
     */
     public function respuesta(Request $request)
@@ -506,7 +535,7 @@ class SessionController extends Controller
     }
 
     /**
-     * Cambiar la contraseña  se puede usar con Correo tambien y ahora codigo
+     * Cambiar la contraseña  se puede usar con Correo también y ahora código
      */
     public function password(Request $request)
     {
@@ -549,7 +578,7 @@ class SessionController extends Controller
              return redirect()->route('Auth.login');
     }
     /**
-     * Recuperar Datos de Sesion desde el Correo
+     * Recuperar Datos de Sesión desde el Correo
      */
 
      public function email(Request $request)
@@ -583,7 +612,7 @@ class SessionController extends Controller
 
     /*
     =========================================================
-     Cierre de Sesion y Destruccion de Token y Cache
+     Cierre de Sesión y Destrucción de Token y Cache
     =========================================================
     */
     public function logout()

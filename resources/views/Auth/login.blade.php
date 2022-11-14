@@ -188,7 +188,7 @@
                                 @csrf
                                 <div style="background-color:#1A2940;">
 
-                                  Ingrese su Usuario:<input type="text" id="user" name="user"  placeholder="Tu Usuario" required>
+                                  Ingrese su Usuario:<input type="text"   id="user" name="user"  placeholder="Tu Usuario" required>
                                   <br>
                                   <br>
                                   <label class="form-label">
@@ -204,7 +204,7 @@
 
                                     <br>
                                     <h4>Detalla tu problema:</h4>
-                                    <textarea name="mensaje" required> </textarea>
+                                    <input class="form-control bg-white text-dark" type="text" name="mensaje" required> 
                                   </label>
                                   <br>
                                   <button class="btn btn-info btn-md">Recuperar</button>
