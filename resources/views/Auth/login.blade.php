@@ -47,7 +47,7 @@
   <script>
     Swal.fire({
     icon: 'error',
-    text: 'Usuario/Contraseña Invalidos'
+    text: 'Usuario/Contraseña Inválidos'
     // footer: '<a href="">Why do I have this issue?</a>'
   })
 </script>
@@ -83,14 +83,18 @@
   <script>
      Swal.fire({
     icon: 'success',
-    text: 'Se envio un Correo de recuperacion al Correo que indicaste en tu Registro'
+    text: 'Se envió un Correo de recuperación a tu correo registrado'
     // footer: '<a href="">Why do I have this issue?</a>'
   })
   </script>
   @endif
   @if(Session::has('Fallo'))
   <script>
-    alert('Ocurrio un error')
+   Swal.fire({
+            icon: 'error',
+            text: 'Ocurrió un error'
+            // footer: '<a href="">Why do I have this issue?</a>'
+        })
   </script>
   @endif
 
@@ -98,7 +102,7 @@
   <script>
     Swal.fire({
    icon: 'success',
-   text: 'Tu Sesion Se restablecio Correctamente'
+   text: 'Tú Sesión, Se restableció Correctamente'
    // footer: '<a href="">Why do I have this issue?</a>'
  })
  </script>
@@ -115,7 +119,7 @@
                 <h1 class="card-title text-center mb-2">System H tours</h1>
                 <nav class="nav nav-pills flex-column flex-sm-row">
                   <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#">INGRESA</a>
-                  <a class="flex-sm-fill text-sm-center text-white nav-link" href="{{route('registro')}}">REGISTRATE</a>
+                  <a class="flex-sm-fill text-sm-center text-white nav-link" href="{{route('registro')}}">REGÍSTRATE</a>
                 </nav>
               </center>
               <br>
@@ -125,7 +129,7 @@
                   <label class="form-label">
                     <H4><i class="mdi mdi-account"></i> Usuario</H4>
                   </label>
-                  <input type="text" id="user" name="user" class="form-control p_input text-dark bg-white" onSelect="this.value=''"  required>
+                  <input type="text" id="user" name="user" placeholder="Ingresa tu Usuario" class="form-control p_input text-dark bg-white" onSelect="this.value=''"  required>
                 </div>
 
                 <!-- CAMPO DE CONTRASEÑA DE LOGIN MOSTRAR MEDIANTE ICONO CANDADO -->
@@ -135,7 +139,7 @@
                   </label>
                   <div class="form-row">
                     <div class="col">
-                      <input class="form-control p_input text-dark bg-white" onSelect="this.value=''" type="password" name="password" id="password" required>
+                      <input class="form-control p_input text-dark bg-white" placeholder="Ingresa tu Contraseña" onSelect="this.value=''" type="password" name="password" id="password" required>
                     </div>
                   </div>
               
@@ -154,7 +158,7 @@
                 <div class="text-center">
                   {{-- <a class="text-white font-weight-medium" href="{{route('home')}}"> --}}
                     <!-- redireccionar a home-->
-                    <button type="submit" href="" class="btn btn-primary btn-block enter-btn">Iniciar Sesion</button>
+                    <button type="submit" href="" class="btn btn-primary btn-block enter-btn">Iniciar Sesión</button>
                   {{-- </a> --}}
                 </div>
               </form>
@@ -174,7 +178,7 @@
                         <div class="modal-content">
                           <!-- CABECERA DEL DIALOGO EDITAR -->
                           <div class="modal-header" style="background-color:#D80B0E;">
-                            <h4 class="modal-title">Recuperacion de Contraseña</h4>
+                            <h4 class="modal-title">Recuperación de Contraseña</h4>
                             <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                           </div>
                           <!-- CUERPO DEL DIALOGO BORRAR -->
@@ -184,22 +188,22 @@
                                 @csrf
                                 <div style="background-color:#1A2940;">
 
-                                  Ingrese su Usuario:<input type="text" id="user" name="user" required>
+                                  Ingrese su Usuario:<input type="text" id="user" name="user"  placeholder="Tu Usuario" required>
                                   <br>
                                   <br>
                                   <label class="form-label">
-                                    ¿Metodo de Recuperacion?
+                                    ¿ Método de Recuperación ?
                                     <br>
                                     <label for="form-label">
                                       <select class="form-control text-white" name="recuperacion" id="recuperacion" required>
                                         <option value="">Seleccionar</option>
-                                        <option value="p">Pregunta de Seguridad</option>
-                                        <option value="c">Correo Electronico</option>
+                                        <option value="p">Pregunta de Seguridad </option>
+                                        <option value="c">Correo Electrónico</option>
                                       </select>
                                     </label>
 
                                     <br>
-                                    <h4>Detallanos tu problema:</h4>
+                                    <h4>Detalla tu problema:</h4>
                                     <textarea name="mensaje" required> </textarea>
                                   </label>
                                   <br>
