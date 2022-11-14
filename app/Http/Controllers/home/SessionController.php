@@ -106,6 +106,7 @@ class SessionController extends Controller
                 $estado = strrpos($est, "NUEVO");
                 $activo = strrpos($est, "ACTIVO");
                 $bloqueado = strrpos($est, "BLOQUEADO");
+                $inactivo = strrpos($est, "INACTIVO");
                 
                 if ($estado>0) {
                     $user = $request->user;
@@ -135,6 +136,9 @@ class SessionController extends Controller
 
                 //No dejar Pasar al bloqueado
                 if ($bloqueado >0) {
+                    Session::flash('bloqueado', 'tu usuario a sido bloqueado');
+                }
+                if ($inactivo >0) {
                     Session::flash('bloqueado', 'tu usuario a sido bloqueado');
                 }
                 
@@ -492,8 +496,22 @@ class SessionController extends Controller
         return 'niguna de las anteriores'.' '.Session::get('invalida').' '.Session::get('siguiente').' '.Cache::has('paso');
     }
 
+    /**
+     * Cambiar la contraseña  se puede usar con Correo tambien y ahora codigo
+     */
     public function password(Request $request)
     {
+        /**
+         * Verificar si el usuario no se encuentra Inactivo
+         */
+        $estado = Http::post($this->url.'/seguridad/seguridad/estadousr', [
+            "USER"=> $request->user
+        ]);
+        $inactivo = strrpos($estado, "INACTIVO");
+        if ($inactivo>0) {
+            Session::flash('inactivo','no puedes ingresar');
+            return redirect()->route('Auth.login');
+        }
         $codificacion = md5($request->password1);
         $restablecer = Http::post($this->url.'/seguridad/estusr/pass', [
             "USER"=> $request->user,
@@ -509,8 +527,6 @@ class SessionController extends Controller
                 Session::flash('misma','no puedes ingrear la misma');
                  return view('Auth.preguntas');
             }
-
-
             /*
             * Activarel  Usuario */
              $activar = Http::post($this->url.'/seguridad/estusr/actualizar', [

@@ -111,7 +111,7 @@
                                 <th>
 
                                   <label for="" style="background-color: #0778b199"> <font color='white'> &nbsp; Identidad </font> 
-                                    <input type="number" onclick="tipopersona();"minlength="0" min="0" placeholder="0801-2000-09115" pattern="[0-9]{4}-[0-9]{4}-[0-9]{5}"id="identidad" name="identidad" onkeypress="return validarprimercampo(event);" class="form-control p_input text-dark bg-white" size="100" required>
+                                    <input type="tel" onclick="tipopersona();"minlength="0" min="0" placeholder="0801-2000-09115" pattern="[0-9]{4}-[0-9]{4}-[0-9]{5}"id="identidad" name="identidad" onkeypress="return validarprimercampo(event);" class="form-control p_input text-dark bg-white" required>
                                   </label> 
                                 </th>
                                 <th></th>

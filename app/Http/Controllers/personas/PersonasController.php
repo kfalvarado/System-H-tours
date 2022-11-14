@@ -70,7 +70,7 @@ class PersonasController extends Controller
     public function preguntas()
     {
         
-            Cache::put('resp_preg',0);
+            Cache::put('resp_preg',1);
             return view('home.preguntas');
         
 
