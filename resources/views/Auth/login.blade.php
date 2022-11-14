@@ -97,6 +97,15 @@
         })
   </script>
   @endif
+  @if(Session::has('noPrivilegios'))
+  <script>
+   Swal.fire({
+      icon: 'info',
+      text: 'No tiene Privilegios para acceder al sistema favor contactar a un administrador'
+            // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+  @endif
 
   @if(Session::has('session-restablecida'))
   <script>
@@ -204,7 +213,7 @@
 
                                     <br>
                                     <h4>Detalla tu problema:</h4>
-                                    <input class="form-control bg-white text-dark" type="text" name="mensaje" required> 
+                                    <input class="form-control bg-white text-dark" placeholder="Breve descripción " type="text" name="mensaje" required> 
                                   </label>
                                   <br>
                                   <button class="btn btn-info btn-md">Recuperar</button>

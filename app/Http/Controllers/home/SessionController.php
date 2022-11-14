@@ -110,6 +110,19 @@ class SessionController extends Controller
                 
                 if ($estado>0) {
                     $user = $request->user;
+                    // Falta validar por default del usuario
+                    $rol = http::withToken($token)->post($this->url.'/roles/sel_rol/user',[
+                        "USER"=>$user
+                    ]);
+                    $default = strpos($rol,'DEFAULT');
+                    if ($default>0 ) {
+                        Cache::flush();
+                        Session::flash('noPrivilegios','nada');
+                        return back();
+                    }
+                    //fin validar rol default del usuario
+
+
                     Cache::forget('intento');
                     //encriptar token
                     // $cadenaEncriptada = Crypt::encryptString($loginUser);
@@ -119,11 +132,25 @@ class SessionController extends Controller
                     //validar rol del usuario
                     return view('home.personas');
                 }
+
                 //Dejar pasar Usuario Activo
                 if ($activo > 0) {
-                    
-                    // Falta validar rol del usuario 
                     $user = $request->user;
+                    
+                    // Falta validar por default del usuario
+                    $rol = http::withToken($token)->post($this->url.'/roles/sel_rol/user',[
+                        "USER"=>$user
+                    ]);
+
+                    
+                    $default = strpos($rol,'DEFAULT');
+                    if ($default>0 ) {
+                        Cache::flush();
+                        Session::flash('noPrivilegios','nada');
+                        return back();
+                    }
+                    //fin validar rol default del usuario
+
                     Cache::forget('intento');
                     Cache::put('token', $token);
                     Cache::put('user', $user);
@@ -231,7 +258,6 @@ class SessionController extends Controller
                 $registrarUsuario = Http::post($this->url . '/seguridad/usuarios/registrar', [
                     "USER" => $request->user,
                     "NOMBRE_USUARIO" => $request->nombre,
-                    "ROL_USUARIO" => 1,
                     "CORREO_ELECTRONICO" =>  $request->correo,
                     "PASS" => $codificacion
                 ]);
@@ -261,13 +287,26 @@ class SessionController extends Controller
     */
     public function recuperar(Request $request)
     {
-        
+        if (!preg_match("/^[\w\d.]+$/", $request->user) ) {
+            Session::flash('fallo', 'No Caracteres especiales en el Usuario');
+           
+            return back();
+           
+        }
+        if (!preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/", $request->mensaje) ) {
+            Session::flash('fallo', 'No Caracteres especiales en el nombre');
+            return back();
+        }
+
+        if (!preg_match("/^[pc]+$/",$request->recuperacion)) {
+            Session::flash('fallo', 'No Caracteres especiales en el nombre');
+            return back();
+        }
+       
         
         //método de recuperación por correo unido a PHP MAILER para enviar un correo de recuperación
         //falta método para generar un token de expiración
         if ($request->recuperacion == "c") {
-            
-
             $RecupearusuarioPersona = Http::post($this->url.'/seguridad/recuperar', [
                 "user"=> $request->user
             ]);
