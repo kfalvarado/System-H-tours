@@ -147,8 +147,11 @@
                     <H4><i class="mdi mdi-lock" onclick="mostrarContrasena()"></i> Contraseña</H4>
                   </label>
                   <div class="form-row">
-                    <div class="col">
-                      <input class="form-control p_input text-dark bg-white" placeholder="Ingresa tu Contraseña" onSelect="this.value=''" type="password" name="password" id="password" required>
+                    <div id="is-relative" class="col" style="div#is-relative{ max-width: 420px; position: relative;}">
+                      <input style="padding-right: 2.5rem;" class="form-control p_input text-dark bg-white" placeholder="Ingresa tu Contraseña" onSelect="this.value=''" type="password" name="password" id="password" required>
+                      <span id="icon" style="color: black; position: absolute; display: block; bottom: .2rem; right: 1rem; user-select: none;cursor: pointer;">
+                        <i class="mdi mdi-eye" onclick="mostrarContrasena()"></i>
+                      </span>
                     </div>
                   </div>
               

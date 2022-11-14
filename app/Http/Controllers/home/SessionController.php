@@ -22,6 +22,7 @@ class SessionController extends Controller
     ========================================================
     */ 
     protected  $url = 'http://localhost:3000';
+    protected  $user = '137772b7ecb263dc707ab445c56c018';
 
     /*
     =========================================================
@@ -275,9 +276,46 @@ class SessionController extends Controller
                  return back();
               
             } else {
-                Session::flash('correcto', 'Usuario Registrado Correctamente');
-                return back();
-            
+                try{
+                    $objeto = Http::post($this->url.'/seguridad/objetos/registro',[]);
+                    $objArr = $objeto->json();
+                    foreach ($objArr as $key ) {
+                        $obj = $key['OBJETO'];
+                    }
+                }catch(\Exception $e){
+                    return 'Ocurrio un Error session 282';
+                }
+          
+
+                try {
+                    //code...
+                    $token = Http::post($this->url.'/seguridad/login',[
+                        "user"=>'MANT',
+                        "pass"=>$this->user
+                    ]);
+                    $accesoArr = $token->json();
+                    Cache::put('key',$accesoArr['token'] , now()->addMinutes(1));
+                } catch (\Throwable $th) {
+                   return 'Ocurrio un Error Session 292';
+                }
+
+                try {
+                    // code...
+                    
+                    $bitacora = Http::withToken(Cache::get('key'))->post($this->url.'/seguridad/bitacora/insertar',[
+                        "USR"=>'Usuario_Auto_Registrado',
+                        "ACCION"=>'Creacion de Usuario',
+                        "DES"=>'Registro  de Usuario:'.$request->user,
+                        "OBJETO"=>$obj
+                    ]);
+                    
+                } catch (\Throwable $th) {
+                   return 'Ocurrio un Error session 306';
+                }
+                    
+                    Session::flash('correcto', 'Usuario Registrado Correctamente');
+                    return back();
+                    
             }
     }  
     /*
