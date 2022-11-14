@@ -102,7 +102,10 @@
                             <label for="user" class="form-label">Usuario</label>
                             <input type="text" id="user" name="user" class="form-control" value="{{Cache::get('usuario')}}" readonly>
                             <label for="password1" class="form-label">Nueva Contraseña</label>
-                            <input class="form-control" placeholder="Ingresa la nueva contraseña" type="password" name="password1" id="password1" required>
+                            <input class="form-control" placeholder="Ingresa la nueva contraseña" onkeyup="muestra_seguridad_clave(this.value, this.form)" type="password" name="password1" id="password1" required>
+                            <label> <b> Seguridad de Contraseña</b></label>
+                            <input id="seguridad" name="seguridad" type="text" style="background: transparent; border: none; color: #000000; " onfocus="blur()">
+             
                         </div class="mt-3">
                         <div class="mt-3">
                             <label for="password2" class="form-label">Repite la Contraseña</label>

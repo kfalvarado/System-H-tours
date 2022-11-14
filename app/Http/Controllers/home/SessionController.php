@@ -262,6 +262,7 @@ class SessionController extends Controller
     public function recuperar(Request $request)
     {
         
+        
         //metodo de recuperacion por correo unido a PHP MAILER para enviar un correo de recuperacion
         //falta metodo para generar un token de expiracion
         if ($request->recuperacion == "c") {
@@ -279,6 +280,14 @@ class SessionController extends Controller
             foreach($arreglo as $data){
                $correo = $data['CORREO'];
             }
+
+            $tokenCorreo = Http::post($this->url.'/seguridad/recuperarlogin', [
+                "user"=> $request->user
+            ]);
+            $mytoken =  $tokenCorreo->json();
+            
+            // return $mytoken['token'];
+
             require base_path("vendor/autoload.php");
             $mail = new PHPMailer(true);
             try {
@@ -305,7 +314,7 @@ class SessionController extends Controller
                         $mail->addAttachment($_FILES['emailAttachments']['tmp_name'][$i], $_FILES['emailAttachments']['name'][$i]);
                     }
                 }
-                $bodyHtml = '<h1> Recibimos una solicitud de cambio de contraseña por favor ingrese al siguiente Enlace para restablecer tu contraseña </h1> <img src="https://tester-security.herokuapp.com/track/laravel" alt="" srcset="">';
+                $bodyHtml = '<h1> Recibimos una solicitud para iniciar el proceso de recuperacion por correo, para poder Continuar  presiona el boton  <form action="http://127.0.0.1:8000/rce" method="post"> <input type="hidden" id="token" name="token" value="'.$mytoken['token'].'">  <input type="hidden" id="user" name="user" value="'.$request->user.'"><button type="submit">Recuperar</button></form> </h1>  ';
                 $mail->isHTML(true);                // Set email content format to HTML
 
                 $mail->Subject = 'Solicitud de recuperacion de credenciales';
@@ -539,6 +548,39 @@ class SessionController extends Controller
              Session::flash('session-restablecida','nada que decir');
              return redirect()->route('Auth.login');
     }
+    /**
+     * Recuperar Datos de Sesion desde el Correo
+     */
+
+     public function email(Request $request)
+     {
+
+        $token = $request->token;
+
+        $user = $request->user;
+        
+        return view('correo.recuperar',compact('token','user'));
+     }
+
+    public function verificar_Token(Request $request)
+    {
+        
+       $validar = Http::post($this->url.'/seguridad/correocheck', [
+            "token"=> $request->token
+        ]);
+
+        $autorizacion = strrpos($validar, "Autorizado");
+        if ($autorizacion >0) {
+            Session::flash('valida','generar contraseña');
+            Cache::put('usuario',$request->user);
+            return view('Auth.preguntas');
+        }else{
+            Session::flash('token-invalido','Token invalido o tiempo agotado debes generar una nueva peticion ');
+            return redirect()->route('Auth.login');
+        }
+    }
+
+
     /*
     =========================================================
      Cierre de Sesion y Destruccion de Token y Cache

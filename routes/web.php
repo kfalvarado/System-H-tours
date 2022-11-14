@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\home\SessionController;
 use App\Http\Controllers\personas\PersonasController;
+use Symfony\Component\Console\Input\Input;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,16 @@ Route::post('/recuperacion',[SessionController::class,'recuperar'])->name('Recup
 Route::post('/respuesta',[SessionController::class,'respuesta'])->name('Recuperar.respuesta');
 Route::get('/siguiente',[SessionController::class,'siguiente'])->name('Recuperar.respuesta.siguiente');
 Route::post('/pass',[SessionController::class,'password'])->name('actualizar.constraseña');
+
+/**
+ * Ruta que recibe el token desde el Correo
+ * 
+ * Esta Ruta no se encuentra protegida por CSRF
+ */
+Route::post('/rce',[SessionController::class,'email'])->name('email.restablecer');
+Route::post('/rce/verificar',[SessionController::class,'verificar_Token'])->name('email.verificar');
+
+
 
 
 

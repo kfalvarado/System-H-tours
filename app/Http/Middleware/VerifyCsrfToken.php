@@ -12,6 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        //
+        //url del Correo Excluir el TOKEN CSRF
+        '/rce'
     ];
 }
