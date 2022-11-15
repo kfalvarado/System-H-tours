@@ -38,6 +38,15 @@ Administrador
 @section('Usuario-Menu')
 {{ Cache::get('user') }}
 @endsection
+
+
+{{-- encabezado o head --}}
+@section('encabezado')
+
+
+@endsection
+
+
 <!-- contenido de la pagina  -->
 @section('contenido')
 <div class="page-header">
@@ -46,9 +55,12 @@ Administrador
             <center>
                 <h1>Mantenimiento Personas</h1>
             </center>
+            <br>
             <p align="right" valign="baseline">
-              <button type="button"  class="btn btn-success"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
-              <a type="button" href="{{route('periodo.pdf')}}" class="btn btn-success"  >Generar PDF</a>
+              <button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
+              <a type="button" href="{{route('periodo.pdf')}}" class="btn btn-danger"  ><i class="mdi mdi-file-pdf"></i> Generar PDF</a>
+              {{-- cambiar la ruta de perido.pdf a periodo.excel  --}}
+              <a type="button" href="{{route('periodo.pdf')}}" class="btn btn-success"  ><i class="mdi mdi-file-excel"></i> Generar Excel</a>
             </p>
             <div class="row">
               <div class="col-lg-12 stretch-card">
@@ -68,9 +80,11 @@ Administrador
                             <th class="text-dark bg-white"> Genero</th>
                             <th class="text-dark bg-white"> Edad  </th>
                             <th class="text-dark bg-white"> Estado Civil </th>
-                            <th class="text-dark bg-white"> Tipo de Persona </th>
+                            <th class="text-dark bg-white"> Tipo </th>
                             <th class="text-dark bg-white"> Identidad  </th>
                             <th class="text-dark bg-white"> Telefono  </th>
+                            <th class="text-dark bg-white"> Tipo </th>
+                            <th class="text-dark bg-white"> Estado  </th>
                             <th class="text-dark bg-white"> Fecha Registro  </th>
                             <th class="text-dark bg-white"> Acciones  </th>
                           </tr>
@@ -88,20 +102,22 @@ Administrador
                             <td>{{ $persona['TIP_PERSONA'] }}</td>
                             <td>{{ $persona['NUM_IDENTIDAD'] }}</td>
                             <td>{{ $persona['TELEFONO'] }}</td>
+                            <td>{{ $persona['TIP_TELEFONO'] }}</td>
+                            <td>{{ $persona['EST_USR'] }}</td>
                             <td>{{ substr( $persona['FEC_REGISTRO'],0,10)}}</td>
-                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#modal-editar-{{ $persona['COD_PERSONA'] }}">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#modal-eliminar-{{  $persona['COD_PERSONA'] }}">Eliminar</button> </td>  
+                            <td><button type="button"  class="btn btn-info btn-sm"  data-toggle="modal" data-target="#modal-editar-{{ $persona['COD_PERSONA'] }}"> <i class="mdi mdi-table-edit"></i> Editar</button> <button type="button"  class="btn btn-danger btn-sm"  data-toggle="modal" data-target="#modal-eliminar-{{  $persona['COD_PERSONA'] }}"><i class="mdi mdi-delete-forever"></i> Eliminar</button> </td>  
                           </tr>
 
                                          
                 <!-- INICIO MODAL PARA EDITAR  -->
                 <div class="modal-container">
-                  <div class="modal fade bd-example-modal-lg" id="modal-editar-{{ $persona['COD_PERSONA'] }}">
+                  <div class="modal fade bd-example-modal-md" id="modal-editar-{{ $persona['COD_PERSONA'] }}">
                         <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
                    <div class="modal-dialog modal-md">
                    <div class="modal-content">
                         <!-- CABECERA DEL DIALOGO EDITAR -->
                    <div class="modal-header">
-                   <h4 class="modal-title">Editar Periodo</h4>
+                   <h4 class="modal-title">Editar Persona</h4>
                         <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                    </div>
                         <!-- CUERPO DEL DIALOGO EDITAR -->
@@ -109,34 +125,116 @@ Administrador
                      <center>
                        <form action="" method="post">
                          <label class="form-label">
-                           Nombre del Periodo
-                           <input type='text' list="lista-programacion" value="Periodo-2022-ene-1-003" name='nombre-periodo' class="form-control" required>
-                           <datalist id="lista-programacion">
-                             <option value="Periodo-2022-ene-1-004">
-                           </datalist>
-                           </input>
-                         </label>
+                           <b>Nombre de  Usuario</b>
+                           <input type='text'  value="{{ $persona['NOM_USR'] }}" name='usr' class="form-control bg-dark text-white" required readonly>
+                          </label>
+                        </center>
+                        {{-- div contenedor  --}}
+                        <div style="background-color:#2b4e821c;   justify-content: center; align-items: center;">
                          <br>
-                         <label class="form-label">
-                           Fecha inicial
-                           <input type="date" value="2021-01-01" readonly>
+                          &nbsp;
+                          &nbsp;
+                          &nbsp;
+                          &nbsp;
+                          &nbsp;
+                          &nbsp;
+                          &nbsp;
+                          &nbsp;
+                          &nbsp;
+                           <label class="form-label" style="background-color: #0778b199">
+                           <center> Género</center>
+                            <select class="form-control bg-white text-dark" name="genero" id="genero" required>
+                              <option hidden selected>{{ $persona['SEX_PERSONA']  
+                           }}</option>
+                            <option value="F">Femenino</option>
+                            <option value="M">Masculino</option>
+                          </select>
                          </label>
-                         <label class="form-label">
-                           Fecha final
-                           <input type="date" value="2021-12-31" readonly>
-                         </label>
-                         <br>
-                         <div class="custom-control custom-switch">
-                           <input type="checkbox" class="custom-control-input" id="customSwitch2">
-                           <label class="custom-control-label" for="customSwitch2">Estado <label>
-                         </div>
-                         <br>
-                         
-                         <button type="submit" class="btn btn-primary">Aceptar</button>
-                       </form>
+                         <label style="background-color: #0778b199"> <font color='white'>  Tipo de persona</font>
+                         </center>
+                         <Select  class="form-control bg-white text-dark" id="tipoPersona" name="tipoPersona" required>
+                           <option hidden selected>{{ $persona['TIP_PERSONA'] }}</option>
+                           <option value="N">Normal</option>
+                           <option value="J">Jurídica</option>
+                         </Select>
+                       </label>
+                       
+                          <label for="civil"  style="background-color: #0778b199">
+                            <center><font color='white'>&nbsp;&nbsp;&nbsp;Estado Civil&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font> </center>
+                            <Select id="civil" name="civil" class="form-control bg-white text-dark" required>
+                              <option hidden selected>{{ $persona['IND_CIVIL'] }}</option>
+                              <option value="S">Soltero</option>
+                              <option value="V">Viudo</option>
+                              <option value="C">Casado</option>
+                              <option value="D">Divorciado</option>
+                            </Select>
+                          </label>
+                       
+                          <br>
+                           {{-- centrado  --}}
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+
+                        {{-- fin centrado --}}
+                          
+                          <label for="" style="background-color: #0778b199"> <font color='white'> &nbsp;  Edad </font>  
+                            <input type="number" id="edad" name="edad" placeholder="0" min="0" max="100" class="form-control bg-white text-dark" value="{{ $persona['EDA_PERSONAL'] }}" required>
+                          </label> 
+                          <label for="" style="background-color: #0778b199"> <font color='white'> &nbsp; Identidad </font> 
+                            <input type="tel" value="{{ $persona['NUM_IDENTIDAD'] }}" onclick="tipopersona();"minlength="0" min="0" placeholder="0801-2000-09115" pattern="[0-9]{4}-[0-9]{4}-[0-9]{5}"id="identidad" name="identidad"  class="form-control p_input text-dark bg-white" required>
+                          </label> 
+                          <br>
+                           {{-- centrado  --}}
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+
+                        {{-- fin centrado --}}
+                          <label  style="background-color: #0778b199"> <font color='white'>Teléfono  </font>
+                            <input type="tel" value="{{  '+504 '.$persona['TELEFONO'] }}" id="telefono" name="telefono" class="form-control p_input text-dark bg-white" placeholder="+504-90213300" pattern="[+0-9]{4} [0-9]{8}"  required>
+                          </label>
+                          <label style="background-color: #0778b199">
+                            <font color='white'>&nbsp;&nbsp;Tipo de Teléfono &nbsp;&nbsp;</font>
+                            <Select class="form-control bg-white text-dark" id="tipotelefono" name="tipotelefono" required>
+                              <option hidden selected>{{ $persona['TIP_TELEFONO'] }}</option>
+                              <option value="C">Celular</option>
+                              <option value="T">Teléfono Fijo</option>
+                            </Select>
+                          </label>
+                          <br>
+                                {{-- centrado  --}}
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+
+                        {{-- fin centrado --}}
+                        </div>
+                          <center>
+                            <button type="submit" class="btn btn-primary">Aceptar</button>
+                          </center>
+                          </form>
                    </div> 
                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                   </center>
+                  
                    </div>
                    </div>
                    </div>
@@ -153,7 +251,7 @@ Administrador
               <div class="modal-content">
                    <!-- CABECERA DEL DIALOGO EDITAR -->
               <div class="modal-header">
-              <h4 class="modal-title">Eliminar Cuenta</h4>
+              <h4 class="modal-title">Eliminar Persona</h4>
                    <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
               </div>
                    <!-- CUERPO DEL DIALOGO BORRAR -->
@@ -161,6 +259,8 @@ Administrador
               <center>
               <form action="" method="post">
               <label class="form-label">
+                <i class="mdi mdi-delete-forever" style="font-size: 100px;"></i> 
+                <br>
               ¿ Desea Eliminar el Registro ?
                
               </label>
@@ -241,11 +341,5 @@ Administrador
                   </div>
                 </div>
                 <!-- FIN DE MODAL PARA NUEVA  -->
-                
-                
-                
-                
-                
-                
- 
+
 @endsection

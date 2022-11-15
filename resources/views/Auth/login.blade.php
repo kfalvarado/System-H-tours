@@ -150,7 +150,7 @@
                     <div id="is-relative" class="col" style="div#is-relative{ max-width: 420px; position: relative;}">
                       <input style="padding-right: 2.5rem;" class="form-control p_input text-dark bg-white" placeholder="Ingresa tu Contraseña" onSelect="this.value=''" type="password" name="password" id="password" required>
                       <span id="icon" style="color: black; position: absolute; display: block; bottom: .2rem; right: 1rem; user-select: none;cursor: pointer;">
-                        <i class="mdi mdi-eye" onclick="mostrarContrasena()"></i>
+                        <i id="ojo" class="mdi mdi-eye-outline" onclick="mostrarContrasena()"></i>
                       </span>
                     </div>
                   </div>
@@ -158,10 +158,13 @@
                 <script>
                   function mostrarContrasena() {
                     var tipo = document.getElementById("password");
+                    var ojo = document.getElementById("ojo");
                     if (tipo.type == "password") {
                       tipo.type = "text";
+                      ojo.className = 'mdi mdi-eye-off-outline';
                     } else {
                       tipo.type = "password";
+                      ojo.className = 'mdi mdi-eye-outline';
                     }
                   }
                 </script>
@@ -216,7 +219,7 @@
 
                                     <br>
                                     <h4>Detalla tu problema:</h4>
-                                    <input class="form-control bg-white text-dark" placeholder="Breve descripción " type="text" name="mensaje" required> 
+                                    <input class="" placeholder="Breve descripción " type="text" name="mensaje" required> 
                                   </label>
                                   <br>
                                   <button class="btn btn-info btn-md">Recuperar</button>

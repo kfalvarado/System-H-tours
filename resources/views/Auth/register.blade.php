@@ -118,7 +118,7 @@
                       <div id="is-relative" class="col" style="div#is-relative{ max-width: 420px; position: relative;}">
                     <input style="padding-right: 2.5rem;" class="form-control p_input text-dark bg-white" onkeyup="muestra_seguridad_clave(this.value, this.form)" placeholder="Ingresa una contraseña" type="password" name="password1" id="password1" required>
                     <span id="icon" style="color: black; position: absolute; display: block; bottom: .2rem; right: 1rem; user-select: none;cursor: pointer;">
-                      <i class="mdi mdi-eye" onclick="mostrarContra()"></i>
+                      <i id="ojo1" class="mdi mdi-eye-outline" onclick="mostrarContra()"></i>
                     </span>
                   </div>
                  
@@ -136,7 +136,7 @@
                 <div id="is-relative" class="col" style="div#is-relative{ max-width: 420px; position: relative;}">
                 <input  style="padding-right: 2.5rem;" class="form-control p_input text-dark bg-white" onchange="comparar();" placeholder="Ingresa de nuevo la contraseña" type="password" name="password2" id="password2" required>
                 <span id="icon" style="color: black; position: absolute; display: block; bottom: .2rem; right: 1rem; user-select: none;cursor: pointer;">
-                  <i class="mdi mdi-eye" onclick="mostrarContrasena()"></i>
+                  <i id="ojo2" class="mdi  mdi-eye-outline" onclick="mostrarContrasena()"></i>
                 </span>
               </div>
                 </div>
@@ -154,21 +154,27 @@
               </form>
               <script>
                 function mostrarContra(){
-                    var tipo = document.getElementById("password1");
-                    if(tipo.type == "password"){
-                        tipo.type = "text";
-                    }else{
-                        tipo.type = "password";
-                    }
+                  var ojo = document.getElementById("ojo1");
+                  var tipo = document.getElementById("password1");
+                  if(tipo.type == "password"){
+                    tipo.type = "text";
+                    ojo.className = 'mdi mdi-eye-off-outline';
+                  }else{
+                    tipo.type = "password";
+                    ojo.className = 'mdi mdi-eye-outline';
+                  }
                 }
-              </script>
+                </script>
         <script>
           function mostrarContrasena(){
-              var tipo = document.getElementById("password2");
-              if(tipo.type == "password"){
+            var ojo = document.getElementById("ojo2");
+            var tipo = document.getElementById("password2");
+            if(tipo.type == "password"){
+              ojo.className = 'mdi mdi-eye-off-outline';
                   tipo.type = "text";
               }else{
-                  tipo.type = "password";
+                tipo.type = "password";
+                ojo.className = 'mdi mdi-eye-outline';
               }
           } 
         </script>
