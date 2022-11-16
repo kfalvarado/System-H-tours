@@ -29,8 +29,7 @@ class PeriodoController extends Controller
     public function insertar(Request $request)
     {
         try {
-            //code...
-            $insertar = Http::withToken(Cache::get('token'))->post($this->url.'/periodo/insertar',[
+            $insertar = Http::withToken(Cache::get('token'))->post($this->url . '/periodo/insertar', [
                 "USR" => Cache::get('user'),
                 "NOM_PERIODO" => $request->periodo,
                 "FEC_INI" => $request->inicial,
@@ -39,10 +38,10 @@ class PeriodoController extends Controller
             ]);
         } catch (\Throwable $th) {
             //throw $th;
-            return 'Error periodo 32';
+            return 'Error periodo 31';
         }
 
-        Session::flash('insertado','1');
+        Session::flash('insertado', '1');
         return back();
     }
 
