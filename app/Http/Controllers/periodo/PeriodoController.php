@@ -40,7 +40,6 @@ class PeriodoController extends Controller
             //throw $th;
             return 'Error periodo 31';
         }
-
         Session::flash('insertado', '1');
         return back();
     }
