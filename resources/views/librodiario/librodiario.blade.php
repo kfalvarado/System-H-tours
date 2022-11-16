@@ -477,61 +477,23 @@ Administrador
                           </tr>
                         </thead>
                         <tbody>
+
+                        @foreach ($personArr as $librodiario)
+
                           <tr class="text-white bg-dark">
-                            <td> 1 </td>
-                            <td> 1.1.1 </td>
-                            <td> Efectivo  </td>
-                            <td> 2500.00 </td>
-                            <td>  </td>
+                            <td> {{ $librodiario['COD_LIBDIARIO'] }} </td>
+                            <td> {{ $librodiario['NUM_CUENTA'] }} </td>
+                            <td> {{ $librodiario['NUM_SUBCUENTA'] }}  </td>
+                            <td> {{ $librodiario['SAL_DEBE'] }} </td>
+                            <td>   {{ $librodiario['SAL_HABER'] }}</td>
                             <td> <a href="" data-toggle="modal" data-target="#comprobante">   image1651861487718.jpeg  </a> </td>
-                            <td> May 15, 2022 </td>
+                            <td> {{ substr( $librodiario['FEC_LIBDIARIO'],0,10) }} </td>
                             <td><button type="button"  class="btn btn-primary"  data-toggle="modal" data-target="#dialogo5">Ingresada</button>
                             <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
                           </tr>
-                          <tr class="text-white bg-dark">
-                            <td> 2 </td>
-                            <td> 2.1.1 </td>
-                            <td> Cable color </td>
-                            <td>  </td>
-                            <td> 2500.00 </td>
-                            <td> <a href="" data-toggle="modal" data-target="#comprobante">   image1651861487718.jpeg  </a> </td>
-                            <td> May 15, 2022 </td>
-                            <td><button type="button"  class="btn btn-primary"  data-toggle="modal" data-target="#dialogo5">Ingresada</button>
-                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
-                          </tr>
-                          <tr class="text-white bg-dark">
-                            <td> 3 </td>
-                            <td> 3.1.1 </td>
-                            <td> Aportaciones </td>
-                            <td> 1500.00 </td>
-                            <td>  </td>
-                            <td> <a href="" data-toggle="modal" data-target="#comprobante">   image1651861487718.jpeg  </a> </td>
-                            <td> May 15, 2022 </td>
-                            <td><button type="button"  class="btn btn-warning"  data-toggle="modal" data-target="#dialogo6">Pendiente</button>
-                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
-                          </tr>
-                          <tr class="text-white bg-dark">
-                            <td> 4 </td>
-                            <td> 2.1.3 </td>
-                            <td> Acreedores </td>
-                            <td> 1600.00 </td>
-                            <td>  </td>
-                            <td> <a href="" data-toggle="modal" data-target="#comprobante">   image1651861487718.jpeg  </a> </td>
-                            <td> May 15, 2022 </td>
-                            <td><button type="button"  class="btn btn-warning"  data-toggle="modal" data-target="#dialogo6">Pendiente</button>
-                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
-                          </tr>
-                          <tr class="text-white bg-dark">
-                            <td> 5 </td>
-                            <td> 3.1.1 </td>
-                            <td> Aportaciones </td>
-                            <td> 9000.00 </td>
-                            <td></td>
-                            <td> <a href="" data-toggle="modal" data-target="#comprobante">   image1651861487718.jpeg  </a></td>
-                            <td> May 15, 2022 </td>
-                            <td><button type="button"  class="btn btn-success"  data-toggle="modal" data-target="#dialogo7">Procesada</button></td>
-                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
-                          </tr>
+
+                          @endforeach
+                        
                         </tbody>
                       </table>
                     </div>
