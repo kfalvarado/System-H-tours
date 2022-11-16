@@ -16,6 +16,8 @@ use App\Http\Controllers\periodo\PeriodoController;
 
 
 Route::get('/mostrar',[PeriodoController::class,'mostrar'])->name('periodo.inicio');
+Route::post('/',[PeriodoController::class,'insertar'])->name('periodo.insertar');
+
 
 //pdf
 Route::get('/mostrarpdf',[PeriodoController::class,'mostrarPDF'])->name('periodo.pdf');

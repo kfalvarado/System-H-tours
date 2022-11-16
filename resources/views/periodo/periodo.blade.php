@@ -36,6 +36,18 @@ Administrador
 @endsection
 <!-- contenido de la pagina  -->
 @section('contenido')
+
+@if (Session::has('insertado'))
+  <script>
+    Swal.fire({
+    icon: 'success',
+    text: 'El periodo se inserto Correctamente'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+@endif
+
+
 <center><h1> Periodos Contables  </h1></center> 
             <div class="page-header">
               </nav>
@@ -192,10 +204,11 @@ Administrador
                         <!-- CUERPO DEL DIALOGO NUEVA -->
                         <div class="modal-body">
                           <center>
-                            <form action="" method="post">
+                            <form action="{{ route('periodo.insertar') }}" method="post">
+                             @csrf
                               <label class="form-label">
                                 Nombre del Periodo
-                                <input type='text' list="lista-programacion" name='nombre-periodo' class="form-control text-white" required>
+                                <input type='text' list="lista-programacion" name='periodo' class="form-control text-white" required>
                                 <datalist id="lista-programacion">
                                   <option value="Periodo-2022-ene-1-004">
                                 </datalist>
@@ -204,15 +217,15 @@ Administrador
                               <br>
                               <label class="form-label">
                                 Fecha inicial
-                                <input type='date' name='fec-inic' class="form-control" required></input>
+                                <input type='date' name='inicial' class="form-control" required></input>
                               </label>
                               <label class="form-label">
                                 Fecha final
-                                <input type='date' name='fec-hast' class="form-control" required></input>
+                                <input type='date' name='final' class="form-control" required></input>
                               </label>
                               <br>
                               <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                                <input type="checkbox" class="custom-control-input" id="customSwitch1" name="estado" value="activo">
                                 <label class="custom-control-label" for="customSwitch1">Estado <label>
                               </div>
                               <br>

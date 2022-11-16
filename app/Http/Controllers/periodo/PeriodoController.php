@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
-
+use Illuminate\Support\Facades\Session;
 class PeriodoController extends Controller
 {
 
@@ -25,6 +25,28 @@ class PeriodoController extends Controller
 
         return view('periodo.periodo',compact('personArr'));
     }
+
+    public function insertar(Request $request)
+    {
+        try {
+            //code...
+            $insertar = Http::withToken(Cache::get('token'))->post($this->url.'/periodo/insertar',[
+                "USR" => Cache::get('user'),
+                "NOM_PERIODO" => $request->periodo,
+                "FEC_INI" => $request->inicial,
+                "FEC_FIN" => $request->final,
+                "ESTADO" => $request->estado
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return 'Error periodo 32';
+        }
+
+        Session::flash('insertado','1');
+        return back();
+    }
+
+ 
     
      /*
     ======================================
