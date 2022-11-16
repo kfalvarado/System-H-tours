@@ -17,6 +17,9 @@ use App\Http\Controllers\periodo\PeriodoController;
 
 Route::get('/mostrar',[PeriodoController::class,'mostrar'])->name('periodo.inicio');
 Route::post('/',[PeriodoController::class,'insertar'])->name('periodo.insertar');
+Route::put('/actualizar',[PeriodoController::class,'actualizar'])->name('periodo.actualizar');
+Route::delete('/eliminar',[PeriodoController::class,'eliminar'])->name('periodo.eliminar');
+
 
 
 //pdf

@@ -46,6 +46,24 @@ Administrador
   })
   </script>
 @endif
+@if (Session::has('actualizado'))
+  <script>
+    Swal.fire({
+    icon: 'success',
+    text: 'El periodo se Actualizo Correctamente'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+@endif
+@if (Session::has('eliminado'))
+  <script>
+    Swal.fire({
+    icon: 'success',
+    text: 'El periodo se elimino Correctamente'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+@endif
 
 
 <center><h1> Periodos Contables  </h1></center> 
@@ -107,10 +125,14 @@ Administrador
                         <!-- CUERPO DEL DIALOGO EDITAR -->
                    <div class="modal-body">
                      <center>
-                       <form action="" method="post">
+                       <form action="{{ route('periodo.actualizar') }}" method="post">
+                        @csrf  @method('PUT')
+
+
+                        <input type="hidden" name="f" value="{{ $periodo['COD_PERIODO'] }}">
                          <label class="form-label">
                            Nombre del Periodo
-                           <input type='text' list="lista-programacion" value="{{ $periodo['NOM_PERIODO'] }}" name='nombre-periodo' class="form-control" required>
+                           <input type='text' list="lista-programacion" value="{{ $periodo['NOM_PERIODO'] }}" name='periodo' class="form-control text-white bg-dark" required>
                            <datalist id="lista-programacion">
                              <option value="Periodo-2022-ene-1-004">
                            </datalist>
@@ -119,17 +141,17 @@ Administrador
                          <br>
                          <label class="form-label">
                            Fecha inicial
-                           <input type="date" value="{{ substr( $periodo['FEC_INI'],0,10 )}}" readonly>
+                           <input type="date" value="{{ substr( $periodo['FEC_INI'],0,10 )}}"  name="inicial" readonly>
                          </label>
                          <label class="form-label">
                            Fecha final
-                           <input type="date" value="{{ substr($periodo['FEC_FIN'],0,10) }}" readonly>
+                           <input type="date" value="{{ substr($periodo['FEC_FIN'],0,10) }}"  name="final" readonly>
                          </label>
                          <br>
                          <div class="custom-control custom-switch">
-                           <input type="checkbox" class="custom-control-input" id="customSwitch2">
-                           <label class="custom-control-label" for="customSwitch2">Estado <label>
-                         </div>
+                          <input type="checkbox" class="custom-control-input" id="customSwitch{{ $periodo['COD_PERIODO'] }}" name="estado" value="activo">
+                          <label class="custom-control-label" for="customSwitch{{ $periodo['COD_PERIODO'] }}">Estado <label>
+                        </div>
                          <br>
                          
                          <button type="submit" class="btn btn-primary">Aceptar</button>
@@ -153,13 +175,16 @@ Administrador
               <div class="modal-content">
                    <!-- CABECERA DEL DIALOGO EDITAR -->
               <div class="modal-header">
-              <h4 class="modal-title">Eliminar Cuenta</h4>
+              <h4 class="modal-title">Eliminar Periodo</h4>
                    <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
               </div>
                    <!-- CUERPO DEL DIALOGO BORRAR -->
               <div class="modal-body">
               <center>
-              <form action="" method="post">
+              <form action="{{ route('periodo.eliminar') }}" method="post">
+                @csrf @method('DELETE')
+
+                <input type="hidden" name="f" value="{{ $periodo['COD_PERIODO'] }}">
               <label class="form-label">
                 <i class="mdi mdi-delete-forever" style="font-size: 100px;"></i> <br>
               ¿ Desea Eliminar el Registro ?
@@ -168,7 +193,7 @@ Administrador
               <br>
           
   
-              <a href="" class="btn btn btn-primary">SI</a>
+              <button type="submit" class="btn btn btn-primary">SI</button>
               <a href="" class="btn btn-secondary">NO</a>
               
               </form>
@@ -226,8 +251,8 @@ Administrador
                               </label>
                               <br>
                               <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="customSwitch1" name="estado" value="activo">
-                                <label class="custom-control-label" for="customSwitch1">Estado <label>
+                                <input type="checkbox" class="custom-control-input" id="customSwitch" name="estado" value="activo">
+                                <label class="custom-control-label" for="customSwitch">Estado <label>
                               </div>
                               <br>
                               <a href="" class="btn btn-secondary">Cancelar</a>
