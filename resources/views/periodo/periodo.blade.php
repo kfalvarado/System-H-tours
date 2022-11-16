@@ -90,7 +90,7 @@ Administrador
                             <td>{{ substr( $periodo['FEC_INI'],0,10 )}}</td>
                             <td>{{ substr($periodo['FEC_FIN'],0,10) }}</td>
                             <td>{{ $periodo['ESTADO'] }}</td>
-                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#modal-editar-{{ $periodo['COD_PERIODO'] }}">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#modal-eliminar-{{ $periodo['COD_PERIODO'] }}">Eliminar</button> </td>  
+                            <td><button type="button"  class="btn btn-info btn-sm"  data-toggle="modal" data-target="#modal-editar-{{ $periodo['COD_PERIODO'] }}"> <i class="mdi mdi-table-edit"></i>Editar</button> <button type="button"  class="btn btn-danger btn-sm"  data-toggle="modal" data-target="#modal-eliminar-{{ $periodo['COD_PERIODO'] }}"><i class="mdi mdi-delete-forever"></i>Eliminar</button> </td>  
                           </tr>
                           
                               <!-- INICIO MODAL PARA EDITAR  -->
@@ -161,6 +161,7 @@ Administrador
               <center>
               <form action="" method="post">
               <label class="form-label">
+                <i class="mdi mdi-delete-forever" style="font-size: 100px;"></i> <br>
               ¿ Desea Eliminar el Registro ?
                
               </label>
