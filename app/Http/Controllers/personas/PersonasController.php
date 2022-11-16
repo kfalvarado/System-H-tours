@@ -16,16 +16,66 @@ class PersonasController extends Controller
 
     public function inicio()
     {
-
-        $personas = Http::withToken(Cache::get('token'))->get($this->url.'/personas');
+        try {
+            //code...
+            $personas = Http::withToken(Cache::get('token'))->get($this->url.'/personas');
+            $usuarios = Http::withToken(Cache::get('token'))->get($this->url.'/personas/buscar/list_usuarios');
+        } catch (\Throwable $th) {
+            return 'Error persona 20';
+        }
 
         $personasArray = $personas->json();
+        $usuariosArray = $usuarios->json();
     
-        return view('personas.personas',compact('personasArray'));
+        return view('personas.personas',compact('personasArray','usuariosArray'));
+    }
+
+    public function insertar(Request $request)
+    {
+
+        try {
+            //code...
+            $acceso = Http::withToken(Cache::get('token'))->post($this->url . '/personas/insertar', [
+                "USUARIO" => $request->user,
+                "SEX_PERSONA" => $request->genero,
+                "EDA_PERSONAL" => $request->edad,
+                "TIP_PERSONA" => $request->tipoPersona,
+                "Num_Identidad" => $request->identidad,
+                "IND_CIVIL" => $request->civil,
+                "TELEFONO" => substr($request->telefono, 4),
+                "TIP_TELEFONO" => $request->tipotelefono
+            ]);
+        } catch (\Throwable $th) {
+            return 'Error Personas 40';
+        }
+        Session::flash('insertado', '1');
+        return back();
+    }
+
+    public function actualizar(Request $request)
+    {
+    //    return $request;
+       try {
+        //El procedimiento de Actualizar no funciona requiere revision
+        $acceso = Http::withToken(Cache::get('token'))->post($this->url . '/personas/insertar/'.$request->cod, [
+            "USUARIO" => $request->user,
+            "SEX_PERSONA" => $request->genero,
+            "EDA_PERSONAL" => $request->edad,
+            "TIP_PERSONA" => $request->tipoPersona,
+            "Num_Identidad" => $request->identidad,
+            "IND_CIVIL" => $request->civil,
+            "TELEFONO" => substr($request->telefono, 4),
+            "TIP_TELEFONO" => $request->tipotelefono
+        ]);
+    } catch (\Throwable $th) {
+        return 'Error Personas 40';
+    }
+    Session::flash('insertado', '1');
+    return redirect()->route('personas.inicio');
     }
 
     /**
-     * Funcion de primer accrso aqui se va a cambiar la contraseña y se cambiar el estado
+     * Función de primer acceso aquí se va a cambiar la contraseña y se cambiar el estado
      * a activo
      */
     public function primeracceso(Request $request)
@@ -54,7 +104,7 @@ class PersonasController extends Controller
             "TIP_PERSONA" => $request->tipoPersona,
             "Num_Identidad" => $request->identidad,
             "IND_CIVIL" => $request->civil,
-            "TELEFONO" => $request->telefono,
+            "TELEFONO" => substr($request->telefono,4),
             "TIP_TELEFONO" => $request->tipotelefono
             
         ]);  
