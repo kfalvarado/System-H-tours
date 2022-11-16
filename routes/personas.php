@@ -15,3 +15,5 @@ use App\Http\Controllers\personas\PersonasController;
 */
 
 Route::get('/',[PersonasController::class,'inicio'])->name('personas.inicio');
+Route::post('/',[PersonasController::class,'insertar'])->name('personas.insertar');
+Route::put('/actualizar',[PersonasController::class,'actualizar'])->name('personas.actualizar');
