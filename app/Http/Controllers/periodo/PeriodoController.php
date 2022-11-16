@@ -43,9 +43,6 @@ class PeriodoController extends Controller
         Session::flash('insertado', '1');
         return back();
     }
-
- 
-    
      /*
     ======================================
     Pantalla PDF de Periodo
