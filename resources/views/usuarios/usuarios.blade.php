@@ -11,7 +11,7 @@ Usuarios | inicio
 
 <!-- nombre del usuario de la barra lateral  -->
 @section('Usuario-Lateral')
-Scarleth
+{{cache::get('user')}}
 @endsection
 <!-- rol del usuario de la barra lateral  -->
 @section('rol-usuario')
@@ -24,7 +24,7 @@ Administrador
 @endsection
 <!-- nombre del menu de la derecha  -->
 @section('Usuario-Menu')
-Scarleth
+{{cache::get('user')}}
 @endsection
 
 @section('contenido')
