@@ -64,6 +64,15 @@ Periodo | inicio
   })
   </script>
 @endif
+@if (Session::has('sinpermiso'))
+  <script>
+    Swal.fire({
+    icon: 'error',
+    text: 'No cuentas con  permiso para realizar esta accion'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+@endif
 
 
 <center><h1> Periodos Contables  </h1></center> 
