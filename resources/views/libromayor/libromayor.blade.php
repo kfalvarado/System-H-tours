@@ -174,112 +174,7 @@ Administrador
             </div>
                 <!-- FIN DE MODAL PARA NUEVA  -->
 
-                  <!-- INICIO MODAL PARA EDITAR  -->
-           <div class="modal-container">
-            <div class="modal fade bd-example-modal-lg" id="dialogo2">
-                  <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-             <div class="modal-dialog modal-sm">
-             <div class="modal-content">
-                  <!-- CABECERA DEL DIALOGO EDITAR -->
-             <div class="modal-header">
-             <h4 class="modal-title">Editar Libro Mayor</h4>
-                  <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
-             </div>
-                  <!-- CUERPO DEL DIALOGO EDITAR -->
-             <div class="modal-body">
-             <center>
-             <form action="" method="post">
-              <label class="form-label">
-                Clasificacion
-                <input type='text' list="lista-clasificacion" name='nombre-periodo' class="form-control text-white" required>
-                <datalist id="lista-clasificacion">
-                  <option value="Acitvo">
-                    <option value="Pasivo">
-                      <option value="Patrimonio">
-                        <option value="Resultado">
-                        </option>
-                      </option>
-                    </option>
-                  </option>
-                </datalist>
-                </input>
-              </label>
-            <label class="form-label">
-              Nombre de Cuenta
-              <input type='text' list="lista-cuentas" name='nombre-periodo' class="form-control text-white" required>
-              <datalist id="lista-cuentas">
-                <option value="Caja">
-                  <option value="Banco">
-                    <option value="Proveedores">
-                      <option value="Capital">
-                      </option>
-                    </option>
-                  </option>
-                </option>
-              </datalist>
-              </input>
-            </label>
-            <label class="form-label">
-            Saldo
-            <input type='text' name='' class="form-control text-white"  required></input> 
-            </label>
-            <br>
-                  <label class="radio-inline">
-                      <input type="radio" name="Tipo" value=1>Debe
-                  </label>
-
-                  &nbsp;&nbsp; 
-                  <label class="radio-inline">
-                      <input type="radio" name="Tipo" value=2>Haber
-                  </label><hr />
-                 
-            <label class="form-label">
-            Fecha
-            <input type='date' name='fecha' class="form-control text-white"  required></input> 
-            </label>
-             <a href="" class="btn btn-secondary">Cancelar</a>
-             <button type="submit" class="btn btn-primary">Registrar </button>
-             </form>
-             </div> 
-             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-             </center>
-             </div>
-             </div>
-             </div>
-             </div>
-                 <!-- FIN DE MODAL PARA EDITAR  -->
-
-                  <!-- INICIO MODAL PARA BORRAR  -->
-           <div class="modal-container">
-            <div class="modal fade bd-example-modal-lg" id="dialogo3">
-                  <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-             <div class="modal-dialog modal-sm">
-             <div class="modal-content">
-                  <!-- CABECERA DEL DIALOGO EDITAR -->
-             <div class="modal-header">
-             <h4 class="modal-title">Eliminar Libro Mayor</h4>
-             </div>
-                  <!-- CUERPO DEL DIALOGO BORRAR -->
-             <div class="modal-body">
-             <center>
-             <form action="" method="post">
-             <label class="form-label">
-             ¿ Desea Eliminar la Transaccion ?
-             </label>
-             
-             <a href="" class="btn btn btn-primary">SI</a>
-             <a href="" class="btn btn-secondary">NO</a>
-             
-             </form>
-             </div> 
-             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-             </center>
-             </div>
-             </div>
-             </div>
-             </div>
-                 <!-- FIN DE MODAL PARA BORRAR  -->
-
+            
 
 <!-- INICIO MODAL PARA PERIODO  -->
 <div class="modal-container">
@@ -454,66 +349,144 @@ Administrador
                           </tr>
                         </thead>
                         <tbody>
+
+
+
+
+                        @foreach ($personArr as $libromayor)
+
+
+
                           <tr class="text-white bg-dark">
-                            <td> 1 </td>
-                            <td> Activo </td>
-                            <td> 1.1 </td>
-                            <td> Caja general </td>
-                            <td> 2500.00 </td>
-                            <td>  </td>
-                            <td> May 15, 2022 </td>
+                            <td> {{ $libromayor['COD_LIBMAYOR'] }} </td>
+                            <td> {{ $libromayor['COD_CLASIFICACION'] }} </td>
+                            <td> {{ $libromayor['NUM_CUENTA'] }} </td>
+                            <td> {{ $libromayor['NOM_CUENTA'] }} </td>
+                            <td> {{ $libromayor['SAL_DEBE'] }} </td>
+                            <td>  {{ $libromayor['SAL_HABER'] }}</td>
+                            <td> {{ substr( $libromayor['FEC_LIBMAYOR'],0,10) }} </td>
                             <td><button type="button"  class="btn btn-primary"  data-toggle="modal" data-target="#dialogo5">Ingresada</button>
                            
-                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
+                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#modal-editar{{ $libromayor['COD_LIBMAYOR'] }}"><i class="mdi mdi-table-edit"></i>Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#modal-eliminar{{ $libromayor['COD_LIBMAYOR'] }}"><i class="mdi mdi-delete-forever"></i>Eliminar</button> </td>
                           </tr>
-                          <tr class="text-white bg-dark">
-                            <td> 2 </td>
-                            <td> Pasivo </td>
-                            <td> 2.1 </td>
-                            <td> Proveedores </td>
-                            <td>  </td>
-                            <td> 2500.00 </td>
-                            <td> May 15, 2022 </td>
-                            <td><button type="button"  class="btn btn-primary"  data-toggle="modal" data-target="#dialogo5">Ingresada</button>
-                           
-                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
-                          </tr>
-                          <tr class="text-white bg-dark">
-                            <td> 3 </td>
-                            <td> Patrimonio </td>
-                            <td> 3.1 </td>
-                            <td> Capital social </td>
-                            <td> 1500.00 </td>
-                            <td>  </td>
-                            <td> May 15, 2022 </td>
-                            <td><button type="button"  class="btn btn-warning"  data-toggle="modal" data-target="#dialogo6">Pendiente</button>
-                            
-                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
-                          </tr>
-                          <tr class="text-white bg-dark">
-                            <td> 4 </td>
-                            <td> Activo </td>
-                            <td> 1.2 </td>
-                            <td> Deudores Varios </td>
-                            <td> 2500.00 </td>
-                            <td>  </td>
-                            <td> May 15, 2022 </td>
-                            <td><button type="button"  class="btn btn-warning"  data-toggle="modal" data-target="#dialogo6">Pendiente</button>
-                            
-                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
-                          </tr>
-                          <tr class="text-white bg-dark">
-                            <td> 5 </td>
-                            <td> Patrimonio </td>
-                            <td> 3.2 </td>
-                            <td> Reserva legal </td>
-                            <td>  </td>
-                            <td> 15000.00 </td>
-                            <td> May 15, 2022 </td>
-                            <td><button type="button"  class="btn btn-success"  data-toggle="modal" data-target="#dialogo7">Procesada</button></td>
-                            
-                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
-                          </tr>
+
+
+
+                                <!-- INICIO MODAL PARA EDITAR  -->
+           <div class="modal-container">
+            <div class="modal fade bd-example-modal-lg" id="modal-editar{{ $libromayor['COD_LIBMAYOR'] }}">
+                  <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+             <div class="modal-dialog modal-sm">
+             <div class="modal-content">
+                  <!-- CABECERA DEL DIALOGO EDITAR -->
+             <div class="modal-header">
+             <h4 class="modal-title">Editar Libro Mayor</h4>
+                  <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+             </div>
+                  <!-- CUERPO DEL DIALOGO EDITAR -->
+             <div class="modal-body">
+             <center>
+             <form action="" method="post">
+              <label class="form-label">
+                Clasificacion
+                <input type='text' value="{{ $libromayor['COD_CLASIFICACION'] }}" list="lista-clasificacion" name='nombre-periodo' class="form-control text-white" required>
+                <datalist id="lista-clasificacion">
+                  <option value="Acitvo">
+                    <option value="Pasivo">
+                      <option value="Patrimonio">
+                        <option value="Resultado">
+                        </option>
+                      </option>
+                    </option>
+                  </option>
+                </datalist>
+                </input>
+              </label>
+            <label class="form-label">
+              Nombre de Cuenta
+              <input type='text' value="{{ $libromayor['NOM_CUENTA'] }}"list="lista-cuentas" name='nombre-periodo' class="form-control text-white" required>
+              <datalist id="lista-cuentas">
+                <option value="Caja">
+                  <option value="Banco">
+                    <option value="Proveedores">
+                      <option value="Capital">
+                      </option>
+                    </option>
+                  </option>
+                </option>
+              </datalist>
+              </input>
+            </label>
+            <label class="form-label">
+            Saldo
+            <input type='text' value="{{ $libromayor['SAL_DEBE'] }}" name='' class="form-control text-white"  required></input> 
+            </label>
+            <br>
+                  <label class="radio-inline">
+                      <input type="radio" name="Tipo" value=1>Debe
+                  </label>
+
+                  &nbsp;&nbsp; 
+                  <label class="radio-inline">
+                      <input type="radio" name="Tipo" value=2>Haber
+                  </label><hr />
+                 
+            <label class="form-label">
+            Fecha
+            <input type='date'value="{{ substr( $libromayor['FEC_LIBMAYOR'],0,10) }}" name='fecha' class="form-control text-white"  required></input> 
+            </label>
+             <a href="" class="btn btn-secondary">Cancelar</a>
+             <button type="submit" class="btn btn-primary">Registrar </button>
+             </form>
+             </div> 
+             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+             </center>
+             </div>
+             </div>
+             </div>
+             </div>
+                 <!-- FIN DE MODAL PARA EDITAR  -->
+
+                  <!-- INICIO MODAL PARA BORRAR  -->
+           <div class="modal-container">
+            <div class="modal fade bd-example-modal-lg" id="modal-eliminar{{ $libromayor['COD_LIBMAYOR'] }}">
+                  <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+             <div class="modal-dialog modal-sm">
+             <div class="modal-content">
+                  <!-- CABECERA DEL DIALOGO EDITAR -->
+             <div class="modal-header">
+             <h4 class="modal-title">Eliminar Libro Mayor</h4>
+             </div>
+                  <!-- CUERPO DEL DIALOGO BORRAR -->
+             <div class="modal-body">
+             <center>
+             <form action="" method="post">
+             <label class="form-label">
+             ¿ Desea Eliminar la Transaccion ?
+             </label>
+             
+             <a href="" class="btn btn btn-primary">SI</a>
+             <a href="" class="btn btn-secondary">NO</a>
+             
+             </form>
+             </div> 
+             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+             </center>
+             </div>
+             </div>
+             </div>
+             </div>
+                 <!-- FIN DE MODAL PARA BORRAR  -->
+
+
+
+
+
+
+
+
+                          @endforeach
+                         
                         </tbody>
                       </table>
                     </div>
