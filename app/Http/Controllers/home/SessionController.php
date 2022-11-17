@@ -152,9 +152,17 @@ class SessionController extends Controller
                     }
                     //fin validar rol default del usuario
 
+                    //si no es ROL default dame el rol de esta persona
+                    $tu = $rol->json();
+                    foreach ($tu as $key ) {
+                        $mirol = $key['ROL'];
+                    }
+
+                    
                     Cache::forget('intento');
                     Cache::put('token', $token);
                     Cache::put('user', $user);
+                    Cache::put('rol',$mirol);
                     
                     return redirect()->route('home');
                 }else {

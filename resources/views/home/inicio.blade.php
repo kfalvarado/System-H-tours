@@ -24,7 +24,7 @@ Casa | inicio
 @endsection
 <!-- rol del usuario de la barra lateral  -->
 @section('rol-usuario')
-Administrador
+{{ Cache::get('rol') }}
 @endsection
 
 <!-- foto del menu de la derecha -->

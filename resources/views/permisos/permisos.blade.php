@@ -285,7 +285,7 @@ Fabricio
                     <!-- <p class="card-description"> Add class <code>.table-striped</code> -->
                       <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
                         <select class="form-control text-white" name="" id="">
-                          <option value="">Seleccionar</option>
+                          <option value="">Seleccionar Rol</option>
                           <option value="">Administrador</option>
                           <option value="">Usuario</option>
                         </select>
