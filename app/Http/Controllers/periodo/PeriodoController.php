@@ -18,10 +18,29 @@ class PeriodoController extends Controller
     protected $url = 'http://localhost:3000';
     public function mostrar()
     {
-        $periodo = http::withToken(Cache::get('token'))->get($this->url.'/periodo');
+        try {
+            //code...
+            $periodo = http::withToken(Cache::get('token'))->get($this->url.'/periodo');
+            
+            $personArr = $periodo->json();
+        } catch (\Throwable $th) {
+            //throw $th;
+            return 'error periodo 22';
+        }
 
-        $personArr = $periodo->json();
+        try {
+            $bitacora = Http::withToken(Cache::get('token'))->post($this->url.'/seguridad/bitacora/insertar',[
+                "USR"=> Cache::get('user'),
+                "ACCION"=> 'PANTALLA METODO GET',
+                "DES"=> Cache::get('user').' INGRESO A LA PANTALLA DE PERIODO',
+                "OBJETO"=> 'PERIODO'
 
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return 'Error periodo 32';
+        }
+      
 
         return view('periodo.periodo',compact('personArr'));
     }
@@ -43,6 +62,22 @@ class PeriodoController extends Controller
             //throw $th;
             return 'Error periodo 31';
         }
+
+        try {
+            $bitacora = Http::withToken(Cache::get('token'))->post($this->url.'/seguridad/bitacora/insertar',[
+                "USR"=> Cache::get('user'),
+                "ACCION"=> 'PANTALLA METODO POST',
+                "DES"=> Cache::get('user').' INSERTO EL DATO DE '.$request->periodo.' EN LA PANTALLA DE PERIODO',
+                "OBJETO"=> 'PERIODO'
+
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return 'Error periodo 32';
+        }
+      
+
+
         Session::flash('insertado', '1');
         return back();
     }
@@ -67,6 +102,21 @@ class PeriodoController extends Controller
             return 'error periodo 50';
         }
 
+        try {
+            $bitacora = Http::withToken(Cache::get('token'))->post($this->url.'/seguridad/bitacora/insertar',[
+                "USR"=> Cache::get('user'),
+                "ACCION"=> 'ACTUALIZO UN DATO EN PANTALLA ',
+                "DES"=> Cache::get('user').' ACTUALIZO EL DATO DE '.$request->periodo.' EN LA PANTALLA DE PERIODO',
+                "OBJETO"=> 'PERIODO'
+
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return 'Error periodo 32';
+        }
+      
+
+
         Session::flash('actualizado','1');
         return back();
     }
@@ -74,6 +124,21 @@ class PeriodoController extends Controller
     public function eliminar(Request $request)
     {
         $delete = Http::withToken(Cache::get("token"))->delete($this->url.'/periodo/eliminar/'.$request->f);
+
+
+        try {
+            $bitacora = Http::withToken(Cache::get('token'))->post($this->url.'/seguridad/bitacora/insertar',[
+                "USR"=> Cache::get('user'),
+                "ACCION"=> 'ELIMINO UN DATO',
+                "DES"=> Cache::get('user').' ELIMINO EL DATO CON CODIGO '.$request->f.' EN LA PANTALLA DE PERIODO',
+                "OBJETO"=> 'PERIODO'
+
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return 'Error periodo 32';
+        }
+      
 
         Session::flash('eliminado','1');
         return back();
