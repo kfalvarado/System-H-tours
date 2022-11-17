@@ -6,7 +6,11 @@ Usuarios | inicio
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
-{{ asset('assets/images/dama.png') }}
+@if (Cache::get('genero') == 'M')
+{{ asset('assets/images/varon.png')}}
+@else
+{{ asset('assets/images/dama.png')}}
+@endif
 @endsection
 
 <!-- nombre del usuario de la barra lateral  -->
@@ -20,7 +24,11 @@ Administrador
 
 <!-- foto del menu de la derecha -->
 @section('foto-user2')
+@if (Cache::get('genero') == 'M')
+{{ asset('assets/images/varon.png')}}
+@else
 {{ asset('assets/images/dama.png')}}
+@endif
 @endsection
 <!-- nombre del menu de la derecha  -->
 @section('Usuario-Menu')
