@@ -254,103 +254,7 @@ Administrador
             </div>
                 <!-- FIN DE MODAL PARA NUEVA  -->
 
-                  <!-- INICIO MODAL PARA EDITAR  -->
-           <div class="modal-container">
-            <div class="modal fade bd-example-modal-lg" id="dialogo2">
-                  <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-             <div class="modal-dialog modal-md">
-             <div class="modal-content">
-                  <!-- CABECERA DEL DIALOGO EDITAR -->
-             <div class="modal-header">
-             <h4 class="modal-title">Editar Libro Diario</h4>
-             </div>
-                  <!-- CUERPO DEL DIALOGO EDITAR -->
-             <div class="modal-body">
-             <center>
-             <form action="" method="post">
-              <label class="form-label">
-                Seleccionar Cuenta
-                <select class="form-control text-white" name="" id="">
-                  <option value=""></option>
-                  <option value="">Caja</option>
-                  <option value="">Proveedores</option>
-                  <option value="">Capital</option>
-                </select>
-                </input>
-              </label>
-              <label class="form-label">
-                Nombre de Sub Cuenta
-                <select class="form-control text-white">
-                  <option value=""></option>
-                  <option value="">Cheques</option>
-                  <option value="">Depositos</option>
-                  <option value="">Aportacions</option>
-                </select>
-                </label>
-            <label class="form-label">
-            Saldo
-            <input type='number' min="0" name='COS PRODUCTO' class="form-control text-white"  required></input> 
-            </label>
-            <br>
-                  <label class="radio-inline">
-                      <input type="radio" name="Tipo" value=1>Debe
-                  </label>
-                  &nbsp;&nbsp; 
-                  <label class="radio-inline">
-                      <input type="radio" name="Tipo" value=2>Haber
-                  </label><hr />
-            <label class="form-label">
-              Comprobante
-              <br>
-              <form>
-                <input type="file" id="fileUpload">
-              </form>
-              </label>
-            <label class="form-label">
-            Fecha
-            <input type='date' name='COS PRODUCTO' class="form-control text-white"  required></input> 
-            </label>
-            <br>
-             <a href="" class="btn btn-secondary">Cancelar</a>
-             <button type="submit" class="btn btn-primary">Registrar </button>
-             </form>
-             </div> 
-             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-             </center>
-             </div>
-             </div>
-             </div>
-             </div>
-                 <!-- FIN DE MODAL PARA EDITAR  -->
-
-                  <!-- INICIO MODAL PARA BORRAR  -->
-           <div class="modal-container">
-            <div class="modal fade bd-example-modal-lg" id="dialogo3">
-                  <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-             <div class="modal-dialog modal-sm">
-             <div class="modal-content">
-                  <!-- CABECERA DEL DIALOGO EDITAR -->
-             <div class="modal-header">
-             <h4 class="modal-title">Eliminar Libro Diario</h4>
-             </div>
-                  <!-- CUERPO DEL DIALOGO BORRAR -->
-             <div class="modal-body">
-             <center>
-             <form action="" method="post">
-             <label class="form-label">
-             ¿ Desea Eliminar la Transaccion ?
-             </label>
-             <a href="" class="btn btn btn-primary">SI</a>
-             <a href="" class="btn btn-secondary">NO</a>
-             </form>
-             </div> 
-             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-             </center>
-             </div>
-             </div>
-             </div>
-             </div>
-                 <!-- FIN DE MODAL PARA BORRAR  -->
+                
 
                   <!-- INICIO MODAL PARA INGRESADA  -->
                   <div class="modal-container">
@@ -471,9 +375,6 @@ Administrador
                             <th class="text-dark bg-white"> Estado </th>
                             <th class="text-dark bg-white"> Acciones </th>
                             
-
-
-                            
                           </tr>
                         </thead>
                         <tbody>
@@ -482,15 +383,136 @@ Administrador
 
                           <tr class="text-white bg-dark">
                             <td> {{ $librodiario['COD_LIBDIARIO'] }} </td>
-                            <td> {{ $librodiario['NUM_CUENTA'] }} </td>
-                            <td> {{ $librodiario['NUM_SUBCUENTA'] }}  </td>
+                            <td> {{ $librodiario['NUM_SUBCUENTA'] }} </td>
+                            <td> {{ $librodiario['NOM_SUBCUENTA'] }}  </td>
                             <td> {{ $librodiario['SAL_DEBE'] }} </td>
                             <td>   {{ $librodiario['SAL_HABER'] }}</td>
                             <td> <a href="" data-toggle="modal" data-target="#comprobante">   image1651861487718.jpeg  </a> </td>
                             <td> {{ substr( $librodiario['FEC_LIBDIARIO'],0,10) }} </td>
                             <td><button type="button"  class="btn btn-primary"  data-toggle="modal" data-target="#dialogo5">Ingresada</button>
-                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
+                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#modal-editar{{ $librodiario['COD_LIBDIARIO'] }}"><i class="mdi mdi-table-edit"></i>Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#modal-eliminar{{ $librodiario['COD_LIBDIARIO'] }}"><i class="mdi mdi-delete-forever"></i>Eliminar</button> </td>
                           </tr>
+
+
+
+
+
+
+
+
+
+
+                            <!-- INICIO MODAL PARA EDITAR  -->
+           <div class="modal-container">
+            <div class="modal fade bd-example-modal-lg" id="modal-editar{{ $librodiario['COD_LIBDIARIO'] }}">
+                  <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+             <div class="modal-dialog modal-md">
+             <div class="modal-content">
+                  <!-- CABECERA DEL DIALOGO EDITAR -->
+             <div class="modal-header">
+             <h4 class="modal-title">Editar Libro Diario</h4>
+             </div>
+                  <!-- CUERPO DEL DIALOGO EDITAR -->
+             <div class="modal-body">
+             <center>
+             <form action="" method="post">
+              <label class="form-label">
+                Seleccionar Cuenta
+                <select class="form-control text-white" name="" id="">
+                  <option value=""></option>
+                  <option value="">Caja</option>
+                  <option value="">Proveedores</option>
+                  <option value="">Capital</option>
+                </select>
+                </input>
+              </label>
+              <label class="form-label">
+                Nombre de Sub Cuenta
+                <input type='text'  value="  {{ $librodiario['NOM_SUBCUENTA'] }}"  class="form-control text-white bg-dark" required>
+              
+                <!-- <select class="form-control text-white" >
+                  <option value=""></option>
+                  <option value="">Cheques</option>
+                  <option value="">Depositos</option>
+                  <option value="">Aportacions</option>
+                </select> -->
+                </label>
+            <label class="form-label">
+            Saldo
+            <input type='number'   value="{{ $librodiario['SAL_DEBE'] }}"     min="0" name='COS PRODUCTO' class="form-control text-white"  required></input> 
+            </label>
+            <br>
+                  <label class="radio-inline">
+                      <input type="radio" name="Tipo" value="{{ $librodiario['SAL_DEBE'] }}">Debe
+                  </label>
+                  &nbsp;&nbsp; 
+                  <label class="radio-inline">
+                      <input type="radio" name="Tipo" value=2>Haber
+                  </label><hr />
+            <label class="form-label">
+              Comprobante
+              <br>
+              <form>
+                <input type="file" id="fileUpload">
+              </form>
+              </label>
+            <label class="form-label">
+            Fecha
+            <input type='date' value="{{ substr( $librodiario['FEC_LIBDIARIO'],0,10) }}" name='COS PRODUCTO' class="form-control text-white"  required></input> 
+            </label>
+            <br>
+             <a href="" class="btn btn-secondary">Cancelar</a>
+             <button type="submit" class="btn btn-primary">Registrar </button>
+             </form>
+             </div> 
+             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+             </center>
+             </div>
+             </div>
+             </div>
+             </div>
+                 <!-- FIN DE MODAL PARA EDITAR  -->
+
+                  <!-- INICIO MODAL PARA BORRAR  -->
+           <div class="modal-container">
+            <div class="modal fade bd-example-modal-lg" id="modal-eliminar{{ $librodiario['COD_LIBDIARIO'] }}">
+                  <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+             <div class="modal-dialog modal-sm">
+             <div class="modal-content">
+                  <!-- CABECERA DEL DIALOGO EDITAR -->
+             <div class="modal-header">
+             <h4 class="modal-title">Eliminar Libro Diario</h4>
+             </div>
+                  <!-- CUERPO DEL DIALOGO BORRAR -->
+             <div class="modal-body">
+             <center>
+             <form action="" method="post">
+             <label class="form-label">
+
+
+             <input type="hidden" name="f" value="{{ $librodiario['COD_LIBDIARIO'] }}">
+             ¿ Desea Eliminar la Transaccion ?
+             </label>
+             <a href="" class="btn btn btn-primary">SI</a>
+             <a href="" class="btn btn-secondary">NO</a>
+             </form>
+             </div> 
+             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+             </center>
+             </div>
+             </div>
+             </div>
+             </div>
+                 <!-- FIN DE MODAL PARA BORRAR  -->
+
+                          
+
+
+
+
+
+
+
 
                           @endforeach
                         
