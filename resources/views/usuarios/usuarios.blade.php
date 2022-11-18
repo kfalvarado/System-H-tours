@@ -60,60 +60,37 @@ Administrador
               <table class="table table-bordered table-contextual">
                 <thead>
                   <tr class="text-dark bg-white">
-                    <th class="text-dark bg-white">#</th>
-                    <th class="text-dark bg-white">Usuarios</th>
-                     <th class="text-dark bg-white">Nombre usuario</th>
-                     <th class="text-dark bg-white">Estado</th>
-                     <th class="text-dark bg-white">Rol</th>
-                     <th class="text-dark bg-white">Ultima Conexión</th>
-                     <th class="text-dark bg-white">Preguntas contestadas</th>
-                     <th class="text-dark bg-white">Ingresos</th>
-                     <th class="text-dark bg-white">Fecha vencimiento</th>
-                     <th class="text-dark bg-white">Correo Electronico</th>
-                     <th class="text-dark bg-white">Acciones</th>
+                      <th class="text-dark bg-white"># Codigo</th>
+                      <th class="text-dark bg-white">Usuario</th>
+                      <th class="text-dark bg-white">Nombre usuario</th>
+                      <th class="text-dark bg-white">Estado</th>
+                      <th class="text-dark bg-white">Rol</th>
+                      <th class="text-dark bg-white">Ultima Conexión</th>
+                      <th class="text-dark bg-white">Preguntas contestadas</th>
+                      <th class="text-dark bg-white">Ingresos</th>
+                      <th class="text-dark bg-white">Correo Electronico</th>
+                      <th class="text-dark bg-white">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="text-white bg-dark">
-                    <td>1</td>
-                    <td>Usuario1</td>
-                    <td>Scarleth</td>
-                    <td>Activo</td>
-                    <td>Usuario</td>
-                    <td>16/08/22</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>25/09/22</td>
-                    <td>scarleth@gmail.com</td>
-                    <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td></button> </td>
 
-                  </tr>
-                  <tr class="text-white bg-dark">
-                    <td>2</td>
-                    <td>Usuario2</td>
-                    <td>Jose</td>
-                    <td>Activo</td>
-                    <td>Usuario</td>
-                    <td>16/08/22</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>25/09/22</td>
-                    <td>jose@gmail.com</td>
-                    <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td></button> </td>
+                  @foreach ($usrArr as $usuario)
+                
 
-                  </tr>
-                  <tr class="text-white bg-dark">
-                    <td>3</td>
-                    <td>Usuario3</td>
-                    <td>Carmen</td>
-                    <td>Activo</td>
-                    <td>Usuario</td>
-                    <td>16/08/22</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>25/09/22</td>
-                    <td>Carmen@gmail.com</td>
+                    <tr class="text-white bg-dark">
+                    <td>{{$usuario['COD_USR']}}</td>
+                    <td>{{$usuario['USR']}}</td>
+                    <td>{{$usuario['NOM_USR']}}</td>
+                    <td>{{$usuario['EST_USR']}}</td>
+                    <td>{{$usuario['COD_ROL']}}</td>
+                    <td>{{$usuario['FEC_ULT_CONN']}}</td>
+                    <td>{{$usuario['PREG_RES']}}</td>
+                    <td>{{$usuario['PRIMER_ACC']}}</td>
+                    <td>{{$usuario['CORREO']}}</td>
                     <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td></button> </td>
+                    </tr>
+                
+                  @endforeach
 
                 </tbody>
               </table>
