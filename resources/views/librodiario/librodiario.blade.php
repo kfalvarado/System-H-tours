@@ -38,6 +38,47 @@ Administrador
 @section('contenido')
 
 
+@if (Session::has('insertado'))
+  <script>
+    Swal.fire({
+    icon: 'success',
+    text: 'El libro diario se inserto Correctamente'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+@endif
+
+@if (Session::has('actualizado'))
+  <script>
+    Swal.fire({
+    icon: 'success',
+    text: 'El libro diario se actualizo Correctamente'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+@endif
+
+
+// ELIMINADO NORMAL NO ELIMINA PERO POR QUE DEBE SER ELIMINADO LOGICO
+@if (Session::has('eliminado'))
+  <script>
+    Swal.fire({
+    icon: 'success',
+    text: 'El libro diario se elimino Correctamente'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+@endif
+
+
+
+
+
+
+
+
+
+
 
 
 <style>
@@ -349,7 +390,7 @@ Administrador
 
             </div>
                 <p align="right" valign="baseline">
-                   <button type="button"  class="btn btn-success"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button> <a type="button"  class="btn btn-success" href="javascript:window.print();">Generar PDF</a>
+                   <button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button> <a type="button"  class="btn btn-success" href="javascript:window.print();">Generar PDF</a>
                     
           </p>
           <!--BUSCADOR VERDE CON CSS     INICIO-->
@@ -423,20 +464,27 @@ Administrador
                   <!-- CUERPO DEL DIALOGO EDITAR -->
              <div class="modal-body">
              <center>
-             <form action="" method="post">
-              <label class="form-label">
-                Seleccionar Cuenta
-                <select class="form-control text-white" name="" id="">
+             <form action="{{ route('librodiario.actualizar')}}" method="post">
+             @csrf @method('PUT') 
+
+             <input type="hidden" name="f" value="{{$librodiario['COD_LIBDIARIO']}}">
+
+
+             <label class="form-label">
+                Numero de Cuenta
+                <input type='text' value="{{ $librodiario['NUM_SUBCUENTA'] }}" name='cuenta' class="form-control text-white" required>
+                
+                <!-- <select class="form-control text-white" name="cuenta" id="">
                   <option value=""></option>
                   <option value="">Caja</option>
                   <option value="">Proveedores</option>
                   <option value="">Capital</option>
-                </select>
-                </input>
-              </label>
+                </select> -->
+                <!-- </input>
+              </label> -->
               <label class="form-label">
                 Nombre de Sub Cuenta
-                <input type='text'  value="  {{ $librodiario['NOM_SUBCUENTA'] }}"  class="form-control text-white bg-dark" required>
+                <input type='text' list="" name="nombresubcuenta" value="{{ $librodiario['NOM_SUBCUENTA'] }}"  class="form-control text-white bg-dark" required>
               
                 <!-- <select class="form-control text-white" >
                   <option value=""></option>
@@ -444,33 +492,36 @@ Administrador
                   <option value="">Depositos</option>
                   <option value="">Aportacions</option>
                 </select> -->
+               
                 </label>
             <label class="form-label">
             Saldo
-            <input type='number'   value="{{ $librodiario['SAL_DEBE'] }}"     min="0" name='COS PRODUCTO' class="form-control text-white"  required></input> 
+            <input type='number'  min="0" name="saldo"   value="{{ $librodiario['SAL_DEBE'] }}"      class="form-control text-white bg-dark"  required></input>
             </label>
             <br>
                   <label class="radio-inline">
-                      <input type="radio" name="Tipo" value="{{ $librodiario['SAL_DEBE'] }}">Debe
+                      <input type="radio" name="" value="">Debe
                   </label>
                   &nbsp;&nbsp; 
                   <label class="radio-inline">
-                      <input type="radio" name="Tipo" value=2>Haber
+                      <input type="radio" name="" value="">Haber
                   </label><hr />
             <label class="form-label">
               Comprobante
               <br>
-              <form>
+              <!-- <form> -->
                 <input type="file" id="fileUpload">
-              </form>
+              <!-- </form> -->
               </label>
             <label class="form-label">
             Fecha
-            <input type='date' value="{{ substr( $librodiario['FEC_LIBDIARIO'],0,10) }}" name='COS PRODUCTO' class="form-control text-white"  required></input> 
+            <input type='date' name="fecha" value="{{ substr( $librodiario['FEC_LIBDIARIO'],0,10) }}"  class="form-control text-white"  required></input> 
+            
             </label>
             <br>
+            
              <a href="" class="btn btn-secondary">Cancelar</a>
-             <button type="submit" class="btn btn-primary">Registrar </button>
+             <button type="submit" class="btn btn-primary">Aceptar </button>
              </form>
              </div> 
              <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -494,14 +545,16 @@ Administrador
                   <!-- CUERPO DEL DIALOGO BORRAR -->
              <div class="modal-body">
              <center>
-             <form action="" method="post">
+           
+             <form action="{{route('librodiario.eliminar')}}" method="post">
+              @csrf @method('DELETE')
              <label class="form-label">
 
 
              <input type="hidden" name="f" value="{{ $librodiario['COD_LIBDIARIO'] }}">
              ¿ Desea Eliminar la Transaccion ?
              </label>
-             <a href="" class="btn btn btn-primary">SI</a>
+             <button type="submit" href="" class="btn btn btn-primary">SI</button>
              <a href="" class="btn btn-secondary">NO</a>
              </form>
              </div> 

@@ -22,6 +22,14 @@ use App\Http\Controllers\librodiario\LibrodiarioController;
 
 Route::get('/',[LibrodiarioController::class,'mostrar'])->name('mostrar.librodiario');
 Route::post('/insertar',[LibrodiarioController::class,'insertar'])->name('librodiario.insertar');
+Route::put('/actualizar',[LibrodiarioController::class,'actualizar'])->name('librodiario.actualizar');
+
+Route::delete('/eliminar',[LibrodiarioController::class,'eliminar'])->name('librodiario.eliminar');
+
+
+
+
+
 
 // Route::get('/inicio',[SessionController::class,'inicio'])->name('home');
 // Route::get('/registro',[SessionController::class,'register'])->name('registro');
