@@ -105,10 +105,17 @@ Preguntas | inicio
                                 <!-- CUERPO DEL DIALOGO NUEVA -->
                           <div class="modal-body">
                           <center>
-                          <form action="" method="post">
+                          <form action="{{ route('preguntas.actualizar') }}" method="put">
+                          @csrf @method('PUT')
                           <label class="form-label">
-                          Preguntas
-                          <input type='text' name='Clasificacion' class="form-control text-white" required></input> 
+                            Preguntas
+                            <input 
+                              type='text' 
+                              name='Clasificacion' 
+                              class="form-control text-white"
+                              value="{{$preg['PREGUNTA']}}"  
+                              required>
+                            </input> 
                           </label>
                           <label class="form-label">
                           </label>

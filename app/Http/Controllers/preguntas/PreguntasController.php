@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
+use PhpParser\Builder\Function_;
+
 class PreguntasController extends Controller
 {
 
@@ -32,4 +34,10 @@ class PreguntasController extends Controller
 
         return view('preguntas.preguntas',compact('pregArr'));
     }
+
+
+    public function actualizar( Request $req ){
+        return $req;
+    }
+
 }

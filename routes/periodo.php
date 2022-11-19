@@ -24,3 +24,5 @@ Route::delete('/eliminar',[PeriodoController::class,'eliminar'])->name('periodo.
 
 //pdf
 Route::get('/mostrarpdf',[PeriodoController::class,'mostrarPDF'])->name('periodo.pdf');
+
+//excel
