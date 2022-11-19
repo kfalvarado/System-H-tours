@@ -47,6 +47,43 @@ Administrador
   </script>
 @endif
 
+@if (Session::has('actualizado'))
+  <script>
+    Swal.fire({
+    icon: 'success',
+    text: 'El libro mayor se actualizo Correctamente'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+@endif
+
+<!-- ELIMINADO NORMAL NO ELIMINA PERO POR QUE DEBE SER ELIMINADO LOGICO -->
+@if (Session::has('eliminado'))
+  <script>
+    Swal.fire({
+    icon: 'success',
+    text: 'El libro mayor se elimino Correctamente'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+@endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- ESTE CSS ES PARA OCULTAR DATOS EN LA IMPRESION-->
     <style>
     
@@ -133,7 +170,7 @@ Administrador
               @csrf
               <label class="form-label">
                 Clasificacion
-                <input type='text'  name='calsificacion' class="form-control text-white" required>
+                <input type='text'  name='calsificacionperiodo' class="form-control text-white" required>
                 <!-- <select  class="form-control text-white" name="clasificacion" id="" >
                   <option value=""></option>
                   <option value="">1</option>
@@ -395,10 +432,14 @@ Administrador
                   <!-- CUERPO DEL DIALOGO EDITAR -->
              <div class="modal-body">
              <center>
-             <form action="" method="post">
+             <form action="{{route('libromayor.actualizar')}}" method="post">
+              @csrf @method('PUT')
+
+              <input type="hidden" name="f" value="{{$libromayor['COD_LIBMAYOR']}}">
+
               <label class="form-label">
                 Clasificacion
-                <input type='text' value="{{ $libromayor['COD_CLASIFICACION'] }}" list="lista-clasificacion" name='nombre-periodo' class="form-control text-white" required>
+                <input type='text' value="{{ $libromayor['COD_CLASIFICACION'] }}" list="lista-clasificacion" name='clasificacionperiodo' class="form-control text-white" required>
                 <datalist id="lista-clasificacion">
                   <option value="Acitvo">
                     <option value="Pasivo">
@@ -413,7 +454,7 @@ Administrador
               </label>
             <label class="form-label">
               Nombre de Cuenta
-              <input type='text' value="{{ $libromayor['NOM_CUENTA'] }}"list="lista-cuentas" name='nombre-periodo' class="form-control text-white" required>
+              <input type='text' value="{{ $libromayor['NOM_CUENTA'] }}"list="lista-cuentas" name='nombrecuenta' class="form-control text-white" required>
               <datalist id="lista-cuentas">
                 <option value="Caja">
                   <option value="Banco">
@@ -428,16 +469,16 @@ Administrador
             </label>
             <label class="form-label">
             Saldo
-            <input type='text' value="{{ $libromayor['SAL_DEBE'] }}" name='' class="form-control text-white"  required></input> 
+            <input type='text' value="{{ $libromayor['SAL_DEBE'] }}" name='saldo' class="form-control text-white"  required></input> 
             </label>
             <br>
                   <label class="radio-inline">
-                      <input type="radio" name="Tipo" value=1>Debe
+                      <input type="radio" name="" value="">Debe
                   </label>
 
                   &nbsp;&nbsp; 
                   <label class="radio-inline">
-                      <input type="radio" name="Tipo" value=2>Haber
+                      <input type="radio" name="" value="">Haber
                   </label><hr />
                  
             <label class="form-label">
@@ -469,12 +510,16 @@ Administrador
                   <!-- CUERPO DEL DIALOGO BORRAR -->
              <div class="modal-body">
              <center>
-             <form action="" method="post">
+             <form action="{{route('libromayor.eliminar')}}" method="post">
+              @csrf @method('DELETE')
+
+              <input type="hidden" name="f" value="{{$libromayor['COD_LIBMAYOR']}}">
+
              <label class="form-label">
              ¿ Desea Eliminar la Transaccion ?
              </label>
              
-             <a href="" class="btn btn btn-primary">SI</a>
+             <button type="submit" href="" class="btn btn btn-primary">SI</button>
              <a href="" class="btn btn-secondary">NO</a>
              
              </form>
