@@ -50,15 +50,16 @@ Administrador
 @endif
 
 <div class="container-scroller">
-  <div class="content-wrapper">
+  <div class="content-wrapper p-1">
     <center> <h1>Usuarios H Tours Honduras</h1> </center>
-    <h5>_____________________________________________________________________________________</h5>
+    
     <!-- <ul class="nav nav-pills nav-stacked">
       <li class="active"><a href="#"></a></li>
     </ul> -->
-    <p align="right" valign="baseline">
+
+    {{-- <p align="right" valign="baseline">
       <button type="button"  class="btn btn-success mr-3"  data-toggle="modal " data-target="#dialogo1">(+) Nuevo</button>
-    </p>
+    </p> --}}
     
     <ul class="nav nav-pills nav-stacked">
       <li class="active"><a href="#"></a></li>

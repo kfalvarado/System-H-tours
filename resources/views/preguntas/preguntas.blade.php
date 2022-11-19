@@ -37,18 +37,34 @@ Preguntas | inicio
 
 @section('contenido')
 
+@if (Session::has('actualizado'))
+  <script>
+    Swal.fire({
+    icon: 'success',
+    text: 'Pregunta y respuesta actualizada correctamente'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+@endif
+
 <main class="container">
         <!-- INICIO PANEL PREGUNTAS  --> 
         <div class="container-scroller">
-        <div class="content-wrapper">
+        <div class="content-wrapper p-1" >
           <center> <h1>Preguntas H Tours Honduras</h1> </center>
-          <h5>_____________________________________________________________________________________</h5>
+
+          {{-- <marquee 
+            behavior="scroll" 
+            direction="right" 
+            scrollamount="100" 
+            scrolldelay="200"
+            bgcolor = gray>---</marquee> --}}
           <!-- <ul class="nav nav-pills nav-stacked">
             <li class="active"><a href="#"></a></li>
           </ul> -->
-          <p align="right" valign="baseline">
+          {{-- <p align="right" valign="baseline">
             <button type="button"  class="btn btn-success mr-3"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
-          </p>
+          </p> --}}
           
           <ul class="nav nav-pills nav-stacked">
             <li class="active"><a href="#"></a></li>
