@@ -19,6 +19,8 @@ class UsuariosController extends Controller
     public function mostrar()
     {
         $usr = http::withToken(Cache::get('token'))->get($this->url.'/sel_usr');
-        return view('usuarios.usuarios');
+        //return $usr;
+        $usrArr = $usr->json();
+        return view('usuarios.usuarios',compact('usrArr'));
     }
 }
