@@ -36,24 +36,24 @@
 @endsection
 <!-- contenido de la pagina  -->
 @section('contenido')
-@if (Session::has('insertado'))
-  <script>
-    Swal.fire({
-    icon: 'success',
-    text: 'El grupo se inserto correctamente'
-    // footer: '<a href="">Why do I have this issue?</a>'
-  })
-  </script>
-@endif
-@if (Session::has('actualizo'))
-  <script>
-    Swal.fire({
-    icon: 'success',
-    text: 'El grupo se actualizo correctamente'
-    // footer: '<a href="">Why do I have this issue?</a>'
-  })
-  </script>
-@endif
+    @if (Session::has('insertado'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                text: 'El grupo se inserto correctamente'
+                // footer: '<a href="">Why do I have this issue?</a>'
+            })
+        </script>
+    @endif
+    @if (Session::has('actualizo'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                text: 'El grupo se actualizo correctamente'
+                // footer: '<a href="">Why do I have this issue?</a>'
+            })
+        </script>
+    @endif
     <div class="content-wrapper">
         <div class="page-header">
             <center>
@@ -115,14 +115,17 @@
                                                         <!-- CUERPO DEL DIALOGO EDITAR -->
                                                         <div class="modal-body">
                                                             <center>
-                                                                <form action="{{ route('grupo.actualizar') }}" method="post">
+                                                                <form action="{{ route('grupo.actualizar') }}"
+                                                                    method="post">
                                                                     @csrf @method('PUT')
-                                                                    <input type="hidden" name="cod" value="{{ $grupo['COD_GRUPO'] }}">
+                                                                    <input type="hidden" name="cod"
+                                                                        value="{{ $grupo['COD_GRUPO'] }}">
                                                                     <label class="form-label">
                                                                         Clasificacion
                                                                         <select class="form-control text-white"
                                                                             name="clasificacion" id="" required>
-                                                                            <option value="{{ $grupo['NATURALEZA'] }}" hidden selected>
+                                                                            <option value="{{ $grupo['NATURALEZA'] }}"
+                                                                                hidden selected>
                                                                                 {{ $grupo['NATURALEZA'] }}</option>
                                                                             @foreach ($clasificacionArr as $key)
                                                                                 <option
@@ -146,7 +149,8 @@
                                                                             required></input>
                                                                     </label>
 
-                                                                    <button type="submit" class="btn btn-primary">Actualizar
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary">Actualizar
                                                                     </button>
                                                                 </form>
                                                         </div>
@@ -225,25 +229,25 @@
                                                             <label class="form-label">
                                                                 <label class="form-label">
                                                                     Clasificacion
-                                                                    <select class="form-control text-white" name="clasificacion"
-                                                                        id="" required>
+                                                                    <select class="form-control text-white"
+                                                                        name="clasificacion" id="" required>
                                                                         <option hidden selected>Seleccionar</option>
                                                                         @foreach ($clasificacionArr as $key)
-                                                                            <option
-                                                                                value="{{ $key['NATURALEZA'] }}">
+                                                                            <option value="{{ $key['NATURALEZA'] }}">
                                                                                 {{ $key['NATURALEZA'] }}</option>
                                                                         @endforeach
                                                                     </select>
 
                                                                     </select>
                                                                 </label>
-                                                  
-                                                        <label class="form-label">
-                                                            Numero de Grupo
-                                                            <input type='number' name='grupo' min="0"
-                                                                class="form-control text-white" maxlength="3" required>
-                                                        </label>
-                                                
+
+                                                                <label class="form-label">
+                                                                    Numero de Grupo
+                                                                    <input type='number' name='grupo' min="0"
+                                                                        class="form-control text-white" maxlength="3"
+                                                                        required>
+                                                                </label>
+
                                                 </tr>
                                             </thead>
                                         </table>
