@@ -82,23 +82,31 @@ Preguntas | inicio
                   <!-- <p class="card-description"> Add class <code>.table-striped</code> -->
                   </p>
                   <div class="table-responsive">
-                    <table class="table table-bordered table-contextual">
+                    <table id="tabla" class="table table-bordered table-contextual">
                       <thead>
                         <tr class="text-dark bg-white">
                           <th class="text-dark bg-white">#</th>
                           <th class="text-dark bg-white">Preguntas</th>
-                           <th class="text-dark bg-white">Acciones</th>
+                          <th class="text-dark bg-white">Usuarios</th>
+                          <th class="text-dark bg-white">Acciones</th>
                         </tr>
                       </thead>
                       <tbody>
 
-                        @foreach ( $pregArr as $preg)
-                          
-                       
+                        @if (count($pregArr) <= 0)
+                            <tr>
+                              <td colspan="6">Sin resultados</td>
+                            </tr>
+                        @else
 
+                        @foreach ( $pregArr as $preg)
                         <tr class="text-white bg-dark">
                           <td>{{$preg['COD_PREG']}}</td>
                           <td>{{$preg['PREGUNTA']}}</td>
+                          {{-- @foreach ($usrArr as $usuario)
+                          <td>{{$usuario['USUARIO']}}</td>
+                          @endforeach --}}
+                          
                           <td>
                             <button type="button" 
                                     class="btn btn-info"  
@@ -111,7 +119,7 @@ Preguntas | inicio
                         <div class="modal-container">
                           <div class="modal fade bd-example-modal-lg" id="modal-editar-{{$preg['COD_PREG']}}">
                                 <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-                          <div class="modal-dialog modal-sm">
+                          <div class="modal-dialog modal-md">
                           <div class="modal-content">
                                 <!-- CABECERA DEL DIALOGO NUEVA-->
                           <div class="modal-header">
@@ -148,7 +156,7 @@ Preguntas | inicio
                       
 
                           <a href="" class="btn btn-secondary">Cancelar</a>
-                          <button type="submit" class="btn btn-primary">Registrar </button>
+                          <button type="submit" class="btn btn-primary">Aceptar</button>
                           </form>
                           </div> 
                           <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -197,9 +205,11 @@ Preguntas | inicio
                          <!-- FIN DE MODAL PARA EDITAR  -->
 
                         @endforeach
+                        @endif
                       </tbody>
                     </table>
                   </div>
+                  <div id="paginador"></div>
                 </div>
               </div>
             </div>
@@ -250,5 +260,7 @@ Preguntas | inicio
         </div> --}}
         <!-- FIN DE MODAL PARA BORRAR  -->
 </main>
-        
+          @section('js')
+          <script src="{{ asset('assets/js/ab-page.js') }}"></script>
+          @endsection
 @endsection
