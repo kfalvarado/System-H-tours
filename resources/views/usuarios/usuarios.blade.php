@@ -38,6 +38,17 @@ Administrador
 @endsection
 
 @section('contenido')
+
+@if (Session::has('actualizado'))
+  <script>
+    Swal.fire({
+    icon: 'success',
+    text: 'El usuario se actualizo correctamente'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+@endif
+
 <div class="container-scroller">
   <div class="content-wrapper">
     <center> <h1>Usuarios H Tours Honduras</h1> </center>
@@ -83,7 +94,8 @@ Administrador
                     <td>{{$usuario['USUARIO']}}</td>
                     <td>{{$usuario['NOMBRE_USUARIO']}}</td>
                     <td>{{$usuario['ESTADO_USUARIO']}}</td>
-                    <td>{{$usuario['ROL_USUARIO']}}</td>
+                    <td>{{$usuario['COD_ROL']}}</td>
+                    <td>{{$usuario['TIPO']}}</td>
                     <td>{{$usuario['FECHA_ULTIMO_ACCESO']}}</td>
                     <td>{{$usuario['PREGUNTA_RESPONDIDA']}}</td>
                     <td>{{$usuario['PRIMER_ACCESO']}}</td>
@@ -155,7 +167,7 @@ Administrador
                                                 <label class="form-label">
                                                   Seleccionar el Rol
                                                   <select class="form-control text-white" name="ROL" id="">
-                                                    <option hidden selected>Seleccionar</option>
+                                                    <option value="{{$usuario['COD_ROL']}}" hidden selected>{{$usuario['TIPO']}}</option>
                                                     @foreach ($usr_rol_Arr as $usr_rol)
                                                     <option value="{{$usr_rol['COD_ROL']}}">{{$usr_rol['ROL']}}</option>
                                                     @endforeach

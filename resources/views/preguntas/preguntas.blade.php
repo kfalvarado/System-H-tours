@@ -105,18 +105,27 @@ Preguntas | inicio
                                 <!-- CUERPO DEL DIALOGO NUEVA -->
                           <div class="modal-body">
                           <center>
-                          <form action="{{ route('preguntas.actualizar') }}" method="put">
+                          <form action="{{ route('preguntas.actualizar') }}" method="post">
                           @csrf @method('PUT')
+                          <input name="COD_USR" type="hidden" value="{{$preg['COD_PREG']}}">
                           <label class="form-label">
                             Preguntas
                             <input 
                               type='text' 
-                              name='Clasificacion' 
+                              name='PREGUNTA' 
                               class="form-control text-white"
                               value="{{$preg['PREGUNTA']}}"  
                               required>
-                            </input> 
                           </label>
+                          <label class="form-label">
+                                Nueva respuesta
+                            <input 
+                              type='text' 
+                              name='RESPUESTA' 
+                              class="form-control text-white"
+                              value=""  
+                              required>
+                            </label>
                           <label class="form-label">
                           </label>
 

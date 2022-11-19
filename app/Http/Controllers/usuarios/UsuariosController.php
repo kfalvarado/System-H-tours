@@ -43,6 +43,7 @@ class UsuariosController extends Controller
                 "CORREO" => $req->CORREO,
                 "FILA" => $req->COD_USR
         ]);
+        Session::flash("actualizado","1");
         return back();
     }
 

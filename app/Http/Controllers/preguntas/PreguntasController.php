@@ -37,7 +37,15 @@ class PreguntasController extends Controller
 
 
     public function actualizar( Request $req ){
-        return $req;
+       
+        $usr = http::withToken(Cache::get('token'))->put($this->url.'/upd_preg_res',[
+           
+            "PREGUNTA" => $req->PREGUNTA,
+            "RESPUESTA" => $req->RESPUESTA,
+            "FILA" => $req->COD_USR
+    ]);
+    Session::flash("actualizado","1");
+    return back();
     }
 
 }
