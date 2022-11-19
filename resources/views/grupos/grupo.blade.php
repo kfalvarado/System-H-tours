@@ -63,6 +63,15 @@
             })
         </script>
     @endif
+    @if (Session::has('duplicada'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                text: 'El numero de grupo esta duplicado'
+                // footer: '<a href="">Why do I have this issue?</a>'
+            })
+        </script>
+    @endif
     <div class="content-wrapper">
         <div class="page-header">
             <center>
@@ -145,6 +154,7 @@
                                                                     </label>
                                                                     <label class="form-label">
                                                                         Numero de grupo
+
                                                                         <input type='text' name='grupo'
                                                                             value="{{ $grupo['NUM_GRUPO'] }}"
                                                                             class="form-control text-white" maxlength="3"
@@ -189,14 +199,17 @@
                                                         <!-- CUERPO DEL DIALOGO BORRAR -->
                                                         <div class="modal-body">
                                                             <center>
-                                                                <form action="{{ route('grupo.eliminar') }}" method="post">
+                                                                <form action="{{ route('grupo.eliminar') }}"
+                                                                    method="post">
                                                                     @csrf @method('DELETE')
                                                                     <label class="form-label">
                                                                         ¿ Desea Eliminar el Registro ?
-                                                                        <input type="hidden" name="cod" value="{{ $grupo['COD_GRUPO'] }}">
+                                                                        <input type="hidden" name="cod"
+                                                                            value="{{ $grupo['COD_GRUPO'] }}">
                                                                     </label>
                                                                     <br>
-                                                                    <button type="submit" class="btn btn btn-primary">SI</button>
+                                                                    <button type="submit"
+                                                                        class="btn btn btn-primary">SI</button>
                                                                     <a href="" class="btn btn-secondary">NO</a>
                                                                 </form>
                                                         </div>
@@ -224,7 +237,7 @@
                             <div class="modal-content">
                                 <!-- CABECERA DEL DIALOGO NUEVA-->
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Ingresar Nueva Cuenta</h4>
+                                    <h4 class="modal-title">Ingresar Nuevo Grupo</h4>
                                     <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                                 </div>
                                 <!-- CUERPO DEL DIALOGO NUEVA -->
@@ -239,20 +252,20 @@
                                                             <label class="form-label">
                                                                 <label class="form-label">
                                                                     Clasificacion
+
                                                                     <select class="form-control text-white"
-                                                                        name="clasificacion" id="" required>
+                                                                        name="clasificacion" id=""
+                                                                        onchange="valor();" required>
                                                                         <option hidden selected>Seleccionar</option>
                                                                         @foreach ($clasificacionArr as $key)
                                                                             <option value="{{ $key['NATURALEZA'] }}">
                                                                                 {{ $key['NATURALEZA'] }}</option>
                                                                         @endforeach
                                                                     </select>
-
-                                                                    </select>
                                                                 </label>
-
                                                                 <label class="form-label">
                                                                     Numero de Grupo
+
                                                                     <input type='number' name='grupo' min="0"
                                                                         class="form-control text-white" maxlength="3"
                                                                         required>
@@ -264,7 +277,7 @@
                                         <label class="form-label">
                                             Nombre de grupo
                                             <input type='text' name='name' class="form-control text-white"
-                                                required></input>
+                                                required>
                                         </label>
                                         <button type="submit" class="btn btn-primary">Registrar </button>
                                         </form>
