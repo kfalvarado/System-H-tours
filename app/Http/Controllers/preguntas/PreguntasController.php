@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
+use PhpParser\Builder\Function_;
+
 class PreguntasController extends Controller
 {
 
@@ -32,4 +34,18 @@ class PreguntasController extends Controller
 
         return view('preguntas.preguntas',compact('pregArr'));
     }
+
+
+    public function actualizar( Request $req ){
+       
+        $usr = http::withToken(Cache::get('token'))->put($this->url.'/upd_preg_res',[
+           
+            "PREGUNTA" => $req->PREGUNTA,
+            "RESPUESTA" => $req->RESPUESTA,
+            "FILA" => $req->COD_USR
+    ]);
+    Session::flash("actualizado","1");
+    return back();
+    }
+
 }

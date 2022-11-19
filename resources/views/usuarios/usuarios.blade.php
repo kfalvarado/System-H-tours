@@ -38,6 +38,17 @@ Administrador
 @endsection
 
 @section('contenido')
+
+@if (Session::has('actualizado'))
+  <script>
+    Swal.fire({
+    icon: 'success',
+    text: 'El usuario se actualizo correctamente'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+@endif
+
 <div class="container-scroller">
   <div class="content-wrapper">
     <center> <h1>Usuarios H Tours Honduras</h1> </center>
@@ -67,6 +78,7 @@ Administrador
                       <th class="text-dark bg-white">Nombre usuario</th>
                       <th class="text-dark bg-white">Estado</th>
                       <th class="text-dark bg-white">Rol</th>
+                      <th class="text-dark bg-white">Tipo</th>
                       <th class="text-dark bg-white">Ultima Conexión</th>
                       <th class="text-dark bg-white">Preguntas contestadas</th>
                       <th class="text-dark bg-white">Ingresos</th>
@@ -82,7 +94,8 @@ Administrador
                     <td>{{$usuario['USUARIO']}}</td>
                     <td>{{$usuario['NOMBRE_USUARIO']}}</td>
                     <td>{{$usuario['ESTADO_USUARIO']}}</td>
-                    <td>{{$usuario['ROL_USUARIO']}}</td>
+                    <td>{{$usuario['COD_ROL']}}</td>
+                    <td>{{$usuario['TIPO']}}</td>
                     <td>{{$usuario['FECHA_ULTIMO_ACCESO']}}</td>
                     <td>{{$usuario['PREGUNTA_RESPONDIDA']}}</td>
                     <td>{{$usuario['PRIMER_ACCESO']}}</td>
@@ -111,49 +124,85 @@ Administrador
                                               <div class="modal-content">
                                                     <!-- CABECERA DEL DIALOGO NUEVA-->
                                               <div class="modal-header">
-                                              <h4 class="modal-title">Ingresar Usuarios</h4>
+                                              <h4 class="modal-title">Editar Usuarios</h4>
                                                     <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                                               </div>
                                                     <!-- CUERPO DEL DIALOGO NUEVA -->
                                               <div class="modal-body">
                                               <center>
-                                              <form action="" method="post">
+                                              <form action="{{ route('usuarios.actualizar') }}" method="put">
+                                                @csrf @method('PUT') 
+                                                <input name="COD_USR" type="hidden" value="{{$usuario['CODIGO_USUARIO']}}"> 
                                                 <label class="form-label">
                                                   Usuario
-                                                <input type='text' name='Clasificacion' class="form-control text-white" required></input> 
+                                                  <input 
+                                                    type='text' 
+                                                    name='USUARIO' 
+                                                    class="form-control text-white"
+                                                    value="{{$usuario['USUARIO']}}" 
+                                                    required>
+                                                  </input> 
                                                 </label>
-                                              <label class="form-label">
-                                                Nombre del usuario
-                                              <input type='text' name='Clasificacion' class="form-control text-white" required></input> 
-                                              </label>
-                                              <label class="form-label">
-                                                Seleccionar el Rol
-                                                
-                                                <select class="form-control text-white" name="" id="">
-                                                  <option value=""></option>
-                                                  <option value="">Administrador</option>
-                                                  <option value="">Usuario</option>
-                                                </select> 
+                                                <label class="form-label">
+                                                  Nombre del usuario
+                                                  <input 
+                                                    type='text' 
+                                                    name='NOMBRE_USUARIO' 
+                                                    class="form-control text-white"
+                                                    value="{{$usuario['NOMBRE_USUARIO']}} "
+                                                    required>
+                                                  
+                                                  </input> 
+                                                </label>
+                                                <label class="form-label">
+                                                  Seleccionar el estado
+                                                  <select class="form-control text-white" name="ESTADO" id="">
+                                                    <option hidden selected value="{{$usuario['ESTADO_USUARIO']}}">{{$usuario['ESTADO_USUARIO']}}</option>
+                                                    <option value="NUEVO">Nuevo</option>
+                                                    <option value="ACTIVO">Activo</option>
+                                                    <option value="INACTIVO">Inactivo</option>
+                                                    <option value="BLOQUEADO">Bloqueado</option>
+                                                  </select> 
+                                                </label>
+                                                <label class="form-label">
+                                                  Seleccionar el Rol
+                                                  <select class="form-control text-white" name="ROL" id="">
+                                                    <option value="{{$usuario['COD_ROL']}}" hidden selected>{{$usuario['TIPO']}}</option>
+                                                    @foreach ($usr_rol_Arr as $usr_rol)
+                                                    <option value="{{$usr_rol['COD_ROL']}}">{{$usr_rol['ROL']}}</option>
+                                                    @endforeach
+                                                  </select> 
                                                 </label>
                                                 <br>
-                                              <label class="form-label">
-                                                Correo Electronico
-                                              <input type='email' name='saldo' class="form-control text-white"  required></input> 
-                                              </label>
-                                              <br>
-                                              <label class="form-label">
-                                                Contraseña
-                                                <input type='password' name='CORREO ELECTRONICO' class="form-control text-white"  required></input> 
+                                                <label class="form-label">
+                                                  Correo Electronico
+                                                  <input 
+                                                    type='email' 
+                                                    name='CORREO' 
+                                                    class="form-control text-white"
+                                                    value="{{$usuario['CORREO_ELECTRONICO']}}"  
+                                                    required>
+                                                  </input> 
                                                 </label>
                                                 <br>
-                                              <label class="form-label">
+                                                {{-- <label class="form-label">
+                                                  Contraseña
+                                                  <input 
+                                                    type='password' 
+                                                    name='CONTRASEGNA' 
+                                                    class="form-control text-white"  
+                                                    required></input> 
+                                                </label> --}}
+                                                <br>
+                                              {{-- <label class="form-label">
                                               Fecha de vencimiento
                                               <input type='date' name='fecha' class="form-control text-white"  required></input> 
-                                              </label> <!-- INICIO MODAL PARA NUEVA  -->
+                                              </label>  --}}
+                                              <!-- INICIO MODAL PARA NUEVA  -->
                                               <br>
 
                                               <a href="" class="btn btn-secondary">Cancelar</a>
-                                              <button type="submit" class="btn btn-primary">Registrar </button>
+                                              <button type="submit" class="btn btn-primary">Aceptar</button>
                                               </form>
                                               </div> 
                                               <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
