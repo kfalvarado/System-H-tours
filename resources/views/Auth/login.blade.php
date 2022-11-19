@@ -26,6 +26,7 @@
 </head>
 
 <body>
+  {{ Cache::flush() }}
   @if(Session::has('bloqueado'))
   <script>
     Swal.fire({

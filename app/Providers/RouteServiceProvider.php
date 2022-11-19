@@ -67,6 +67,10 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->prefix('clasificaciones')
                 ->group(base_path('routes/clasificacion.php'));
+            Route::middleware('web')
+                ->prefix('grupos')
+                ->group(base_path('routes/grupos.php'));
+
 
             Route::middleware('web')
                 ->prefix('objetos')
@@ -75,6 +79,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->prefix('personas')
                 ->group(base_path('routes/personas.php'));
+
             /* SEGURIDAD */
 
             Route::middleware('web')
