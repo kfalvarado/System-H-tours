@@ -6,32 +6,49 @@ Cuentas | inicio
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
-{{ asset('assets/images/dama.png') }}
+@if (Cache::get('genero') == 'M')
+{{ asset('assets/images/varon.png')}}
+@else
+{{ asset('assets/images/dama.png')}}
+@endif
 @endsection
 
 <!-- nombre del usuario de la barra lateral  -->
 @section('Usuario-Lateral')
-ALE
+{{ Cache::get('user') }}
 @endsection
 <!-- rol del usuario de la barra lateral  -->
 @section('rol-usuario')
-Administrador
+{{ Cache::get('rol') }}
 @endsection
 
 <!-- foto del menu de la derecha -->
 @section('foto-user2')
-{{ asset('assets/images/dama.png') }}
+@if (Cache::get('genero') == 'M')
+{{ asset('assets/images/varon.png')}}
+@else
+{{ asset('assets/images/dama.png')}}
+@endif
 @endsection
 <!-- nombre del menu de la derecha  -->
 @section('Usuario-Menu')
-ALE
+{{ Cache::get('user') }}
 @endsection
 <!-- contenido de la pagina  -->
 @section('contenido')
+@if(Session::has('insertado'))
+<script>
+    Swal.fire({
+    icon: 'success',
+    text: 'La cuenta se registro correctamente'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+  @endif
 <div class="content-wrapper">
     <div class="page-header">
         <center>
-            <h1> Crear Cuentas </h1>
+            <h1> Gestión Cuentas </h1>
         </center>
     </div>
     <p align="right" valign="baseline">
@@ -52,99 +69,27 @@ ALE
                                     <th class="text-dark bg-white"> # </th>
                                     <th class="text-dark bg-white"> <b>Clasificacion</b> </th>
                                     <th class="text-dark bg-white"> <b>Codigo</b> </th>
+                                    <th class="text-dark bg-white"> <b>Grupo</b> </th>
                                     <th class="text-dark bg-white"> </b>Nombre de Cuentas</b> </th>
                                     <th class="text-dark bg-white"> </b>Acciones</b> </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="text-white bg-dark">
-                                    <td> 1</td>
-                                    <td> Activo</td>
-                                    <td> 1.1.1 </td>
-                                    <td> Caja</td>
-                                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
-                                </tr>
-                                <tr class="text-white bg-dark">
-                                    <td> 2 </td>
-                                    <td> Pasivo </td>
-                                    <td> 2.1.1 </td>
-                                    <td> Proveedores</td>
-                                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
-                                </tr>
-                                <tr class="text-white bg-dark">
-                                    <td> 3 </td>
-                                    <td> Patrimonio </td>
-                                    <td> 3.1.1 </td>
-                                    <td> Capital Social </td>
-                                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
 
+                                @foreach ($personArr as $cuentas)
 
-            <!-- INICIO MODAL PARA NUEVA  -->
+                                <tr class="text-white bg-dark">
+                                    <td> {{$cuentas ['COD_CUENTA'] }}</td>
+                                    <td> {{$cuentas ['COD_CLASIFICACION'] }}</td>
+                                    <td> {{$cuentas ['NUM_CUENTA'] }} </td>
+                                    <td> {{$cuentas ['cod_grupo'] }} </td>
+                                    <td> {{$cuentas ['NOM_CUENTA'] }}</td>
+                                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-editar-{{ $cuentas['COD_CUENTA'] }}">Editar</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-eliminar-{{ $cuentas['COD_CUENTA'] }}">Eliminar</button> </td>
+                                </tr>
+
+                                <!-- INICIO MODAL PARA EDITAR  -->
             <div class="modal-container">
-                <div class="modal fade bd-example-modal-lg" id="dialogo1">
-                    <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-                    <div class="modal-dialog modal-sm">
-                        <div class="modal-content">
-                            <!-- CABECERA DEL DIALOGO NUEVA-->
-                            <div class="modal-header">
-                                <h4 class="modal-title">Ingresar Nueva Cuenta</h4>
-                                <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
-                            </div>
-                            <!-- CUERPO DEL DIALOGO NUEVA -->
-                            <div class="modal-body">
-                                <center>
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                             <th>
-                                                    <form action="" method="post">
-                                                        <label class="form-label">
-                                                            Clasificacion
-                                                            
-                                                            <select class="form-control text-white" name="" id="" required>
-                                                                <option value=""></option>
-                                                                <option value="">Activo</option>
-                                                                <option value="">Pasivo</option>
-                                                                <option value="">Patrimonio </option>
-                                                                <option value="">Resultado </option>
-                                                                
-                                                            </select>
-                                                        </label>
-                                                    </th>
-                                                    &nbsp;
-                                                    <th>                                                    
-                                                        <label class="form-label">
-                                                            Numero de Cuenta
-                                                            <input type='number' name='UNIDADES' min="0" class="form-control text-white" maxlength="3" required></input>
-                                                        </label>
-                                                    </th>
-                                        </tr>
-                                        </thead>
-                                        </table>
-                                        <label class="form-label">
-                                            Nombre de la Cuenta
-                                            <input type='text' name='COS PRODUCTO' class="form-control text-white" required></input>
-                                        </label>
-                                        <button type="submit" class="btn btn-primary">Registrar </button>
-                                    </form>
-                            </div>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                            </center>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- FIN DE MODAL PARA NUEVA  -->
-
-            <!-- INICIO MODAL PARA EDITAR  -->
-            <div class="modal-container">
-                <div class="modal fade bd-example-modal-lg" id="dialogo2">
+                <div class="modal fade bd-example-modal-lg" id="modal-editar-{{ $cuentas['COD_CUENTA'] }}">
                     <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
                     <div class="modal-dialog modal-sm">
                         <div class="modal-content">
@@ -155,7 +100,7 @@ ALE
                             </div>
                             <!-- CUERPO DEL DIALOGO EDITAR -->
                             <div class="modal-body">
-                                <center>  
+                                <center>
                                     <form action="" method="post">
                                         <label class="form-label">
                                             Clasificacion
@@ -168,13 +113,13 @@ ALE
                                         </label>
                                         <label class="form-label">
                                             Numero de Cuenta
-                                            <input type='number' name='UNIDADES' value="1" class="form-control text-white" maxlength="3" required></input>
+                                            <input type='text' name='UNIDADES' value="{{$cuentas ['NUM_CUENTA'] }}" class="form-control text-white" maxlength="3" required></input>
                                         </label>
                                         <label class="form-label">
                                             Nombre de la Cuenta
-                                            <input type='text' name='COS PRODUCTO' value="Caja" min="0" class="form-control text-white" required></input>
+                                            <input type='text' name='COS PRODUCTO' value="{{$cuentas ['NOM_CUENTA'] }}" min="0" class="form-control text-white" required></input>
                                         </label>
-                                        
+
                                         <button type="submit" class="btn btn-primary">Registrar </button>
                                     </form>
                             </div>
@@ -190,7 +135,7 @@ ALE
 
             <!-- INICIO MODAL PARA BORRAR  -->
             <div class="modal-container">
-                <div class="modal fade bd-example-modal-lg" id="dialogo3">
+                <div class="modal fade bd-example-modal-lg" id="modal-eliminar-{{ $cuentas['COD_CUENTA'] }}">
                     <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
                     <div class="modal-dialog modal-sm">
                         <div class="modal-content">
@@ -219,6 +164,89 @@ ALE
                 </div>
             </div>
             <!-- FIN DE MODAL PARA BORRAR  -->
+
+
+            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- INICIO MODAL PARA NUEVA  -->
+            <div class="modal-container">
+                <div class="modal fade bd-example-modal-lg" id="dialogo1">
+                    <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+                    <div class="modal-dialog modal-md">
+                        <div class="modal-content">
+                            <!-- CABECERA DEL DIALOGO NUEVA-->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Ingresar Nueva Cuenta</h4>
+                                <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                            </div>
+                            <!-- CUERPO DEL DIALOGO NUEVA -->
+                            <div class="modal-body">
+                                <center>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                             <th>
+                                                    <form action="{{ route('insertar.cuentas') }}" method="post">
+                                                        @csrf
+                                                        <label class="form-label">
+                                                            Clasificacion
+
+                                                            <select class="form-control text-white" name="naturaleza" id="" required>
+                                                                <option hidden selected>SELECCIONAR</option>
+                                                                @foreach($clasificacionArr as $key)
+                                                            <option value="{{$key['NATURALEZA'] }}">{{$key['NATURALEZA'] }}</option>
+                                                         @endforeach
+
+                                                            </select>
+                                                        </label>
+                                                    </th>
+                                                    <th>
+                                                    <label class="form-label">
+                                                            Grupo
+
+                                                            <select class="form-control text-white" name="grupo" id="" required>
+                                                                <option hidden selected>SELECCIONAR</option>
+                                                                @foreach($gruposArr as $key)
+                                                            <option value="{{$key['COD_GRUPO'] }}">{{$key['NOM_GRUPO'] }}</option>
+                                                         @endforeach
+
+                                                            </select>
+                                                        </label>
+                                                    </th>
+
+
+                                                    &nbsp;
+                                                    <th>
+                                                        <label class="form-label">
+                                                            Numero de Cuenta
+                                                            <input type='number' name='numerocuenta' min="0" class="form-control text-white" maxlength="3" required></input>
+                                                        </label>
+                                                    </th>
+                                        </tr>
+                                        </thead>
+                                        </table>
+                                        <label class="form-label">
+                                            Nombre de la Cuenta
+                                            <input type='text' name='nombrecuenta' class="form-control text-white" required></input>
+                                        </label>
+                                        <button type="submit" class="btn btn-primary">Registrar </button>
+                                    </form>
+                            </div>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN DE MODAL PARA NUEVA  -->
+
+
 
 
 

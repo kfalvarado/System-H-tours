@@ -15,5 +15,6 @@ use App\Http\Controllers\cuentas\CuentasController;
 |
 */
 
-
 Route::get('/ver',[CuentasController::class,'ver'])->name('mostrar.cuentas');
+Route::post('/insertar',[CuentasController::class,'insertar'])->name('insertar.cuentas');
+
