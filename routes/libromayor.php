@@ -14,7 +14,12 @@ use App\Http\Controllers\libromayor\LibromayorController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/',[LibromayorController::class,'mostrar'])->name('mostrar.libromayor');
+Route::get('/mostrar',[LibromayorController::class,'mostrar'])->name('mostrar.libromayor');
+Route::post('/insertar',[LibromayorController::class,'insertar'])->name('libromayor.insertar');
+Route::put('/actualizar',[LibromayorController::class,'actualizar'])->name('libromayor.actualizar');
+// ELIMINACION NORMAL NO ELIMINA POR QUE DEBE SER ELIMINADO LOGICO
+Route::delete('/eliminar',[LibromayorController::class,'eliminar'])->name('libromayor.eliminar');
+
 
 
 
