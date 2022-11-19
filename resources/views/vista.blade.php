@@ -26,6 +26,10 @@ assets/images/varon.png
 @section('Usuario-Menu')
 Emerson
 @endsection
+@section('encabezado')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+@endsection
 <!-- contenido de la pagina  -->
 @section('contenido')
 <input type="text" id="myinput" onclick="oye();">
@@ -44,8 +48,9 @@ Emerson
 @endif
 
 
+@section('js')
 
-
+@endsection
 @endsection 
 
 
