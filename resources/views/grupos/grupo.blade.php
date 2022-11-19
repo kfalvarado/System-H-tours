@@ -54,6 +54,15 @@
             })
         </script>
     @endif
+    @if (Session::has('eliminado'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                text: 'El grupo se elimino correctamente'
+                // footer: '<a href="">Why do I have this issue?</a>'
+            })
+        </script>
+    @endif
     <div class="content-wrapper">
         <div class="page-header">
             <center>
@@ -180,13 +189,14 @@
                                                         <!-- CUERPO DEL DIALOGO BORRAR -->
                                                         <div class="modal-body">
                                                             <center>
-                                                                <form action="" method="post">
+                                                                <form action="{{ route('grupo.eliminar') }}" method="post">
+                                                                    @csrf @method('DELETE')
                                                                     <label class="form-label">
                                                                         ¿ Desea Eliminar el Registro ?
-
+                                                                        <input type="hidden" name="cod" value="{{ $grupo['COD_GRUPO'] }}">
                                                                     </label>
                                                                     <br>
-                                                                    <a href="" class="btn btn btn-primary">SI</a>
+                                                                    <button type="submit" class="btn btn btn-primary">SI</button>
                                                                     <a href="" class="btn btn-secondary">NO</a>
                                                                 </form>
                                                         </div>

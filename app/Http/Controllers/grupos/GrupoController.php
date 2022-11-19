@@ -49,4 +49,11 @@ class GrupoController extends Controller
     Session::flash('actualizo','1');
     return back();
    }
+
+   public function eliminar(Request $request)
+   {
+    $eliminar = http::withToken(Cache::get('token'))->delete($this->url.'/grupos/eliminar/'.$request->cod);
+    Session::flash('eliminado','1');
+    return back();
+   }
 }
