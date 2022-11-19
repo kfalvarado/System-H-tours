@@ -14,10 +14,7 @@ Periodo | inicio
 @endsection
 
 @section('encabezado')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://unpkg.com/xlsx@0.16.9/dist/xlsx.full.min.js"></script>
-<script src="https://unpkg.com/file-saverjs@latest/FileSaver.min.js"></script>
-<script src="https://unpkg.com/tableexport@latest/dist/js/tableexport.min.js"></script>
+
 
 @endsection
 
@@ -93,8 +90,8 @@ Periodo | inicio
             </nav>
             <p align="right" valign="baseline">
               <button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
-              <a type="button" href="{{route('periodo.pdf')}}" class="btn btn-danger"  ><i class="mdi mdi-file-pdf"></i>Generar PDF</a>
-              <button id="btnExportar" class="btn btn-success">
+              <a type="button" href="{{route('periodo.pdf')}}" class="btn btn-danger btn-sm"  ><i class="mdi mdi-file-pdf"></i>Generar PDF</a>
+              <button id="btnExportar" class="btn btn-success btn-sm">
                 <i class="mdi mdi-file-excel"></i> Generar Excel
             </button>
 

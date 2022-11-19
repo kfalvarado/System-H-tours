@@ -37,7 +37,10 @@
     }
   </script>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://unpkg.com/xlsx@0.16.9/dist/xlsx.full.min.js"></script>
+<script src="https://unpkg.com/file-saverjs@latest/FileSaver.min.js"></script>
+<script src="https://unpkg.com/tableexport@latest/dist/js/tableexport.min.js"></script>
 @yield('encabezado')
 </head>
 
