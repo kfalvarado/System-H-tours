@@ -292,4 +292,7 @@ class PeriodoController extends Controller
     {
         return view('periodo.periodoPDF'); 
     }
+
+   
 }
+

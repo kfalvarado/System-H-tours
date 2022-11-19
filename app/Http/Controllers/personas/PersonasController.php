@@ -18,17 +18,20 @@ class PersonasController extends Controller
     {
         try {
             //code...
-            $personas = Http::withToken(Cache::get('token'))->get($this->url.'/personas');
-            $usuarios = Http::withToken(Cache::get('token'))->get($this->url.'/personas/buscar/list_usuarios');
+            $personas = Http::withToken(Cache::get('token'))->get($this->url . '/personas');
+            $usuarios = Http::withToken(Cache::get('token'))->get($this->url . '/personas/buscar/list_usuarios');
         } catch (\Throwable $th) {
             return 'Error persona 20';
         }
 
+  
         $personasArray = $personas->json();
         $usuariosArray = $usuarios->json();
-    
-        return view('personas.personas',compact('personasArray','usuariosArray'));
+
+        return view('personas.personas', compact('personasArray', 'usuariosArray'));
     }
+
+ 
 
     public function insertar(Request $request)
     {
@@ -54,24 +57,24 @@ class PersonasController extends Controller
 
     public function actualizar(Request $request)
     {
-    //    return $request;
+   
        try {
-        //El procedimiento de Actualizar no funciona requiere revision
-        $acceso = Http::withToken(Cache::get('token'))->post($this->url . '/personas/insertar/'.$request->cod, [
-            "USUARIO" => $request->user,
-            "SEX_PERSONA" => $request->genero,
-            "EDA_PERSONAL" => $request->edad,
-            "TIP_PERSONA" => $request->tipoPersona,
-            "Num_Identidad" => $request->identidad,
-            "IND_CIVIL" => $request->civil,
-            "TELEFONO" => substr($request->telefono, 4),
-            "TIP_TELEFONO" => $request->tipotelefono
-        ]);
-    } catch (\Throwable $th) {
-        return 'Error Personas 40';
-    }
-    Session::flash('insertado', '1');
-    return redirect()->route('personas.inicio');
+            //El procedimiento de Actualizar no funciona requiere revision
+            $acceso = Http::withToken(Cache::get('token'))->post($this->url . '/personas/insertar/' . $request->cod, [
+                "USUARIO" => $request->user,
+                "SEX_PERSONA" => $request->genero,
+                "EDA_PERSONAL" => $request->edad,
+                "TIP_PERSONA" => $request->tipoPersona,
+                "Num_Identidad" => $request->identidad,
+                "IND_CIVIL" => $request->civil,
+                "TELEFONO" => substr($request->telefono, 4),
+                "TIP_TELEFONO" => $request->tipotelefono
+            ]);
+        } catch (\Throwable $th) {
+            return 'Error Personas 40';
+        }
+        Session::flash('insertado', '1');
+        return redirect()->route('personas.inicio');
     }
 
     /**

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>@yield('titulo')</title>
 
-  
+
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css')}}">
@@ -267,6 +267,29 @@
     </div>
     <!-- page-body-wrapper ends -->
   </div>
+{{-- datables --}}
+
+<!-- script para exportar a excel -->
+{{-- <script>
+    const $btnExportar = document.querySelector("#btnExportar"),
+        $tabla = document.querySelector("#tabla");
+
+    $btnExportar.addEventListener("click", function() {
+        let tableExport = new TableExport($tabla, {
+            exportButtons: false, // No queremos botones
+            filename: "Reporte de prueba", //Nombre del archivo de Excel
+            sheetname: "Reporte de prueba", //Título de la hoja
+        });
+        let datos = tableExport.getExportData();
+        let preferenciasDocumento = datos.tabla.xlsx;
+        tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType, preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento.merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
+    });
+</script> --}}
+
+<script></script>
+
+
+
 @if (Session::has('todo'))
   <script>
     localStorage.clear()
@@ -277,11 +300,13 @@
   </div>
 
  <input type="hidden" id="time" name="time">
+ @yield('js')
 
 @routes
   <script src="{{ asset('assets/js/ab-sesionUser.js') }}"></script>
 
 <script src="{{ asset('assets/js/ab-tokensession.js') }}"></script>
+
 
   <!-- container-scroller -->
   <!-- plugins:js -->

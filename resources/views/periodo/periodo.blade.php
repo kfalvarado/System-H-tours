@@ -13,6 +13,14 @@ Periodo | inicio
 @endif
 @endsection
 
+@section('encabezado')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://unpkg.com/xlsx@0.16.9/dist/xlsx.full.min.js"></script>
+<script src="https://unpkg.com/file-saverjs@latest/FileSaver.min.js"></script>
+<script src="https://unpkg.com/tableexport@latest/dist/js/tableexport.min.js"></script>
+
+@endsection
+
 <!-- nombre del usuario de la barra lateral  -->
 @section('Usuario-Lateral')
 {{ Cache::get('user') }}
@@ -84,8 +92,12 @@ Periodo | inicio
               <a class="flex-sm-fill text-sm-center nav-link"  aria-current="page" href="{{route('mostrar.libromayor')}}">Libro Mayor</a>
             </nav>
             <p align="right" valign="baseline">
-              <button type="button"  class="btn btn-success"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
-              <a type="button" href="{{route('periodo.pdf')}}" class="btn btn-success"  >Generar PDF</a>
+              <button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
+              <a type="button" href="{{route('periodo.pdf')}}" class="btn btn-danger"  ><i class="mdi mdi-file-pdf"></i>Generar PDF</a>
+              <button id="btnExportar" class="btn btn-success">
+                <i class="mdi mdi-file-excel"></i> Generar Excel
+            </button>
+
             </p>
             <div class="row">
               <div class="col-lg-12 stretch-card">
@@ -96,10 +108,9 @@ Periodo | inicio
                       <input type="text" class="form-control" placeholder="Buscar periodo">
                     </form>
                     <div class="table-responsive">
-                      <table class="table table-bordered table-contextual">
+                      <table id="tabla" class="table table-bordered table-contextual">
                         <thead>
                           <tr>
-                            
                             <th class="text-dark bg-white">#</th>
                             <th class="text-dark bg-white"> Nombre de periodo</th>
                             <th class="text-dark bg-white"> Fecha inicial</th>
@@ -109,6 +120,14 @@ Periodo | inicio
                           </tr>
                         </thead>
                         <tbody>
+                          @if ( count($personArr)<=0)
+                          <tr>
+                            <td colspan="6" >No hay resultados</td>
+                          </tr>
+                            
+                          @else
+                            
+                      
                           @foreach ($personArr as $periodo)
                             
                           <tr class="text-white bg-dark">
@@ -218,9 +237,11 @@ Periodo | inicio
              </div>
            </div>
                           @endforeach
+                          @endif  
                         </tbody>
                       </table>
                     </div>
+                    <div id="paginador" class=""></div>
                   </div>
                 </div>  
 
@@ -275,12 +296,25 @@ Periodo | inicio
                   </div>
                 </div>
                 <!-- FIN DE MODAL PARA NUEVA  -->
+  
+ @section('js')
+                <script src="{{ asset('assets/js/ab-page.js') }}"></script>
+                <script>
+                  const $btnExportar = document.querySelector("#btnExportar"),
+                      $tabla = document.querySelector("#tabla");
                 
-                
-                
-                
-                
-                
-                
+                  $btnExportar.addEventListener("click", function() {
+                      let tableExport = new TableExport($tabla, {
+                          exportButtons: false, // No queremos botones
+                          filename: "Reporte de Periodo", //Nombre del archivo de Excel
+                          sheetname: "Reporte de Periodo", //Título de la hoja
+                          ignoreCols: 5,  
+                      });
+                      let datos = tableExport.getExportData();
+                      let preferenciasDocumento = datos.tabla.xlsx;
+                      tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType, preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento.merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
+                  });
+                </script>
+@endsection
             
 @endsection

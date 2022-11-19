@@ -43,7 +43,6 @@ Personas | inicio
 {{-- encabezado o head --}}
 @section('encabezado')
 
-
 @endsection
 
 
@@ -60,8 +59,6 @@ Personas | inicio
 </script>
   
 @endif
-
-
 <div class="page-header">
               </nav>
             </div>
@@ -73,18 +70,27 @@ Personas | inicio
               <button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
               <a type="button" href="{{route('periodo.pdf')}}" class="btn btn-danger"  ><i class="mdi mdi-file-pdf"></i> Generar PDF</a>
               {{-- cambiar la ruta de perido.pdf a periodo.excel  --}}
-              <a type="button" href="{{route('periodo.pdf')}}" class="btn btn-success"  ><i class="mdi mdi-file-excel"></i> Generar Excel</a>
+              <button type="button" href="{{route('periodo.pdf')}}"  id="btnExportar" class="btn btn-success"  ><i class="mdi mdi-file-excel"></i> Generar Excel</button>
             </p>
             <div class="row">
               <div class="col-lg-12 stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title"> <center>Personas Registradas</center></h4>
-                    <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                      <input type="text" class="form-control" placeholder="Buscar Usuario">
+                    <form action="" class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                      <input type="text" id="buscador" class="form-control" placeholder="Buscar Usuario">
+                      {{-- <Select class="form-control bg-dark text-white" style="position: relative;  " name="nume">
+                        <option value="{{ count($personasArray) }}"> Ver todos ({{ count($personasArray) }})</option>
+                        <option value="5"> 5</option>
+                        <option value="10"> 10</option>
+                        <option value="15"> 15</option>
+                        <option value="30"> 30</option>
+                      </Select> --}}
+                      <button class="btn btn-info" type="submit">Buscar</button>
                     </form>
+           
                     <div class="table-responsive">
-                      <table class="table table-bordered table-contextual">
+                      <table id="tblDatos" class="table table-striped table-bordered table-condensed table-hover" cellspacing="0" cellpadding="0" width="100%">
                         <thead>
                           <tr>
                             
@@ -103,21 +109,30 @@ Personas | inicio
                           </tr>
                         </thead>
                         <tbody>
+                          
+                          @if (count($personasArray)<=0)
+                          <tr>
+                            <td class="fila">No hay resultados</td>
+                          </tr>
+                          @else
+                            
+                          
+
                           @foreach ($personasArray as $persona)
                             
                          
                           <tr class="text-white bg-dark">
-                            <td>{{ $persona['COD_PERSONA']  }} </td>
-                            <td>{{ $persona['NOM_USR'] }}</td>
-                            <td>{{ $persona['SEX_PERSONA']  }}</td>
-                            <td>{{ $persona['EDA_PERSONAL'] }}</td>
-                            <td>{{ $persona['IND_CIVIL'] }}</td>
-                            <td>{{ $persona['TIP_PERSONA'] }}</td>
-                            <td>{{ $persona['NUM_IDENTIDAD'] }}</td>
-                            <td>{{ $persona['TELEFONO'] }}</td>
-                            <td>{{ $persona['TIP_TELEFONO'] }}</td>
-                            <td>{{ $persona['EST_USR'] }}</td>
-                            <td>{{ substr( $persona['FEC_REGISTRO'],0,10)}}</td>
+                            <td class="fila">{{ $persona['COD_PERSONA']  }} </td>
+                            <td class="fila">{{ $persona['NOM_USR'] }}</td>
+                            <td class="fila">{{ $persona['SEX_PERSONA']  }}</td>
+                            <td class="fila">{{ $persona['EDA_PERSONAL'] }}</td>
+                            <td class="fila">{{ $persona['IND_CIVIL'] }}</td>
+                            <td class="fila">{{ $persona['TIP_PERSONA'] }}</td>
+                            <td class="fila">{{ $persona['NUM_IDENTIDAD'] }}</td>
+                            <td class="fila">{{ $persona['TELEFONO'] }}</td>
+                            <td class="fila">{{ $persona['TIP_TELEFONO'] }}</td>
+                            <td class="fila">{{ $persona['EST_USR'] }}</td>
+                            <td class="fila">{{ substr( $persona['FEC_REGISTRO'],0,10)}}</td>
                             <td><button type="button"  class="btn btn-info btn-sm"  data-toggle="modal" data-target="#modal-editar-{{ $persona['COD_PERSONA'] }}"> <i class="mdi mdi-table-edit"></i> Editar</button> <button type="button"  class="btn btn-danger btn-sm"  data-toggle="modal" data-target="#modal-eliminar-{{  $persona['COD_PERSONA'] }}"><i class="mdi mdi-delete-forever"></i> Eliminar</button> </td>  
                           </tr>
 
@@ -188,8 +203,7 @@ Personas | inicio
                               <option value="C">Casado</option>
                               <option value="D">Divorciado</option>
                             </Select>
-                          </label>
-                       
+                          </label>                   
                           <br>
                            {{-- centrado  --}}
                         &nbsp;
@@ -304,13 +318,14 @@ Personas | inicio
            </div>
 
 
-                          @endforeach                
+                          @endforeach       
+                          @endif         
                         </tbody>
                       </table>
                     </div>
+                    <div id="paginador" class=""></div>
                   </div>
                 </div>  
-
 
 
                 <!-- INICIO MODAL PARA INSERTAR  -->
@@ -451,5 +466,57 @@ Personas | inicio
                    </div>
                        <!-- FIN DE MODAL PARA EDITAR  -->
  
+
+{{-- datables --}}
+<!-- script para exportar a excel -->
+<script>
+  const $btnExportar = document.querySelector("#btnExportar"),
+      $tabla = document.querySelector("#tabla");
+
+  $btnExportar.addEventListener("click", function() {
+      let tableExport = new TableExport($tabla, {
+          exportButtons: false, // No queremos botones
+          filename: "Reporte de Personas", //Nombre del archivo de Excel
+          sheetname: "Reporte de Personas", //Título de la hoja
+          ignoreCols: 11,  
+      });
+      let datos = tableExport.getExportData();
+      let preferenciasDocumento = datos.tabla.xlsx;
+      tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType, preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento.merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
+  });
+</script>
+
+<script>
+  $(document).ready( function () {
+    $('#tabla').DataTable();
+} );
+</script>
+
+@section('js')
+{{-- Enlace a paginador de javascript --}}
+<script src="{{ asset('assets/js/ab-page.js') }}"></script>
+
+
+
+{{-- Script que valida lo que estan escribiendo --}}
+<script>
+  document.addEventListener("keyup",(e)=>{
+
+    // e.target.matches('#buscador')
+   
+
+    if(e.target.matches('#buscador')){
+      console.log(e.target.value);
+       document.querySelectorAll('.fila').forEach(element => {
+         element.textContent.toLowerCase().includes(e.target.value.toLowerCase())
+         ?element.classList.remove('filtro')
+        :element.classList.add("filtro")
+       });
+    }
+  })
+</script>
+  
+@endsection
+
 
 @endsection
