@@ -180,7 +180,7 @@
           </a>
           <div class="collapse" id="auth">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="{{route('admins.inicio')}}"> Administrador </a></li>
+              {{-- <li class="nav-item"> <a class="nav-link" href="{{route('admins.inicio')}}"> Administrador </a></li> --}}
               <li class="nav-item"> <a class="nav-link" href="{{route('usuarios.inicio')}}"> Usuarios </a></li>
               <li class="nav-item"> <a class="nav-link" href="{{ route('mostrar.roles') }}">Roles</a></li>
               <li class="nav-item"> <a class="nav-link" href="{{ route('mostrar.permisos') }}"> Permisos </a></li>

@@ -6,6 +6,8 @@ Usuarios | inicio
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
+
+
 @if (Cache::get('genero') == 'M')
 {{ asset('assets/images/varon.png')}}
 @else
@@ -75,22 +77,125 @@ Administrador
                 <tbody>
 
                   @foreach ($usrArr as $usuario)
-                
-
                     <tr class="text-white bg-dark">
-                    <td>{{$usuario['COD_USR']}}</td>
-                    <td>{{$usuario['USR']}}</td>
-                    <td>{{$usuario['NOM_USR']}}</td>
-                    <td>{{$usuario['EST_USR']}}</td>
-                    <td>{{$usuario['COD_ROL']}}</td>
-                    <td>{{$usuario['FEC_ULT_CONN']}}</td>
-                    <td>{{$usuario['PREG_RES']}}</td>
-                    <td>{{$usuario['PRIMER_ACC']}}</td>
-                    <td>{{$usuario['CORREO']}}</td>
-                    <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td></button> </td>
+                    <td>{{$usuario['CODIGO_USUARIO']}}</td>
+                    <td>{{$usuario['USUARIO']}}</td>
+                    <td>{{$usuario['NOMBRE_USUARIO']}}</td>
+                    <td>{{$usuario['ESTADO_USUARIO']}}</td>
+                    <td>{{$usuario['ROL_USUARIO']}}</td>
+                    <td>{{$usuario['FECHA_ULTIMO_ACCESO']}}</td>
+                    <td>{{$usuario['PREGUNTA_RESPONDIDA']}}</td>
+                    <td>{{$usuario['PRIMER_ACCESO']}}</td>
+                    <td>{{$usuario['CORREO_ELECTRONICO']}}</td>
+                    <td>
+                      <button 
+                        type="button"  
+                        class="btn btn-info"  
+                        data-toggle="modal" 
+                        data-target="#modal-editar-{{$usuario['CODIGO_USUARIO']}}">Editar
+                      </button> 
+                      <button 
+                        type="button"  
+                        class="btn btn-danger"  
+                        data-toggle="modal" 
+                        data-target="#modal-eliminar-{{$usuario['CODIGO_USUARIO']}}">Eliminar
+                      </button> 
+                    </td>
                     </tr>
-                
-                  @endforeach
+                    
+                        <!--MODAL EDITAR -->
+                        <div class="modal-container">
+                                              <div class="modal fade bd-example-modal-lg" id="modal-editar-{{$usuario['CODIGO_USUARIO']}}">
+                                                    <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+                                              <div class="modal-dialog modal-md">
+                                              <div class="modal-content">
+                                                    <!-- CABECERA DEL DIALOGO NUEVA-->
+                                              <div class="modal-header">
+                                              <h4 class="modal-title">Ingresar Usuarios</h4>
+                                                    <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                                              </div>
+                                                    <!-- CUERPO DEL DIALOGO NUEVA -->
+                                              <div class="modal-body">
+                                              <center>
+                                              <form action="" method="post">
+                                                <label class="form-label">
+                                                  Usuario
+                                                <input type='text' name='Clasificacion' class="form-control text-white" required></input> 
+                                                </label>
+                                              <label class="form-label">
+                                                Nombre del usuario
+                                              <input type='text' name='Clasificacion' class="form-control text-white" required></input> 
+                                              </label>
+                                              <label class="form-label">
+                                                Seleccionar el Rol
+                                                
+                                                <select class="form-control text-white" name="" id="">
+                                                  <option value=""></option>
+                                                  <option value="">Administrador</option>
+                                                  <option value="">Usuario</option>
+                                                </select> 
+                                                </label>
+                                                <br>
+                                              <label class="form-label">
+                                                Correo Electronico
+                                              <input type='email' name='saldo' class="form-control text-white"  required></input> 
+                                              </label>
+                                              <br>
+                                              <label class="form-label">
+                                                Contraseña
+                                                <input type='password' name='CORREO ELECTRONICO' class="form-control text-white"  required></input> 
+                                                </label>
+                                                <br>
+                                              <label class="form-label">
+                                              Fecha de vencimiento
+                                              <input type='date' name='fecha' class="form-control text-white"  required></input> 
+                                              </label> <!-- INICIO MODAL PARA NUEVA  -->
+                                              <br>
+
+                                              <a href="" class="btn btn-secondary">Cancelar</a>
+                                              <button type="submit" class="btn btn-primary">Registrar </button>
+                                              </form>
+                                              </div> 
+                                              <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                              </center>
+                                              </div>
+                                              </div>
+                                              </div>
+                                              </div>
+
+                        <!-- FIN DE MODAL PARA EDITAR  -->
+                                            
+                        <!-- INICIO MODAL PARA BORRAR  -->
+                        <div class="modal-container">
+                              <div class="modal fade bd-example-modal-lg" id="modal-eliminar-{{$usuario['CODIGO_USUARIO']}}">
+                                    <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+                              <div class="modal-dialog modal-sm">
+                              <div class="modal-content">
+                                    <!-- CABECERA DEL DIALOGO EDITAR -->
+                              <div class="modal-header">
+                              <h4 class="modal-title">Eliminar usuarios</h4>
+                                    <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                              </div>
+                                    <!-- CUERPO DEL DIALOGO BORRAR -->
+                              <div class="modal-body">
+                              <center>
+                              <form action="" method="post">
+                              <label class="form-label">¿ Desea eliminar usuario ? </label>
+                              <br>
+                              <a href="" class="btn btn btn-primary">SI</a>
+                              <a href="" class="btn btn-secondary">NO</a>
+                              
+                              </form>
+                              </div> 
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                              </center>
+                              </div>
+                              </div>
+                              </div>
+                              </div>
+                        <!-- FIN DE MODAL PARA BORRAR  -->
+                  
+                       @endforeach
 
                 </tbody>
               </table>
@@ -101,8 +206,8 @@ Administrador
       
   <!-- content-wrapper ends -->
 
-  <!-- INICIO MODAL PARA NUEVA  -->
-     <div class="modal-container">
+ 
+    <div class="modal-container">
     <div class="modal fade bd-example-modal-lg" id="dialogo1">
           <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
      <div class="modal-dialog modal-md">
@@ -213,54 +318,19 @@ Administrador
       Fecha de vencimiento
       <input type='date' name='COS PRODUCTO' class="form-control text-white"  required></input> 
       </label>
-  <br>
-
-      <a href="" class="btn btn-secondary">Cancelar</a>
-      <button type="submit" class="btn btn-primary">Registrar </button>
-      </form>
-      </div> 
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-      </center>
-      </div>
-      </div>
-      </div>
-      </div>
-          <!-- FIN DE MODAL PARA EDITAR  -->
+ 
 
       
 
 
      
-       
-           <!-- INICIO MODAL PARA BORRAR  -->
-    <div class="modal-container">
-     <div class="modal fade bd-example-modal-lg" id="dialogo3">
-           <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-      <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-           <!-- CABECERA DEL DIALOGO EDITAR -->
-      <div class="modal-header">
-      <h4 class="modal-title">Eliminar usuarios</h4>
-           <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
-      </div>
-           <!-- CUERPO DEL DIALOGO BORRAR -->
-      <div class="modal-body">
-      <center>
-      <form action="" method="post">
-      <label class="form-label">¿ Desea eliminar usuario ? </label>
-      <br>
-      <a href="" class="btn btn btn-primary">SI</a>
-      <a href="" class="btn btn-secondary">NO</a>
-      
-      </form>
-      </div> 
-      <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-      </center>
-      </div>
-      </div>
-      </div>
-      </div>
-          <!-- FIN DE MODAL PARA BORRAR  -->
+
+    
+
+
+
+
+
 
     <!-- partial -->
     <div class="main-panel">
