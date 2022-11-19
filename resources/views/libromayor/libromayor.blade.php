@@ -37,7 +37,15 @@ Administrador
 <!-- contenido de la pagina  -->
 @section('contenido')
 
-
+@if (Session::has('insertado'))
+  <script>
+    Swal.fire({
+    icon: 'success',
+    text: 'El libro mayor se inserto Correctamente'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+@endif
 
     <!-- ESTE CSS ES PARA OCULTAR DATOS EN LA IMPRESION-->
     <style>
@@ -121,42 +129,43 @@ Administrador
                  <!-- CUERPO DEL DIALOGO NUEVA -->
             <div class="modal-body">
             <center>
-            <form action="" method="post">
+            <form action="{{ route('libromayor.insertar')}}" method="post">
+              @csrf
               <label class="form-label">
                 Clasificacion
-                
-                <select  class="form-control text-white" name="" id="" >
+                <input type='text'  name='calsificacion' class="form-control text-white" required>
+                <!-- <select  class="form-control text-white" name="clasificacion" id="" >
                   <option value=""></option>
-                  <option value="">Activo</option>
-                  <option value="">Pasivo</option>
-                  <option value="">Patrimonio</option>
+                  <option value="">1</option>
+                  <option value="">2</option>
+                  <option value="">3</option>
                 </select>
             
-              </label>
+              </label> -->
             <label class="form-label">
               Nombre de Cuenta
-              <input type='text' list="lista-cuentas" name='nombre-periodo' class="form-control text-white" required>
-              <select  class="form-control text-white" name="" id="" >
+              <input type='text' list="lista-cuentas" name='nombrecuenta' class="form-control text-white" required>
+              <!-- <select  class="form-control text-white" name="" id="" >
                 <option value=""></option>
                 <option value="">Bancos</option>
                 <option value="">Proveedores</option>
                 <option value="">Capital Social</option>
-              </select>
+              </select> -->
                 
               </datalist>
               </input>
             </label>
             <label class="form-label">
             Saldo
-            <input type='text' name='' class="form-control text-white"  required></input> 
+            <input type='text' name='saldo' class="form-control text-white"  required></input> 
             </label>
             <br>
                   <label class="radio-inline">
-                      <input type="radio" name="Tipo" value=1>Debe
+                      <input type="radio" name="" value="">Debe
                   </label>
                   &nbsp;&nbsp; 
                   <label class="radio-inline">
-                      <input type="radio" name="Tipo" value=2>Haber
+                      <input type="radio" name="" value="">Haber
                   </label><hr />
             <label class="form-label">
             Fecha

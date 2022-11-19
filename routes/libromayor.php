@@ -14,7 +14,9 @@ use App\Http\Controllers\libromayor\LibromayorController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/',[LibromayorController::class,'mostrar'])->name('mostrar.libromayor');
+Route::get('/mostrar',[LibromayorController::class,'mostrar'])->name('mostrar.libromayor');
+Route::post('/insertar',[LibromayorController::class,'insertar'])->name('libromayor.insertar');
+
 
 
 
