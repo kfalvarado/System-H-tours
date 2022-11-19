@@ -351,7 +351,7 @@ Administrador
         </nav>
 
             <p align="right" valign="baseline">
-              <button type="button"  class="btn btn-success"  data-toggle="modal" data-target="#dialogo4">Periodo</button>  <button type="button"  class="btn btn-success"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button> <a type="button"  class="btn btn-warning" href="javascript:window.print();">Generar PDF</a>
+              <button type="button"  class="btn btn-success"  data-toggle="modal" data-target="#dialogo4">Periodo</button>  <button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button> <a type="button"  class="btn btn-danger btn-sm" href="javascript:window.print();"><i class="mdi mdi-file-pdf"></i>Generar PDF</a>
             </p>
             
           <!--BUSCADOR VERDE CON CSS     INICIO-->
@@ -486,7 +486,7 @@ Administrador
             <input type='date'value="{{ substr( $libromayor['FEC_LIBMAYOR'],0,10) }}" name='fecha' class="form-control text-white"  required></input> 
             </label>
              <a href="" class="btn btn-secondary">Cancelar</a>
-             <button type="submit" class="btn btn-primary">Registrar </button>
+             <button type="submit" class="btn btn-primary">Aceptar </button>
              </form>
              </div> 
              <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
