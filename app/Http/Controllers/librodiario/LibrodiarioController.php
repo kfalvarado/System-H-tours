@@ -21,4 +21,9 @@ class LibrodiarioController extends Controller
         $personArr = $librodiario->json();
         return view('librodiario.librodiario', compact('personArr'));
     }
+
+    public function insertar(Request $request)
+    {
+        return $request;
+    }
 }

@@ -195,38 +195,45 @@ Administrador
                  <!-- CUERPO DEL DIALOGO NUEVA -->
             <div class="modal-body">
             <center>
-            <form action="" method="post">
+            <form action="{{ route('librodiario.insertar')}}" method="post">
+            @csrf
               <label class="form-label">
                 Seleccionar Cuenta
-                <select class="form-control text-white" name="" id="">
+                <input type='text'  name='cuenta' class="form-control text-white" required>
+               
+                <!-- <select class="form-control text-white" name="" id="">
                   <option value=""></option>
                   <option value="">Caja</option>
                   <option value="">Proveedores</option>
                   <option value="">Capital</option>
-                </select>
-                </input>
-              </label>
+                </select> -->
+                <!-- </input>
+              </label> -->
               <label class="form-label">
                 Nombre de Sub Cuenta
-                <select class="form-control text-white">
+                <input type='text' list="" name='nombresubcuenta' class="form-control text-white" required>
+            
+                <!-- <select class="form-control text-white">
                   <option value=""></option>
                   <option value="">Cheques</option>
                   <option value="">Depositos</option>
                   <option value="">Aportacions</option>
-                </select>
+                </select> -->
                 </label>
-              <button> + </button>
+             
+              <button > + </button>
+            
             <label class="form-label">
             Saldo
-            <input type='number' min="0" name='COS PRODUCTO' class="form-control text-white"  required></input> 
+            <input type='number' min="0" name='saldo' class="form-control text-white"  required></input> 
             </label>
             <br>
                   <label class="radio-inline">
-                      <input type="radio" name="Tipo" value=1>Debe
+                      <input type="radio" name="" value="">Debe
                   </label>
                   &nbsp;&nbsp; 
                   <label class="radio-inline">
-                      <input type="radio" name="Tipo" value=2>Haber
+                      <input type="radio" name="" value="">Haber
                   </label><hr/>
             <label class="form-label">
               Comprobante
@@ -238,12 +245,13 @@ Administrador
               </label>
             <label class="form-label">
             Fecha
-            <input type='date' name='COS PRODUCTO' class="form-control  text-white"  required></input> 
+            <input type='date' name='fecha' class="form-control  text-white"  required></input> 
             </label>
             <br>
 
             <a href="" class="btn btn-secondary">Cancelar</a>
             <button type="submit" class="btn btn-primary">Registrar </button>
+              
             </form>
             </div> 
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
