@@ -578,6 +578,29 @@ Administrador
 
         @section('js')
                 <script src="{{ asset('assets/js/ab-page.js') }}"></script>
+
+
+
+                {{-- datables --}}
+    <!-- script para exportar a excel -->
+    <script>
+        const $btnExportar = document.querySelector("#btnExportar"),
+            $tabla = document.querySelector("#tabla");
+
+        $btnExportar.addEventListener("click", function() {
+            let tableExport = new TableExport($tabla, {
+                exportButtons: false, // No queremos botones
+                filename: "Reporte de Libro Mayor", //Nombre del archivo de Excel
+                sheetname: "Reporte de Libro Mayor", //Título de la hoja
+                ignoreCols: 8,
+            });
+            let datos = tableExport.getExportData();
+            let preferenciasDocumento = datos.tabla.xlsx;
+            tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType,
+                preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento
+                .merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
+        });
+    </script>
         
 @endsection
 
