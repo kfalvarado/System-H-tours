@@ -57,10 +57,10 @@ class PersonasController extends Controller
 
     public function actualizar(Request $request)
     {
-   
+        // return $request;
        try {
             //El procedimiento de Actualizar no funciona requiere revision
-            $acceso = Http::withToken(Cache::get('token'))->post($this->url . '/personas/insertar/' . $request->cod, [
+            $acceso = Http::withToken(Cache::get('token'))->put($this->url . '/personas/actualizar/' . $request->cod, [
                 "USUARIO" => $request->user,
                 "SEX_PERSONA" => $request->genero,
                 "EDA_PERSONAL" => $request->edad,
@@ -73,7 +73,7 @@ class PersonasController extends Controller
         } catch (\Throwable $th) {
             return 'Error Personas 40';
         }
-        Session::flash('insertado', '1');
+        Session::flash('actualizado', '1');
         return redirect()->route('personas.inicio');
     }
 
@@ -164,6 +164,13 @@ class PersonasController extends Controller
             return 'ocurrio un error';
         }
 
+    }
+
+    public function eliminado(Request $req)
+    {
+        $eliminado = Http::withToken(Cache::get('token'))->put($this->url . '/personas/delete/'.$req->cod);  
+        Session::flash('desactivada','1');
+        return back();
     }
 
     

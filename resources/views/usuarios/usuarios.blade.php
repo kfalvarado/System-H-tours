@@ -49,6 +49,7 @@ Administrador
   </script>
 @endif
 
+<main>
 <div class="container-scroller">
   <div class="content-wrapper p-1">
     <center> <h1>Usuarios H Tours Honduras</h1> </center>
@@ -60,18 +61,27 @@ Administrador
     {{-- <p align="right" valign="baseline">
       <button type="button"  class="btn btn-success mr-3"  data-toggle="modal " data-target="#dialogo1">(+) Nuevo</button>
     </p> --}}
-    
+    <p align="right" valign="baseline">
+      <button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
+        
+        <a type="button" href="{{route('periodo.pdf')}}" class="btn btn-danger btn-sm"  ><i class="mdi mdi-file-pdf"></i>Generar PDF</a>
+      
+        <button id="btnExportar" class="btn btn-success btn-sm">
+        <i class="mdi mdi-file-excel"></i> Generar Excel
+      
+      </button>
+
     <ul class="nav nav-pills nav-stacked">
       <li class="active"><a href="#"></a></li>
       </ul>  
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body p-1">
             <center><h4 class="card-title">Registros de usuarios</h4></center>
             <!-- <p class="card-description"> Add class <code>.table-striped</code> -->
             </p>
             <div class="table-responsive">
-              <table class="table table-bordered table-contextual">
+              <table id="tabla" class="table table-bordered table-contextual">
                 <thead>
                   <tr class="text-dark bg-white">
                       <th class="text-dark bg-white"># Codigo</th>
@@ -88,9 +98,15 @@ Administrador
                   </tr>
                 </thead>
                 <tbody>
-
+                  
+                  @if (count($usrArr) <= 0)
+                  <tr>
+                    <td colspan="6">Sin resultados</td>
+                  </tr>
+                  @else
+                 
                   @foreach ($usrArr as $usuario)
-                    <tr class="text-white bg-dark">
+                    <tr class="text-white bg-dark"> 
                     <td>{{$usuario['CODIGO_USUARIO']}}</td>
                     <td>{{$usuario['USUARIO']}}</td>
                     <td>{{$usuario['NOMBRE_USUARIO']}}</td>
@@ -246,10 +262,11 @@ Administrador
                         <!-- FIN DE MODAL PARA BORRAR  -->
                   
                        @endforeach
-
+                       @endif
                 </tbody>
               </table>
             </div>
+            <div id="paginador"></div>
           </div>
         </div>
       </div>
@@ -398,4 +415,28 @@ Administrador
     </div>
 
 </div>
+</main>
+
+          @section('js')
+          {{-- PAGINACIÓN --}}
+          <script src="{{ asset('assets/js/ab-page.js') }}"></script>
+          {{-- GENERADOR DE EXCEL --}}
+          <script>
+            const $btnExportar = document.querySelector("#btnExportar"),
+                $tabla = document.querySelector("#tabla");
+          
+            $btnExportar.addEventListener("click", function() {
+                let tableExport = new TableExport($tabla, {
+                    exportButtons: false, // No queremos botones
+                    filename: "Reporte de Usuarios", //Nombre del archivo de Excel
+                    sheetname: "Reporte de Usuarios", //Título de la hoja
+                    ignoreCols: 10,  
+                });
+                let datos = tableExport.getExportData();
+                let preferenciasDocumento = datos.tabla.xlsx;
+                tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType, preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento.merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
+            });
+          </script>
+          @endsection
+
 @endsection

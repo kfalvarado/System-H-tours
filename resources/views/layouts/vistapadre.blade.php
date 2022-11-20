@@ -51,7 +51,7 @@
       <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
         <a class="sidebar-brand brand-logo" href="index.html">
           <H3>
-            <font color="white"> System H Tours</font>
+            <font color="white" "> System H Tours</font>
           </H3>
         </a>
         <a class="sidebar-brand brand-logo-mini" href="index.html">
@@ -166,6 +166,7 @@
           <div class="collapse" id="mantenimiento">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="{{route('mostrar.clasificacion')}}">Clasificacion</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{route('mostrar.grupos')}}">Grupos</a></li>
               <li class="nav-item"> <a class="nav-link" href="{{route('personas.inicio')}}">Personas</a></li>
               <li class="nav-item"> <a class="nav-link" href="{{route('mostrar.objeto')}}"> Objetos </a></li>
             </ul>

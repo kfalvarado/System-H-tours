@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\personas\PersonasController;
+use App\Http\Controllers\grupos\GrupoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,7 @@ use App\Http\Controllers\personas\PersonasController;
 |
 */
 
-Route::get('/',[PersonasController::class,'inicio'])->name('personas.inicio');
-Route::post('/',[PersonasController::class,'insertar'])->name('personas.insertar');
-Route::put('/actualizar',[PersonasController::class,'actualizar'])->name('personas.actualizar');
-Route::put('/eliminar',[PersonasController::class,'eliminado'])->name('personas.eliminar');
+Route::get('/',[GrupoController::class,'vista'])->name('mostrar.grupos');
+Route::post('/insertar',[GrupoController::class,'insertar'])->name('grupo.insertar');
+Route::put('/actualizar',[GrupoController::class,'actualizar'])->name('grupo.actualizar');
+Route::delete('/eliminar',[GrupoController::class,'eliminar'])->name('grupo.eliminar');

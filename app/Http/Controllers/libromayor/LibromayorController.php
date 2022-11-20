@@ -18,10 +18,32 @@ class LibromayorController extends Controller
     public function mostrar()
 	{
 
+		try {
+
 		$libromayor =http::withToken(Cache::get('token'))->get($this->url.'/libromayor');
 
 		$personArr = $libromayor->json();
         return view('libromayor.libromayor', compact('personArr'));
+
+			# code...
+		} catch (\Throwable $e) {
+			return 'error libro mayor 30';
+		}
+
+
+
+		try {
+			$bitacora = Http::withToken(Cache::get('Token'))->post($this->url.'/seguridad/bitacora/insertar',[
+
+				"USR" => Cache::get('user)'),
+				"ACCION" => 'PANTALLA METODO GET',
+				"DES" => Cache::get('user') . 'INGRESO A LA PANTALLA DE LIBRO MAYOR',
+				"OBJETO" => 'LIBRODMAYOR'
+
+			]);
+		} catch (\Throwable $e) {
+			return 'Error Libro Mayor 42';
+		}
 	}
 
 
@@ -47,6 +69,26 @@ class LibromayorController extends Controller
 		} catch (\Throwable $e) {
 			return 'Error libromayor 44';
 		}
+
+
+		try {
+            $bitacora = Http::withToken(Cache::get('Token'))->post($this->url.'/seguridad/bitacora/insertar',[
+    
+                "USR" => Cache::get('user)'),
+                "ACCION" => 'PANTALLA METODO POST',
+                "DES" => Cache::get('user') . 'INSERTO EL DATO DE'.$request->libromayor.' A LA PANTALLA DE LIBRO MAYOR',
+                "OBJETO" => 'LIBROMAYOR'
+    
+            ]);
+    
+            } catch (\Throwable $th) {
+                return 'Error Libro Mayor 43';
+            }
+            
+
+
+
+
 		Session::flash('insertado', '1');
 		return back();
 
@@ -79,6 +121,24 @@ class LibromayorController extends Controller
 			return 'error libro mayor 76';
 		}		
 
+		try {
+            $bitacora = Http::withToken(Cache::get('Token'))->post($this->url.'/seguridad/bitacora/insertar',[
+    
+                "USR" => Cache::get('user)'),
+                "ACCION" => 'ACTUALIZO UN DATO EN PANTALLA ',
+                "DES" => Cache::get('user') . 'ACTUALIZO EL DATO DE'.$request->libromayor.' A LA PANTALLA DE LIBRO MAYOR',
+                "OBJETO" => 'LIBROMAYOR'
+    
+            ]);
+    
+            } catch (\Throwable $th) {
+                return 'Error Libro Mayor 43';
+            }
+            
+
+
+
+
 		Session::flash('actualizado', '1');
 		return back();
 		
@@ -92,6 +152,23 @@ class LibromayorController extends Controller
 	{
 
 		$delete = Http::withToken(Cache::get("Token"))->delete($this->url.'/libromayor/eliminar/'.$request->f,);
+
+
+		
+
+        try {
+            $bitacora = Http::withToken(Cache::get('Token'))->post($this->url.'/seguridad/bitacora/insertar',[
+    
+                "USR" => Cache::get('user)'),
+                "ACCION" => 'ELIMINO UN DATO ',
+                "DES" => Cache::get('user') . 'ACTUALIZO EL DATO CON CODIGO'.$request->f.' A LA PANTALLA DE LIBRO MAYOR',
+                "OBJETO" => 'LIBROMAYOR'
+    
+            ]);
+    
+            } catch (\Throwable $th) {
+                return 'Error Libro Mayor 43';
+            }
 
 		Session::flash('eliminado','1');
 		return back();
