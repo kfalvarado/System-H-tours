@@ -14,7 +14,7 @@ use App\Http\Controllers\clasificacion\ClasificacionController;
 |
 */
 
-Route::get('/mostrar',[ClasificacionController::class,'mostrar'])->name('clasificacion.inicio');
+Route::get('/',[ClasificacionController::class,'mostrar'])->name('clasificacion.inicio');
 Route::post('/',[ClasificacionController::class,'insertar'])->name('clasificacion.insertar');
 Route::put('/actualizar',[ClasificacionController::class,'actualizar'])->name('clasificacion.actualizar');
 Route::delete('/eliminar',[ClasificacionoController::class,'eliminar'])->name('clasificacion.eliminar');

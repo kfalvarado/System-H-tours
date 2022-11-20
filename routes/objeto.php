@@ -18,7 +18,7 @@ use App\Http\Controllers\objetos\ObjetosController;
 
 
 
-Route::get('/mostrar',[ObjetoController::class,'mostrar'])->name('objeto.inicio');
+Route::get('/',[ObjetoController::class,'mostrar'])->name('objeto.inicio');
 Route::post('/',[ObjetoController::class,'insertar'])->name('objeto.insertar');
 Route::put('/actualizar',[ObjetoController::class,'actualizar'])->name('objeto.actualizar');
 Route::delete('/eliminar',[ObjetoController::class,'eliminar'])->name('objeto.eliminar');

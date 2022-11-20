@@ -2,7 +2,7 @@
 
 <!-- titulo de la pagina  -->
 @section('titulo')
-Objetos | inicio
+Clasificacion | inicio
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
@@ -84,10 +84,7 @@ Objetos | inicio
             <div class="page-header">
               </nav>
             </div>
-            <nav class="nav nav-pills flex-column flex-sm-row">
-              <a class="flex-sm-fill text-sm-center nav-link active" href="#">Clasificacion</a>
-              <a class="flex-sm-fill text-sm-center nav-link"  aria-current="page" href="{{route('mostrar.clasificacion')}}">Clasificacion</a>
-            </nav>
+      
             <p align="right" valign="baseline">
               <button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
               <a type="button" href="{{route('periodo.pdf')}}" class="btn btn-danger btn-sm"  ><i class="mdi mdi-file-pdf"></i>Generar PDF</a>
@@ -102,7 +99,7 @@ Objetos | inicio
                   <div class="card-body">
                     <h4 class="card-title"> <center>Clasificacion</center></h4>
                     <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                      <input type="text" class="form-control" placeholder="Buscar objeto">
+                      <input type="text" class="form-control" placeholder="Buscar Calsificacion">
                     </form>
                     <div class="table-responsive">
                       <table id="tabla" class="table table-bordered table-contextual">
