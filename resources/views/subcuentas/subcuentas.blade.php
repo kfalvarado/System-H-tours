@@ -234,9 +234,9 @@ Subcuentas | inicio
 
                                                 <Select class="form-control text-white" name="nombrecuenta" id="cuentas" required>
                                                     <option hidden selected>SELECCIONAR</option>
-                                                    @foreach($nombrecuentaArr as $key)
+                                                    {{-- @foreach($nombrecuentaArr as $key)
                                                     <option value="{{$key['NOM_CUENTA'] }}">{{$key['NOM_CUENTA'] }}</option>
-                                                    @endforeach
+                                                    @endforeach --}}
 
                                                 </Select>
                                             </label>
@@ -276,8 +276,11 @@ Subcuentas | inicio
     @routes
     <script>
         function datos() {
+            window.CSRF_TOKEN = '{{ csrf_token() }}';
+            // const csrftoken = document.head.querySelector('[name~=csrf-token][content]').content;
             //Vamos a rellenar el select automáticamente.
     const select = document.getElementById("clasificacion").value;
+    
 
     // console.log(select);
     var url = route('busca.subcuentas')
@@ -286,10 +289,31 @@ Subcuentas | inicio
     }
     fetch(url,{
         method:'POST',
-        body:JSON.stringify(data)
+        body:JSON.stringify(data),
+        headers:{
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': window.CSRF_TOKEN
+        }
     })
-    .then(resp=>resp.json())
-    .then(console.log)
+    .then(resp=>{
+        return resp.json()
+    })
+    .then(respuesta => {
+  console.log(typeof respuesta);
+  const object = JSON.stringify(respuesta)
+//   console.log(object.NOM_CUENTA[0]);
+  var opciones = "";
+  for(let i in object.NOM_CUENTA){
+    // console.log(object.NOM_CUENTA[]);
+    opciones+="<option value='"+object.NOM_CUENTA[i]+"'>"+object.NOM_CUENTA[i]+'</option>';
+  }
+  document.getElementById('cuentas').innerHTML = opciones;
+
+    }
+
+
+    
+    ).catch(error =>console.error(error))
         }
     </script>
         

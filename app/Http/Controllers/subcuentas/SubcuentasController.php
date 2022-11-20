@@ -16,6 +16,9 @@ class SubcuentasController extends Controller
     protected $url = 'http://localhost:3000';
     public function ver()
     {
+       
+
+
 
         $subcuentas = http::withToken(Cache::get('token'))->get($this->url.'/subcuentas');
         $personArr = $subcuentas->json();
@@ -29,12 +32,23 @@ class SubcuentasController extends Controller
     }
     public function busca(Request $req)
     {
-    
-        $clasificacion = http::withToken(Cache::get('token'))->post($this->url.'/clasificacion',[
-            "NATURALEZA"=>$req->select
+        $clasificacion = http::withToken(Cache::get('token'))->post($this->url.'/clasificacion/cuentas',[
+            "NATURALEZA"=>$req->NATURALEZA
         ]);
+
+        return $clasificacion;
+
+        // return response()->json(
+        //     [
+        //         'hola'=> true
+        //     ]
+        //     );
+       
+        // $new =  json_decode($clasificacion,true);
+
+        // return $new;
         
-        return Response::json($clasificacion);
+        // return response()->json($clasificacion);
     }
 
      /**

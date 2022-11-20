@@ -6,16 +6,20 @@ Balance General
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
+@if (Cache::get('genero'))
 {{ asset('assets/images/varon.png')}}
+@else
+{{ asset('assets/images/dama.png')}}
+@endif
 @endsection
 
 <!-- nombre del usuario de la barra lateral  -->
 @section('Usuario-Lateral')
-Emerson
+{{ Cache::get('user')}}
 @endsection
 <!-- rol del usuario de la barra lateral  -->
 @section('rol-usuario')
-Administrador
+{{ Cache::get('rol')}}
 @endsection
 
 <!-- foto del menu de la derecha -->
@@ -24,10 +28,49 @@ Administrador
 @endsection
 <!-- nombre del menu de la derecha  -->
 @section('Usuario-Menu')
-Emerson
+{{ Cache::get('user')}}
 @endsection
 <!-- contenido de la pagina  -->
 @section('contenido')
+
+<!-- INICIO MODAL PARA NUEVA  -->
+<div class="modal-container">
+  <div class="modal fade bd-example-modal-lg" id="dialogo1">
+    <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <!-- CABECERA DEL DIALOGO NUEVA-->
+        <div class="modal-header">
+          <h4 class="modal-title">
+            <center> Seleccionar Periodo</center>
+          </h4>
+          <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+        </div>
+        <!-- CUERPO DEL DIALOGO NUEVA -->
+        <div class="modal-body">
+          <center>
+            <form action="{{route('balance.insertar')}}" method="post">
+              @csrf
+              <Label>Seleccionar periodo</Label>
+              <select class="form-control text-white" name="periodo" id="">
+                <option value="" selected></option>
+                @foreach($personArr as $periodo)
+                <option value="{{$periodo['COD_PERIODO']}}">{{$periodo['NOM_PERIODO']}}</option>
+                @endforeach
+              </select>
+              <br>
+              <br>
+              <a href="" class="btn btn-secondary">Cancelar</a>
+              <button class="btn btn-primary">Aceptar</button>
+            </form>
+        </div>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN DE MODAL PARA NUEVA  -->
 
           <div class="content-wrapper">
             <center> <h1>Balance General H Tours Honduras</h1> </center>

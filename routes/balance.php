@@ -14,5 +14,5 @@ use App\Http\Controllers\balance\BalanceController;
 |
 */
 
-
 Route::get('/', [BalanceController::class,'mostrar'])->name('balance.inicio');
+Route::post('/', [BalanceController::class,'insertar'])->name('balance.insertar');
