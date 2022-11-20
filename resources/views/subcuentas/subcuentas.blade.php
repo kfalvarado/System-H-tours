@@ -36,6 +36,15 @@ Subcuentas | inicio
 @endsection
 <!-- contenido de la pagina  -->
 @section('contenido')
+@if(Session::has('insertado'))
+<script>
+    Swal.fire({
+    icon: 'success',
+    text: 'La cuenta se registro correctamente'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+  @endif
     <div class="content-wrapper">
         <div class="page-header">
             <center>
@@ -57,7 +66,7 @@ Subcuentas | inicio
             <div class="col-lg-12 stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">CREAR SUBCUENTAS</h4>
+                        <h4 class="card-title">CREAR SUBCUENTA</h4>
 
                         <div class="table-responsive">
                             <table class="table table-bordered table-contextual">
@@ -77,7 +86,7 @@ Subcuentas | inicio
 
                                     <tr class="text-white bg-dark">
                                         <td> {{$subcuentas ['COD_SUBCUENTA'] }}</td>
-                                        <td> {{$subcuentas ['COD_CLASIFICACION'] }}</td>
+                                        <td> {{$subcuentas ['NATURALEZA'] }}</td>
                                         <td>{{$subcuentas ['COD_CUENTA'] }} </td>
                                         <td>{{$subcuentas ['NUM_SUBCUENTA'] }} </td>
                                         <td> {{$subcuentas ['NOM_SUBCUENTA'] }}</td>
@@ -182,6 +191,8 @@ Subcuentas | inicio
                 </div>
                 <!-- FIN DE MODAL PARA BORRAR  -->
 
+                @endforeach
+
                                 </tbody>
                             </table>
                         </div>
@@ -203,38 +214,40 @@ Subcuentas | inicio
                                 <!-- CUERPO DEL DIALOGO NUEVA -->
                                 <div class="modal-body">
                                     <center>
-                                        <form action="" method="post">
+                                        <form action="{{ route('insertar.subcuentas') }}" method="post">
+                                             @csrf
                                             <label class="form-label">
                                                 Clasificacion
 
-                                                <select class="form-control text-white" name="" id="" required>
-                                                    <option value=""></option>
-                                                    <option value="">Activo</option>
-                                                    <option value="">Pasivo</option>
-                                                    <option value="">Patrimonio </option>
-                                                    <option value="">Resultado </option>
+                                                <select class="form-control text-white" name="naturaleza" id="clasificacion"  onchange="datos();" required>
+                                                <option hidden selected>SELECCIONAR</option>
+                                                @foreach($clasificacionArr as $key)
+                                                <option value="{{$key['NATURALEZA'] }}">{{$key['NATURALEZA'] }}</option>
+                                                @endforeach
+
                                                 </select>
                                             </label>
 
 
                                             <label class="form-label">
                                                 Nombre de Cuenta
-                                                <Select class="form-control text-white">
-                                                    <option value=""></option>
-                                                    <option value="">Caja</option>
-                                                    <option value="">Banco</option>
-                                                    <option value="">Proveedores</option>
-                                                    <option value="">Capital</option>
+
+                                                <Select class="form-control text-white" name="nombrecuenta" id="cuentas" required>
+                                                    <option hidden selected>SELECCIONAR</option>
+                                                    @foreach($nombrecuentaArr as $key)
+                                                    <option value="{{$key['NOM_CUENTA'] }}">{{$key['NOM_CUENTA'] }}</option>
+                                                    @endforeach
+
                                                 </Select>
                                             </label>
 
                                             <label class="form-label">
                                                 Numero de la sub Cuenta
-                                                <input type='number' min="0" name='COS PRODUCTO' class="form-control text-white" required></input>
+                                                <input type='number' min="0" name='numerosubcuenta' class="form-control text-white" required></input>
                                             </label>
                                             <label class="form-label">
                                                 Nombre de la Sub Cuenta
-                                                <input type='text' name='COS PRODUCTO' class="form-control text-white" required></input>
+                                                <input type='text' name='nombresubcuenta' class="form-control text-white" required></input>
                                             </label>
                                             <a href="" class="btn btn-secondary">Cancelar</a>
                                             <button type="submit" class="btn btn-primary">NUEVO</button>
@@ -249,7 +262,7 @@ Subcuentas | inicio
                 <!-- FIN DE MODAL PARA NUEVA  -->
 
 
-                @endforeach
+
 
 
 
@@ -258,15 +271,29 @@ Subcuentas | inicio
             </div>
         </div>
     </div>
+    @section('js')
+
+    @routes
+    <script>
+        function datos() {
+            //Vamos a rellenar el select automáticamente.
+    const select = document.getElementById("clasificacion").value;
+
+    // console.log(select);
+    var url = route('busca.subcuentas')
+    let data = {
+        NATURALEZA: select
+    }
+    fetch(url,{
+        method:'POST',
+        body:JSON.stringify(data)
+    })
+    .then(resp=>resp.json())
+    .then(console.log)
+        }
+    </script>
+        
+    @endsection
     <!-- content-wrapper ends -->
     <!-- partial:../../partials/_footer.html -->
-    <footer class="footer">
-        <div class="d-sm-flex justify-content-center justify-content-sm-between">
-
-        </div>
-    </footer>
-    <!-- partial -->
-</div>
-<!-- main-panel ends -->
-</div>
-@endsection
+    @endsection

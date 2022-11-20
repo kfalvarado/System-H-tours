@@ -5,9 +5,9 @@
 n = 300; // 5 minutos equivale a 300 
 contador = document.getElementById("number");
 let id = window.setInterval(() => {
-    console.log("paso un seguno");
+    // console.log("paso un seguno");
     document.onmousemove = function name(params) {
-        console.log("mouse se movio");
+        // console.log("mouse se movio");
         n = 300;
     };
     contador.innerText = n;

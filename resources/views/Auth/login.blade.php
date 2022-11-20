@@ -26,7 +26,7 @@
 </head>
 
 <body>
-  {{ Cache::flush() }}
+ <input type="hidden" value="{{ Cache::flush() }}"> 
   @if(Session::has('bloqueado'))
   <script>
     Swal.fire({
