@@ -17,10 +17,34 @@ class LibrodiarioController extends Controller
     protected $url = 'http://localhost:3000';
     public function mostrar()
     {
+        try {
+            
         $librodiario =http::withToken(Cache::get('token'))->get($this->url.'/librodiario');
         
         $personArr = $librodiario->json();
         return view('librodiario.librodiario', compact('personArr'));
+
+            # code...
+        } catch (\Throwable $e) {
+            return 'error libro diario 29';
+        }
+
+        try {
+            $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                "USR" => Cache::get('user'),
+                "ACCION" => 'PANTALLA METODO GET',
+                "DES" => Cache::get('user') . ' INGRESO A LA PANTALLA DE PERIODO',
+                "OBJETO" => 'PERIODO'
+
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return 'Error periodo 32';
+        }
+        
+
+
+
     }
 
 

@@ -18,10 +18,32 @@ class LibromayorController extends Controller
     public function mostrar()
 	{
 
+		try {
+
 		$libromayor =http::withToken(Cache::get('token'))->get($this->url.'/libromayor');
 
 		$personArr = $libromayor->json();
         return view('libromayor.libromayor', compact('personArr'));
+
+			# code...
+		} catch (\Throwable $e) {
+			return 'error libro mayor 30';
+		}
+
+
+
+		try {
+			$bitacora = Http::withToken(Cache::get('Token'))->post($this->url.'/seguridad/bitacora/insertar',[
+
+				"USR" => Cache::get('user)'),
+				"ACCION" => 'PANTALLA METODO GET',
+				"DES" => Cache::get('user') . 'INGRESO A LA PANTALLA DE LIBRO MAYOR',
+				"OBJETO" => 'LIBRODMAYOR'
+
+			]);
+		} catch (\Throwable $e) {
+			return 'Error Libro Mayor 42';
+		}
 	}
 
 
