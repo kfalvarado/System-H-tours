@@ -27,14 +27,15 @@ class ClasificacionController extends Controller
             $search = Http::withToken(Cache::get('token'))->post($this->url . '/permisos/sel_per_obj', [
                 "PV_ROL" => Cache::get('rol'),
                 "PV_OBJ" => "CLASIFICACION"
-            ]);
-
+        ]);
+      
             $permisos = $search->json();
             foreach ($permisos as $key) {
                 $consultar = $key['PER_CONSULTAR'];
             }
+          
         } catch (\Throwable $th) {
-            //throw $th;
+        //throw $th;
             return 'Error Clasificacion 21';
         }
 
