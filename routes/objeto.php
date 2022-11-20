@@ -18,4 +18,14 @@ use App\Http\Controllers\objetos\ObjetosController;
 
 
 
-Route::get('/',[ObjetosController::class,'mostrar'])->name('mostrar.objeto');
+Route::get('/mostrar',[ObjetoController::class,'mostrar'])->name('objeto.inicio');
+Route::post('/',[ObjetoController::class,'insertar'])->name('objeto.insertar');
+Route::put('/actualizar',[ObjetoController::class,'actualizar'])->name('objeto.actualizar');
+Route::delete('/eliminar',[ObjetoController::class,'eliminar'])->name('objeto.eliminar');
+
+
+
+//pdf
+Route::get('/mostrarpdf',[ObjetoController::class,'mostrarPDF'])->name('objeto.pdf');
+
+//excel

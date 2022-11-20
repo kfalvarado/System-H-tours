@@ -170,6 +170,12 @@ class SessionController extends Controller
                     $acc = http::withToken($token)->put($this->url.'/upd_acc',[
                         "USR"=>$user
                     ]);
+
+                    //$user = $request->user;
+
+                    $fec_ult_conn = http::withToken($token)->put($this->url.'/upd_fec_ult_conn',[
+                        "USR"=>$user
+                    ]);
                     
                     Cache::forget('intento');
                     Cache::put('token', $token);
@@ -183,6 +189,8 @@ class SessionController extends Controller
                         Session::flash('bloqueado', 'tu usuario a sido bloqueado');
                         return back();
                     }
+
+                
                     
                 }
 
@@ -718,6 +726,7 @@ class SessionController extends Controller
         Cache::flush('genero');
         // Cache::flush('resp_preg');
         return redirect('/');
+        
     }
 
     public function pruebas()

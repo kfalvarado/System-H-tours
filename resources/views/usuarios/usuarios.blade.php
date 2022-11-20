@@ -95,7 +95,7 @@ Usuarios | inicio
                       <th class="text-dark bg-white">Rol</th>
                       <th class="text-dark bg-white">Tipo</th>
                       <th class="text-dark bg-white">Ultima Conexión</th>
-                      <th class="text-dark bg-white">Preguntas contestadas</th>
+                      {{-- <th class="text-dark bg-white">Preguntas contestadas</th> --}}
                       <th class="text-dark bg-white">Ingresos</th>
                       <th class="text-dark bg-white">Correo Electronico</th>
                       <th class="text-dark bg-white">Acciones</th>
@@ -117,8 +117,8 @@ Usuarios | inicio
                     <td>{{$usuario['ESTADO_USUARIO']}}</td>
                     <td>{{$usuario['COD_ROL']}}</td>
                     <td>{{$usuario['TIPO']}}</td>
-                    <td>{{$usuario['FECHA_ULTIMO_ACCESO']}}</td>
-                    <td>{{$usuario['PREGUNTA_RESPONDIDA']}}</td>
+                    <td>{{ substr($usuario['FECHA_ULTIMO_ACCESO'],0,10)}}</td>
+                    {{-- <td>{{$usuario['PREGUNTA_RESPONDIDA']}}</td> --}}
                     <td>{{$usuario['PRIMER_ACCESO']}}</td>
                     <td>{{$usuario['CORREO_ELECTRONICO']}}</td>
                     <td>

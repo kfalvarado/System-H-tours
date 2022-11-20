@@ -295,7 +295,8 @@ Ajustes | inicio
                                   name="CONTRA_ACTUAL" 
                                   type="password" 
                                   class="form-control" 
-                                  id="currentPassword">
+                                  id="currentPassword"
+                                  required>
                               </div>
                             </div>
         
@@ -306,7 +307,8 @@ Ajustes | inicio
                                   name="CONTRASEGNA" 
                                   type="password" 
                                   class="form-control" 
-                                  id="newPassword">
+                                  id="newPassword"
+                                  required>
                               </div>
                             </div>
         
@@ -317,7 +319,8 @@ Ajustes | inicio
                                   name="" 
                                   type="password" 
                                   class="form-control" 
-                                  id="renewPassword">
+                                  id="renewPassword"
+                                  required>
                               </div>
                             </div>
         
