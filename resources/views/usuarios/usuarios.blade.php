@@ -13,6 +13,8 @@ Usuarios | inicio
 @else
 {{ asset('assets/images/dama.png')}}
 @endif
+
+
 @endsection
 
 <!-- nombre del usuario de la barra lateral  -->
@@ -21,16 +23,18 @@ Usuarios | inicio
 @endsection
 <!-- rol del usuario de la barra lateral  -->
 @section('rol-usuario')
-Administrador
+{{cache::get("rol")}}
 @endsection
 
 <!-- foto del menu de la derecha -->
 @section('foto-user2')
+
 @if (Cache::get('genero') == 'M')
 {{ asset('assets/images/varon.png')}}
 @else
 {{ asset('assets/images/dama.png')}}
 @endif
+
 @endsection
 <!-- nombre del menu de la derecha  -->
 @section('Usuario-Menu')
@@ -124,12 +128,12 @@ Administrador
                         data-toggle="modal" 
                         data-target="#modal-editar-{{$usuario['CODIGO_USUARIO']}}">Editar
                       </button> 
-                      <button 
+                      {{-- <button 
                         type="button"  
                         class="btn btn-danger"  
                         data-toggle="modal" 
                         data-target="#modal-eliminar-{{$usuario['CODIGO_USUARIO']}}">Eliminar
-                      </button> 
+                      </button>  --}}
                     </td>
                     </tr>
                     

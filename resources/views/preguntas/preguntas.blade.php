@@ -103,15 +103,12 @@ Preguntas | inicio
                         <tr class="text-white bg-dark">
                           <td>{{$preg['COD_PREG']}}</td>
                           <td>{{$preg['PREGUNTA']}}</td>
-                          {{-- @foreach ($usrArr as $usuario)
-                          <td>{{$usuario['USUARIO']}}</td>
-                          @endforeach --}}
-                          
+                          <td>{{$preg['USR']}}</td>
                           <td>
-                            <button type="button" 
-                                    class="btn btn-info"  
-                                    data-toggle="modal" 
-                                    data-target="#modal-editar-{{$preg['COD_PREG']}}">Editar</button>
+                              <button type="button" 
+                                      class="btn btn-info"  
+                                      data-toggle="modal" 
+                                      data-target="#modal-editar-{{$preg['COD_PREG']}}">Editar</button>
                           </td>          
                         </tr>
 

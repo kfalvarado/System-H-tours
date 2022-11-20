@@ -104,11 +104,17 @@ class SessionController extends Controller
                 $est = Http::post($this->url . '/seguridad/estadousr', [
                     "user"=>$request->user
                 ]);
+                //return $est;
                 $estado = strrpos($est, "NUEVO");
                 $activo = strrpos($est, "ACTIVO");
                 $bloqueado = strrpos($est, "BLOQUEADO");
                 $inactivo = strrpos($est, "INACTIVO");
                 
+                if($inactivo > 0) {
+                    Session::flash('desactivado', 'tu usuario a sido bloqueado');
+                    return back();
+                }
+
                 if ($estado>0) {
                     $user = $request->user;
                     // Falta validar por default del usuario
@@ -144,6 +150,7 @@ class SessionController extends Controller
                     ]);
 
                     
+                    
                     $default = strpos($rol,'DEFAULT');
                     if ($default>0 ) {
                         Cache::flush();
@@ -158,6 +165,11 @@ class SessionController extends Controller
                         $mirol = $key['ROL'];
                     }
 
+                    // INGRESOS
+
+                    $acc = http::withToken($token)->put($this->url.'/upd_acc',[
+                        "USR"=>$user
+                    ]);
                     
                     Cache::forget('intento');
                     Cache::put('token', $token);
@@ -166,17 +178,15 @@ class SessionController extends Controller
                     
                     return redirect()->route('home');
                 }else {
-                    Session::flash('desactivado', 'usuario fuera de servicio');
-                    return back();
+                   //No dejar Pasar al bloqueado
+                    if ($bloqueado >0) {
+                        Session::flash('bloqueado', 'tu usuario a sido bloqueado');
+                        return back();
+                    }
+                    
                 }
 
-                //No dejar Pasar al bloqueado
-                if ($bloqueado >0) {
-                    Session::flash('bloqueado', 'tu usuario a sido bloqueado');
-                }
-                if ($inactivo >0) {
-                    Session::flash('bloqueado', 'tu usuario a sido bloqueado');
-                }
+                
                 
             }
 
