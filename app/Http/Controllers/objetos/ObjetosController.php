@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
-class PeriodoController extends Controller
+class ObjetosController extends Controller
 {
 
     /*
@@ -66,7 +66,7 @@ class PeriodoController extends Controller
         }
 
 
-        return view('objetos.objetos', compact('personArr'));
+        return view('objeto.objeto', compact('personArr'));
     }
 
     /**

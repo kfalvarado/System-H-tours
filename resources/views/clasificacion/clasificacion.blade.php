@@ -125,8 +125,8 @@ Objetos | inicio
                           @foreach ($personArr as $clasificacion)
                             
                           <tr class="text-white bg-dark">
-                            <td> {{ $objeto['COD_CLASIFICACION'] }} </td>
-                            <td>{{ $objeto['CLASIFICACION'] }}</td>
+                            <td> {{ $clasificacion['COD_CLASIFICACION'] }} </td>
+                            <td>{{ $clasificacion['NATURALEZA'] }}</td>
                             <td><button type="button"  class="btn btn-info btn-sm"  data-toggle="modal" data-target="#modal-editar-{{ $clasificacion['COD_CLASIFICACION'] }}"> <i class="mdi mdi-table-edit"></i>Editar</button> <button type="button"  class="btn btn-danger btn-sm"  data-toggle="modal" data-target="#modal-eliminar-{{ $clasificacion['COD_CLASIFICACION'] }}"><i class="mdi mdi-delete-forever"></i>Eliminar</button> </td>  
                           </tr>
                           
@@ -151,7 +151,7 @@ Objetos | inicio
                         <input type="hidden" name="f" value="{{ $clasificacion['COD_CLASIFICACION'] }}">
                          <label class="form-label">
                            Clasificacion
-                           <input type='text' list="lista-programacion" value="{{ $clasificacion['CLASIFICACION'] }}" name='clasificacion' class="form-control text-white bg-dark" required>
+                           <input type='text' list="lista-programacion" value="{{ $clasificacion['NATURALEZA'] }}" name='clasificacion' class="form-control text-white bg-dark" required>
                            <datalist id="lista-programacion">
                              <option value="Periodo-2022-ene-1-004">
                            </datalist>
@@ -284,7 +284,7 @@ Objetos | inicio
                           exportButtons: false, // No queremos botones
                           filename: "Reporte de Clasificacion", //Nombre del archivo de Excel
                           sheetname: "Reporte de Clasificacion", //Título de la hoja
-                          ignoreCols: 5,  
+                          ignoreCols: 2,  
                       });
                       let datos = tableExport.getExportData();
                       let preferenciasDocumento = datos.tabla.xlsx;

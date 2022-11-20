@@ -104,11 +104,17 @@ class SessionController extends Controller
                 $est = Http::post($this->url . '/seguridad/estadousr', [
                     "user"=>$request->user
                 ]);
+                //return $est;
                 $estado = strrpos($est, "NUEVO");
                 $activo = strrpos($est, "ACTIVO");
                 $bloqueado = strrpos($est, "BLOQUEADO");
                 $inactivo = strrpos($est, "INACTIVO");
                 
+                if($inactivo > 0) {
+                    Session::flash('desactivado', 'tu usuario a sido bloqueado');
+                    return back();
+                }
+
                 if ($estado>0) {
                     $user = $request->user;
                     // Falta validar por default del usuario
@@ -172,19 +178,15 @@ class SessionController extends Controller
                     
                     return redirect()->route('home');
                 }else {
-                    Session::flash('desactivado', 'usuario fuera de servicio');
-                    return back();
+                   //No dejar Pasar al bloqueado
+                    if ($bloqueado >0) {
+                        Session::flash('bloqueado', 'tu usuario a sido bloqueado');
+                        return back();
+                    }
+                    
                 }
 
-                //No dejar Pasar al bloqueado
-                if ($bloqueado >0) {
-                    Session::flash('bloqueado', 'tu usuario a sido bloqueado');
-                    return back();
-                }
-                if ($inactivo >0) {
-                    Session::flash('bloqueado', 'tu usuario a sido bloqueado');
-                    return back();
-                }
+                
                 
             }
 

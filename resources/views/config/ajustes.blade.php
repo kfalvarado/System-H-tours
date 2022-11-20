@@ -6,25 +6,37 @@ Ajustes | inicio
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
-{{ asset('assets/images/dama.png') }}
+
+@if (Cache::get('genero') == 'M')
+{{ asset('assets/images/varon.png')}}
+@else
+{{ asset('assets/images/dama.png')}}
+@endif
+
 @endsection
 
 <!-- nombre del usuario de la barra lateral  -->
 @section('Usuario-Lateral')
-Scarleth
+{{cache::get('user')}}
 @endsection
 <!-- rol del usuario de la barra lateral  -->
 @section('rol-usuario')
-Administrador
+{{cache::get("rol")}}
 @endsection
 
 <!-- foto del menu de la derecha -->
 @section('foto-user2')
+
+@if (Cache::get('genero') == 'M')
+{{ asset('assets/images/varon.png')}}
+@else
 {{ asset('assets/images/dama.png')}}
+@endif
+
 @endsection
 <!-- nombre del menu de la derecha  -->
 @section('Usuario-Menu')
-Scarleth
+{{cache::get('user')}}
 @endsection
 
 {{-- encabezado --}}
@@ -37,6 +49,25 @@ Scarleth
 
 @section('contenido')
 
+@if (Session::has('contra_actual_incorrecta'))
+  <script>
+    Swal.fire({
+    icon: 'error',
+    text: 'Contraseña actual incorrecta'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+@endif
+
+@if (Session::has('actualizado'))
+  <script>
+    Swal.fire({
+    icon: 'success',
+    text: 'La contraseña se actualizo correctamente'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+@endif
 
 <div class="container">
     <h1 class="mb-5">Ajustes</h1>
@@ -252,27 +283,41 @@ Scarleth
   
                       <!-- CAMBIAR CONTRASEÑA -->
                       <div class="tab-pane fade pt-3" id="profile-change-password">
+                          
                           <!-- Change Password Form -->
-                          <form>
+                          <form action="{{ route('ajustes.actualizar') }}" >
+                            @csrf @method('PUT') 
         
                             <div class="row mb-3">
                               <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Contraseña actual</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="password" type="password" class="form-control" id="currentPassword">
+                                <input 
+                                  name="CONTRA_ACTUAL" 
+                                  type="password" 
+                                  class="form-control" 
+                                  id="currentPassword">
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Nueva contraseña</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="newpassword" type="password" class="form-control" id="newPassword">
+                                <input 
+                                  name="CONTRASEGNA" 
+                                  type="password" 
+                                  class="form-control" 
+                                  id="newPassword">
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-ingresar nueva contraseña</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                                <input 
+                                  name="" 
+                                  type="password" 
+                                  class="form-control" 
+                                  id="renewPassword">
                               </div>
                             </div>
         

@@ -5,5 +5,5 @@ use App\Http\Controllers\preguntas\PreguntasController;
  
 Route::get('/', [PreguntasController::class, 'mostrar'])->name('preguntas.inicio');
  
-Route::put('/actualizar', [PreguntasController::class, 'actualizar'])->name('preguntas.actualizar');
+Route::put('/upd_preg', [PreguntasController::class, 'actualizar'])->name('preguntas.actualizar');
 
