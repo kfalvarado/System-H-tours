@@ -390,8 +390,10 @@ Administrador
 
             </div>
                 <p align="right" valign="baseline">
-                   <button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button> <a type="button"  class="btn btn-success" href="javascript:window.print();">Generar PDF</a>
-                    
+                   <button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button> <a type="button"  class="btn btn-danger btn-sm" href="javascript:window.print();">Generar PDF</a>
+                   <button id="btnExportar" class="btn btn-success btn-sm">
+                <i class="mdi mdi-file-excel"></i> Generar Excel
+            </button>
           </p>
           <!--BUSCADOR VERDE CON CSS     INICIO-->
           <div class="demo">
