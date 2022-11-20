@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\objeto;
+namespace App\Http\Controllers\objetos;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
-class ObjetoController extends Controller
+class ObjetosController extends Controller
 {
 
     /*
@@ -26,7 +26,7 @@ class ObjetoController extends Controller
             //code...
             $search = Http::withToken(Cache::get('token'))->post($this->url . '/permisos/sel_per_obj', [
                 "PV_ROL" => Cache::get('rol'),
-                "PV_OBJ" => "OBJETO"
+                "PV_OBJ" => "OBJETOS"
             ]);
 
             $permisos = $search->json();
@@ -35,38 +35,38 @@ class ObjetoController extends Controller
             }
         } catch (\Throwable $th) {
             //throw $th;
-            return 'Error Objeto 21';
+            return 'Error Objetos 21';
         }
 
         if ($consultar == '1') {
             try {
                 //code...
-                $objeto = http::withToken(Cache::get('token'))->get($this->url . '/objeto');
+                $objetos = http::withToken(Cache::get('token'))->get($this->url . '/objetos');
 
-                $personArr = $objeto->json();
+                $personArr = $objetos->json();
             } catch (\Throwable $th) {
                 //throw $th;
-                return 'error objeto 22';
+                return 'error objetos 22';
             }
 
             try {
                 $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
                     "USR" => Cache::get('user'),
                     "ACCION" => 'PANTALLA METODO GET',
-                    "DES" => Cache::get('user') . ' INGRESO A LA PANTALLA DE OBJETO',
-                    "OBJETO" => 'OBJETO'
+                    "DES" => Cache::get('user') . ' INGRESO A LA PANTALLA DE OBJETOS',
+                    "OBJETO" => 'OBJETOS'
 
                 ]);
             } catch (\Throwable $th) {
                 //throw $th;
-                return 'Error objeto 32';
+                return 'Error objetos 32';
             }
         } else {
             return view('Auth.no-auth');
         }
 
 
-        return view('objeto.objeto', compact('personArr'));
+        return view('objetos.objetos', compact('personArr'));
     }
 
     /**
@@ -82,7 +82,7 @@ class ObjetoController extends Controller
             //code...
             $search = Http::withToken(Cache::get('token'))->post($this->url . '/permisos/sel_per_obj', [
                 "PV_ROL" => Cache::get('rol'),
-                "PV_OBJ" => "OBJETO"
+                "PV_OBJ" => "OBJETOS"
             ]);
 
             $permisos = $search->json();
@@ -95,7 +95,7 @@ class ObjetoController extends Controller
         }
         if ($insercion == '1') {
             try {
-                $insertar = Http::withToken(Cache::get('token'))->post($this->url . '/objeto/insertar', [
+                $insertar = Http::withToken(Cache::get('token'))->post($this->url . '/objetos/insertar', [
                     "USR" => Cache::get('user'),
                     "OBJETOS" => $request->objetos,
                     "DES_OBJETO" => $request->descripcion,
@@ -111,13 +111,13 @@ class ObjetoController extends Controller
                 $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
                     "USR" => Cache::get('user'),
                     "ACCION" => 'PANTALLA METODO POST',
-                    "DES" => Cache::get('user') . ' INSERTO EL DATO DE ' . $request->objeto . ' EN LA PANTALLA DE OBJETO',
-                    "OBJETO" => 'OBJETO'
+                    "DES" => Cache::get('user') . ' INSERTO EL DATO DE ' . $request->objeto . ' EN LA PANTALLA DE OBJETOS',
+                    "OBJETO" => 'OBJETOS'
 
                 ]);
             } catch (\Throwable $th) {
                 //throw $th;
-                return 'Error objeto 32';
+                return 'Error objetos 32';
             }
             Session::flash('insertado', '1');
         } else {
@@ -125,15 +125,15 @@ class ObjetoController extends Controller
                 $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
                     "USR" => Cache::get('user'),
                     "ACCION" => 'SIN PERMISO METODO POST',
-                    "DES" => Cache::get('user') . ' INTENTO INSERTAR EL DATO ' . $request->objeto . ' EN LA PANTALLA DE objeto',
-                    "OBJETO" => 'OBJETO'
+                    "DES" => Cache::get('user') . ' INTENTO INSERTAR EL DATO ' . $request->objeto . ' EN LA PANTALLA DE OBJETOS',
+                    "OBJETO" => 'OBJETOS'
 
                 ]);
 
                 Session::flash('sinpermiso', '1');
             } catch (\Throwable $th) {
                 //throw $th;
-                return 'Error objeto 32';
+                return 'Error objetos 32';
             }
         }
 
@@ -158,7 +158,7 @@ class ObjetoController extends Controller
             //code...
             $search = Http::withToken(Cache::get('token'))->post($this->url.'/permisos/sel_per_obj',[
                 "PV_ROL" => Cache::get('rol'),
-                "PV_OBJ" => "OBJETO"
+                "PV_OBJ" => "OBJETOS"
             ]);
 
             $permisos = $search->json();
@@ -167,12 +167,12 @@ class ObjetoController extends Controller
             }
          } catch (\Throwable $th) {
             //throw $th;
-            return 'Error Objeto 21';
+            return 'Error Objetos 21';
          }
          if ($update == '1') {
         try {
             //code...
-            $actualizar = Http::withToken(Cache::get('token'))->put($this->url.'/objeto/actualizar/'.$request->f,[
+            $actualizar = Http::withToken(Cache::get('token'))->put($this->url.'/objetoS/actualizar/'.$request->f,[
                 "USR" => Cache::get('user'),
                     "OBJETOS" => $request->objetos,
                     "DES_OBJETO" => $request->descripcion,
@@ -188,13 +188,13 @@ class ObjetoController extends Controller
             $bitacora = Http::withToken(Cache::get('token'))->post($this->url.'/seguridad/bitacora/insertar',[
                 "USR"=> Cache::get('user'),
                 "ACCION"=> 'ACTUALIZO UN DATO EN PANTALLA ',
-                "DES"=> Cache::get('user').' ACTUALIZO EL DATO DE '.$request->objeto.' EN LA PANTALLA DE OBJETO',
-                "OBJETO"=> 'OBJETO'
+                "DES"=> Cache::get('user').' ACTUALIZO EL DATO DE '.$request->objetos.' EN LA PANTALLA DE OBJETOS',
+                "OBJETO"=> 'OBJETOS'
 
             ]);
         } catch (\Throwable $th) {
             //throw $th;
-            return 'Error objeto 32';
+            return 'Error objetos 32';
         }
             Session::flash('actualizado', '1');
         } else {
@@ -202,8 +202,8 @@ class ObjetoController extends Controller
                 $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
                     "USR" => Cache::get('user'),
                     "ACCION" => 'SIN PERMISO METODO PUT',
-                    "DES" => Cache::get('user') . ' INTENTO ACTUALIZAR EL DATO ' . $request->objetos . ' EN LA PANTALLA DE OBJETO',
-                    "OBJETO" => 'OBJETO'
+                    "DES" => Cache::get('user') . ' INTENTO ACTUALIZAR EL DATO ' . $request->objetos . ' EN LA PANTALLA DE OBJETOS',
+                    "OBJETO" => 'OBJETOS'
 
                 ]);
 
@@ -227,7 +227,7 @@ class ObjetoController extends Controller
             //code...
             $search = Http::withToken(Cache::get('token'))->post($this->url . '/permisos/sel_per_obj', [
                 "PV_ROL" => Cache::get('rol'),
-                "PV_OBJ" => "OBJETO"
+                "PV_OBJ" => "OBJETOS"
             ]);
 
             $permisos = $search->json();
@@ -243,15 +243,15 @@ class ObjetoController extends Controller
 
 
 
-            $delete = Http::withToken(Cache::get("token"))->delete($this->url . '/objeto/eliminar/' . $request->f);
+            $delete = Http::withToken(Cache::get("token"))->delete($this->url . '/objetos/eliminar/' . $request->f);
 
 
             try {
                 $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
                     "USR" => Cache::get('user'),
                     "ACCION" => 'ELIMINO UN DATO',
-                    "DES" => Cache::get('user') . ' ELIMINO EL DATO CON CODIGO ' . $request->f . ' EN LA PANTALLA DE OBJETO',
-                    "OBJETO" => 'OBJETO'
+                    "DES" => Cache::get('user') . ' ELIMINO EL DATO CON CODIGO ' . $request->f . ' EN LA PANTALLA DE OBJETOS',
+                    "OBJETO" => 'OBJETOS'
 
                 ]);
             } catch (\Throwable $th) {
@@ -267,8 +267,8 @@ class ObjetoController extends Controller
                 $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
                     "USR" => Cache::get('user'),
                     "ACCION" => 'SIN PERMISO METODO DELETE',
-                    "DES" => Cache::get('user') . ' INTENTO ELIMININAR EL DATO  con codigo' . $request->f . ' EN LA PANTALLA DE POBJETO',
-                    "OBJETO" => 'OBJETO'
+                    "DES" => Cache::get('user') . ' INTENTO ELIMININAR EL DATO  con codigo' . $request->f . ' EN LA PANTALLA DE POBJETOS',
+                    "OBJETO" => 'OBJETOS'
 
                 ]);
 
@@ -290,7 +290,7 @@ class ObjetoController extends Controller
     */
     public function mostrarPDF()
     {
-        return view('objeto.objetoPDF'); 
+        return view('objetos.objetosPDF'); 
     }
 
    
