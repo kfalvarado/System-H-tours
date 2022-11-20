@@ -17,6 +17,29 @@ class LibrodiarioController extends Controller
     protected $url = 'http://localhost:3000';
     public function mostrar()
     {
+
+
+           /**
+         * Seguridad de roles y perimisos metodo GET
+         */
+
+		 try {
+
+			$search = Http::withToken(Cache::get('token'))->post($this->url . '/permisos/sel_per_obj', [
+                "PV_ROL" => Cache::get('rol'),
+                "PV_OBJ" => "LIBRODIARIO"
+            ]);
+
+            $permisos = $search->json();
+            foreach ($permisos as $key) {
+                $insercion = $key['PER_INSERCION'];
+            }
+			
+		 } catch (\Throwable $e) {
+			return 'Error Libro Diario 40';
+		 }
+
+
         try {
             
         $librodiario =http::withToken(Cache::get('token'))->get($this->url.'/librodiario');

@@ -18,6 +18,38 @@ class LibromayorController extends Controller
     public function mostrar()
 	{
 
+
+
+		   /**
+         * Seguridad de roles y perimisos metodo GET
+         */
+
+		 try {
+
+			$search = Http::withToken(Cache::get('token'))->post($this->url . '/permisos/sel_per_obj', [
+                "PV_ROL" => Cache::get('rol'),
+                "PV_OBJ" => "LIBROMAYOR"
+            ]);
+
+            $permisos = $search->json();
+            foreach ($permisos as $key) {
+                $consultar = $key['PER_INSERCION'];
+            }
+
+			if ($consultar == '1'){
+				return 'si';
+			}else{
+				return 'no';
+			}
+			
+		 } catch (\Throwable $th) {
+			return 'Error Libro Mayor 40';
+		 }
+
+
+
+
+
 		try {
 
 		$libromayor =http::withToken(Cache::get('token'))->get($this->url.'/libromayor');
