@@ -144,6 +144,7 @@ class SessionController extends Controller
                     ]);
 
                     
+                    
                     $default = strpos($rol,'DEFAULT');
                     if ($default>0 ) {
                         Cache::flush();
@@ -158,6 +159,11 @@ class SessionController extends Controller
                         $mirol = $key['ROL'];
                     }
 
+                    // INGRESOS
+
+                    $acc = http::withToken($token)->put($this->url.'/upd_acc',[
+                        "USR"=>$user
+                    ]);
                     
                     Cache::forget('intento');
                     Cache::put('token', $token);
@@ -173,9 +179,11 @@ class SessionController extends Controller
                 //No dejar Pasar al bloqueado
                 if ($bloqueado >0) {
                     Session::flash('bloqueado', 'tu usuario a sido bloqueado');
+                    return back();
                 }
                 if ($inactivo >0) {
                     Session::flash('bloqueado', 'tu usuario a sido bloqueado');
+                    return back();
                 }
                 
             }

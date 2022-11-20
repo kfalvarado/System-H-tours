@@ -20,6 +20,7 @@ class PreguntasController extends Controller
 
         if(Cache::get('rol')=='Administrador'){
             $preg = http::withToken(Cache::get('token'))->get($this->url.'/sel_preg');
+            //return $preg;
             //return Cache::get('rol');
             $pregArr = $preg->json();
         }else{
