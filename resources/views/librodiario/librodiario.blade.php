@@ -411,7 +411,7 @@ Administrador
                   <div class="card-body">
                
                     <div class="table-responsive">
-                      <table class="table table-bordered table-contextual"  >
+                      <table id="tabla" class="table table-bordered table-contextual"  >
                         <thead>
                           <tr>
                             <th class="text-dark bg-white"> # </th>
@@ -428,6 +428,12 @@ Administrador
                         </thead>
                         <tbody>
 
+                        @if (count ($personArr)<=0)
+                            <tr>
+                              <td colspan="6"> No hay Resultados</td>
+                            </tr>
+                        @else
+                        
                         @foreach ($personArr as $librodiario)
 
                           <tr class="text-white bg-dark">
@@ -576,10 +582,14 @@ Administrador
 
 
                           @endforeach
+                          @endif
                         
                         </tbody>
                       </table>
                     </div>
+
+                    <div id="paginador" class=""></div>
+
                   </div>
                 </div>
               </div>
@@ -596,6 +606,11 @@ Administrador
           <!-- partial -->
         </div>
 
+
+        @section('js')
+                <script src="{{ asset('assets/js/ab-page.js') }}"></script>
+        
+@endsection
 
 
 

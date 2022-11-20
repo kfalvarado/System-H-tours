@@ -380,7 +380,7 @@ Administrador
                       </select>
                     </form>
                     <div class="table-responsive">
-                      <table class="table table-bordered table-contextual"  >
+                      <table id="tabla" class="table table-bordered table-contextual"  >
                         <thead>
                           <tr>
                             <th class="text-dark bg-white"> # </th>
@@ -396,7 +396,11 @@ Administrador
                         </thead>
                         <tbody>
 
-
+                        @if (count ($personArr)<=0)
+                            <tr>
+                              <td colspan="6"> No hay Resultados</td>
+                            </tr>
+                        @else
 
 
                         @foreach ($personArr as $libromayor)
@@ -540,10 +544,14 @@ Administrador
 
 
                           @endforeach
+                          @endif
                          
                         </tbody>
                       </table>
                     </div>
+
+                    <div id="paginador" class=""></div>
+
                   </div>
                 </div>
               </div>
@@ -565,7 +573,10 @@ Administrador
 
 
 
-
+        @section('js')
+                <script src="{{ asset('assets/js/ab-page.js') }}"></script>
+        
+@endsection
 
 
 
