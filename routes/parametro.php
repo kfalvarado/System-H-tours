@@ -16,4 +16,14 @@ use App\Http\Controllers\parametros\ParametrosController;
 
 
 
-Route::get('/',[ParametrosController::class,'mostrar'])->name('mostrar.parametro');
+Route::get('/mostrar',[ParametroController::class,'mostrar'])->name('parametro.inicio');
+Route::post('/',[ParametroController::class,'insertar'])->name('parametro.insertar');
+Route::put('/actualizar',[ParametroController::class,'actualizar'])->name('parametro.actualizar');
+Route::delete('/eliminar',[ParametroController::class,'eliminar'])->name('parametro.eliminar');
+
+
+
+//pdf
+Route::get('/mostrarpdf',[ParametroController::class,'mostrarPDF'])->name('parametro.pdf');
+
+//excel
