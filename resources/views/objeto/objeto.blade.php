@@ -128,10 +128,10 @@ Objetos | inicio
                             
                           <tr class="text-white bg-dark">
                             <td> {{ $objeto['COD_OBJETO'] }} </td>
-                            <td>{{ $objeto['OBJETOS'] }}</td>
-                            <td>{{ $objeto['DESCRIPCION'] }}</td>
-                            <td>{{ $objeto['TIP_OBJETOS'] }}</td>
-                            <td><button type="button"  class="btn btn-info btn-sm"  data-toggle="modal" data-target="#modal-editar-{{ $objeto['COD_OBJETOS'] }}"> <i class="mdi mdi-table-edit"></i>Editar</button> <button type="button"  class="btn btn-danger btn-sm"  data-toggle="modal" data-target="#modal-eliminar-{{ $objeto['COD_OBJETOS'] }}"><i class="mdi mdi-delete-forever"></i>Eliminar</button> </td>  
+                            <td>{{ $objeto['OBJETO'] }}</td>
+                            <td>{{ $objeto['DES_OBJETO'] }}</td>
+                            <td>{{ $objeto['TIP_OBJETO'] }}</td>
+                            <td><button type="button"  class="btn btn-info btn-sm"  data-toggle="modal" data-target="#modal-editar-{{ $objeto['COD_OBJETO'] }}"> <i class="mdi mdi-table-edit"></i>Editar</button> <button type="button"  class="btn btn-danger btn-sm"  data-toggle="modal" data-target="#modal-eliminar-{{ $objeto['COD_OBJETO'] }}"><i class="mdi mdi-delete-forever"></i>Eliminar</button> </td>  
                           </tr>
                           
                               <!-- INICIO MODAL PARA EDITAR  -->
