@@ -59,7 +59,7 @@ Administrador
 @endif
 
 
-// ELIMINADO NORMAL NO ELIMINA PERO POR QUE DEBE SER ELIMINADO LOGICO
+ <!-- ELIMINADO NORMAL NO ELIMINA PERO POR QUE DEBE SER ELIMINADO LOGICO -->
 @if (Session::has('eliminado'))
   <script>
     Swal.fire({
