@@ -57,7 +57,7 @@
   <script>
     Swal.fire({
     icon: 'error',
-    text: 'Tu Usuario esta bloqueado o Inactivo, se debe solicitar al administrador activarlo'
+    text: 'Tu Usuario esta inactivo, se debe solicitar al administrador activarlo'
     // footer: '<a href="">Why do I have this issue?</a>'
   })
 </script>
