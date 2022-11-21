@@ -79,7 +79,7 @@
     @endif
 
     <center>
-        <h1> Parametro </h1>
+        <h1> Parametros </h1>
     </center>
     <div class="page-header">
         </nav>
@@ -99,7 +99,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">
-                        <center>Parametro</center>
+                        <center>Parametros</center>
                     </h4>
                     <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
                         <input type="text" class="form-control" placeholder="Buscar Parametro">
@@ -123,26 +123,26 @@
                                         <td colspan="6">No hay resultados</td>
                                     </tr>
                                 @else
-                                    @foreach ($personArr as $parametro)
+                                    @foreach ($personArr as $parametros)
                                         <tr class="text-white bg-dark">
-                                            <td> {{ $parametro['COD_PARAMETRO'] }} </td>
-                                            <td>{{ $parametro['PARAMETRO'] }}</td>
-                                            <td>{{ $parametro['VALOR'] }}</td>
-                                            <td>{{ $parametro['COD_USR'] }}</td>
-                                            <td>{{ substr($parametro['FEC_CREACION'], 0, 10) }}</td>
-                                            <td>{{ substr($parametro['FEC_MODIFICACION'], 0, 10) }}</td>
+                                            <td> {{ $parametros['COD_PARAMETRO'] }} </td>
+                                            <td>{{ $parametros['PARAMETRO'] }}</td>
+                                            <td>{{ $parametros['VALOR'] }}</td>
+                                            <td>{{ $parametros['COD_USR'] }}</td>
+                                            <td>{{ substr($parametros['FEC_CREACION'], 0, 10) }}</td>
+                                            <td>{{ substr($parametros['FEC_MODIFICACION'], 0, 10) }}</td>
                                             <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                                    data-target="#modal-editar-{{ $parametro['COD_PARAMETRO'] }}"> <i
+                                                    data-target="#modal-editar-{{ $parametros['COD_PARAMETRO'] }}"> <i
                                                         class="mdi mdi-table-edit"></i>Editar</button> <button
                                                     type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                    data-target="#modal-eliminar-{{ $parametro['COD_PARAMETRO'] }}"><i
+                                                    data-target="#modal-eliminar-{{ $parametros['COD_PARAMETRO'] }}"><i
                                                         class="mdi mdi-delete-forever"></i>Eliminar</button> </td>
                                         </tr>
 
                                         <!-- INICIO MODAL PARA EDITAR  -->
                                         <div class="modal-container">
                                             <div class="modal fade bd-example-modal-lg"
-                                                id="modal-editar-{{ $parametro['COD_PARAMETRO'] }}">
+                                                id="modal-editar-{{ $parametros['COD_PARAMETRO'] }}">
                                                 <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
                                                 <div class="modal-dialog modal-md">
                                                     <div class="modal-content">
@@ -154,17 +154,17 @@
                                                         <!-- CUERPO DEL DIALOGO EDITAR -->
                                                         <div class="modal-body">
                                                             <center>
-                                                                <form action="{{ route('parametro.actualizar') }}"
+                                                                <form action="{{ route('parametros.actualizar') }}"
                                                                     method="post">
                                                                     @csrf @method('PUT')
 
 
                                                                     <input type="hidden" name="f"
-                                                                        value="{{ $parametro['COD_PARAMETRO'] }}">
+                                                                        value="{{ $parametros['COD_PARAMETRO'] }}">
                                                                     <label class="form-label">
                                                                         Parametro
                                                                         <input type='text' list="lista-programacion"
-                                                                            value="{{ $parametro['PARAMETRO'] }}"
+                                                                            value="{{ $parametros['PARAMETRO'] }}"
                                                                             name='parametro'
                                                                             class="form-control text-white bg-dark"
                                                                             required>
@@ -177,7 +177,7 @@
                                                                     <label class="form-label">
                                                                         Valor
                                                                         <input type='text' list="lista-programacion"
-                                                                            value="{{ $parametro['VALOR'] }}"
+                                                                            value="{{ $parametros['VALOR'] }}"
                                                                             name='valor'
                                                                             class="form-control text-white bg-dark"
                                                                             required>
@@ -203,13 +203,13 @@
                                                                     <label class="form-label">
                                                                         Fecha creacion
                                                                         <input type="date"
-                                                                            value="{{ substr($parametro['FEC_CREACION'], 0, 10) }}"
+                                                                            value="{{ substr($parametros['FEC_CREACION'], 0, 10) }}"
                                                                             name="creacion" readonly>
                                                                     </label>
                                                                     <label class="form-label">
                                                                         Fecha modificacion
                                                                         <input type="date"
-                                                                            value="{{ substr($parametro['FEC_MODIFICACION'], 0, 10) }}"
+                                                                            value="{{ substr($parametros['FEC_MODIFICACION'], 0, 10) }}"
                                                                             name="modificacion" readonly>
                                                                     </label>
                                                                     <br>
@@ -235,7 +235,7 @@
                                         <!-- INICIO MODAL PARA BORRAR  -->
                                         <div class="modal-container">
                                             <div class="modal fade bd-example-modal-lg"
-                                                id="modal-eliminar-{{ $parametro['COD_PARAMETRO'] }}">
+                                                id="modal-eliminar-{{ $parametros['COD_PARAMETRO'] }}">
                                                 <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
                                                 <div class="modal-dialog modal-sm">
                                                     <div class="modal-content">
@@ -247,12 +247,12 @@
                                                         <!-- CUERPO DEL DIALOGO BORRAR -->
                                                         <div class="modal-body">
                                                             <center>
-                                                                <form action="{{ route('parametro.eliminar') }}"
+                                                                <form action="{{ route('parametros.eliminar') }}"
                                                                     method="post">
                                                                     @csrf @method('DELETE')
 
                                                                     <input type="hidden" name="f"
-                                                                        value="{{ $parametro['COD_PARAMETRO'] }}">
+                                                                        value="{{ $parametros['COD_PARAMETRO'] }}">
                                                                     <label class="form-label">
                                                                         <i class="mdi mdi-delete-forever"
                                                                             style="font-size: 100px;"></i> <br>
@@ -303,7 +303,7 @@
                     <!-- CUERPO DEL DIALOGO NUEVA -->
                     <div class="modal-body">
                         <center>
-                            <form action="{{ route('parametro.insertar') }}" method="post">
+                            <form action="{{ route('parametros.insertar') }}" method="post">
                                 @csrf
                                 <label class="form-label">
                                     Parametro

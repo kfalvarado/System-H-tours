@@ -41,7 +41,7 @@ class ObjetosController extends Controller
         if ($consultar == '1') {
             try {
                 //code...
-                $objeto = http::withToken(Cache::get('token'))->get($this->url . '/objeto');
+                $objeto = http::withToken(Cache::get('token'))->get($this->url . '/objetos');
 
                 $personArr = $objeto->json();
             } catch (\Throwable $th) {
@@ -95,7 +95,7 @@ class ObjetosController extends Controller
         }
         if ($insercion == '1') {
             try {
-                $insertar = Http::withToken(Cache::get('token'))->post($this->url . '/objeto/insertar', [
+                $insertar = Http::withToken(Cache::get('token'))->post($this->url . '/objetos/insertar', [
                     "USR" => Cache::get('user'),
                     "OBJETOS" => $request->objetos,
                     "DES_OBJETO" => $request->descripcion,
@@ -172,7 +172,7 @@ class ObjetosController extends Controller
          if ($update == '1') {
         try {
             //code...
-            $actualizar = Http::withToken(Cache::get('token'))->put($this->url.'/objeto/actualizar/'.$request->f,[
+            $actualizar = Http::withToken(Cache::get('token'))->put($this->url.'/objetos/actualizar/'.$request->f,[
                 "USR" => Cache::get('user'),
                     "OBJETOS" => $request->objetos,
                     "DES_OBJETO" => $request->descripcion,
@@ -243,7 +243,7 @@ class ObjetosController extends Controller
 
 
 
-            $delete = Http::withToken(Cache::get("token"))->delete($this->url . '/objeto/eliminar/' . $request->f);
+            $delete = Http::withToken(Cache::get("token"))->delete($this->url . '/objetos/eliminar/' . $request->f);
 
 
             try {
@@ -290,7 +290,7 @@ class ObjetosController extends Controller
     */
     public function mostrarPDF()
     {
-        return view('objeto.objetoPDF'); 
+        return view('objetos.objetosPDF'); 
     }
 
    

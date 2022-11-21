@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\clasificacion\ClasificacionController;
+use App\Http\Controllers\clasificacion\clasificacionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +14,14 @@ use App\Http\Controllers\clasificacion\ClasificacionController;
 |
 */
 
-Route::get('/',[ClasificacionController::class,'mostrar'])->name('clasificacion.inicio');
-Route::post('/',[ClasificacionController::class,'insertar'])->name('clasificacion.insertar');
-Route::put('/actualizar',[ClasificacionController::class,'actualizar'])->name('clasificacion.actualizar');
-Route::delete('/eliminar',[ClasificacionController::class,'eliminar'])->name('clasificacion.eliminar');
+Route::get('/',[clasificacionController::class,'mostrar'])->name('clasificacion.inicio');
+Route::post('/',[clasificacionController::class,'insertar'])->name('clasificacion.insertar');
+Route::put('/actualizar',[clasificacionController::class,'actualizar'])->name('clasificacion.actualizar');
+Route::delete('/eliminar',[clasificacionController::class,'eliminar'])->name('clasificacion.eliminar');
 
 
 
 //pdf
-Route::get('/mostrarpdf',[ClasificacionController::class,'mostrarPDF'])->name('clasificacion.pdf');
+Route::get('/mostrarpdf',[clasificacionController::class,'mostrarPDF'])->name('clasificacion.pdf');
 
 //excel
