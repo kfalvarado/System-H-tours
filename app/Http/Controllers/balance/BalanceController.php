@@ -17,7 +17,13 @@ class BalanceController extends Controller
         $periodo = http::withToken(Cache::get('token'))->get($this->url . '/periodo');
 
         $personArr = $periodo->json();
-        return view("balance.Balance", compact('personArr'));
+        $activoc = 0;
+        $activon = 0;
+        $pasivoc = 0;
+        $pasivon = 0;
+        $balanceArr = 0;
+        $patrimonio = 0;
+        return view("balance.Balance", compact('personArr','balanceArr','activoc','activon','pasivoc','pasivon','patrimonio'));
     }
     public function insertar(Request $request)
     {
@@ -25,10 +31,55 @@ class BalanceController extends Controller
             'COD_PERIODO'=>$request->periodo
         ]);
         $balanceArr=$balance->json();
-        return $balanceArr;
+        // return $balanceArr;
         $periodo = http::withToken(Cache::get('token'))->get($this->url . '/periodo');
 
         $personArr = $periodo->json();
-        return view("balance.Balance", compact('balanceArr','personArr'));
+
+        //activos corrientes 
+        $activoc = http::withToken(Cache::get('token'))->post($this->url.'/balance/activos_c',[
+            'COD_PERIODO'=>$request->periodo
+        ]);
+
+        // return $activoc;
+        $activoc = $activoc->json();
+
+        // return $activo_c;
+
+        //activos no corrientes
+
+        $activon = http::withToken(Cache::get('token'))->post($this->url.'/balance/activos_n',[
+            'COD_PERIODO'=>$request->periodo
+        ]);
+        $activon = $activon->json();
+        // return $activon;
+
+        //pasivos corrientes
+        $pasivoc = http::withToken(Cache::get('token'))->post($this->url.'/balance/pasivos_c',[
+            'COD_PERIODO'=>$request->periodo
+        ]);
+        $pasivoc = $pasivoc->json();
+        // return $pasivoc;
+        
+        //pasivos no corrientes
+        $pasivon = http::withToken(Cache::get('token'))->post($this->url.'/balance/pasivos_n',[
+            'COD_PERIODO'=>$request->periodo
+        ]);
+        
+        $pasivon = $pasivon->json();
+
+        // return $pasivoc;
+
+        //patrimonio
+        $patrimonio = http::withToken(Cache::get('token'))->post($this->url.'/balance/patrimonio',[
+            'COD_PERIODO'=>$request->periodo
+        ]);
+
+
+        
+        $patrimonio = $patrimonio->json();
+
+        // return $patrimonio;
+        return view("balance.Balance", compact('balanceArr','personArr','activoc','activon','pasivoc','pasivon','patrimonio'));
     }
 }
