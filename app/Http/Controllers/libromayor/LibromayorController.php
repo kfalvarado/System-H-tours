@@ -55,7 +55,7 @@ class LibromayorController extends Controller
 		$libromayor =http::withToken(Cache::get('token'))->get($this->url.'/libromayor');
 
 		$personArr = $libromayor->json();
-        return view('libromayor.libromayor', compact('personArr'));
+       
 
 			# code...
 		} catch (\Throwable $e) {
@@ -64,19 +64,24 @@ class LibromayorController extends Controller
 
 
 
-		try {
-			$bitacora = Http::withToken(Cache::get('Token'))->post($this->url.'/seguridad/bitacora/insertar',[
-
-				"USR" => Cache::get('user)'),
-				"ACCION" => 'PANTALLA METODO GET',
-				"DES" => Cache::get('user') . 'INGRESO A LA PANTALLA DE LIBRO MAYOR',
-				"OBJETO" => 'LIBRODMAYOR'
-
-			]);
-		} catch (\Throwable $e) {
-			return 'Error Libro Mayor 42';
-		}
-	}
+	try {
+            $bitacora = Http::withToken(Cache::get('token'))->post($this->url.'/seguridad/bitacora/insertar',[
+    
+                "USR" => Cache::get('user'),
+                "ACCION" => 'PANTALLA METODO GET',
+                "DES" => Cache::get('user') . 'INGRESO A LA PANTALLA DE LIBRO MAYOR',
+                "OBJETO" => 'LIBROMAYOR'
+    
+            ]);
+    
+            } catch (\Throwable $th) {
+                return 'Error Libro Mayor 43';
+            }
+            
+            return view('libromayor.libromayor', compact('personArr'));
+    
+    
+        }
 
 
 
