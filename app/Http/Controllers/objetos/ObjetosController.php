@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
-class ObjetoController extends Controller
+class ObjetosController extends Controller
 {
 
     /*
@@ -26,7 +26,7 @@ class ObjetoController extends Controller
             //code...
             $search = Http::withToken(Cache::get('token'))->post($this->url . '/permisos/sel_per_obj', [
                 "PV_ROL" => Cache::get('rol'),
-                "PV_OBJ" => "OBJETO"
+                "PV_OBJ" => "OBJETOS"
             ]);
 
             $permisos = $search->json();
@@ -54,7 +54,7 @@ class ObjetoController extends Controller
                     "USR" => Cache::get('user'),
                     "ACCION" => 'PANTALLA METODO GET',
                     "DES" => Cache::get('user') . ' INGRESO A LA PANTALLA DE OBJETO',
-                    "OBJETO" => 'OBJETO'
+                    "OBJETO" => 'OBJETOS'
 
                 ]);
             } catch (\Throwable $th) {
@@ -112,7 +112,7 @@ class ObjetoController extends Controller
                     "USR" => Cache::get('user'),
                     "ACCION" => 'PANTALLA METODO POST',
                     "DES" => Cache::get('user') . ' INSERTO EL DATO DE ' . $request->objeto . ' EN LA PANTALLA DE OBJETO',
-                    "OBJETO" => 'OBJETO'
+                    "OBJETO" => 'OBJETOS'
 
                 ]);
             } catch (\Throwable $th) {
@@ -126,7 +126,7 @@ class ObjetoController extends Controller
                     "USR" => Cache::get('user'),
                     "ACCION" => 'SIN PERMISO METODO POST',
                     "DES" => Cache::get('user') . ' INTENTO INSERTAR EL DATO ' . $request->objeto . ' EN LA PANTALLA DE objeto',
-                    "OBJETO" => 'OBJETO'
+                    "OBJETO" => 'OBJETOS'
 
                 ]);
 

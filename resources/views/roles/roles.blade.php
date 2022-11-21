@@ -116,7 +116,7 @@ Roles | inicio
            
 
    
-          <div class="content-wrapper">
+          <div class="content-wrapper p-1">
             <center> <h1>Roles H Tours Honduras</h1> </center><!-- <ul class="nav nav-pills nav-stacked">
             <li class="active"><a href="#"></a></li>
             </ul> -->
@@ -125,7 +125,13 @@ Roles | inicio
                 type="button"  
                 class="btn btn-success"  
                 data-toggle="modal" 
-                data-target="#dialogo1">(+) Nuevo</button>
+                data-target="#dialogo1">(+) Nuevo
+              </button>
+              
+              <button id="btnExportar" class="btn btn-success btn-sm">
+                <i class="mdi mdi-file-excel"></i> Generar Excel
+              </button>
+
             </p>
             
             <ul class="nav nav-pills nav-stacked">
@@ -144,7 +150,7 @@ Roles | inicio
                     <!-- <p class="card-description"> Add class <code>.table-striped</code> -->
                     </p>
                     <div class="table-responsive">
-                      <table class="table table-bordered table-contextual">
+                      <table id="tabla" class="table table-bordered table-contextual">
                         <thead>
                           <tr class="text-dark bg-white">
                               <th class="text-dark bg-white">#</th>
@@ -288,5 +294,27 @@ Roles | inicio
           <!-- partial -->
         </div>
 
+
+        @section('js')
+        {{-- PAGINACIÓN --}}
+        <script src="{{ asset('assets/js/ab-page.js') }}"></script>
+        {{-- GENERADOR DE EXCEL --}}
+        <script>
+          const $btnExportar = document.querySelector("#btnExportar"),
+              $tabla = document.querySelector("#tabla");
+        
+          $btnExportar.addEventListener("click", function() {
+              let tableExport = new TableExport($tabla, {
+                  exportButtons: false, // No queremos botones
+                  filename: "Reporte de Roles", //Nombre del archivo de Excel
+                  sheetname: "Reporte de Roles", //Título de la hoja
+                  ignoreCols: 3,  
+              });
+              let datos = tableExport.getExportData();
+              let preferenciasDocumento = datos.tabla.xlsx;
+              tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType, preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento.merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
+          });
+        </script>
+        @endsection
 
 @endsection

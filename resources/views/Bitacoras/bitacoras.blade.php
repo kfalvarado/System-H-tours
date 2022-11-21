@@ -2,96 +2,111 @@
 
 <!-- titulo de la pagina  -->
 @section('titulo')
-Bitacora
+Bitacora | inicio
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
+
+
+@if (Cache::get('genero') == 'M')
 {{ asset('assets/images/varon.png')}}
+@else
+{{ asset('assets/images/dama.png')}}
+@endif
+
+
 @endsection
 
 <!-- nombre del usuario de la barra lateral  -->
 @section('Usuario-Lateral')
-Fabricio
+{{cache::get('user')}}
 @endsection
 <!-- rol del usuario de la barra lateral  -->
 @section('rol-usuario')
-Administrador
+{{cache::get("rol")}}
 @endsection
 
 <!-- foto del menu de la derecha -->
 @section('foto-user2')
+
+@if (Cache::get('genero') == 'M')
 {{ asset('assets/images/varon.png')}}
+@else
+{{ asset('assets/images/dama.png')}}
+@endif
+
 @endsection
 <!-- nombre del menu de la derecha  -->
 @section('Usuario-Menu')
-Fabricio
+{{cache::get('user')}}
 @endsection
-<!-- contenido de la pagina  -->
+
 @section('contenido')
 
 
 
     <!-- ESTE CSS ES PARA OCULTAR DATOS EN LA IMPRESION-->
-    <style>
+  <style>
     
     @media print{
       .oculto-impresion, .oculto-impresion *{
         display: none !important;
       }
     }
-    </style>
+  </style>
 <!--BUSCADOR VERDE CON CSS INICIO-->
 <style>
- 
-  .form-controlprueba
- {
-   /*width:8000;*/
-     /*position: relative;*/
-     background-color: black;
-     color: white;
-     letter-spacing: 0px;
-     border: 1px solid green;
-     padding: 6px;
-     font-size: 15px;
-     font-family: Arial;
-     font-weight: bold;
-     transition: 0.50s;
-     border-radius:5px;
- }
- </style> 
- <style>
-  
-  .form-controlprueba:hover
- {
-  border-color: green;
-  box-shadow: 0 0px 10px 0 green inset,0 10px 70px 0 green,
-     0 0px 10px 0 green inset,0 10px 20px 0 green;
-     text-shadow: 0 0 0px green;
- }
-.btnprueba {
-  
-   /*width:8000;*/
-     /*position: relative;*/
-     
-     background-color: black;
-     color: white;
-     letter-spacing: 0px;
-     border: 1px solid green;
-     padding: 6px;
-     font-size: 15px;
-     font-family: Arial;
-     font-weight: bold;
-     transition: 0.50s;
-     border-radius:5px;
- }
- .btnprueba:hover{
+    
+      .form-controlprueba
+    {
+      /*width:8000;*/
+        /*position: relative;*/
+        background-color: black;
+        color: white;
+        letter-spacing: 0px;
+        border: 1px solid green;
+        padding: 6px;
+        font-size: 15px;
+        font-family: Arial;
+        font-weight: bold;
+        transition: 0.50s;
+        border-radius:5px;
+    }
+</style> 
 
-  background-color: green;
-  box-shadow: 0 0px 10px 0 green inset,0 10px 70px 0 green,
-     0 0px 10px 0 green inset,0 10px 20px 0 green;
-     text-shadow: 0 0 0px green;
- }
-  </style>
+<style>
+      
+      .form-controlprueba:hover
+    {
+      border-color: green;
+      box-shadow: 0 0px 10px 0 green inset,0 10px 70px 0 green,
+        0 0px 10px 0 green inset,0 10px 20px 0 green;
+        text-shadow: 0 0 0px green;
+    }
+    .btnprueba {
+      
+      /*width:8000;*/
+        /*position: relative;*/
+        
+        background-color: black;
+        color: white;
+        letter-spacing: 0px;
+        border: 1px solid green;
+        padding: 6px;
+        font-size: 15px;
+        font-family: Arial;
+        font-weight: bold;
+        transition: 0.50s;
+        border-radius:5px;
+    }
+    .btnprueba:hover{
+
+      background-color: green;
+      box-shadow: 0 0px 10px 0 green inset,0 10px 70px 0 green,
+        0 0px 10px 0 green inset,0 10px 20px 0 green;
+        text-shadow: 0 0 0px green;
+    }
+</style>
 
       
                  <!-- INICIO MODAL PARA NUEVA  -->
@@ -234,15 +249,23 @@ Fabricio
                   <!-- FIN DE MODAL PARA BORRAR  -->
 
 
-          <div class="content-wrapper">
+          <div class="content-wrapper p-1">
             <center> <h1>Bitacora H Tours Honduras</h1> </center>
-            <h5>________________________________________________________________________________________________________________</h5>
             <!-- <ul class="nav nav-pills nav-stacked">
               <li class="active"><a href="#"></a></li>
             </ul> -->
             <p align="right" valign="baseline">
-              <button type="button"  class="btn btn-success"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
+              {{-- <button 
+                type="button"  
+                class="btn btn-success"  
+                data-toggle="modal" 
+                data-target="#dialogo1">(+) Nuevo</button> --}}
+
+                <button id="btnExportar" class="btn btn-success btn-sm">
+                  <i class="mdi mdi-file-excel"></i> Generar Excel
+                </button>
             </p>
+            
             
             <ul class="nav nav-pills nav-stacked">
               <li class="active"><a href="#"></a></li>
@@ -260,45 +283,40 @@ Fabricio
                     <!-- <p class="card-description"> Add class <code>.table-striped</code> -->
                     </p>
                     <div class="table-responsive">
-                      <table class="table table-bordered table-contextual">
+                      <table id="tabla" class="table table-bordered table-contextual">
                         <thead>
                           <tr class="text-dark bg-white">
-                            <th class="text-dark bg-white">#</th>
-                            <th class="text-dark bg-white">Fecha registro</th>
-                             <th class="text-dark bg-white">U registro</th>
-                             <th class="text-dark bg-white">Acciones sistema</th>
-                             <th class="text-dark bg-white">Descripcion Bitacora</th>          
+                            <th class="text-dark bg-white"># Codigo</th>
+                            <th class="text-dark bg-white">Fecha Registro</th>
+                            <th class="text-dark bg-white">Usuario Registro</th>
+                            <th class="text-dark bg-white">Acciones Sistema</th>
+                            <th class="text-dark bg-white">Descripcion Bitacora</th>
+                            <th class="text-dark bg-white">Objeto</th>          
                           </tr>
                         </thead>
                         <tbody>
-                          <tr class="text-white bg-dark">
-                            <td>1</td>
-                            <td>02/12/2021</td>
-                            <td>Jose</td>
-                            <td>Actualizar</td>
-                            <td>Actualizar</td>
-                       
+
+                          @if (count($bitacoraArr) <= 0)
+                          <tr>
+                            <td colspan="6">Sin resultados</td>
                           </tr>
-                          <tr class="text-white bg-dark">
-                            <td>2</td>
-                            <td>02/12/2021</td>
-                            <td>Cramen</td>
-                            <td>Actualizar</td>
-                            <td>Actualizar</td>
-                            
+                          @else
                         
-                          </tr>
+                          @foreach ($bitacoraArr as $bitacora)
                           <tr class="text-white bg-dark">
-                            <td>3</td>
-                            <td>02/12/2021</td>
-                            <td>Rosa</td>
-                            <td>Actualizar</td>
-                            <td>Actualizar</td>
-                          
-                            
+                            <td>{{$bitacora['COD_BITACORA']}}</td>
+                            <td>{{ substr($bitacora['FEC_REGISTRO'],0,10)}}</td>
+                            <td>{{$bitacora['USR_REGISTRA']}}</td>
+                            <td>{{$bitacora['ACC_SISTEMA']}}</td>
+                            <td>{{$bitacora['DES_BITACORA']}}</td>
+                            <td>{{$bitacora['OBJETO']}}</td>
+                          </tr>
+                          @endforeach
+                          @endif
                         </tbody>
                       </table>
                     </div>
+                    <div id="paginador"></div>
                   </div>
                 </div>
               </div>
@@ -313,6 +331,27 @@ Fabricio
           <!-- partial -->
         </div>
 
+        @section('js')
+        {{-- PAGINACIÓN --}}
+        <script src="{{ asset('assets/js/ab-page.js') }}"></script>
+        {{-- GENERADOR DE EXCEL --}}
+        <script>
+          const $btnExportar = document.querySelector("#btnExportar"),
+              $tabla = document.querySelector("#tabla");
+        
+          $btnExportar.addEventListener("click", function() {
+              let tableExport = new TableExport($tabla, {
+                  exportButtons: false, // No queremos botones
+                  filename: "Reporte de Bitacora", //Nombre del archivo de Excel
+                  sheetname: "Reporte de Bitacora", //Título de la hoja
+                    
+              });
+              let datos = tableExport.getExportData();
+              let preferenciasDocumento = datos.tabla.xlsx;
+              tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType, preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento.merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
+          });
+        </script>
+        @endsection
 
 
 
