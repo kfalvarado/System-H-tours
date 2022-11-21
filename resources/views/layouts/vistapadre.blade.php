@@ -168,7 +168,7 @@
               <li class="nav-item"> <a class="nav-link" href="{{route('clasificacion.inicio')}}">Clasificacion</a></li>
               <li class="nav-item"> <a class="nav-link" href="{{route('mostrar.grupos')}}">Grupos</a></li>
               <li class="nav-item"> <a class="nav-link" href="{{route('personas.inicio')}}">Personas</a></li>
-              <li class="nav-item"> <a class="nav-link" href="{{route('objeto.inicio')}}"> Objetos </a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{route('objetos.inicio')}}"> Objetos </a></li>
             </ul>
           </div>
         </li>

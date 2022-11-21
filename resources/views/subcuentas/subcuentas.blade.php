@@ -299,15 +299,19 @@ Subcuentas | inicio
         return resp.json()
     })
     .then(respuesta => {
-  console.log(typeof respuesta);
-  const object = JSON.stringify(respuesta)
+        pinta(respuesta);
+//   console.log(typeof respuesta);
+//   const object = JSON.stringify(respuesta)
 //   console.log(object.NOM_CUENTA[0]);
-  var opciones = "";
-  for(let i in object.NOM_CUENTA){
-    // console.log(object.NOM_CUENTA[]);
-    opciones+="<option value='"+object.NOM_CUENTA[i]+"'>"+object.NOM_CUENTA[i]+'</option>';
-  }
-  document.getElementById('cuentas').innerHTML = opciones;
+//   var opciones = "";
+//   for(let i in object.NOM_CUENTA){
+//     // console.log(object.NOM_CUENTA[]);
+//     opciones+="<option value='"+object.NOM_CUENTA[i]+"'>"+object.NOM_CUENTA[i]+'</option>';
+//   }
+//   document.getElementById('cuentas').innerHTML = opciones;
+function pinta(res) {
+
+}
 
     }
 
@@ -315,6 +319,8 @@ Subcuentas | inicio
     
     ).catch(error =>console.error(error))
         }
+
+
     </script>
         
     @endsection
