@@ -161,7 +161,8 @@ Ajustes | inicio
                       <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
   
                           <!-- EDITAR PERFIL FORMULARIO -->
-                          <form>
+                          <form action="{{ route('personas.actualizar') }}" >
+                            @csrf @method('PUT') 
                             <div class="row mb-3">
                               <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Imagen de perfil</label>
                               <div class="col-md-8 col-lg-9">
@@ -174,64 +175,64 @@ Ajustes | inicio
                             </div>
         
                             <div class="row mb-3">
-                              <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nombre</label>
+                              <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Usuario</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="fullName" type="text" class="form-control" id="fullName" value="Paola">
+                                <input name="user" type="text" class="form-control" id="fullName" value="">
                               </div>
                             </div>
         
                             <div class="row mb-3">
-                              <label for="about" class="col-md-4 col-lg-3 col-form-label">Resumen</label>
+                              <label for="about" class="col-md-4 col-lg-3 col-form-label">Genero</label>
                               <div class="col-md-8 col-lg-9">
-                                <textarea name="about" class="form-control" id="about" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                                <textarea name="genero" class="form-control" id="about" value="" ></textarea>
                               </div>
                             </div>
         
                             <div class="row mb-3">
-                              <label for="company" class="col-md-4 col-lg-3 col-form-label">Empresa</label>
+                              <label for="age" class="col-md-4 col-lg-3 col-form-label">Edad</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="company" type="text" class="form-control text-white" id="company" value="H Tours">
+                                <input name="edad" type="text" class="form-control text-white" id="age" value="H Tours">
                               </div>
                             </div>
         
                             <div class="row mb-3">
-                              <label for="Job" class="col-md-4 col-lg-3 col-form-label">Cargo</label>
+                              <label for="Job" class="col-md-4 col-lg-3 col-form-label">Tipo de persona</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="job" type="text" class="form-control" id="Job" value="Administrador">
+                                <input name="tipoPersona" type="text" class="form-control" id="Job" value="Administrador">
                               </div>
                             </div>
         
                             <div class="row mb-3">
-                              <label for="Country" class="col-md-4 col-lg-3 col-form-label">País</label>
+                              <label for="ID" class="col-md-4 col-lg-3 col-form-label">Identidad</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="country" type="text" class="form-control" id="Country" value="HN">
+                                <input name="identidad" type="text" class="form-control" id="ID" value="HN">
                               </div>
                             </div>
         
                             <div class="row mb-3">
-                              <label for="Address" class="col-md-4 col-lg-3 col-form-label">Dirección</label>
+                              <label for="Address" class="col-md-4 col-lg-3 col-form-label">Estado Civil</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="address" type="text" class="form-control" id="Address" value="Ciudad">
+                                <input name="civil" type="text" class="form-control" id="Address" value="Ciudad">
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Telefono</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="phone" type="text" class="form-control" id="Phone" value="+504 9999-0000">
+                                <input name="telefono" type="text" class="form-control" id="Phone" value="+504 9999-0000">
                               </div>
                             </div>
         
                             <div class="row mb-3">
-                              <label for="Email" class="col-md-4 col-lg-3 col-form-label">Correo electronico</label>
+                              <label for="Email" class="col-md-4 col-lg-3 col-form-label">Tipo de telefono</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="email" type="email" class="form-control" id="Email" value="paola@gmail.com">
+                                <input name="tipotelefono" type="email" class="form-control" id="Email" value="paola@gmail.com">
                               </div>
                             </div>
         
                           
                             <div class="text-center">
-                              <button type="submit" class="btn btn-primary btn-shadow">Guardar cambios</button>
+                              <button type="" class="btn btn-primary btn-shadow">Guardar cambios</button>
                             </div>
                           </form>
                           <!-- FINAL DE EDITAR PERFIL -->
@@ -330,7 +331,7 @@ Ajustes | inicio
                           </form><!-- End Change Password Form -->
         
                         </div>
-                  </div>
+                      </div>
   
   
                 </div>

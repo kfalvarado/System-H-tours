@@ -41,9 +41,18 @@ class LibrodiarioController extends Controller
 
 
         try {
-            
+           
+            $clasificacion = http::withToken(Cache::get('token'))->get($this->url.'/clasificacion');
+            $clasificacionArr = $clasificacion->json();
+            //nombre de cuenta
+            $nombrecuenta = http::withToken(Cache::get('token'))->get($this->url.'/cuentas');
+            $nombrecuentaArr = $nombrecuenta->json();
+
+            $periodo = http::withToken(Cache::get('token'))->get($this->url . '/periodo');
+            $periodoArr = $periodo->json();
+
+
         $librodiario =http::withToken(Cache::get('token'))->get($this->url.'/librodiario');
-        
         $personArr = $librodiario->json();
         
 
@@ -66,7 +75,7 @@ class LibrodiarioController extends Controller
                 return 'Error Libro Mayor 43';
             }
             
-            return view('librodiario.librodiario', compact('personArr'));
+            return view('librodiario.librodiario', compact('personArr','clasificacionArr','nombrecuentaArr','periodoArr'));
     
     
         }

@@ -161,8 +161,7 @@ Usuarios | inicio
                                                     name='USUARIO' 
                                                     class="form-control text-white"
                                                     value="{{$usuario['USUARIO']}}" 
-                                                    required>
-                                                  </input> 
+                                                    required> 
                                                 </label>
                                                 <label class="form-label">
                                                   Nombre del usuario
@@ -172,8 +171,6 @@ Usuarios | inicio
                                                     class="form-control text-white"
                                                     value="{{$usuario['NOMBRE_USUARIO']}} "
                                                     required>
-                                                  
-                                                  </input> 
                                                 </label>
                                                 <label class="form-label">
                                                   Seleccionar el estado
