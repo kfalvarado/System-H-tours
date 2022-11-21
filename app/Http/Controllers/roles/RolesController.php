@@ -19,6 +19,21 @@ class RolesController extends Controller
         $rols = http::withToken(Cache::get('token'))->get($this->url.'/sel_rol');
         //return $rols;
         $rolsArr = $rols->json();
+
+        try {
+            $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                "USR" => Cache::get('user'),
+                "ACCION" => 'PANTALLA ROLES METODO GET',
+                "DES" => Cache::get('user') . ' INGRESO A LA PANTALLA DE ROLES',
+                "OBJETO" => 'ROLES'
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return 'ERROR ROLES BITACORA';
+        }
+
+
+
         return view('roles.roles',compact('rolsArr'));
     }
 

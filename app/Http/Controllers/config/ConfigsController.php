@@ -25,6 +25,18 @@ class ConfigsController extends Controller
         //return $ajustes;
         $ajustesArr = $ajustes->json();
 
+        try {
+            $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                "USR" => Cache::get('user'),
+                "ACCION" => 'PANTALLA AJUSTES METODO GET',
+                "DES" => Cache::get('user') . ' INGRESO A LA PANTALLA DE AJUSTES',
+                "OBJETO" => 'AJUSTES'
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return 'ERROR AJUSTES BITACORA';
+        }
+
        return view('config.ajustes',compact('ajustesArr'));
     }
 

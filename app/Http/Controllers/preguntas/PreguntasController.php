@@ -33,6 +33,18 @@ class PreguntasController extends Controller
             $pregArr = $preg->json();
         }
 
+        try {
+            $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                "USR" => Cache::get('user'),
+                "ACCION" => 'PANTALLA PREGUNTAS METODO GET',
+                "DES" => Cache::get('user') . ' INGRESO A LA PANTALLA DE PREGUNTAS',
+                "OBJETO" => 'PREGUNTAS'
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return 'ERROR PREGUNTAS BITACORA';
+        }
+
         return view('preguntas.preguntas',compact('pregArr'));
     }
 
