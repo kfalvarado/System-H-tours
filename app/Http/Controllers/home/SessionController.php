@@ -171,11 +171,7 @@ class SessionController extends Controller
                         "USR"=>$user
                     ]);
 
-                    //$user = $request->user;
-
-                    $fec_ult_conn = http::withToken($token)->put($this->url.'/upd_fec_ult_conn',[
-                        "USR"=>$user
-                    ]);
+                    
                     
                     Cache::forget('intento');
                     Cache::put('token', $token);
@@ -720,10 +716,17 @@ class SessionController extends Controller
     */
     public function logout()
     {
-        
+       
+
+        $fec_ult_conn = http::withToken(Cache::get('token'))->put($this->url.'/upd_fec_ult_conn',[
+            "USR"=> Cache::get('user')
+        ]);
+
+
         Cache::flush('token');
         Cache::flush('user');
         Cache::flush('genero');
+        
         // Cache::flush('resp_preg');
         return redirect('/');
         

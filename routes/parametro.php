@@ -16,10 +16,10 @@ use App\Http\Controllers\parametros\ParametrosController;
 
 
 
-Route::get('/',[ParametroController::class,'mostrar'])->name('parametro.inicio');
-Route::post('/',[ParametroController::class,'insertar'])->name('parametro.insertar');
-Route::put('/actualizar',[ParametroController::class,'actualizar'])->name('parametro.actualizar');
-Route::delete('/eliminar',[ParametroController::class,'eliminar'])->name('parametro.eliminar');
+Route::get('/',[ParametrosController::class,'mostrar'])->name('parametro.inicio');
+Route::post('/',[ParametrosController::class,'insertar'])->name('parametro.insertar');
+Route::put('/actualizar',[ParametrosController::class,'actualizar'])->name('parametro.actualizar');
+Route::delete('/eliminar',[ParametrosController::class,'eliminar'])->name('parametro.eliminar');
 
 
 
