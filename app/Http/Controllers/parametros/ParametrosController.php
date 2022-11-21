@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 class ParametrosController extends Controller
 {
 
@@ -96,12 +97,11 @@ class ParametrosController extends Controller
         if ($insercion == '1') {
             try {
                 $insertar = Http::withToken(Cache::get('token'))->post($this->url . '/parametros/insertar', [
-                    "USR" => Cache::get('user'),
-                    "PARAMETROS" => $request->parametros,
+                   
+                    "PARAMETRO" => $request->parametros,
                     "VALOR" => $request->valor,
-                    "USUARIO" => $request->usuario,
-                    "FEC_CREACION" => $request->inicial,
-                    "FEC_MODIFICACION" => $request->modificacion
+                    "USR" => Cache::get('user'),
+                    "FEC_CREACION" => $request->inicial
                 ]);
             } catch (\Throwable $th) {
                 //throw $th;
@@ -174,11 +174,11 @@ class ParametrosController extends Controller
         try {
             //code...
             $actualizar = Http::withToken(Cache::get('token'))->put($this->url.'/parametros/actualizar/'.$request->f,[
-                "USR" => Cache::get('user'),
-                    "PARAMETROS" => $request->parametros,
+             
+                    "PARAMETRO" => $request->parametro,
                     "VALOR" => $request->valor,
-                    "USUARIO" => $request->usuario,
-                    "FEC_CREACION" => $request->inicial,
+                    "USR" => Cache::get('user'),
+                    "FEC_CREACION" => $request->creacion,
                     "FEC_MODIFICACION" => $request->modificacio
             ]);
         } catch (\Throwable $th) {

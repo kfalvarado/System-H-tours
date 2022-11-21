@@ -152,7 +152,7 @@ class PersonasController extends Controller
         if (Cache::has('resp_preg')) {
 
             $resp = Cache::get('resp_preg') + 1;
-            if ($resp >= $cantidad) {
+            if ($resp > $cantidad) {
                 Cache::forget('resp_preg');
                 return redirect()->route('inicio');
             }else {

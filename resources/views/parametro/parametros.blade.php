@@ -2,7 +2,7 @@
 
 <!-- titulo de la pagina  -->
 @section('titulo')
-    Objetos | inicio
+    Parametros | inicio
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
@@ -45,7 +45,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                text: 'El periodo se inserto Correctamente'
+                text: 'El parametro se inserto correctamente'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
@@ -54,7 +54,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                text: 'El parametro se Actualizo Correctamente'
+                text: 'El parametro se actualizo correctamente'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
@@ -63,7 +63,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                text: 'El parametro se elimino Correctamente'
+                text: 'El parametro se elimino correctamente'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
@@ -167,7 +167,7 @@
                                                                             value="{{ $parametros['PARAMETRO'] }}"
                                                                             name='parametro'
                                                                             class="form-control text-white bg-dark"
-                                                                            required>
+                                                                            required readonly>
                                                                         <datalist id="lista-programacion">
                                                                             <option value="Periodo-2022-ene-1-004">
                                                                         </datalist>
@@ -187,18 +187,7 @@
                                                                         </input>
                                                                     </label>
                                                                     <br>
-                                                                    <label class="form-label">
-                                                                        Usuario
-                                                                        <input type='text' list="lista-programacion"
-                                                                            value="{{ $parametros['COD_USR'] }}"
-                                                                            name='usuario'
-                                                                            class="form-control text-white bg-dark"
-                                                                            required>
-                                                                        <datalist id="lista-programacion">
-                                                                            <option value="Periodo-2022-ene-1-004">
-                                                                        </datalist>
-                                                                        </input>
-                                                                    </label>
+                                                       
                                                                     <br>
                                                                     <label class="form-label">
                                                                         Fecha creacion
@@ -206,12 +195,7 @@
                                                                             value="{{ substr($parametros['FEC_CREACION'], 0, 10) }}"
                                                                             name="creacion" readonly>
                                                                     </label>
-                                                                    <label class="form-label">
-                                                                        Fecha modificacion
-                                                                        <input type="date"
-                                                                            value="{{ substr($parametros['FEC_MODIFICACION'], 0, 10) }}"
-                                                                            name="modificacion" readonly>
-                                                                    </label>
+                                                                   
                                                                     <br>
                                                                     <label class="form-label">
 
@@ -307,7 +291,7 @@
                                 @csrf
                                 <label class="form-label">
                                     Parametro
-                                    <input type='text' list="lista-programacion" name='Parametro'
+                                    <input type='text' list="lista-programacion" name='parametros'
                                         class="form-control text-white" required>
                                     <datalist id="lista-programacion">
                                         <option value="Periodo-2022-ene-1-004">
@@ -317,7 +301,7 @@
                                 <br>
                                 <label class="form-label">
                                     Valor
-                                    <input type='text' list="lista-programacion" name='Valor'
+                                    <input type='text' list="lista-programacion" name='valor'
                                         class="form-control text-white" required>
                                     <datalist id="lista-programacion">
                                         <option value="Periodo-2022-ene-1-004">
@@ -325,30 +309,9 @@
                                     </input>
                                 </label>
                                 <br>
-                                <label class="form-label">
-                                    Usuario
-                                    <input type='text' list="lista-programacion" name='Usuario'
-                                        class="form-control text-white" required>
-                                    <datalist id="lista-programacion">
-                                        <option value="Periodo-2022-ene-1-004">
-                                    </datalist>
-                                    </input>
-                                </label>
-                                <br>
-                                <label class="form-label">
-                                    Fecha creacion
-                                    <input type='date' name='creacion' class="form-control" required></input>
-                                </label>
-                                <label class="form-label">
-                                    Fecha modificacion
-                                    <input type='date' name='modificacion' class="form-control" required></input>
-                                </label>
-                                <br>
-                                <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" id="customSwitch" name="estado"
-                                        value="activo">
-                                    <label class="custom-control-label" for="customSwitch">Estado <label>
-                                </div>
+                     
+                    
+                       
                                 <br>
                                 <a href="" class="btn btn-secondary">Cancelar</a>
                                 <button type="submit" class="btn btn-primary">NUEVO</button>
@@ -373,7 +336,7 @@
                 exportButtons: false, // No queremos botones
                 filename: "Reporte de Parametro", //Nombre del archivo de Excel
                 sheetname: "Reporte de Parametro", //Título de la hoja
-                ignoreCols: 5,
+                ignoreCols: 6
             });
             let datos = tableExport.getExportData();
             let preferenciasDocumento = datos.tabla.xlsx;
