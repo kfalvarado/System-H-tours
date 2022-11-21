@@ -13,7 +13,7 @@
 <button onclick="imprimir();">Imprimir</button>
     <center>
         <img id="imagen" src="{{asset('assets\images\HTOURS.png')}}" alt="logo de Htours" height="500" width="500">
-        <h1 id="titulo">Reporte Objeto</h1>
+        <h1 id="titulo">Reporte Objetos</h1>
         <h2 id="fecha">Fecha:{{date('m/d/Y')}}</h2>
         <table id="datos">
             <thead>
@@ -75,7 +75,7 @@
             doc.setFontSize(16);
             doc.addImage(img,150,10,60,30)
             doc.text(data, 10, 60);
-            doc.save('Reporte-Objeto.pdf');
+            doc.save('Reporte-Objetos.pdf');
         }
     </script>
 
