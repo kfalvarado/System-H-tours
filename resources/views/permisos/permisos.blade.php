@@ -284,10 +284,12 @@ Fabricio
                     <center><h4 class="card-title">Registros de permisos</h4></center>
                     <!-- <p class="card-description"> Add class <code>.table-striped</code> -->
                       <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                        <select class="form-control text-white" name="" id="">
-                          <option value="">Seleccionar Rol</option>
-                          <option value="">Administrador</option>
-                          <option value="">Usuario</option>
+                        <select class="form-control text-white" name="" id="" required>
+                          <option value="" hidden selected>Seleccionar Rol</option>
+                          @foreach ($rolsArr as $key )
+                          <option value="{{ $key['ROL'] }}">{{ $key['ROL'] }}</option>
+                            
+                          @endforeach
                         </select>
                       </form>
                     </p>

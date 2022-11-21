@@ -93,7 +93,7 @@ class LibrodiarioController extends Controller
 
 
                     "COD_PERIODO" => $request->periodo,
-                    "NUM_CUENTA" => $request->cuenta,
+                    "NOM_CUENTA" => $request->cuenta,
                     "NOM_SUBCUENTA" => $request->nombresubcuenta,
                     "SAL_DEBE" => $request->saldo,
                     "SAL_HABER" => 0,
@@ -107,7 +107,7 @@ class LibrodiarioController extends Controller
 
 
                     "COD_PERIODO" => $request->periodo,
-                    "NUM_CUENTA" => $request->cuenta,
+                    "NOM_CUENTA" => $request->cuenta,
                     "NOM_SUBCUENTA" => $request->nombresubcuenta,
                     "SAL_DEBE" => 0,
                     "SAL_HABER" => $request->saldo,
