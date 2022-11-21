@@ -33,17 +33,17 @@ class LibromayorController extends Controller
 
             $permisos = $search->json();
             foreach ($permisos as $key) {
-                $consultar = $key['PER_INSERCION'];
+                $consultar = $key['PER_CONSULTAR'];
             }
 
-			if ($consultar == '1'){
-				return 'si';
-			}else{
-				return 'no';
-			}
+			// if ($consultar == '1'){
+			// 	return 'si';
+			// }else{
+			// 	return 'no';
+			// }
 			
 		 } catch (\Throwable $th) {
-			return 'Error Libro Mayor 40';
+			return 'Error Libro Mayor 46';
 		 }
 
 

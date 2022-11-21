@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\objetos\ObjetosController;
+use App\Http\Controllers\objetos\ObjetoController;
 
 
 /*
@@ -18,14 +18,14 @@ use App\Http\Controllers\objetos\ObjetosController;
 
 
 
-Route::get('/',[ObjetoController::class,'mostrar'])->name('objeto.inicio');
-Route::post('/',[ObjetoController::class,'insertar'])->name('objeto.insertar');
-Route::put('/actualizar',[ObjetoController::class,'actualizar'])->name('objeto.actualizar');
-Route::delete('/eliminar',[ObjetoController::class,'eliminar'])->name('objeto.eliminar');
+Route::get('/',[ObjetosController::class,'mostrar'])->name('objetos.inicio');
+Route::post('/',[ObjetosController::class,'insertar'])->name('objetos.insertar');
+Route::put('/actualizar',[ObjetosController::class,'actualizar'])->name('objetos.actualizar');
+Route::delete('/eliminar',[ObjetosController::class,'eliminar'])->name('objetos.eliminar');
 
 
 
 //pdf
-Route::get('/mostrarpdf',[ObjetoController::class,'mostrarPDF'])->name('objeto.pdf');
+Route::get('/mostrarpdf',[ObjetosController::class,'mostrarPDF'])->name('objetos.pdf');
 
 //excel
