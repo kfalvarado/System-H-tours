@@ -234,9 +234,10 @@ Subcuentas | inicio
 
                                                 <Select class="form-control text-white" name="nombrecuenta" id="cuentas" required>
                                                     <option hidden selected>SELECCIONAR</option>
-                                                    {{-- @foreach($nombrecuentaArr as $key)
+                                                  
+                                                    @foreach($nombrecuentaArr as $key)
                                                     <option value="{{$key['NOM_CUENTA'] }}">{{$key['NOM_CUENTA'] }}</option>
-                                                    @endforeach --}}
+                                                    @endforeach
 
                                                 </Select>
                                             </label>
@@ -280,7 +281,7 @@ Subcuentas | inicio
             // const csrftoken = document.head.querySelector('[name~=csrf-token][content]').content;
             //Vamos a rellenar el select automáticamente.
     const select = document.getElementById("clasificacion").value;
-    
+    var contenido = document.querySelector('#contenido')
 
     // console.log(select);
     var url = route('busca.subcuentas')
@@ -299,6 +300,7 @@ Subcuentas | inicio
         return resp.json()
     })
     .then(respuesta => {
+        console.log(respuesta);
         pinta(respuesta);
 //   console.log(typeof respuesta);
 //   const object = JSON.stringify(respuesta)
@@ -310,13 +312,15 @@ Subcuentas | inicio
 //   }
 //   document.getElementById('cuentas').innerHTML = opciones;
 function pinta(res) {
-
+contenido.innerHTML = ''
+for(let valor of res){
+            contenido.innerHTML += `
+            <option name="INV" value="${valor.NOM_CUENTA}">${valor.NOM_CUENTA}</option>   
+            `  
 }
 
     }
-
-
-    
+}  
     ).catch(error =>console.error(error))
         }
 
