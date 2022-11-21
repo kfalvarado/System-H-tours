@@ -156,7 +156,7 @@ Libro Mayor | inicio
            <div class="modal-container">
            <div class="modal fade bd-example-modal-lg" id="dialogo1">
                  <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-            <div class="modal-dialog modal-sm">
+            <div class="modal-dialog modal-md">
             <div class="modal-content">
                  <!-- CABECERA DEL DIALOGO NUEVA-->
             <div class="modal-header">
@@ -168,46 +168,57 @@ Libro Mayor | inicio
             <center>
             <form action="{{ route('libromayor.insertar')}}" method="post">
               @csrf
+
+              <label class="form-label">
+                    Periodo
+                    <select class="form-control text-white" name="periodo" id="periodo" onchange="datos();" required>
+                    <option hidden selected>SELECCIONAR</option>
+                    @foreach($periodoArr as $key)
+                    <option value="{{$key['COD_PERIODO'] }}">{{$key['NOM_PERIODO'] }}</option>
+                    @endforeach
+
+                  </select>
+
               <label class="form-label">
                 Clasificacion
-                <input type='text'  name='calsificacionperiodo' class="form-control text-white" required>
-                <!-- <select  class="form-control text-white" name="clasificacion" id="" >
-                  <option value=""></option>
-                  <option value="">1</option>
-                  <option value="">2</option>
-                  <option value="">3</option>
-                </select>
-            
-              </label> -->
-            <label class="form-label">
-              Nombre de Cuenta
-              <input type='text' list="lista-cuentas" name='nombrecuenta' class="form-control text-white" required>
-              <!-- <select  class="form-control text-white" name="" id="" >
-                <option value=""></option>
-                <option value="">Bancos</option>
-                <option value="">Proveedores</option>
-                <option value="">Capital Social</option>
-              </select> -->
-                
-              </datalist>
-              </input>
-            </label>
+                <select class="form-control text-white" name="naturaleza" id="clasificacion" onchange="datos();" required>
+                    <option hidden selected>SELECCIONAR</option>
+                    @foreach($clasificacionArr as $key)
+                    <option value="{{$key['NATURALEZA'] }}">{{$key['NATURALEZA'] }}</option>
+                    @endforeach
+
+                  </select>
+                </label>
+
+                <label class="form-label">
+                  Seleccionar Cuenta
+                 
+                  <select class="form-control text-white" name="cuenta" id="cuenta" required>
+                    <option hidden selected>SELECCIONAR</option>
+                    @foreach($nombrecuentaArr as $key)
+                    <option value="{{$key['NOM_CUENTA'] }}">{{$key['NOM_CUENTA'] }}</option>
+                    @endforeach
+
+                  </select>
+                </label>
+
             <label class="form-label">
             Saldo
             <input type='text' name='saldo' class="form-control text-white"  required></input> 
             </label>
             <br>
                   <label class="radio-inline">
-                      <input type="radio" name="" value="">Debe
+                      <input type="radio" name="debe" value="1">Debe
                   </label>
                   &nbsp;&nbsp; 
                   <label class="radio-inline">
-                      <input type="radio" name="" value="">Haber
+                      <input type="radio" name="haber" value="1">Haber
                   </label><hr />
             <label class="form-label">
             Fecha
             <input type='date' name='fecha' class="form-control text-white"  required></input> 
             </label>
+            <br>
             <a href="" class="btn btn-secondary">Cancelar</a>
             <button type="submit" class="btn btn-primary">Registrar </button>
             </form>

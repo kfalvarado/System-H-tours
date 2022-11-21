@@ -15,47 +15,62 @@ class LibromayorController extends Controller
 
 
 	protected $url = 'http://localhost:3000';
-    public function mostrar()
+	public function mostrar()
 	{
 
 
 
-		   /**
-         * Seguridad de roles y perimisos metodo GET
-         */
+		/**
+		 * Seguridad de roles y perimisos metodo GET
+		 */
 
-		 try {
+		try {
 
 			$search = Http::withToken(Cache::get('token'))->post($this->url . '/permisos/sel_per_obj', [
-                "PV_ROL" => Cache::get('rol'),
-                "PV_OBJ" => "LIBROMAYOR"
-            ]);
+				"PV_ROL" => Cache::get('rol'),
+				"PV_OBJ" => "LIBROMAYOR"
+			]);
 
-            $permisos = $search->json();
-            foreach ($permisos as $key) {
-                $consultar = $key['PER_CONSULTAR'];
-            }
+			$permisos = $search->json();
+			foreach ($permisos as $key) {
+				$consultar = $key['PER_CONSULTAR'];
+			}
 
 			// if ($consultar == '1'){
 			// 	return 'si';
 			// }else{
 			// 	return 'no';
 			// }
-			
-		 } catch (\Throwable $th) {
+
+		} catch (\Throwable $th) {
 			return 'Error Libro Mayor 46';
-		 }
-
-
-
+		}
 
 
 		try {
 
-		$libromayor =http::withToken(Cache::get('token'))->get($this->url.'/libromayor');
+            $clasificacion = http::withToken(Cache::get('token'))->get($this->url . '/clasificacion');
+            $clasificacionArr = $clasificacion->json();
+            //nombre de cuenta
+            $nombrecuenta = http::withToken(Cache::get('token'))->get($this->url . '/cuentas');
+            $nombrecuentaArr = $nombrecuenta->json();
 
-		$personArr = $libromayor->json();
-       
+            $periodo = http::withToken(Cache::get('token'))->get($this->url . '/periodo');
+            $periodoArr = $periodo->json();
+
+
+            # code...
+        } catch (\Throwable $th) {
+            return 'error libro diario 29';
+        }
+
+
+		try {
+
+			$libromayor = http::withToken(Cache::get('token'))->get($this->url . '/libromayor');
+
+			$personArr = $libromayor->json();
+
 
 			# code...
 		} catch (\Throwable $e) {
@@ -64,24 +79,21 @@ class LibromayorController extends Controller
 
 
 
-	try {
-            $bitacora = Http::withToken(Cache::get('token'))->post($this->url.'/seguridad/bitacora/insertar',[
-    
-                "USR" => Cache::get('user'),
-                "ACCION" => 'PANTALLA METODO GET',
-                "DES" => Cache::get('user') . 'INGRESO A LA PANTALLA DE LIBRO MAYOR',
-                "OBJETO" => 'LIBROMAYOR'
-    
-            ]);
-    
-            } catch (\Throwable $th) {
-                return 'Error Libro Mayor 43';
-            }
-            
-            return view('libromayor.libromayor', compact('personArr'));
-    
-    
-        }
+		try {
+			$bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+
+				"USR" => Cache::get('user'),
+				"ACCION" => 'PANTALLA METODO GET',
+				"DES" => Cache::get('user') . 'INGRESO A LA PANTALLA DE LIBRO MAYOR',
+				"OBJETO" => 'LIBROMAYOR'
+
+			]);
+		} catch (\Throwable $th) {
+			return 'Error Libro Mayor 43';
+		}
+
+		return view('libromayor.libromayor', compact('personArr','clasificacionArr', 'nombrecuentaArr', 'periodoArr'));
+	}
 
 
 
@@ -93,19 +105,43 @@ class LibromayorController extends Controller
 		
 		try {
 
+			if ($request->debe == '1') {
+				# code...
+			
 		$insertar = Http::withToken(Cache::get('token'))->post($this->url.'/libromayor/insertar',[
 
-			"COD_PERIODO"=>$request->clasificaionperiodo,
-			"NOM_CUENTA" => $request->nombrecuenta,
+			"COD_PERIODO"=>$request->periodo,
+			"NOM_CUENTA" => $request->cuenta,
 			"SAL_DEBE" => $request->saldo,
-			"SAL_HABER" => $request->saldo,
+			"SAL_HABER" => 0,
 		
 	
 
 		]);
+
+
+
+	}elseif ($request->haber == '1'){
+		
+		$insertar = Http::withToken(Cache::get('token'))->post($this->url.'/libromayor/insertar',[
+
+			"COD_PERIODO"=>$request->periodo,
+			"NOM_CUENTA" => $request->cuenta,
+			"SAL_DEBE" => 0,
+			"SAL_HABER" => $request->saldo,
+		
+
+		]);
+
+
+
+	}
 		} catch (\Throwable $e) {
 			return 'Error libromayor 44';
 		}
+
+	
+
 
 
 		try {

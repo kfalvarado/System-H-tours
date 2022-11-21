@@ -259,16 +259,17 @@ Libro Diario | inicio
 
                 <label class="form-label">
                   Seleccionar Cuenta
-                  <input type='text' name='cuenta' class="form-control text-white" required>
+                 
+                  <select class="form-control text-white" name="cuenta" id="cuenta" required>
+                    <option hidden selected>SELECCIONAR</option>
+                    @foreach($nombrecuentaArr as $key)
+                    <option value="{{$key['NOM_CUENTA'] }}">{{$key['NOM_CUENTA'] }}</option>
+                    @endforeach
 
-                  <!-- <select class="form-control text-white" name="" id="">
-                  <option value=""></option>
-                  <option value="">Caja</option>
-                  <option value="">Proveedores</option>
-                  <option value="">Capital</option>
-                </select> -->
-                  <!-- </input>
-              </label> -->
+                  </select>
+                </label>
+
+                
                   <label class="form-label">
                     Nombre de Sub Cuenta
                     <input type='text' list="" name='nombresubcuenta' class="form-control text-white" required>
@@ -289,11 +290,11 @@ Libro Diario | inicio
                   </label>
                   <br>
                   <label class="radio-inline">
-                    <input type="radio" name="" value="">Debe
+                    <input type="radio" name="debe" value="1">Debe
                   </label>
                   &nbsp;&nbsp;
                   <label class="radio-inline">
-                    <input type="radio" name="" value="">Haber
+                    <input type="radio" name="haber" value="1">Haber
                   </label>
                   <hr />
                   <label class="form-label">
@@ -496,6 +497,15 @@ Libro Diario | inicio
 
                               <input type="hidden" name="f" value="{{$librodiario['COD_LIBDIARIO']}}">
 
+                              <label class="form-label">
+                    Periodo
+                    <select class="form-control text-white" name="periodo" id="periodo" onchange="datos();" required>
+                    <option hidden selected>SELECCIONAR</option>
+                    @foreach($periodoArr as $key)
+                    <option value="{{$key['COD_PERIODO'] }}">{{$key['NOM_PERIODO'] }}</option>
+                    @endforeach
+
+                  </select>
 
                               <label class="form-label">
                                 Numero de Cuenta
