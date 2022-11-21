@@ -49,14 +49,13 @@ class CuentasController extends Controller
      */
     public function actualizar(Request $request)
     {
-
+        // return $request;
         $actualizar = Http::withToken(Cache::get('token'))->put(
             $this->url . '/cuentas/actualizar/' . $request->f,
             [
                 "CLASIFICACION" => $request->naturaleza,
-                "NOMBRE" => $request->nombrecuenta,
-                "NUM" => $request->numerocuenta,
-                "GRUPO" => $request->grupo
+                "NOMBRE" => $request->numero,
+                "NUM" => $request->cuenta
 
             ]
         );

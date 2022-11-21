@@ -75,6 +75,12 @@ Cuentas | inicio
                                 </tr>
                             </thead>
                             <tbody>
+                                @if (count($personArr)<=0)
+                                <td>No hay resultados</td>
+                                    
+                                @else
+                                    
+                             
 
                                 @foreach ($personArr as $cuentas)
 
@@ -101,26 +107,29 @@ Cuentas | inicio
                             <!-- CUERPO DEL DIALOGO EDITAR -->
                             <div class="modal-body">
                                 <center>
-                                    <form action="" method="post">
+                                    <form action="{{ route('cuentas.actualizar') }}" method="post">
+                                        @csrf @method('PUT')
+                                        <input type="hidden" name="f" value="{{ $cuentas['COD_CUENTA'] }}">
                                         <label class="form-label">
                                             Clasificacion
-                                            <select class="form-control text-white" name="" id="" required>
-                                                <option value="">Activo</option>
-                                                <option value="">Pasivo</option>
-                                                <option value="">Patrimonio </option>
-                                                <option value="">Resultado </option>
+                                            <select class="form-control text-white" name="naturaleza" id="" required>
+                                                <option value="{{ $cuentas['COD_NATU'] }}" hidden selected>{{ $cuentas['COD_CLASIFICACION'] }} </option>
+                                                @foreach ($clasificacionArr as $key)
+                                                    
+                                                <option value="{{ $key['COD_CLASIFICACION'] }}">{{ $key['NATURALEZA'] }}</option>
+                                                @endforeach
                                             </select>
                                         </label>
                                         <label class="form-label">
                                             Numero de Cuenta
-                                            <input type='text' name='UNIDADES' value="{{$cuentas ['NUM_CUENTA'] }}" class="form-control text-white" maxlength="3" required></input>
+                                            <input type='text' name='numero' value="{{$cuentas ['NUM_CUENTA'] }}" class="form-control text-white"  required></input>
                                         </label>
                                         <label class="form-label">
                                             Nombre de la Cuenta
-                                            <input type='text' name='COS PRODUCTO' value="{{$cuentas ['NOM_CUENTA'] }}" min="0" class="form-control text-white" required></input>
+                                            <input type='text' name='cuenta' value="{{$cuentas ['NOM_CUENTA'] }}" min="0" class="form-control text-white" required></input>
                                         </label>
 
-                                        <button type="submit" class="btn btn-primary">Registrar </button>
+                                        <button type="submit" class="btn btn-primary">Actualizar </button>
                                     </form>
                             </div>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -167,6 +176,7 @@ Cuentas | inicio
 
 
             @endforeach
+            @endif
                             </tbody>
                         </table>
                     </div>
