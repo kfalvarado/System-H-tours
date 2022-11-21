@@ -5,13 +5,22 @@ namespace App\Http\Controllers\bitacoras;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Session;
 class BitacoraController extends Controller
 {
-    public function mostrar()
 
+    protected $url = 'http://localhost:3000/seguridad';
+
+    public function mostrar()
     {
 
-        return view('bitacoras.bitacoras');
+        $bitacora = http::withToken(Cache::get('token'))->get($this->url.'/bitacora');
+        //return $bitacora;
+        $bitacoraArr = $bitacora->json();
+
+        return view('bitacoras.bitacoras',compact('bitacoraArr'));
 
     }
 }

@@ -120,7 +120,7 @@ Preguntas | inicio
                           <div class="modal-content">
                                 <!-- CABECERA DEL DIALOGO NUEVA-->
                           <div class="modal-header">
-                          <h4 class="modal-title">Ingresar Preguntas</h4>
+                          <h4 class="modal-title">Editar Preguntas y Respuestas</h4>
                                 <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                           </div>
                                 <!-- CUERPO DEL DIALOGO NUEVA -->
@@ -133,24 +133,26 @@ Preguntas | inicio
                             Preguntas
                             <input 
                               type='text' 
-                              name='PREGUNTA' 
+                              name='PREGUNTA'
+                              size="50" maxlength="100" 
                               class="form-control text-white"
                               value="{{$preg['PREGUNTA']}}"  
                               required>
                           </label>
+                          <br>
                           <label class="form-label">
                                 Nueva respuesta
                             <input 
                               type='text' 
-                              name='RESPUESTA' 
+                              name='RESPUESTA'
+                              size="50" maxlength="100" 
                               class="form-control text-white"
                               value=""  
                               required>
                             </label>
                           <label class="form-label">
                           </label>
-
-                      
+                          <br>
 
                           <a href="" class="btn btn-secondary">Cancelar</a>
                           <button type="submit" class="btn btn-primary">Aceptar</button>
@@ -164,42 +166,45 @@ Preguntas | inicio
                           </div>
                               <!-- FIN DE MODAL PARA NUEVA  -->
                 
-                                <!-- INICIO MODAL PARA EDITAR  -->
+                              <!-- INICIO MODAL PARA EDITAR  -->
                           <div class="modal-container">
-                          <div class="modal fade bd-example-modal-lg" id="dialogo2">
-                                <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-                            <div class="modal-dialog modal-sm">
-                            
-                            <div class="modal-content">
-                                <!-- CABECERA DEL DIALOGO EDITAR -->
-                            <div class="modal-header ">
-                            <h4 class="modal-title">Editar Preguntas</h4>
-                                <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
-                            </div>
-                          
-                                <!-- CUERPO DEL DIALOGO EDITAR -->
-                            <div class="modal-body">
-                            <center>
-                            <form action="" method="post">
-                            <label class="form-label">
-                            Preguntas
-                            <input type='text' name='PREGUNTAS' class="form-control text-white" required></input> 
-                            </label>
-                            <label class="form-label">
-                            </label>
-                        
+                                <div class="modal fade bd-example-modal-lg" id="dialogo2">
+                                      <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+                                  <div class="modal-dialog modal-sm">
+                                  
+                                  <div class="modal-content">
+                                      <!-- CABECERA DEL DIALOGO EDITAR -->
+                                  <div class="modal-header ">
+                                  <h4 class="modal-title">Editar Preguntas</h4>
+                                      <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                                  </div>
+                                
+                                      <!-- CUERPO DEL DIALOGO EDITAR -->
+                                  <div class="modal-body">
+                                  <center>
+                                  <form action="" method="post">
+                                  <label class="form-label">
+                                  Preguntas
+                                  <input 
+                                    type='text' 
+                                    name='PREGUNTAS' 
+                                    class="form-control text-white" required></input> 
+                                  </label>
+                                  <label class="form-label">
+                                  </label>
+                              
 
-                            <a href="" class="btn btn-secondary">Cancelar</a>
-                            <button type="submit" class="btn btn-primary">Registrar </button>
-                            </form>
-                            </div> 
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                            </center>
-                            </div>
-                            </div>
-                            </div>
-                        </div>
-                         <!-- FIN DE MODAL PARA EDITAR  -->
+                                  <a href="" class="btn btn-secondary">Cancelar</a>
+                                  <button type="submit" class="btn btn-primary">Registrar </button>
+                                  </form>
+                                  </div> 
+                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                  </center>
+                                  </div>
+                                  </div>
+                                  </div>
+                          </div>
+                              <!-- FIN DE MODAL PARA EDITAR  -->
 
                         @endforeach
                         @endif
