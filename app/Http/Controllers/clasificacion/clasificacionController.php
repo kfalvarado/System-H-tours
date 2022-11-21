@@ -98,7 +98,7 @@ class ClasificacionController extends Controller
             try {
                 $insertar = Http::withToken(Cache::get('token'))->post($this->url . '/clasificacion/insertar', [
                     "USR" => Cache::get('user'),
-                    "CLASIFICACION" => $request->clasificacion,
+                    "NATURALEZA" => $request->clasificacion
                     
                 ]);
             } catch (\Throwable $th) {
@@ -173,7 +173,7 @@ class ClasificacionController extends Controller
             //code...
             $actualizar = Http::withToken(Cache::get('token'))->put($this->url.'/clasificacion/actualizar/'.$request->f,[
                 "USR" => Cache::get('user'),
-                "CLASIFICACION" => $request->clasificacion,
+                "NATURALEZA" => $request->clasificacion,
                
             ]);
         } catch (\Throwable $th) {
