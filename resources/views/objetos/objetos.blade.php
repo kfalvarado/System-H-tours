@@ -84,10 +84,7 @@ Objetos | inicio
             <div class="page-header">
               </nav>
             </div>
-            <nav class="nav nav-pills flex-column flex-sm-row">
-              <a class="flex-sm-fill text-sm-center nav-link active" href="#">Objetos</a>
-              <a class="flex-sm-fill text-sm-center nav-link"  aria-current="page" href="{{route('mostrar.objetos')}}">Objetos</a>
-            </nav>
+     
             <p align="right" valign="baseline">
               <button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
               <a type="button" href="{{route('periodo.pdf')}}" class="btn btn-danger btn-sm"  ><i class="mdi mdi-file-pdf"></i>Generar PDF</a>
@@ -124,14 +121,14 @@ Objetos | inicio
                           @else
                             
                       
-                          @foreach ($personArr as $objetos)
+                          @foreach ($personArr as $objeto)
                             
                           <tr class="text-white bg-dark">
                             <td> {{ $objeto['COD_OBJETO'] }} </td>
                             <td>{{ $objeto['OBJETO'] }}</td>
                             <td>{{ $objeto['DES_OBJETO'] }}</td>
                             <td>{{ $objeto['TIP_OBJETO'] }}</td>
-                            <td><button type="button"  class="btn btn-info btn-sm"  data-toggle="modal" data-target="#modal-editar-{{ $objetos['COD_OBJETO'] }}"> <i class="mdi mdi-table-edit"></i>Editar</button> <button type="button"  class="btn btn-danger btn-sm"  data-toggle="modal" data-target="#modal-eliminar-{{ $objetos['COD_OBJETO'] }}"><i class="mdi mdi-delete-forever"></i>Eliminar</button> </td>  
+                            <td><button type="button"  class="btn btn-info btn-sm"  data-toggle="modal" data-target="#modal-editar-{{ $objeto['COD_OBJETO'] }}"> <i class="mdi mdi-table-edit"></i>Editar</button> <button type="button"  class="btn btn-danger btn-sm"  data-toggle="modal" data-target="#modal-eliminar-{{ $objeto['COD_OBJETO'] }}"><i class="mdi mdi-delete-forever"></i>Eliminar</button> </td>  
                           </tr>
                           
                               <!-- INICIO MODAL PARA EDITAR  -->
@@ -152,10 +149,10 @@ Objetos | inicio
                         @csrf  @method('PUT')
 
 
-                        <input type="hidden" name="f" value="{{ $objetos['COD_OBJETO'] }}">
+                        <input type="hidden" name="f" value="{{ $objeto['COD_OBJETO'] }}">
                          <label class="form-label">
                            Objeto
-                           <input type='text' list="lista-programacion" value="{{ $objetos['OBJETOS'] }}" name='objeto' class="form-control text-white bg-dark" required>
+                           <input type='text' list="lista-programacion" value="{{ $objeto['OBJETO'] }}" name='objeto' class="form-control text-white bg-dark" required>
                            <datalist id="lista-programacion">
                              <option value="Periodo-2022-ene-1-004">
                            </datalist>
@@ -164,7 +161,7 @@ Objetos | inicio
                          <br>
                          <label class="form-label">
                          Descripcion
-                           <input type='text' list="lista-programacion" value="{{ $objetos['DESCRIPCION'] }}" name='descripcion' class="form-control text-white bg-dark" required>
+                           <input type='text' list="lista-programacion" value="{{ $objeto['DES_OBJETO'] }}" name='descripcion' class="form-control text-white bg-dark" required>
                            <datalist id="lista-programacion">
                              <option value="Periodo-2022-ene-1-004">
                            </datalist>
@@ -173,7 +170,7 @@ Objetos | inicio
                          <br>
                          <label class="form-label">
                          Tipo de objeto
-                           <input type='text' list="lista-programacion" value="{{ $objetos['TIP_OBJETO'] }}" name='tipo' class="form-control text-white bg-dark" required>
+                           <input type='text' list="lista-programacion" value="{{ $objeto['TIP_OBJETO'] }}" name='tipo' class="form-control text-white bg-dark" required>
                            <datalist id="lista-programacion">
                              <option value="Periodo-2022-ene-1-004">
                            </datalist>
@@ -199,7 +196,7 @@ Objetos | inicio
  
                      <!-- INICIO MODAL PARA BORRAR  -->
             <div class="modal-container">
-             <div class="modal fade bd-example-modal-lg" id="modal-eliminar-{{ $objetos['COD_OBJETOS'] }}">
+             <div class="modal fade bd-example-modal-lg" id="modal-eliminar-{{ $objeto['COD_OBJETO'] }}">
                    <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
               <div class="modal-dialog modal-sm">
               <div class="modal-content">
@@ -214,7 +211,7 @@ Objetos | inicio
               <form action="{{ route('objetos.eliminar') }}" method="post">
                 @csrf @method('DELETE')
 
-                <input type="hidden" name="f" value="{{ $objetos['COD_OBJETO'] }}">
+                <input type="hidden" name="f" value="{{ $objeto['COD_OBJETO'] }}">
               <label class="form-label">
                 <i class="mdi mdi-delete-forever" style="font-size: 100px;"></i> <br>
               ¿ Desea Eliminar el Registro ?

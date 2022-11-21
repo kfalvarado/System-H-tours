@@ -66,7 +66,7 @@ class ParametrosController extends Controller
         }
 
 
-        return view('parametro.parametro', compact('personArr'));
+        return view('parametro.parametros', compact('personArr'));
     }
 
     /**

@@ -154,7 +154,7 @@
                                                         <!-- CUERPO DEL DIALOGO EDITAR -->
                                                         <div class="modal-body">
                                                             <center>
-                                                                <form action="{{ route('parametros.actualizar') }}"
+                                                                <form action="{{ route('parametro.actualizar') }}"
                                                                     method="post">
                                                                     @csrf @method('PUT')
 
@@ -190,7 +190,7 @@
                                                                     <label class="form-label">
                                                                         Usuario
                                                                         <input type='text' list="lista-programacion"
-                                                                            value="{{ $parametro['COD_USR'] }}"
+                                                                            value="{{ $parametros['COD_USR'] }}"
                                                                             name='usuario'
                                                                             class="form-control text-white bg-dark"
                                                                             required>
@@ -247,7 +247,7 @@
                                                         <!-- CUERPO DEL DIALOGO BORRAR -->
                                                         <div class="modal-body">
                                                             <center>
-                                                                <form action="{{ route('parametros.eliminar') }}"
+                                                                <form action="{{ route('parametro.eliminar') }}"
                                                                     method="post">
                                                                     @csrf @method('DELETE')
 
@@ -303,7 +303,7 @@
                     <!-- CUERPO DEL DIALOGO NUEVA -->
                     <div class="modal-body">
                         <center>
-                            <form action="{{ route('parametros.insertar') }}" method="post">
+                            <form action="{{ route('parametro.insertar') }}" method="post">
                                 @csrf
                                 <label class="form-label">
                                     Parametro
