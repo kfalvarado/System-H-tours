@@ -17,8 +17,46 @@ class ConfigsController extends Controller
 
     public function mostrar()
     {
-       return view('config.ajustes');
+        $ajustes = http::withToken(Cache::get('token'))->post($this->url.'/personas/usuarios',[
+               
+            "USER"=>Cache::get('user')
+            
+        ]);
+        //return $ajustes;
+        $ajustesArr = $ajustes->json();
+
+       return view('config.ajustes',compact('ajustesArr'));
     }
+
+    
+    
+    public function actualizar_usr( Request $req)
+    {
+        //return $req;
+        $nom_usr = http::withToken(Cache::get('token'))->put($this->url.'/upd_nom_usr',[
+            "COD" => $req->COD,
+            "NOM_USR" => $req->NOM_USR
+        ]);
+        
+          
+        $ajustes = http::withToken(Cache::get('token'))->put($this->url.'/personas/actualizar/'.$req->COD_PERSONA,[
+               
+            "USUARIO"=> Cache::get('user'),
+            "SEX_PERSONA"=>$req->SEX_PERSONA,
+            "EDA_PERSONAL"=> $req->EDA_PERSONAL,
+            "TIP_PERSONA"=>$req->TIP_PERSONA,
+            "Num_Identidad"=>$req->NUM_IDENTIDAD,
+            "IND_CIVIL"=>$req->IND_CIVIL,
+            "TELEFONO"=>$req->TELEFONO,
+            "TIP_TELEFONO"=>$req->TIP_TELEFONO
+
+        ]);
+        //return $ajustes;
+        Session::flash("actualizado_usr","1");
+        return back();
+    }
+
+
 
     public function actualizar( Request $req ){
        
@@ -33,7 +71,7 @@ class ConfigsController extends Controller
         Session::flash("contra_actual_incorrecta","1");
         return back();
     }
-    Session::flash("actualizado","1");
+    Session::flash("actualizado_contra","1");
     return back();
     }
 

@@ -59,7 +59,17 @@ Ajustes | inicio
   </script>
 @endif
 
-@if (Session::has('actualizado'))
+@if (Session::has('actualizado_usr'))
+  <script>
+    Swal.fire({
+    icon: 'success',
+    text: 'El usuario se actualizo correctamente'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+@endif
+
+@if (Session::has('actualizado_contra'))
   <script>
     Swal.fire({
     icon: 'success',
@@ -77,17 +87,15 @@ Ajustes | inicio
       <div class="row">
   
       <div class="col-xl-4">
-  
+
+        
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-  
-              <img src="" alt="Profile" class="rounded-circle" width="150">
-              <h3>Usuario</h3>
-              <h3>Administrador</h3>
+              <h3>{{cache::get("user")}}</h3>
+              <h3>{{cache::get('rol')}}</h3>
             </div>
           </div>
-  
-        </div>
+      </div>
   
         <div class="col-xl-8">
             <div class="card ">
@@ -113,126 +121,124 @@ Ajustes | inicio
                   </ul>
   
                   <div class="tab-content pt-2">
+
+                    @foreach ($ajustesArr as $ajustes)
                       <!-- RESUMEN -->
                       <div class="tab-pane fade show active profile-overview text-white" id="profile-overview">
-                          <h5 class="card-title">Resumen</h5>
-                          <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
-                      
+                          
                           <h5 class="card-title">Detalles de perfil</h5>
                       
                           <div class="row">
                             <div class="col-lg-3 col-md-4 label ">Nombre</div>
-                            <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                            <div class="col-lg-9 col-md-8">{{$ajustes['NOM_USR']}}</div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Estado usuario</div>
+                            <div class="col-lg-9 col-md-8">{{$ajustes['EST_USR']}}</div>
                           </div>
                       
                           <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Empresa</div>
-                            <div class="col-lg-9 col-md-8">hTours</div>
+                            <div class="col-lg-3 col-md-4 label">Sexo persona</div>
+                            <div class="col-lg-9 col-md-8">{{$ajustes['SEX_PERSONA']}}</div>
                           </div>
                       
                           <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Cargo</div>
-                            <div class="col-lg-9 col-md-8">Administrador</div>
+                            <div class="col-lg-3 col-md-4 label">Edad</div>
+                            <div class="col-lg-9 col-md-8">{{$ajustes['EDA_PERSONAL']}}</div>
                           </div>
                       
                           <div class="row">
-                            <div class="col-lg-3 col-md-4 label">País</div>
-                            <div class="col-lg-9 col-md-8">Honduras</div>
+                            <div class="col-lg-3 col-md-4 label">Tipo de persona</div>
+                            <div class="col-lg-9 col-md-8">{{$ajustes['TIP_PERSONA']}}</div>
                           </div>
                       
                           <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Dirección</div>
-                            <div class="col-lg-9 col-md-8"></div>
+                            <div class="col-lg-3 col-md-4 label">Numero ID</div>
+                            <div class="col-lg-9 col-md-8">{{$ajustes['NUM_IDENTIDAD']}}</div>
+                          </div>
+                      
+                          <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Estado civil</div>
+                            <div class="col-lg-9 col-md-8">{{$ajustes['IND_CIVIL']}}</div>
                           </div>
                       
                           <div class="row">
                             <div class="col-lg-3 col-md-4 label">Telefono</div>
-                            <div class="col-lg-9 col-md-8">+504 9999-0000</div>
-                          </div>
-                      
-                          <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Correo electronico</div>
-                            <div class="col-lg-9 col-md-8">ejemplo@gmail.com</div>
+                            <div class="col-lg-9 col-md-8">{{$ajustes['TELEFONO']}}</div>
                           </div>
                       
                       </div>
+                    @endforeach
   
                       <!-- EDITAR PERFIL -->
                       <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
   
                           <!-- EDITAR PERFIL FORMULARIO -->
-                          <form action="{{ route('personas.actualizar') }}" >
+                          <form action="{{ route('ajustes.actualizar_usr') }}" >
                             @csrf @method('PUT') 
-                            <div class="row mb-3">
-                              <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Imagen de perfil</label>
-                              <div class="col-md-8 col-lg-9">
-                                <img src="" alt="Profile" width="100">
-                                <div class="pt-2">
-                                  <a href="#" class="btn btn-primary btn-sm mr-2" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                                  <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
-                                </div>
-                              </div>
-                            </div>
+                            <input name="COD_PERSONA" type="hidden" value="{{$ajustes['COD_PERSONA']}}">
+                            <input name="COD" type="hidden" value="{{$ajustes['COD_USER']}}">
         
                             <div class="row mb-3">
-                              <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Usuario</label>
+                              <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nombre de usuario</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="user" type="text" class="form-control" id="fullName" value="">
+                                <input name="NOM_USR" type="text" class="form-control text-white" id="fullName" value="{{$ajustes['NOM_USR']}}">
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="about" class="col-md-4 col-lg-3 col-form-label">Genero</label>
                               <div class="col-md-8 col-lg-9">
-                                <textarea name="genero" class="form-control" id="about" value="" ></textarea>
+                                <input name="SEX_PERSONA" type="text" class="form-control text-white" id="about" value="{{$ajustes['SEX_PERSONA']}}" >
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="age" class="col-md-4 col-lg-3 col-form-label">Edad</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="edad" type="text" class="form-control text-white" id="age" value="H Tours">
+                                <input name="EDA_PERSONAL" type="number" class="form-control text-white" id="age" value="{{$ajustes['EDA_PERSONAL']}}">
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="Job" class="col-md-4 col-lg-3 col-form-label">Tipo de persona</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="tipoPersona" type="text" class="form-control" id="Job" value="Administrador">
+                                <input name="TIP_PERSONA" type="text" class="form-control text-white" id="Job" value="{{$ajustes['TIP_PERSONA']}}">
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="ID" class="col-md-4 col-lg-3 col-form-label">Identidad</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="identidad" type="text" class="form-control" id="ID" value="HN">
+                                <input name="NUM_IDENTIDAD" type="text" class="form-control text-white" id="ID" value="{{$ajustes['NUM_IDENTIDAD']}}">
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="Address" class="col-md-4 col-lg-3 col-form-label">Estado Civil</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="civil" type="text" class="form-control" id="Address" value="Ciudad">
+                                <input name="IND_CIVIL" type="text" class="form-control text-white" id="Address" value="{{$ajustes['IND_CIVIL']}}">
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Telefono</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="telefono" type="text" class="form-control" id="Phone" value="+504 9999-0000">
+                                <input name="TELEFONO" type="tel" class="form-control text-white" id="Phone" value="{{$ajustes['TELEFONO']}}">
                               </div>
                             </div>
         
                             <div class="row mb-3">
-                              <label for="Email" class="col-md-4 col-lg-3 col-form-label">Tipo de telefono</label>
+                              <label for="" class="col-md-4 col-lg-3 col-form-label">Tipo de telefono</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="tipotelefono" type="email" class="form-control" id="Email" value="paola@gmail.com">
+                                <input name="TIP_TELEFONO" type="tel" class="form-control text-white" id="Email" value="{{$ajustes['TIP_TELEFONO']}}">
                               </div>
                             </div>
         
                           
                             <div class="text-center">
-                              <button type="" class="btn btn-primary btn-shadow">Guardar cambios</button>
+                              <button type="submit" class="btn btn-primary btn-shadow">Guardar cambios</button>
                             </div>
                           </form>
                           <!-- FINAL DE EDITAR PERFIL -->
