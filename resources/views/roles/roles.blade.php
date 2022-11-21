@@ -2,164 +2,106 @@
 
 <!-- titulo de la pagina  -->
 @section('titulo')
-Roles
+Roles | inicio
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
+
+
+@if (Cache::get('genero') == 'M')
 {{ asset('assets/images/varon.png')}}
+@else
+{{ asset('assets/images/dama.png')}}
+@endif
+
+
 @endsection
 
 <!-- nombre del usuario de la barra lateral  -->
 @section('Usuario-Lateral')
-Fabricio
+{{cache::get('user')}}
 @endsection
 <!-- rol del usuario de la barra lateral  -->
 @section('rol-usuario')
-Administrador
+{{cache::get("rol")}}
 @endsection
 
 <!-- foto del menu de la derecha -->
 @section('foto-user2')
+
+@if (Cache::get('genero') == 'M')
 {{ asset('assets/images/varon.png')}}
+@else
+{{ asset('assets/images/dama.png')}}
+@endif
+
 @endsection
 <!-- nombre del menu de la derecha  -->
 @section('Usuario-Menu')
-Fabricio
+{{cache::get('user')}}
 @endsection
-<!-- contenido de la pagina  -->
+
 @section('contenido')
+
+@if (Session::has('actualizado'))
+  <script>
+    Swal.fire({
+    icon: 'success',
+    text: 'El rol se actualizo correctamente'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+@endif
 
  
           <!-- INICIO MODAL PARA NUEVA  -->
-          <div class="modal-container">
+        {{-- <div class="modal-container">
             <div class="modal fade bd-example-modal-lg" id="dialogo1">
                   <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-             <div class="modal-dialog modal-md">
-             <div class="modal-content">
-                  <!-- CABECERA DEL DIALOGO NUEVA-->
-             <div class="modal-header">
-             <h4 class="modal-title">Ingresar Roles</h4>
-                  <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
-             </div>
+                <div class="modal-dialog modal-md">
+                  <div class="modal-content">
+                    <!-- CABECERA DEL DIALOGO NUEVA-->
+                    <div class="modal-header">
+                    <h4 class="modal-title">Ingresar Roles</h4>
+                    <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                  </div>
                   <!-- CUERPO DEL DIALOGO NUEVA -->
-             <div class="modal-body">
-             <center>
-             <form action="" method="post">
-             <label class="form-label">
-             Ingrese el Rol
-             <input type='text' name='Clasificacion' class="form-control" required></input> 
-             </label>
-             <label class="form-label">
-             Descripcion
-             <textarea name="" id="" cols="30" rows="10" class="form-control text-white" ></textarea>
-      
-             </label>
-             <label class="form-label">
-             Estado del Rol
-             <input type='text' name='Estado' class="form-control" required></input> 
-            </label>
-            <label class="form-label">
-          
-             
+                  <div class="modal-body">
+                    <center>
+                      <form action="" method="post">
+                        <label class="form-label">
+                        Ingrese el Rol
+                        <input type='text' name='Clasificacion' class="form-control" required></input> 
+                        </label>
+                        <label class="form-label">
+                        Descripcion
+                        <textarea name="" id="" cols="30" rows="10" class="form-control text-white" ></textarea>
+                  
+                        </label>
+                        <label class="form-label">
+                        Estado del Rol
+                        <input type='text' name='Estado' class="form-control" required></input> 
+                        </label>
+                        <label class="form-label">
+                      
+                        
 
-             </label>
- 
-         <br>
- 
-             <a href="" class="btn btn-secondary">Cancelar</a>
-             <button type="submit" class="btn btn-primary">Registrar </button>
-             </form>
-             </div> 
-             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-             </center>
+                        </label>
+            
+                        <br>
+            
+                        <a href="" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">Registrar </button>
+                      </form>
+                      </div> 
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    </center>
              </div>
              </div>
              </div>
-             </div>
-                 <!-- FIN DE MODAL PARA NUEVA  -->
+        </div> --}}
+          <!-- FIN DE MODAL PARA NUEVA  -->
    
-               
-                   <!-- INICIO MODAL PARA EDITAR  -->
-            <div class="modal-container">
-             <div class="modal fade bd-example-modal-lg" id="dialogo2">
-                   <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-              <div class="modal-dialog modal-md">
-              <div class="modal-content">
-                   <!-- CABECERA DEL DIALOGO EDITAR -->
-              <div class="modal-header">
-              <h4 class="modal-title">Editar Roles</h4>
-                   <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
-              </div>
-                   <!-- CUERPO DEL DIALOGO EDITAR -->
-              <div class="modal-body">
-              <center>
-              <form action="" method="post">
-              <label class="form-label">
-              Rol
-              <input type='text' name='ROL' value="Administrador" class="form-control text-white" required></input> 
-              </label>
-              <label class="form-label">
-              Descripción
-              <textarea name="" id="" cols="30" class="form-control text-white" rows="10"></textarea>
-              
-              </label>
-         
-              </label>
-              <br>
-  
-              <a href="" class="btn btn-secondary">Cancelar</a>
-              <button type="submit" class="btn btn-primary">Registrar </button>
-              </form>
-              </div> 
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-              </center>
-              </div>
-              </div>
-              </div>
-              </div>
-                  <!-- FIN DE MODAL PARA EDITAR  -->
- 
-              
- 
- 
-             
-               
-                   <!-- INICIO MODAL PARA BORRAR  -->
-            <div class="modal-container">
-             <div class="modal fade bd-example-modal-lg" id="dialogo3">
-                   <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-              <div class="modal-dialog modal-sm">
-              <div class="modal-content">
-                   <!-- CABECERA DEL DIALOGO EDITAR -->
-              <div class="modal-header">
-              <h4 class="modal-title">Eliminar roles</h4>
-                   <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
-              </div>
-                   <!-- CUERPO DEL DIALOGO BORRAR -->
-              <div class="modal-body">
-              <center>
-              <form action="" method="post">
-              <label class="form-label">
-              ¿ Desea Eliminar la Transaccion ?
-               
-              </label>
-              
-          
-  
-              <a href="" class="btn btn btn-primary">SI</a>
-              <a href="" class="btn btn-secondary">NO</a>
-              
-              </form>
-              </div> 
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-              </center>
-              </div>
-              </div>
-              </div>
-              </div>
-                  <!-- FIN DE MODAL PARA BORRAR  -->
-
- 
           <div class="content-wrapper">
             <center> <h1>Roles H Tours Honduras</h1> </center>
             <h5>________________________________________________________________________________________________________________</h5>
@@ -196,35 +138,116 @@ Fabricio
                           </tr>
                         </thead>
                         <tbody>
+
+                          @if (count($rolsArr) <= 0)
+                          <tr>
+                            <td colspan="6">Sin resultados</td>
+                          </tr>
+                          @else
+                        
+                          @foreach ($rolsArr as $rols)
+
                           <tr class="text-white bg-dark">
-                            <td>1</td>
-                            <td>Administrador</td>
-                            <td>Activo</td>
-                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td></button> </td>
+                            <td>{{$rols['COD_ROL']}}</td>
+                            <td>{{$rols['ROL']}}</td>
+                            <td>{{$rols['DES_ROL']}}</td>
+                            <td>
+                              <button 
+                                type="button"  
+                                class="btn btn-info"  
+                                data-toggle="modal" 
+                                data-target="#modal-editar-{{$rols['COD_ROL']}}"">Editar
+                              </button> 
+                              <button 
+                                type="button"  
+                                class="btn btn-danger"  
+                                data-toggle="modal" 
+                                data-target="#dialogo3">Eliminar
+                              </button> 
+                            </td>
 
                           </tr>
-                          <tr class="text-white bg-dark">
-                            <td>2</td>
-                            <td>Oficial</td>
-                            <td>Activo</td>
-                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td></button> </td>
-
-                          </tr>
-                          <tr class="text-white bg-dark">
-                            <td>3</td>
-                            <td>Gerente</td>
-                            <td>Activo</td>
-                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td></button> </td>
-                          </tr>
-                          <tr class="text-white bg-dark">
-                            <td>4</td>
-                            <td>Subgerente</td>
-                            <td>Activo</td>
-                            <td><button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo2">Editar</button> <button type="button"  class="btn btn-danger"  data-toggle="modal" data-target="#dialogo3">Eliminar</button> </td></button> </td>
-
+                          
+                              <!-- INICIO MODAL PARA EDITAR  -->
+                              <div class="modal-container">
+                                <div class="modal fade bd-example-modal-lg" id="dialogo2">
+                                    <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+                                <div class="modal-dialog modal-md">
+                                <div class="modal-content">
+                                    <!-- CABECERA DEL DIALOGO EDITAR -->
+                                <div class="modal-header">
+                                <h4 class="modal-title">Editar Roles</h4>
+                                    <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                                </div>
+                                    <!-- CUERPO DEL DIALOGO EDITAR -->
+                                <div class="modal-body">
+                                <center>
+                                <form action="" method="post">
+                                <label class="form-label">
+                                Rol
+                                <input type='text' name='ROL' value="Administrador" class="form-control text-white" required></input> 
+                                </label>
+                                <label class="form-label">
+                                Descripción
+                                <textarea name="" id="" cols="30" class="form-control text-white" rows="10"></textarea>
+                                
+                                </label>
+                          
+                                </label>
+                                <br>
+                    
+                                <a href="" class="btn btn-secondary">Cancelar</a>
+                                <button type="submit" class="btn btn-primary">Registrar </button>
+                                </form>
+                                </div> 
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                </center>
+                                </div>
+                                </div>
+                                </div>
+                              </div>
+                              <!-- FIN DE MODAL PARA EDITAR  -->
+ 
+                              <!-- INICIO MODAL PARA BORRAR  -->
+                              <div class="modal-container">
+                                <div class="modal fade bd-example-modal-lg" id="dialogo3">
+                                      <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+                                  <div class="modal-dialog modal-sm">
+                                  <div class="modal-content">
+                                      <!-- CABECERA DEL DIALOGO EDITAR -->
+                                  <div class="modal-header">
+                                  <h4 class="modal-title">Eliminar roles</h4>
+                                      <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                                  </div>
+                                      <!-- CUERPO DEL DIALOGO BORRAR -->
+                                  <div class="modal-body">
+                                  <center>
+                                  <form action="" method="post">
+                                  <label class="form-label">
+                                  ¿ Desea Eliminar la Transaccion ?
+                                  
+                                  </label>
+                                  
+                              
+                      
+                                  <a href="" class="btn btn btn-primary">SI</a>
+                                  <a href="" class="btn btn-secondary">NO</a>
+                                  
+                                  </form>
+                                  </div> 
+                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                  </center>
+                                  </div>
+                                  </div>
+                                  </div>
+                              </div>
+                              <!-- FIN DE MODAL PARA BORRAR  -->
+                              @endforeach
+                              @endif
                         </tbody>
                       </table>
                     </div>
+                    <div id="paginador"></div>
                   </div>
                 </div>
               </div>
