@@ -82,7 +82,7 @@ class ParametrosController extends Controller
             //code...
             $search = Http::withToken(Cache::get('token'))->post($this->url . '/permisos/sel_per_obj', [
                 "PV_ROL" => Cache::get('rol'),
-                "PV_OBJ" => "PRAMETROS"
+                "PV_OBJ" => "PARAMETROS"
             ]);
 
             $permisos = $search->json();

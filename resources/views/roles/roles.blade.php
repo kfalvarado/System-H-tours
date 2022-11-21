@@ -43,6 +43,16 @@ Roles | inicio
 
 @section('contenido')
 
+@if (Session::has('insertado'))
+  <script>
+    Swal.fire({
+    icon: 'success',
+    text: 'El rol se ingresado correctamente'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+  </script>
+@endif
+
 @if (Session::has('actualizado'))
   <script>
     Swal.fire({
@@ -55,61 +65,67 @@ Roles | inicio
 
  
           <!-- INICIO MODAL PARA NUEVA  -->
-        {{-- <div class="modal-container">
-            <div class="modal fade bd-example-modal-lg" id="dialogo1">
-                  <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-                <div class="modal-dialog modal-md">
-                  <div class="modal-content">
-                    <!-- CABECERA DEL DIALOGO NUEVA-->
-                    <div class="modal-header">
-                    <h4 class="modal-title">Ingresar Roles</h4>
-                    <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
-                  </div>
-                  <!-- CUERPO DEL DIALOGO NUEVA -->
-                  <div class="modal-body">
-                    <center>
-                      <form action="" method="post">
-                        <label class="form-label">
-                        Ingrese el Rol
-                        <input type='text' name='Clasificacion' class="form-control" required></input> 
-                        </label>
-                        <label class="form-label">
-                        Descripcion
-                        <textarea name="" id="" cols="30" rows="10" class="form-control text-white" ></textarea>
-                  
-                        </label>
-                        <label class="form-label">
-                        Estado del Rol
-                        <input type='text' name='Estado' class="form-control" required></input> 
-                        </label>
-                        <label class="form-label">
-                      
-                        
-
-                        </label>
-            
-                        <br>
-            
-                        <a href="" class="btn btn-secondary">Cancelar</a>
-                        <button type="submit" class="btn btn-primary">Registrar </button>
-                      </form>
-                      </div> 
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                    </center>
-             </div>
-             </div>
-             </div>
-        </div> --}}
+          <div class="modal-container">
+              <div class="modal fade bd-example-modal-lg" id="dialogo1">
+                    <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+                  <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                      <!-- CABECERA DEL DIALOGO NUEVA-->
+                      <div class="modal-header">
+                      <h4 class="modal-title">Ingresar Roles</h4>
+                      <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                    </div>
+                    <!-- CUERPO DEL DIALOGO NUEVA -->
+                    <div class="modal-body">
+                      <center>
+                        <form action="{{ route('roles.insertar')}}">
+                          @csrf @method('POST')
+                                    
+                          <label class="form-label">
+                          Ingrese el Rol
+                          <input 
+                            type='text' 
+                            name='ROL' 
+                            class="form-control text-white" 
+                            required> 
+                          </label>
+                          <br>
+                          <label class="form-label">
+                            Descripción
+                                         <input 
+                                          type='text'
+                                          size="50" maxlength="50" 
+                                          name='DES_ROL'
+                                          class="form-control text-white" required>
+                          </label>
+              
+                          <br>
+              
+                          <a href="" class="btn btn-secondary">Cancelar</a>
+                          <button type="submit" class="btn btn-primary">Aceptar</button>
+                        </form>
+                        </div> 
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                      </center>
+              </div>
+              </div>
+              </div>
+          </div>
           <!-- FIN DE MODAL PARA NUEVA  -->
+
+           
+
    
           <div class="content-wrapper">
-            <center> <h1>Roles H Tours Honduras</h1> </center>
-            <h5>________________________________________________________________________________________________________________</h5>
-            <!-- <ul class="nav nav-pills nav-stacked">
-              <li class="active"><a href="#"></a></li>
+            <center> <h1>Roles H Tours Honduras</h1> </center><!-- <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a href="#"></a></li>
             </ul> -->
             <p align="right" valign="baseline">
-              <button type="button"  class="btn btn-success"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
+              <button 
+                type="button"  
+                class="btn btn-success"  
+                data-toggle="modal" 
+                data-target="#dialogo1">(+) Nuevo</button>
             </p>
             
             <ul class="nav nav-pills nav-stacked">
@@ -131,10 +147,10 @@ Roles | inicio
                       <table class="table table-bordered table-contextual">
                         <thead>
                           <tr class="text-dark bg-white">
-                            <th class="text-dark bg-white">#</th>
-                            <th class="text-dark bg-white">Rol</th>
-                             <th class="text-dark bg-white">Descripción</th>
-                             <th class="text-dark bg-white">Acciones</th>
+                              <th class="text-dark bg-white">#</th>
+                              <th class="text-dark bg-white">Rol</th>
+                              <th class="text-dark bg-white">Descripción</th>
+                              <th class="text-dark bg-white">Acciones</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -158,12 +174,12 @@ Roles | inicio
                                 data-toggle="modal" 
                                 data-target="#modal-editar-{{$rols['COD_ROL']}}">Editar
                               </button> 
-                              <button 
+                              {{-- <button 
                                 type="button"  
                                 class="btn btn-danger"  
                                 data-toggle="modal" 
                                 data-target="#dialogo3">Eliminar
-                              </button> 
+                              </button> --}} 
                             </td>
 
                           </tr>

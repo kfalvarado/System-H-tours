@@ -22,6 +22,20 @@ class RolesController extends Controller
         return view('roles.roles',compact('rolsArr'));
     }
 
+
+    public function insertar( Request $req)
+    {
+        //return $req;
+        $rols = http::withToken(Cache::get('token'))->post($this->url.'/ins_rol',[
+               
+                "ROL" => $req->ROL,
+                "DES_ROL" => $req->DES_ROL
+        ]);
+        //return $rols;
+        Session::flash("insertado","1");
+        return back();
+    }
+
     public function actualizar( Request $req)
     {
         $rols = http::withToken(Cache::get('token'))->put($this->url.'/upd_rol',[
