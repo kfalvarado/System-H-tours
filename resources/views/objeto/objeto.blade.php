@@ -85,8 +85,8 @@ Objetos | inicio
               </nav>
             </div>
             <nav class="nav nav-pills flex-column flex-sm-row">
-              <a class="flex-sm-fill text-sm-center nav-link active" href="#">Objeto</a>
-              <a class="flex-sm-fill text-sm-center nav-link"  aria-current="page" href="{{route('mostrar.objeto')}}">Objeto</a>
+              <a class="flex-sm-fill text-sm-center nav-link active" href="#">Objetos</a>
+              <a class="flex-sm-fill text-sm-center nav-link"  aria-current="page" href="{{route('mostrar.objetos')}}">Objetos</a>
             </nav>
             <p align="right" valign="baseline">
               <button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
@@ -100,9 +100,9 @@ Objetos | inicio
               <div class="col-lg-12 stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title"> <center>Objeto</center></h4>
+                    <h4 class="card-title"> <center>Objetos</center></h4>
                     <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                      <input type="text" class="form-control" placeholder="Buscar objeto">
+                      <input type="text" class="form-control" placeholder="Buscar objetos">
                     </form>
                     <div class="table-responsive">
                       <table id="tabla" class="table table-bordered table-contextual">
@@ -124,14 +124,14 @@ Objetos | inicio
                           @else
                             
                       
-                          @foreach ($personArr as $objeto)
+                          @foreach ($personArr as $objetos)
                             
                           <tr class="text-white bg-dark">
                             <td> {{ $objeto['COD_OBJETO'] }} </td>
                             <td>{{ $objeto['OBJETO'] }}</td>
                             <td>{{ $objeto['DES_OBJETO'] }}</td>
                             <td>{{ $objeto['TIP_OBJETO'] }}</td>
-                            <td><button type="button"  class="btn btn-info btn-sm"  data-toggle="modal" data-target="#modal-editar-{{ $objeto['COD_OBJETO'] }}"> <i class="mdi mdi-table-edit"></i>Editar</button> <button type="button"  class="btn btn-danger btn-sm"  data-toggle="modal" data-target="#modal-eliminar-{{ $objeto['COD_OBJETO'] }}"><i class="mdi mdi-delete-forever"></i>Eliminar</button> </td>  
+                            <td><button type="button"  class="btn btn-info btn-sm"  data-toggle="modal" data-target="#modal-editar-{{ $objetos['COD_OBJETO'] }}"> <i class="mdi mdi-table-edit"></i>Editar</button> <button type="button"  class="btn btn-danger btn-sm"  data-toggle="modal" data-target="#modal-eliminar-{{ $objetos['COD_OBJETO'] }}"><i class="mdi mdi-delete-forever"></i>Eliminar</button> </td>  
                           </tr>
                           
                               <!-- INICIO MODAL PARA EDITAR  -->
@@ -142,20 +142,20 @@ Objetos | inicio
                    <div class="modal-content">
                         <!-- CABECERA DEL DIALOGO EDITAR -->
                    <div class="modal-header">
-                   <h4 class="modal-title">Editar Objeto</h4>
+                   <h4 class="modal-title">Editar Objetos</h4>
                         <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                    </div>
                         <!-- CUERPO DEL DIALOGO EDITAR -->
                    <div class="modal-body">
                      <center>
-                       <form action="{{ route('objeto.actualizar') }}" method="post">
+                       <form action="{{ route('objetos.actualizar') }}" method="post">
                         @csrf  @method('PUT')
 
 
-                        <input type="hidden" name="f" value="{{ $objeto['COD_OBJETO'] }}">
+                        <input type="hidden" name="f" value="{{ $objetos['COD_OBJETO'] }}">
                          <label class="form-label">
                            Objeto
-                           <input type='text' list="lista-programacion" value="{{ $objeto['OBJETOS'] }}" name='objeto' class="form-control text-white bg-dark" required>
+                           <input type='text' list="lista-programacion" value="{{ $objetos['OBJETOS'] }}" name='objeto' class="form-control text-white bg-dark" required>
                            <datalist id="lista-programacion">
                              <option value="Periodo-2022-ene-1-004">
                            </datalist>
@@ -164,7 +164,7 @@ Objetos | inicio
                          <br>
                          <label class="form-label">
                          Descripcion
-                           <input type='text' list="lista-programacion" value="{{ $objeto['DESCRIPCION'] }}" name='descripcion' class="form-control text-white bg-dark" required>
+                           <input type='text' list="lista-programacion" value="{{ $objetos['DESCRIPCION'] }}" name='descripcion' class="form-control text-white bg-dark" required>
                            <datalist id="lista-programacion">
                              <option value="Periodo-2022-ene-1-004">
                            </datalist>
@@ -173,7 +173,7 @@ Objetos | inicio
                          <br>
                          <label class="form-label">
                          Tipo de objeto
-                           <input type='text' list="lista-programacion" value="{{ $objeto['TIP_OBJETO'] }}" name='tipo' class="form-control text-white bg-dark" required>
+                           <input type='text' list="lista-programacion" value="{{ $objetos['TIP_OBJETO'] }}" name='tipo' class="form-control text-white bg-dark" required>
                            <datalist id="lista-programacion">
                              <option value="Periodo-2022-ene-1-004">
                            </datalist>
@@ -199,22 +199,22 @@ Objetos | inicio
  
                      <!-- INICIO MODAL PARA BORRAR  -->
             <div class="modal-container">
-             <div class="modal fade bd-example-modal-lg" id="modal-eliminar-{{ $objeto['COD_OBJETOS'] }}">
+             <div class="modal fade bd-example-modal-lg" id="modal-eliminar-{{ $objetos['COD_OBJETOS'] }}">
                    <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
               <div class="modal-dialog modal-sm">
               <div class="modal-content">
                    <!-- CABECERA DEL DIALOGO EDITAR -->
               <div class="modal-header">
-              <h4 class="modal-title">Eliminar Objeto</h4>
+              <h4 class="modal-title">Eliminar Objetos</h4>
                    <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
               </div>
                    <!-- CUERPO DEL DIALOGO BORRAR -->
               <div class="modal-body">
               <center>
-              <form action="{{ route('objeto.eliminar') }}" method="post">
+              <form action="{{ route('objetos.eliminar') }}" method="post">
                 @csrf @method('DELETE')
 
-                <input type="hidden" name="f" value="{{ $objeto['COD_OBJETO'] }}">
+                <input type="hidden" name="f" value="{{ $objetos['COD_OBJETO'] }}">
               <label class="form-label">
                 <i class="mdi mdi-delete-forever" style="font-size: 100px;"></i> <br>
               ¿ Desea Eliminar el Registro ?
@@ -262,11 +262,11 @@ Objetos | inicio
                         <!-- CUERPO DEL DIALOGO NUEVA -->
                         <div class="modal-body">
                           <center>
-                            <form action="{{ route('objeto.insertar') }}" method="post">
+                            <form action="{{ route('objetos.insertar') }}" method="post">
                              @csrf
                               <label class="form-label">
                                 Objeto
-                                <input type='text' list="lista-programacion" name='Objeto' class="form-control text-white" required>
+                                <input type='text' list="lista-programacion" name='Objetos' class="form-control text-white" required>
                                 <datalist id="lista-programacion">
                                   <option value="Periodo-2022-ene-1-004">
                                 </datalist>
@@ -319,8 +319,8 @@ Objetos | inicio
                   $btnExportar.addEventListener("click", function() {
                       let tableExport = new TableExport($tabla, {
                           exportButtons: false, // No queremos botones
-                          filename: "Reporte de Objeto", //Nombre del archivo de Excel
-                          sheetname: "Reporte de Objeto", //Título de la hoja
+                          filename: "Reporte de Objetos", //Nombre del archivo de Excel
+                          sheetname: "Reporte de Objetos", //Título de la hoja
                           ignoreCols: 5,  
                       });
                       let datos = tableExport.getExportData();
@@ -331,4 +331,5 @@ Objetos | inicio
 @endsection
             
 @endsection
+
 
