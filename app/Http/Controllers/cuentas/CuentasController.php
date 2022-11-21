@@ -26,20 +26,61 @@ class CuentasController extends Controller
         return view('cuentas.cuentas',compact('personArr','clasificacionArr','gruposArr'));
     }
 
-        /**
+    /**
      * Metodo para insertar una cuenta
      */
     public function insertar(Request $request)
     {
-        $insertar=  Http::withToken(Cache::get('token'))->post($this->url . '/cuentas/insertar',[
-            "CLASIFICACION"=> $request->naturaleza,
-            "NOMBRE"=>$request->nombrecuenta,
-            "CORRELATIVO"=> $request->numerocuenta,
-            "GRUPO"=>$request->grupo
-        ]
+        $insertar =  Http::withToken(Cache::get('token'))->post(
+            $this->url . '/cuentas/insertar',
+            [
+                "CLASIFICACION" => $request->naturaleza,
+                "NOMBRE" => $request->nombrecuenta,
+                "CORRELATIVO" => $request->numerocuenta,
+                "GRUPO" => $request->grupo
+            ]
         );
-        Session::flash('insertado',"1");
+        Session::flash('insertado', "1");
         return back();
     }
 
+    /**
+     * Metodo para actualizar una cuenta
+     */
+    public function actualizar(Request $request)
+    {
+
+        $actualizar = Http::withToken(Cache::get('token'))->put(
+            $this->url . '/cuentas/actualizar/' . $request->f,
+            [
+                "CLASIFICACION" => $request->naturaleza,
+                "NOMBRE" => $request->nombrecuenta,
+                "NUM" => $request->numerocuenta,
+                "GRUPO" => $request->grupo
+
+            ]
+        );
+        Session::flash('actualizado', "1");
+        return back();
+    }
+
+
+       /**
+     * Metodo para eliminar una cuenta
+     */
+    public function eliminar(Request $request)
+    {
+
+        $eliminar=Http::withToken(Cache::get('token'))->delete($this->url.'/cuentas/eliminar/'.$request->f,[
+
+
+
+
+        ]
+        );
+        Session::flash('eliminado',"1");
+        return back();
+
+
+    }
 }

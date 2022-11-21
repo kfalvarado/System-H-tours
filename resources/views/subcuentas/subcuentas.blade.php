@@ -59,7 +59,11 @@ Subcuentas | inicio
               </nav> -->
         </div>
         <p align="right" valign="baseline">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button> <a type="button" class="btn btn-success" href="javascript:window.print();">Generar PDF</a>
+            <button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
+            <a type="button" href="{{route('periodo.pdf')}}" class="btn btn-danger btn-sm"  ><i class="mdi mdi-file-pdf"></i>Generar PDF</a>
+            <button id="btnExportar" class="btn btn-success btn-sm">
+              <i class="mdi mdi-file-excel"></i> Generar Excel
+          </button>   
         </p>
         <div class="row">
 
@@ -81,6 +85,11 @@ Subcuentas | inicio
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if (count($personArr)<=0)
+                                    <td colspan="6" >No hay resultados</td>
+   
+                                    @else
+                                        
 
                                     @foreach ($personArr as $subcuentas)
 
@@ -95,103 +104,107 @@ Subcuentas | inicio
                                     </tr>
 
 
-                                     <!-- INICIO MODAL PARA EDITAR  -->
-                <div class="modal-container">
-                    <div class="modal fade bd-example-modal-lg" id="modal-editar-{{ $subcuentas['COD_SUBCUENTA'] }}">
-                        <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-                        <div class="modal-dialog modal-sm">
-                            <div class="modal-content">
-                                <!-- CABECERA DEL DIALOGO EDITAR -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Editar SubCuentas</h4>
-                                    <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
-                                </div>
-                                <!-- CUERPO DEL DIALOGO EDITAR -->
-                                <div class="modal-body">
-                                    <center>
-                                        <form action="" method="post">
-                                            <label class="form-label">
-                                                Clasificacion
-
-                                                <select class="form-control text-white" name="" id="" required>
-
-                                                    <option value="">Activo</option>
-                                                    <option value="">Pasivo</option>
-                                                    <option value="">Patrimonio </option>
-                                                    <option value="">Resultado </option>
-
-                                                </select>
-                                            </label>
-
-
-                                            <label class="form-label">
-                                                Nombre de Cuenta
-                                                <Select class="form-control text-white">
-                                                    <option value="">{{$subcuentas ['COD_CUENTA'] }}</option>
-
-                                                </Select>
-
-
-                                            </label>
-
-                                            <label class="form-label">
-                                                Numero de la sub Cuenta
-                                                <input type='text' min="0" name='COS PRODUCTO' value= "{{$subcuentas ['NUM_SUBCUENTA'] }}" class="form-control text-white" required></input>
-                                            </label>
-                                            <label class="form-label">
-                                                Nombre de la Sub Cuenta
-                                                <input type='text' name='COS PRODUCTO' value="{{$subcuentas ['NOM_SUBCUENTA'] }}" class="form-control text-white" required></input>
-                                            </label>
-
-
-                                            <a href="" class="btn btn-secondary">Cancelar</a>
-                                            <button type="submit" class="btn btn-primary">EDITAR </button>
-                                        </form>
-                                </div>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                </center>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- FIN DE MODAL PARA EDITAR  -->
-
-
-
-                <!-- INICIO MODAL PARA BORRAR  -->
-                <div class="modal-container">
-                    <div class="modal fade bd-example-modal-lg" id="modal-eliminar-{{ $subcuentas['COD_SUBCUENTA'] }}">
-                        <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-                        <div class="modal-dialog modal-sm">
-                            <div class="modal-content">
-                                <!-- CABECERA DEL DIALOGO EDITAR -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Eliminar Cuenta</h4>
-                                    <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
-                                </div>
-                                <!-- CUERPO DEL DIALOGO BORRAR -->
-                                <div class="modal-body">
-                                    <center>
-                                        <form action="" method="post">
-                                            <label class="form-label">
-                                                ¿ Desea Eliminar el Registro ?
-
-                                            </label>
-                                            <br>
-                                            <a href="" class="btn btn btn-primary">SI</a>
-                                            <a href="" class="btn btn-secondary">NO</a>
-
-                                        </form>
-                                </div>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                </center>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- FIN DE MODAL PARA BORRAR  -->
-
-                @endforeach
+                                      <!-- INICIO MODAL PARA EDITAR  -->
+                                      <div class="modal-container">
+                                        <div class="modal fade bd-example-modal-lg" id="modal-editar-{{ $subcuentas['COD_SUBCUENTA'] }}">
+                                            <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                    <!-- CABECERA DEL DIALOGO EDITAR -->
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Editar SubCuentas</h4>
+                                                        <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                                                    </div>
+                                                    <!-- CUERPO DEL DIALOGO EDITAR -->
+                                                    <div class="modal-body">
+                                                        <center>
+                                                            <form action="{{route('subcuentas.actualizar') }}" method="post">
+                                                            @csrf @method('PUT')
+                                                                <input type="hidden" name="f" value="{{$subcuentas ['COD_SUBCUENTA'] }}">
+                                                                <label class="form-label">
+                    
+                                                                    Clasificacion
+                    
+                                                                    <select class="form-control text-white" name="naturaleza" id="" required>
+                                                                    <option value="{{ $subcuentas['COD_CLASIFICACION'] }}" hidden selected>{{ $subcuentas['NATURALEZA'] }}</option>
+                                                                    @foreach($clasificacionArr as $key)
+                                                                    <option value="{{$key['COD_CLASIFICACION'] }}">{{$key['NATURALEZA'] }}</option>
+                                                                    @endforeach
+                    
+                                                                    </select>
+                                                                </label>
+                    
+                                                                <label class="form-label">
+                                                                    Nombre de Cuenta
+                    
+                                                                    <Select class="form-control text-white" name="nombrecuenta" id="" required>
+                                                                        <option value="{{ $subcuentas['COD_CUENTA'] }}" hidden selected>{{ $subcuentas['COD_CUENTA'] }}</option>
+                                                                        @foreach($nombrecuentaArr as $key)
+                                                                        <option value="{{$key['NOM_CUENTA'] }}">{{$key['NOM_CUENTA'] }}</option>
+                                                                        @endforeach
+                    
+                                                                    </Select>
+                                                                </label>
+                    
+                                                                <label class="form-label">
+                                                                    Numero de la sub Cuenta
+                                                                    <input type='text' min="0" name='numerosubcuenta' value= "{{$subcuentas ['NUM_SUBCUENTA'] }}" class="form-control text-white" required></input>
+                                                                </label>
+                                                                <label class="form-label">
+                                                                    Nombre de la Sub Cuenta
+                                                                    <input type='text' name='nombresubcuenta' value="{{$subcuentas ['NOM_SUBCUENTA'] }}" class="form-control text-white" required></input>
+                                                                </label>
+                    
+                    
+                                                                <a href="" class="btn btn-secondary">Cancelar</a>
+                                                                <button type="submit" class="btn btn-primary">EDITAR </button>
+                                                            </form>
+                                                    </div>
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- FIN DE MODAL PARA EDITAR  -->
+                    
+                    
+                    
+                                    <!-- INICIO MODAL PARA BORRAR  -->
+                                    <div class="modal-container">
+                                        <div class="modal fade bd-example-modal-lg" id="modal-eliminar-{{ $subcuentas['COD_SUBCUENTA'] }}">
+                                            <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                    <!-- CABECERA DEL DIALOGO EDITAR -->
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Eliminar Cuenta</h4>
+                                                        <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                                                    </div>
+                                                    <!-- CUERPO DEL DIALOGO BORRAR -->
+                                                    <div class="modal-body">
+                                                        <center>
+                                                            <form action="" method="post">
+                                                                <label class="form-label">
+                                                                    ¿ Desea Eliminar el Registro ?
+                    
+                                                                </label>
+                                                                <br>
+                                                                <a href="" class="btn btn btn-primary">SI</a>
+                                                                <a href="" class="btn btn-secondary">NO</a>
+                    
+                                                            </form>
+                                                    </div>
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- FIN DE MODAL PARA BORRAR  -->
+                    
+                                    @endforeach
+                                    @endif
 
                                 </tbody>
                             </table>
