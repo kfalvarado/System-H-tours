@@ -133,7 +133,7 @@ Roles | inicio
                           <tr class="text-dark bg-white">
                             <th class="text-dark bg-white">#</th>
                             <th class="text-dark bg-white">Rol</th>
-                             <th class="text-dark bg-white">Descripcion</th>
+                             <th class="text-dark bg-white">Descripción</th>
                              <th class="text-dark bg-white">Acciones</th>
                           </tr>
                         </thead>
@@ -156,7 +156,7 @@ Roles | inicio
                                 type="button"  
                                 class="btn btn-info"  
                                 data-toggle="modal" 
-                                data-target="#modal-editar-{{$rols['COD_ROL']}}"">Editar
+                                data-target="#modal-editar-{{$rols['COD_ROL']}}">Editar
                               </button> 
                               <button 
                                 type="button"  
@@ -170,7 +170,7 @@ Roles | inicio
                           
                               <!-- INICIO MODAL PARA EDITAR  -->
                               <div class="modal-container">
-                                <div class="modal fade bd-example-modal-lg" id="dialogo2">
+                                <div class="modal fade bd-example-modal-lg" id="modal-editar-{{$rols['COD_ROL']}}">
                                     <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
                                 <div class="modal-dialog modal-md">
                                 <div class="modal-content">
@@ -182,23 +182,33 @@ Roles | inicio
                                     <!-- CUERPO DEL DIALOGO EDITAR -->
                                 <div class="modal-body">
                                 <center>
-                                <form action="" method="post">
-                                <label class="form-label">
-                                Rol
-                                <input type='text' name='ROL' value="Administrador" class="form-control text-white" required></input> 
-                                </label>
-                                <label class="form-label">
-                                Descripción
-                                <textarea name="" id="" cols="30" class="form-control text-white" rows="10"></textarea>
-                                
-                                </label>
+                                  <form action="{{ route('roles.actualizar') }}" method="put">
+                                      @csrf @method('PUT')
+                                      <input name="COD_ROL" type="hidden" value="{{$rols['COD_ROL']}}"> 
+                                               
+                                      <label class="form-label">
+                                        Rol
+                                        <input 
+                                          type='text' 
+                                          name='ROL' 
+                                          value="{{$rols['ROL']}}" 
+                                          class="form-control text-white" required>
+                                      </label>
+                                      <br>
+                                      <label class="form-label">
+                                        Descripción
+                                         <input 
+                                          type='text'
+                                          size="50" maxlength="50" 
+                                          name='DES_ROL' 
+                                          value="{{$rols['DES_ROL']}}" 
+                                          class="form-control text-white" required>
+                                      </label>
+                                      <br>
                           
-                                </label>
-                                <br>
-                    
-                                <a href="" class="btn btn-secondary">Cancelar</a>
-                                <button type="submit" class="btn btn-primary">Registrar </button>
-                                </form>
+                                      <a href="" class="btn btn-secondary">Cancelar</a>
+                                      <button type="submit" class="btn btn-primary">Aceptar</button>
+                                  </form>
                                 </div> 
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                                 </center>

@@ -24,12 +24,13 @@ class RolesController extends Controller
 
     public function actualizar( Request $req)
     {
-        $usr = http::withToken(Cache::get('token'))->put($this->url.'/upd_rol',[
-            
-                "COD_ROL" => $req->COD_ROL,
+        $rols = http::withToken(Cache::get('token'))->put($this->url.'/upd_rol',[
+               
                 "ROL" => $req->ROL,
-                "DES_ROL" => $req->DES_ROL
+                "DES_ROL" => $req->DES_ROL,
+                "FILA" => $req->COD_ROL
         ]);
+        //return $rols;
         Session::flash("actualizado","1");
         return back();
     }
