@@ -19,3 +19,4 @@ use App\Http\Controllers\subcuentas\SubcuentasController;
 Route::get('/',[SubcuentasController::class,'ver'])->name('mostrar.subcuentas');
 Route::post('/',[SubcuentasController::class,'insertar'])->name('insertar.subcuentas');
 Route::post('/busca',[SubcuentasController::class,'busca'])->name('busca.subcuentas');
+Route::put('/',[SubcuentasController::class,'actualizar'])->name('subcuentas.actualizar');

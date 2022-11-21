@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Session;
 
 class PermisosController extends Controller
 {
+	protected $url = 'http://localhost:3000';
     public function mostrar()
 	{
 

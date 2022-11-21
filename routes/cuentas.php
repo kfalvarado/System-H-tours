@@ -17,4 +17,5 @@ use App\Http\Controllers\cuentas\CuentasController;
 
 Route::get('/ver',[CuentasController::class,'ver'])->name('mostrar.cuentas');
 Route::post('/insertar',[CuentasController::class,'insertar'])->name('insertar.cuentas');
-
+Route::put('/actualiza',[CuentasController::class,'actualizar'])->name('cuentas.actualizar');
+Route::delete('/eliminar',[CuentasController::class,'eliminar'])->name('cuentas.eliminar');
