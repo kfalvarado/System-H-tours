@@ -237,26 +237,20 @@ Clasificacion | inicio
                         <!-- CUERPO DEL DIALOGO NUEVA -->
                         <div class="modal-body">
                           <center>
-                            <form action="{{ route('objeto.insertar') }}" method="post">
+                            <form action="{{ route('clasificacion.insertar') }}" method="post">
                              @csrf
                               <label class="form-label">
                                 Clasificacion
-                                <input type='text' list="lista-programacion" name='Clasificacion' class="form-control text-white" required>
+                                <input type='text' list="lista-programacion" name='clasificacion' class="form-control text-white" required>
                                 <datalist id="lista-programacion">
                                   <option value="Periodo-2022-ene-1-004">
                                 </datalist>
                                 </input>
                               </label>
                               <br>
-                              <label class="form-label">
+                            
                               
-                              <br>
-                              <label class="form-label">
-                              <br>
-                              <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="customSwitch" name="estado" value="activo">
-                                <label class="custom-control-label" for="customSwitch">Estado <label>
-                              </div>
+                          
                               <br>
                               <a href="" class="btn btn-secondary">Cancelar</a>
                               <button type="submit" class="btn btn-primary">NUEVO</button>
