@@ -36,7 +36,7 @@
       }
     }
   </script>
-
+<script src="https://use.fontawesome.com/73f69ada3d.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://unpkg.com/xlsx@0.16.9/dist/xlsx.full.min.js"></script>
 <script src="https://unpkg.com/file-saverjs@latest/FileSaver.min.js"></script>
@@ -215,10 +215,10 @@
                   <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                 </div>
               </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
+              <div class="dropdown-menu dropdown-content dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
                 <h6 class="p-3 mb-0">Opciones</h6>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item" href="{{route('ajustes.inicio')}}">
+                {{-- <a class="dropdown-item preview-item" href="{{route('ajustes.inicio')}}">
                   <div class="preview-thumbnail">
                     <div class="preview-icon bg-dark rounded-circle">
                       <i class="mdi mdi-settings text-success"></i>
@@ -227,9 +227,15 @@
                   <div class="preview-item-content">
                     <p class="preview-subject mb-1">Ajustes</p>
                   </div>
-                </a>
+                </a> --}}
+                <div class="text-center mb-3 mt-3">
+                  <a href="{{route('ajustes.inicio')}}" class="btn btn-outline-secondary btn-shadow ">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                    Ajustes
+                  </a>
+                </div>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
+                {{-- <a class="dropdown-item preview-item">
                   <div class="preview-thumbnail">
                     <div class="preview-icon bg-dark rounded-circle">
                       <i class="mdi mdi-logout text-danger"></i>
@@ -238,7 +244,13 @@
                   <div class="preview-item-content">
                     <p class="preview-subject mb-1" onclick="presioname();">Cerrar Sesion</p>
                   </div>
-                </a>
+                </a> --}}
+                  <div class="text-center mb-3 mt-3">
+                    <a  class="btn btn-outline-danger btn-shadow " onclick="presioname();">
+                      <i class="fa fa-sign-out" aria-hidden="true"></i>
+                      Cerrrar Sesión
+                    </a>
+                  </div>
                 <div class="dropdown-divider"></div>
                 <p class="p-3 mb-0 text-center">Ajustes Avanzados</p>
               </div>

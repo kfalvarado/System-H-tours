@@ -85,7 +85,7 @@ Preguntas | inicio
                     <table id="tabla" class="table table-bordered table-contextual">
                       <thead>
                         <tr class="text-dark bg-white">
-                          <th class="text-dark bg-white">#</th>
+                          {{-- <th class="text-dark bg-white">#</th> --}}
                           <th class="text-dark bg-white">Preguntas</th>
                           <th class="text-dark bg-white">Usuarios</th>
                           <th class="text-dark bg-white">Acciones</th>
@@ -101,14 +101,15 @@ Preguntas | inicio
 
                         @foreach ( $pregArr as $preg)
                         <tr class="text-white bg-dark">
-                          <td>{{$preg['COD_PREG']}}</td>
+                          {{-- <td>{{$preg['COD_PREG']}}</td> --}}
                           <td>{{$preg['PREGUNTA']}}</td>
                           <td>{{$preg['USR']}}</td>
-                          <td>
+                          <td class="text-center">
                               <button type="button" 
                                       class="btn btn-info"  
                                       data-toggle="modal" 
-                                      data-target="#modal-editar-{{$preg['COD_PREG']}}">Editar</button>
+                                      data-target="#modal-editar-{{$preg['COD_PREG']}}">Editar
+                              </button>
                           </td>          
                         </tr>
 

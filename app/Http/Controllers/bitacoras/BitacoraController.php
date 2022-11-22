@@ -16,7 +16,7 @@ class BitacoraController extends Controller
     public function mostrar()
     {
 
-        $bitacora = http::withToken(Cache::get('token'))->get($this->url.'/bitacora');
+        $bitacora = http::withToken(Cache::get('token'))->get($this->url.'/sel_bitacora');
         //return $bitacora;
         $bitacoraArr = $bitacora->json();
 

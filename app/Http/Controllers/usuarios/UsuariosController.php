@@ -53,6 +53,18 @@ class UsuariosController extends Controller
                 "CORREO" => $req->CORREO,
                 "FILA" => $req->COD_USR
         ]);
+
+        try {
+            $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                "USR" => Cache::get('user'),
+                "ACCION" => 'PANTALLA USUARIOS METODO POST',
+                "DES" => Cache::get('user') . ' ACTUALIZO USUARIO ',
+                "OBJETO" => 'USUARIOS'
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return 'ERROR USUARIOS BITACORA';
+        }
         Session::flash("actualizado","1");
         return back();
     }
