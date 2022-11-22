@@ -32,8 +32,6 @@ class RolesController extends Controller
             return 'ERROR ROLES BITACORA';
         }
 
-
-
         return view('roles.roles',compact('rolsArr'));
     }
 

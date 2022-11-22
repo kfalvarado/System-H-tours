@@ -49,16 +49,30 @@ class PreguntasController extends Controller
     }
 
 
-    public function actualizar( Request $req ){
+    public function actualizar( Request $req )
+    {
        
         $usr = http::withToken(Cache::get('token'))->put($this->url.'/upd_preg_res',[
            
             "PREGUNTA" => $req->PREGUNTA,
             "RESPUESTA" => $req->RESPUESTA,
             "FILA" => $req->COD_USR
-    ]);
-    Session::flash("actualizado","1");
-    return back();
+        ]);
+
+        try {
+            $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                "USR" => Cache::get('user'),
+                "ACCION" => 'PANTALLA PREGUNTAS METODO PUT',
+                "DES" => Cache::get('user') . ' ACTUALIZO PREGUNTAS',
+                "OBJETO" => 'PREGUNTAS'
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return 'ERROR PREGUNTAS BITACORA';
+        }
+
+        Session::flash("actualizado","1");
+        return back();
     }
 
 }
