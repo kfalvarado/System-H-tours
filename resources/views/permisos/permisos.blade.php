@@ -2,7 +2,7 @@
 
 <!-- titulo de la pagina  -->
 @section('titulo')
-Permisos | Inicio
+    Permisos | Inicio
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
@@ -11,7 +11,7 @@ Permisos | Inicio
 
 <!-- nombre del usuario de la barra lateral  -->
 @section('Usuario-Lateral')
-  {{  Cache::get('user')}}
+    {{ Cache::get('user') }}
 @endsection
 <!-- rol del usuario de la barra lateral  -->
 @section('rol-usuario')
@@ -24,7 +24,7 @@ Permisos | Inicio
 @endsection
 <!-- nombre del menu de la derecha  -->
 @section('Usuario-Menu')
-{{  Cache::get('user')}}
+    {{ Cache::get('user') }}
 @endsection
 <!-- contenido de la pagina  -->
 @section('contenido')
@@ -209,8 +209,8 @@ Permisos | Inicio
         <h5>________________________________________________________________________________________________________________
         </h5>
         <!-- <ul class="nav nav-pills nav-stacked">
-                          <li class="active"><a href="#"></a></li>
-                        </ul> -->
+                              <li class="active"><a href="#"></a></li>
+                            </ul> -->
         <p align="right" valign="baseline">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#dialogo1">(+)
                 Nuevo</button>
@@ -230,8 +230,8 @@ Permisos | Inicio
                     <form action="{{ route('permisos.roles') }}" class="nav-link mt-2 mt-md-0 d-none d-lg-flex search"
                         method="POST">
                         @csrf
-                        <select onchange="this.form.submit()" class="form-control text-white" name="rol"
-                            id="" required>
+                        <select onchange="this.form.submit()" class="form-control text-white" name="rol" id=""
+                            required>
                             @if (Session::has('rol'))
                                 <option value="" hidden selected>{{ Session::get('rol') }}</option>
                             @else
@@ -297,79 +297,86 @@ Permisos | Inicio
                                                     @endif
                                                 </td>
                                                 <td><button type="button" class="btn btn-info" data-toggle="modal"
-                                                        data-target="#modal-editar-{{ $key['COD_PERMISO'] }}">Editar</button> <button type="button"
-                                                        class="btn btn-danger" data-toggle="modal"
-                                                        data-target="#modal-eliminar-{{ $key['COD_PERMISO'] }}">Eliminar</button> </td></button> </td>
+                                                        data-target="#modal-editar-{{ $key['COD_PERMISO'] }}">Editar</button>
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                        data-target="#modal-eliminar-{{ $key['COD_PERMISO'] }}">Eliminar</button>
+                                                </td></button> </td>
 
                                             </tr>
 
-                                            
-    <!-- INICIO MODAL PARA EDITAR  -->
-    <div class="modal-container">
-        <div class="modal fade bd-example-modal-lg" id="modal-editar-{{ $key['COD_PERMISO'] }}">
-            <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <!-- CABECERA DEL DIALOGO EDITAR -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Editar Permisos</h4>
-                        <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
-                    </div>
-                    <!-- CUERPO DEL DIALOGO EDITAR -->
-                    <div class="modal-body">
-                        <center>
-                            <label class="form-label">
-                                Pantalla
-                                <select class="form-control text-white">
-                                    <option hidden selected >{{ $key['OBJETO']  }}</option>
-                                    @foreach ($objetos as $new)
-                                        
-                                    <option>{{ $new['OBJETO'] }}</option>
-                                    @endforeach
-                      
-                                </select>
-                                </input>
-                            </label>
-                            <br>
+
+                                            <!-- INICIO MODAL PARA EDITAR  -->
+                                            <div class="modal-container">
+                                                <div class="modal fade bd-example-modal-lg"
+                                                    id="modal-editar-{{ $key['COD_PERMISO'] }}">
+                                                    <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+                                                    <div class="modal-dialog modal-sm">
+                                                        <div class="modal-content">
+                                                            <!-- CABECERA DEL DIALOGO EDITAR -->
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title">Editar Permisos</h4>
+                                                                <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                                                            </div>
+                                                            <!-- CUERPO DEL DIALOGO EDITAR -->
+                                                            <div class="modal-body">
+                                                                <center>
+                                                                    <label class="form-label">
+                                                                        Pantalla
+                                                                        <select class="form-control text-white">
+                                                                            <option hidden selected>{{ $key['OBJETO'] }}
+                                                                            </option>
+                                                                            @foreach ($objetos as $new)
+                                                                                <option>{{ $new['OBJETO'] }}</option>
+                                                                            @endforeach
+
+                                                                        </select>
+                                                                        </input>
+                                                                    </label>
+                                                                    <br>
 
 
 
-                            <label class="form-label">
-                                Permiso Insertar
-                                <input type='checkbox' name='PERMISO INSERCION' class="form-control text-white"
-                                    required></input>
-                            </label>
-                            <label class="form-label">
-                                Permiso Eliminacion
-                                <input type='checkbox' name='PERMISO ELIMINACION' class="form-control text-white"
-                                    required></input>
-                            </label>
-                            <label class="form-label">
-                                Permiso Actualizacion
-                                <input type='checkbox' name='PERMISO ACTUALIZACION' class="form-control text-white"
-                                    required></input>
-                            </label>
-                            <label class="form-label">
-                                Permiso Consultar
-                                <input type='checkbox' name='PERMISO CONSULTAR' class="form-control text-white"
-                                    required></input>
-                            </label>
-                            <br>
+                                                                    <label class="form-label">
+                                                                        Permiso Insertar
+                                                                        <input type='checkbox' name='PERMISO INSERCION'
+                                                                            class="form-control text-white"
+                                                                            required></input>
+                                                                    </label>
+                                                                    <label class="form-label">
+                                                                        Permiso Eliminacion
+                                                                        <input type='checkbox' name='PERMISO ELIMINACION'
+                                                                            class="form-control text-white"
+                                                                            required></input>
+                                                                    </label>
+                                                                    <label class="form-label">
+                                                                        Permiso Actualizacion
+                                                                        <input type='checkbox'
+                                                                            name='PERMISO ACTUALIZACION'
+                                                                            class="form-control text-white"
+                                                                            required></input>
+                                                                    </label>
+                                                                    <label class="form-label">
+                                                                        Permiso Consultar
+                                                                        <input type='checkbox' name='PERMISO CONSULTAR'
+                                                                            class="form-control text-white"
+                                                                            required></input>
+                                                                    </label>
+                                                                    <br>
 
-                            <a href="" class="btn btn-secondary">Cancelar</a>
-                            <button type="submit" class="btn btn-primary">Registrar </button>
-                            </form>
-                    </div>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                    </center>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- FIN DE MODAL PARA EDITAR  -->
-
-
-
+                                                                    <a href=""
+                                                                        class="btn btn-secondary">Cancelar</a>
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary">Registrar </button>
+                                                                    </form>
+                                                            </div>
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-dismiss="modal">Cerrar</button>
+                                                            </center>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- FIN DE MODAL PARA EDITAR  -->
                                         @endforeach
                                     @else
                                         <td colspan="7">No hay resultados</td>
