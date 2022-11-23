@@ -2,7 +2,7 @@
 
 <!-- titulo de la pagina  -->
 @section('titulo')
-    Permisos
+Permisos | Inicio
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
@@ -11,11 +11,11 @@
 
 <!-- nombre del usuario de la barra lateral  -->
 @section('Usuario-Lateral')
-    Fabricio
+  {{  Cache::get('user')}}
 @endsection
 <!-- rol del usuario de la barra lateral  -->
 @section('rol-usuario')
-    Administrador
+    {{ Cache::get('rol') }}
 @endsection
 
 <!-- foto del menu de la derecha -->
@@ -24,7 +24,7 @@
 @endsection
 <!-- nombre del menu de la derecha  -->
 @section('Usuario-Menu')
-    Fabricio
+{{  Cache::get('user')}}
 @endsection
 <!-- contenido de la pagina  -->
 @section('contenido')
@@ -161,70 +161,6 @@
 
 
 
-    <!-- INICIO MODAL PARA EDITAR  -->
-    <div class="modal-container">
-        <div class="modal fade bd-example-modal-lg" id="dialogo2">
-            <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <!-- CABECERA DEL DIALOGO EDITAR -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Editar Permisos</h4>
-                        <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
-                    </div>
-                    <!-- CUERPO DEL DIALOGO EDITAR -->
-                    <div class="modal-body">
-                        <center>
-                            <label class="form-label">
-                                Pantalla
-                                <select class="form-control text-white">
-
-                                    <option></option>
-                                    <option>Principal</option>
-                                    <option>Mantenimiento Usuarios</option>
-                                    <option>Mantenimiento Departamento</option>
-                                    <option>Mantenimiento Permisos</option>
-
-                                </select>
-                                </input>
-                            </label>
-                            <br>
-
-
-
-                            <label class="form-label">
-                                Permiso Insertar
-                                <input type='checkbox' name='PERMISO INSERCION' class="form-control text-white"
-                                    required></input>
-                            </label>
-                            <label class="form-label">
-                                Permiso Eliminacion
-                                <input type='checkbox' name='PERMISO ELIMINACION' class="form-control text-white"
-                                    required></input>
-                            </label>
-                            <label class="form-label">
-                                Permiso Actualizacion
-                                <input type='checkbox' name='PERMISO ACTUALIZACION' class="form-control text-white"
-                                    required></input>
-                            </label>
-                            <label class="form-label">
-                                Permiso Consultar
-                                <input type='checkbox' name='PERMISO CONSULTAR' class="form-control text-white"
-                                    required></input>
-                            </label>
-                            <br>
-
-                            <a href="" class="btn btn-secondary">Cancelar</a>
-                            <button type="submit" class="btn btn-primary">Registrar </button>
-                            </form>
-                    </div>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                    </center>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- FIN DE MODAL PARA EDITAR  -->
 
 
 
@@ -283,11 +219,6 @@
         <ul class="nav nav-pills nav-stacked">
             <li class="active"><a href="#"></a></li>
         </ul>
-
-
-
-
-
 
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
@@ -366,11 +297,79 @@
                                                     @endif
                                                 </td>
                                                 <td><button type="button" class="btn btn-info" data-toggle="modal"
-                                                        data-target="#dialogo2">Editar</button> <button type="button"
+                                                        data-target="#modal-editar-{{ $key['COD_PERMISO'] }}">Editar</button> <button type="button"
                                                         class="btn btn-danger" data-toggle="modal"
-                                                        data-target="#dialogo3">Eliminar</button> </td></button> </td>
+                                                        data-target="#modal-eliminar-{{ $key['COD_PERMISO'] }}">Eliminar</button> </td></button> </td>
 
                                             </tr>
+
+                                            
+    <!-- INICIO MODAL PARA EDITAR  -->
+    <div class="modal-container">
+        <div class="modal fade bd-example-modal-lg" id="modal-editar-{{ $key['COD_PERMISO'] }}">
+            <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <!-- CABECERA DEL DIALOGO EDITAR -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Editar Permisos</h4>
+                        <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                    </div>
+                    <!-- CUERPO DEL DIALOGO EDITAR -->
+                    <div class="modal-body">
+                        <center>
+                            <label class="form-label">
+                                Pantalla
+                                <select class="form-control text-white">
+                                    <option hidden selected >{{ $key['OBJETO']  }}</option>
+                                    @foreach ($objetos as $new)
+                                        
+                                    <option>{{ $new['OBJETO'] }}</option>
+                                    @endforeach
+                      
+                                </select>
+                                </input>
+                            </label>
+                            <br>
+
+
+
+                            <label class="form-label">
+                                Permiso Insertar
+                                <input type='checkbox' name='PERMISO INSERCION' class="form-control text-white"
+                                    required></input>
+                            </label>
+                            <label class="form-label">
+                                Permiso Eliminacion
+                                <input type='checkbox' name='PERMISO ELIMINACION' class="form-control text-white"
+                                    required></input>
+                            </label>
+                            <label class="form-label">
+                                Permiso Actualizacion
+                                <input type='checkbox' name='PERMISO ACTUALIZACION' class="form-control text-white"
+                                    required></input>
+                            </label>
+                            <label class="form-label">
+                                Permiso Consultar
+                                <input type='checkbox' name='PERMISO CONSULTAR' class="form-control text-white"
+                                    required></input>
+                            </label>
+                            <br>
+
+                            <a href="" class="btn btn-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-primary">Registrar </button>
+                            </form>
+                    </div>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIN DE MODAL PARA EDITAR  -->
+
+
+
                                         @endforeach
                                     @else
                                         <td colspan="7">No hay resultados</td>

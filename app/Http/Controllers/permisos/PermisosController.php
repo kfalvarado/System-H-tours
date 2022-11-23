@@ -20,15 +20,20 @@ class PermisosController extends Controller
 		// return $rols;
 		$rolsArr = $rols->json();
 
-		Cache::put('permisosa','1');
+		$objetos =  http::withToken(Cache::get('token'))->get($this->url . '/objetos');
+		$objetos = $objetos->json();
+
+		Cache::put('permisosa', '1');
 
 
-		return view('permisos.permisos', compact('rolsArr'));
+		return view('permisos.permisos', compact('rolsArr', 'objetos'));
 	}
 
 	public function roles(Request $request)
 	{
 		Cache::forget('permisosa');
+		$objetos =  http::withToken(Cache::get('token'))->get($this->url . '/objetos');
+		$objetos = $objetos->json();
 
 		$rols = http::withToken(Cache::get('token'))->get($this->url . '/roles/sel_rol');
 		// return $rols;
@@ -42,6 +47,6 @@ class PermisosController extends Controller
 		$permisos = $permisos->json();
 		// return $permisos;
 		Session::flash('rol',$elrol);
-		return view('permisos.permisos', compact('rolsArr', 'permisos'));
+		return view('permisos.permisos', compact('rolsArr', 'permisos','objetos'));
 	}
 }
