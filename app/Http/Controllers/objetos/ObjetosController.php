@@ -82,7 +82,7 @@ class ObjetosController extends Controller
             //code...
             $search = Http::withToken(Cache::get('token'))->post($this->url . '/permisos/sel_per_obj', [
                 "PV_ROL" => Cache::get('rol'),
-                "PV_OBJ" => "OBJETO"
+                "PV_OBJ" => "OBJETOS"
             ]);
 
             $permisos = $search->json();
@@ -169,16 +169,17 @@ class ObjetosController extends Controller
             //throw $th;
             return 'Error Objeto 21';
          }
+        
          if ($update == '1') {
         try {
-            //code...
-            $actualizar = Http::withToken(Cache::get('token'))->put($this->url.'/objetos/actualizar/'.$request->f,[
-                "USR" => Cache::get('user'),
-                    "OBJETOS" => $request->objetos,
+                //code...
+                $actualizar = Http::withToken(Cache::get('token'))->put($this->url . '/objetos/actualizar/' . $request->f, [
+                    "USR" => Cache::get('user'),
+                    "OBJETO" => $request->objetos,
                     "DES_OBJETO" => $request->descripcion,
                     "TIP_OBJETO" => $request->tipo,
-                   
-            ]);
+
+                ]);
         } catch (\Throwable $th) {
             //throw $th;
             return 'error objetos 50';
@@ -189,7 +190,7 @@ class ObjetosController extends Controller
                 "USR"=> Cache::get('user'),
                 "ACCION"=> 'ACTUALIZO UN DATO EN PANTALLA ',
                 "DES"=> Cache::get('user').' ACTUALIZO EL DATO DE '.$request->objeto.' EN LA PANTALLA DE OBJETO',
-                "OBJETO"=> 'OBJETO'
+                "OBJETO"=> 'OBJETOS'
 
             ]);
         } catch (\Throwable $th) {
@@ -203,7 +204,7 @@ class ObjetosController extends Controller
                     "USR" => Cache::get('user'),
                     "ACCION" => 'SIN PERMISO METODO PUT',
                     "DES" => Cache::get('user') . ' INTENTO ACTUALIZAR EL DATO ' . $request->objetos . ' EN LA PANTALLA DE OBJETO',
-                    "OBJETO" => 'OBJETO'
+                    "OBJETO" => 'OBJETOS'
 
                 ]);
 

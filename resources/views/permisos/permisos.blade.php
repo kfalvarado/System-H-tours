@@ -28,7 +28,15 @@
 @endsection
 <!-- contenido de la pagina  -->
 @section('contenido')
-
+    @if (Session::has('actualizado'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                text: 'El permiso se actualizo correctamente'
+                // footer: '<a href="">Why do I have this issue?</a>'
+            })
+        </script>
+    @endif
 
 
     <!-- ESTE CSS ES PARA OCULTAR DATOS EN LA IMPRESION-->
@@ -111,7 +119,7 @@
                                 @csrf
                                 <label class="form-label">
                                     Seleccionar Rol
-                                    <select class="form-control text-white">
+                                    <select class="form-control text-white" name="rol">
                                         @foreach ($rolsArr as $key)
                                             <option value="{{ $key['COD_ROL'] }}">{{ $key['ROL'] }}</option>
                                         @endforeach
@@ -121,9 +129,9 @@
                                 </label>
                                 <label class="form-label">
                                     Pantalla
-                                    <select class="form-control text-white">
+                                    <select class="form-control text-white" name="objeto">
                                         @foreach ($objetos as $key)
-                                            <option value="COD_OBJETO">{{ $key['OBJETO'] }}</option>
+                                            <option value="{{ $key['COD_OBJETO'] }}">{{ $key['OBJETO'] }}</option>
                                         @endforeach
 
                                     </select>
@@ -219,8 +227,8 @@
         <h5>________________________________________________________________________________________________________________
         </h5>
         <!-- <ul class="nav nav-pills nav-stacked">
-                                  <li class="active"><a href="#"></a></li>
-                                </ul> -->
+                                      <li class="active"><a href="#"></a></li>
+                                    </ul> -->
         <p align="right" valign="baseline">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#dialogo1">(+)
                 Nuevo</button>
@@ -329,88 +337,104 @@
                                                             </div>
                                                             <!-- CUERPO DEL DIALOGO EDITAR -->
                                                             <div class="modal-body">
-                                                                <form action="{{ route('permisos.actua') }}" method="post">
-                                                                    @csrf 
-                                                                <center>
-                                                                    <label class="form-label">
-                                                                        Pantalla
-                                                                        <select class="form-control text-white">
-                                                                            <option hidden selected>{{ $key['OBJETO'] }}
-                                                                            </option>
-                                                                            @foreach ($objetos as $new)
-                                                                                <option>{{ $new['OBJETO'] }}</option>
-                                                                            @endforeach
-                                                                        </select>
+                                                                <form action="{{ route('permisos.actua') }}"
+                                                                    method="post">
+                                                                    @csrf @method('PUT')
+                                                                    <input type="hidden" name="cod"
+                                                                        value="{{ $key['COD_PERMISO'] }}">
+                                                                    <input type="hidden" name="rol"
+                                                                        value="{{ $key['COD_ROL'] }}">
 
-                                                                    </label>
+                                                                    <center>
+                                                                        <label class="form-label">
+                                                                            Pantalla
+                                                                            <select class="form-control text-white"
+                                                                                name="objeto">
+                                                                                <option value="{{ $key['COD_OBJETO'] }}"
+                                                                                    hidden selected>{{ $key['OBJETO'] }}
+                                                                                </option>
+                                                                                @foreach ($objetos as $new)
+                                                                                    <option
+                                                                                        value="{{ $new['COD_OBJETO'] }}">
+                                                                                        {{ $new['OBJETO'] }}</option>
+                                                                                @endforeach
+                                                                            </select>
 
-                                                                    @if ($key['PER_INSERCION'] == '1')
-                                                                        <label class="form-label">
-                                                                            Permiso Insertar
-                                                                            <input type='checkbox'
-                                                                                name='PERMISO INSERCION'
-                                                                                class="form-control text-white" checked>
                                                                         </label>
-                                                                    @else
-                                                                        <label class="form-label">
-                                                                            Permiso Insertar
-                                                                            <input type='checkbox'
-                                                                                name='PERMISO INSERCION'
-                                                                                class="form-control text-white">
-                                                                        </label>
-                                                                    @endif
 
-                                                                    @if ($key['PER_ELIMINACION'] == '1')
-                                                                        <label class="form-label">
-                                                                            Permiso Eliminacion
-                                                                            <input type='checkbox'
-                                                                                name='PERMISO ELIMINACION'
-                                                                                class="form-control text-white" checked>
-                                                                        </label>
-                                                                    @else
-                                                                        <label class="form-label">
-                                                                            Permiso Eliminacion
-                                                                            <input type='checkbox'
-                                                                                name='PERMISO ELIMINACION'
-                                                                                class="form-control text-white">
-                                                                        </label>
-                                                                    @endif
+                                                                        @if ($key['PER_INSERCION'] == '1')
+                                                                            <label class="form-label">
+                                                                                Permiso Insertar
+                                                                                <input type='checkbox'
+                                                                                    name='PERMISO INSERCION'
+                                                                                    value="1"
+                                                                                    class="form-control text-white"
+                                                                                    checked>
+                                                                            </label>
+                                                                        @else
+                                                                            <label class="form-label">
+                                                                                Permiso Insertar
+                                                                                <input type='checkbox'
+                                                                                    name='PERMISO INSERCION'
+                                                                                    class="form-control text-white">
+                                                                            </label>
+                                                                        @endif
 
-                                                                    @if ($key['PER_ACTUALIZACION'] == '1')
-                                                                        <label class="form-label">
-                                                                            Permiso Actualizacion
-                                                                            <input type='checkbox'
-                                                                                name='PERMISO ACTUALIZACION'
-                                                                                class="form-control text-white" checked>
-                                                                        </label>
-                                                                    @else
-                                                                        <label class="form-label">
-                                                                            Permiso Actualizacion
-                                                                            <input type='checkbox'
-                                                                                name='PERMISO ACTUALIZACION'
-                                                                                class="form-control text-white">
-                                                                        </label>
-                                                                    @endif
+                                                                        @if ($key['PER_ELIMINACION'] == '1')
+                                                                            <label class="form-label">
+                                                                                Permiso Eliminacion
+                                                                                <input type='checkbox'
+                                                                                    name='PERMISO ELIMINACION'
+                                                                                    value="1"
+                                                                                    class="form-control text-white"
+                                                                                    checked>
+                                                                            </label>
+                                                                        @else
+                                                                            <label class="form-label">
+                                                                                Permiso Eliminacion
+                                                                                <input type='checkbox'
+                                                                                    name='PERMISO ELIMINACION'
+                                                                                    class="form-control text-white">
+                                                                            </label>
+                                                                        @endif
 
-                                                                    @if ($key['PER_CONSULTAR'] == '1')
-                                                                        <label class="form-label">
-                                                                            Permiso Consultar
-                                                                            <input type='checkbox'
-                                                                                name='PERMISO CONSULTAR'
-                                                                                class="form-control text-white" checked>
-                                                                        </label>
-                                                                    @else
-                                                                        <label class="form-label">
-                                                                            Permiso Consultar
-                                                                            <input type='checkbox'
-                                                                                name='PERMISO CONSULTAR'
-                                                                                class="form-control text-white">
-                                                                        </label>
-                                                                    @endif
-                                                                    <br>
-                                                                    <button type="submit"
-                                                                        class="btn btn-primary">Registrar </button>
-                                                                    </form>
+                                                                        @if ($key['PER_ACTUALIZACION'] == '1')
+                                                                            <label class="form-label">
+                                                                                Permiso Actualizacion
+                                                                                <input type='checkbox' value="1"
+                                                                                    name='PERMISO ACTUALIZACION'
+                                                                                    class="form-control text-white"
+                                                                                    checked>
+                                                                            </label>
+                                                                        @else
+                                                                            <label class="form-label">
+                                                                                Permiso Actualizacion
+                                                                                <input type='checkbox'
+                                                                                    name='PERMISO ACTUALIZACION'
+                                                                                    class="form-control text-white">
+                                                                            </label>
+                                                                        @endif
+
+                                                                        @if ($key['PER_CONSULTAR'] == '1')
+                                                                            <label class="form-label">
+                                                                                Permiso Consultar
+                                                                                <input type='checkbox' value="1"
+                                                                                    name='PERMISO CONSULTAR'
+                                                                                    class="form-control text-white"
+                                                                                    checked>
+                                                                            </label>
+                                                                        @else
+                                                                            <label class="form-label">
+                                                                                Permiso Consultar
+                                                                                <input type='checkbox'
+                                                                                    name='PERMISO CONSULTAR'
+                                                                                    class="form-control text-white">
+                                                                            </label>
+                                                                        @endif
+                                                                        <br>
+                                                                        <button type="submit"
+                                                                            class="btn btn-primary">Actualizar </button>
+                                                                </form>
                                                             </div>
                                                             <button type="button" class="btn btn-danger"
                                                                 data-dismiss="modal">Cerrar</button>

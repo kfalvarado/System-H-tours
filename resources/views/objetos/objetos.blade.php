@@ -152,10 +152,10 @@ Objetos | inicio
                         <input type="hidden" name="f" value="{{ $objeto['COD_OBJETO'] }}">
                          <label class="form-label">
                            Objeto
-                           <input type='text' list="lista-programacion" value="{{ $objeto['OBJETO'] }}" name='objeto' class="form-control text-white bg-dark" required>
-                           <datalist id="lista-programacion">
+                           <input type='text' list="lista-programacion" value="{{ $objeto['OBJETO'] }}" name='objetos' class="form-control text-white bg-dark" required>
+                           {{-- <datalist id="lista-programacion">
                              <option value="Periodo-2022-ene-1-004">
-                           </datalist>
+                           </datalist> --}}
                            </input>
                          </label>
                          <br>
@@ -263,7 +263,7 @@ Objetos | inicio
                              @csrf
                               <label class="form-label">
                                 Objeto
-                                <input type='text' list="lista-programacion" name='Objetos' class="form-control text-white" required>
+                                <input type='text' list="lista-programacion" name='objetos' class="form-control text-white" required>
                                 <datalist id="lista-programacion">
                                   <option value="Periodo-2022-ene-1-004">
                                 </datalist>
@@ -272,7 +272,7 @@ Objetos | inicio
                               <br>
                               <label class="form-label">
                               Descripcion
-                                <input type='text' list="lista-programacion" name='Descripcion' class="form-control text-white" required>
+                                <input type='text' list="lista-programacion" name='descripcion' class="form-control text-white" required>
                                 <datalist id="lista-programacion">
                                   <option value="Periodo-2022-ene-1-004">
                                 </datalist>
@@ -281,7 +281,7 @@ Objetos | inicio
                               <br>
                               <label class="form-label">
                               Tipo de Objeto
-                                <input type='text' list="lista-programacion" name='Tipo' class="form-control text-white" required>
+                                <input type='text' list="lista-programacion" name='tipo' class="form-control text-white" required>
                                 <datalist id="lista-programacion">
                                   <option value="Periodo-2022-ene-1-004">
                                 </datalist>
@@ -290,10 +290,7 @@ Objetos | inicio
                               <br>
                               <label class="form-label">
                               <br>
-                              <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="customSwitch" name="estado" value="activo">
-                                <label class="custom-control-label" for="customSwitch">Estado <label>
-                              </div>
+                   
                               <br>
                               <a href="" class="btn btn-secondary">Cancelar</a>
                               <button type="submit" class="btn btn-primary">NUEVO</button>
