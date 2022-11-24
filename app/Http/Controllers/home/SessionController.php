@@ -121,6 +121,11 @@ class SessionController extends Controller
                     $rol = http::withToken($token)->post($this->url.'/roles/sel_rol/user',[
                         "USER"=>$user
                     ]);
+                    $tu = $rol->json();
+                    foreach ($tu as $key ) {
+                        $mirol = $key['ROL'];
+                    }
+
                     $default = strpos($rol,'DEFAULT');
                     if ($default>0 ) {
                         Cache::flush();
@@ -136,6 +141,7 @@ class SessionController extends Controller
 
                     Cache::put('token', $token);
                     Cache::put('user', $user);
+                    Cache::put('rol', $mirol);
                     //validar rol del usuario
                     return view('home.personas');
                 }
