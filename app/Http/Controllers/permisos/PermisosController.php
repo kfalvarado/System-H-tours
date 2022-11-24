@@ -92,42 +92,50 @@ class PermisosController extends Controller
 
 	public function actualizar(Request $request)
 	{
-		// return $request;
+
 		//validar informacion entrante
 		if (isset($request->PERMISO_INSERCION)) {
 			$insertar = 1;
-		}else {
+		} else {
 			$insertar = 0;
 		}
 		if (isset($request->PERMISO_ELIMINACION)) {
 			$eliminar = 1;
-		}else {
+		} else {
 			$eliminar = 0;
 		}
 		if (isset($request->PERMISO_ACTUALIZACION)) {
 			$actualizar = 1;
-		}else {
+		} else {
 			$actualizar = 0;
 		}
 		if (isset($request->PERMISO_CONSULTAR)) {
 			$consultar = 1;
-		}else {
+		} else {
 			$consultar = 0;
 		}
 		// return $insertar.$eliminar.$actualizar.$consultar;
 		// return $request->objeto;
-		$act = Http::withToken(Cache::get('token'))->put($this->url . '/permisos/upd_permiso/'.$request->cod, [
-			"PB_COD_ROL"=>$request->rol,
-			"PB_COD_OBJETO"=>$request->objeto,
-			"PV_PER_INSERCION"=>$insertar,
-			"PV_PER_ELIMINAR"=>$eliminar,
-			"PV_PER_ACTUALIZAR"=>$actualizar,
-			"PV_PER_CONSULTAR"=>$consultar,
+		$act = Http::withToken(Cache::get('token'))->put($this->url . '/permisos/upd_permiso/' . $request->cod, [
+			"PB_COD_ROL" => $request->rol,
+			"PB_COD_OBJETO" => $request->objeto,
+			"PV_PER_INSERCION" => $insertar,
+			"PV_PER_ELIMINAR" => $eliminar,
+			"PV_PER_ACTUALIZAR" => $actualizar,
+			"PV_PER_CONSULTAR" => $consultar,
 
-	]);
+		]);
 
-		Session::flash('actualizado','1');
+		Session::flash('actualizado', '1');
 		return redirect()->route('mostrar.permisos');
 		
+	}
+
+	public function eliminar(Request $request)
+	{
+		
+		$eliminar = http::withToken(Cache::get('token'))->delete($this->url . '/permisos/del_permiso/'.$request->f);
+		Session::flash('eliminado','1');
+		return redirect()->route('mostrar.permisos');
 	}
 }

@@ -18,3 +18,4 @@ Route::get('/',[PermisosController::class,'mostrar'])->name('mostrar.permisos');
 Route::post('/seleccionar_rol',[PermisosController::class,'roles'])->name('permisos.roles');
 Route::post('/insertar',[PermisosController::class,'insertar'])->name('permisos.insertar');
 Route::put('/actua',[PermisosController::class,'actualizar'])->name('permisos.actua');
+Route::delete('/ep',[PermisosController::class,'eliminar'])->name('permisos.eliminar');
