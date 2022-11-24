@@ -97,7 +97,7 @@
     <div class="modal-container">
         <div class="modal fade bd-example-modal-lg" id="dialogo1">
             <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-            <div class="modal-dialog modal-sm">
+            <div class="modal-dialog modal-md">
                 <div class="modal-content">
                     <!-- CABECERA DEL DIALOGO NUEVA-->
                     <div class="modal-header">
@@ -107,44 +107,56 @@
                     <!-- CUERPO DEL DIALOGO NUEVA -->
                     <div class="modal-body">
                         <center>
-                            <form action="" method="post">
+                            <form action="{{ route('permisos.insertar') }}" method="post">
+                                @csrf 
+                                <label class="form-label">
+                                    Seleccionar Rol
+                                    <select class="form-control text-white">
+                                        @foreach ($rolsArr as $key)
+                                            
+                                        <option value="{{ $key['COD_ROL'] }}">{{ $key['ROL'] }}</option>
+                                        @endforeach
+                      
+                                    </select>
+                                    
+                                </label>
                                 <label class="form-label">
                                     Pantalla
                                     <select class="form-control text-white">
-
-                                        <option></option>
-                                        <option>Principal</option>
-                                        <option>Mantenimiento Usuarios</option>
-                                        <option>Mantenimiento Departamento</option>
-                                        <option>Mantenimiento Permisos</option>
-
+                                        @foreach ($objetos as $key)
+                                            
+                                        <option value="COD_OBJETO">{{ $key['OBJETO'] }}</option>
+                                        @endforeach
+                      
                                     </select>
-                                    </input>
+                                    
                                 </label>
                                 <br>
 
                                 <label class="form-label">
-                                    Permiso Insertar
-                                    <input type='checkbox' name='PERMISO INSERCION' class="form-control text-white"
-                                        required></input>
+                                    Insertar
+                                    <input type='checkbox' name='PERMISO_INSERCION' value="1"  class="form-control text-white"
+                                        >
                                 </label>
                                 <label class="form-label">
-                                    Permiso Eliminacion
-                                    <input type='checkbox' name='PERMISO ELIMINACION' class="form-control text-white"
-                                        required></input>
+                                    Consultar
+                                    <input type='checkbox' name='PERMISO_CONSULTAR' value="1" class="form-control text-white"
+                                        >
                                 </label>
                                 <label class="form-label">
-                                    Permiso Actualizacion
-                                    <input type='checkbox' name='PERMISO ACTUALIZACION' class="form-control text-white"
-                                        required></input>
+                                    Eliminar
+                                    <input type='checkbox' name='PERMISO_ELIMINACION' value="1"class="form-control text-white"
+                                        >
                                 </label>
+                                
+                                <br>
                                 <label class="form-label">
-                                    Permiso Consultar
-                                    <input type='checkbox' name='PERMISO CONSULTAR' class="form-control text-white"
-                                        required></input>
+                                    Actualizar
+                                    <input type='checkbox' name='PERMISO_ACTUALIZACION' value="1" class="form-control text-white"
+                                        >
                                 </label>
                                 <br>
-                                <a href="" class="btn btn-secondary">Cancelar</a>
+                              
                                 <button type="submit" class="btn btn-primary">Registrar </button>
                             </form>
                     </div>
@@ -330,7 +342,7 @@
                                                                             @endforeach
 
                                                                         </select>
-                                                                        </input>
+                                                                        
                                                                     </label>
                                                                     <br>
 
@@ -340,26 +352,26 @@
                                                                         Permiso Insertar
                                                                         <input type='checkbox' name='PERMISO INSERCION'
                                                                             class="form-control text-white"
-                                                                            required></input>
+                                                                            required>
                                                                     </label>
                                                                     <label class="form-label">
                                                                         Permiso Eliminacion
                                                                         <input type='checkbox' name='PERMISO ELIMINACION'
                                                                             class="form-control text-white"
-                                                                            required></input>
+                                                                            required>
                                                                     </label>
                                                                     <label class="form-label">
                                                                         Permiso Actualizacion
                                                                         <input type='checkbox'
                                                                             name='PERMISO ACTUALIZACION'
                                                                             class="form-control text-white"
-                                                                            required></input>
+                                                                            required>
                                                                     </label>
                                                                     <label class="form-label">
                                                                         Permiso Consultar
                                                                         <input type='checkbox' name='PERMISO CONSULTAR'
                                                                             class="form-control text-white"
-                                                                            required></input>
+                                                                            required>
                                                                     </label>
                                                                     <br>
 

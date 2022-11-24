@@ -49,4 +49,40 @@ class PermisosController extends Controller
 		Session::flash('rol',$elrol);
 		return view('permisos.permisos', compact('rolsArr', 'permisos','objetos'));
 	}
+
+	public function insertar(Request $request)
+	{
+		
+		//validar informacion entrante
+		if (isset($request->PERMISO_INSERCION)) {
+			$insertar = 1;
+		}else {
+			$insertar = 0;
+		}
+		if (isset($request->PERMISO_ELIMINACION)) {
+			$eliminar = 1;
+		}else {
+			$eliminar = 0;
+		}
+		if (isset($request->PERMISO_ACTUALIZACION)) {
+			$actualizar = 1;
+		}else {
+			$actualizar = 0;
+		}
+		if (isset($request->PERMISO_CONSULTAR)) {
+			$consultar = 1;
+		}else {
+			$consultar = 0;
+		}
+
+		$ins = Http::withToken(Cache::get('token'))->post($this->url . '/periodo/insertar', [
+			"USR" => Cache::get('user'),
+			"NOM_PERIODO" => $request->periodo,
+			"FEC_INI" => $request->inicial,
+			"FEC_FIN" => $request->final,
+			"ESTADO" => $request->estado
+		]);
+		
+
+	}
 }

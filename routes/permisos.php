@@ -16,3 +16,4 @@ use App\Http\Controllers\permisos\PermisosController;
 */
 Route::get('/',[PermisosController::class,'mostrar'])->name('mostrar.permisos');
 Route::post('/seleccionar_rol',[PermisosController::class,'roles'])->name('permisos.roles');
+Route::post('/insertar',[PermisosController::class,'insertar'])->name('permisos.insertar');
