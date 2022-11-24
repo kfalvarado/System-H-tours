@@ -52,40 +52,40 @@ class PermisosController extends Controller
 
 	public function insertar(Request $request)
 	{
-		
+
 		//validar informacion entrante
 		if (isset($request->PERMISO_INSERCION)) {
 			$insertar = 1;
-		}else {
+		} else {
 			$insertar = 0;
 		}
 		if (isset($request->PERMISO_ELIMINACION)) {
 			$eliminar = 1;
-		}else {
+		} else {
 			$eliminar = 0;
 		}
 		if (isset($request->PERMISO_ACTUALIZACION)) {
 			$actualizar = 1;
-		}else {
+		} else {
 			$actualizar = 0;
 		}
 		if (isset($request->PERMISO_CONSULTAR)) {
 			$consultar = 1;
-		}else {
+		} else {
 			$consultar = 0;
 		}
 
 		$ins = Http::withToken(Cache::get('token'))->post($this->url . '/permisos/ins_permiso', [
-			"PB_COD_ROL"=>$request->rol,
-			"PB_COD_OBJETO"=>$request->objeto,
-			"PV_PER_INSERCION"=>$insertar,
-			"PV_PER_ELIMINAR"=>$eliminar,
-			"PV_PER_ACTUALIZAR"=>$actualizar,
-			"PV_PER_CONSULTAR"=>$consultar,
+			"PB_COD_ROL" => $request->rol,
+			"PB_COD_OBJETO" => $request->objeto,
+			"PV_PER_INSERCION" => $insertar,
+			"PV_PER_ELIMINAR" => $eliminar,
+			"PV_PER_ACTUALIZAR" => $actualizar,
+			"PV_PER_CONSULTAR" => $consultar,
 
-	]);
+		]);
 
-		Session::flash('insertado','1');
+		Session::flash('insertado', '1');
 		return redirect()->route('mostrar.permisos');
 
 	}
