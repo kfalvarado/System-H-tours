@@ -85,4 +85,9 @@ class PermisosController extends Controller
 		
 
 	}
+
+	public function actualizar(Request $request)
+	{
+		return $request;
+	}
 }

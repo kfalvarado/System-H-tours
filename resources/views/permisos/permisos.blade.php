@@ -329,6 +329,8 @@
                                                             </div>
                                                             <!-- CUERPO DEL DIALOGO EDITAR -->
                                                             <div class="modal-body">
+                                                                <form action="{{ route('permisos.actua') }}" method="post">
+                                                                    @csrf 
                                                                 <center>
                                                                     <label class="form-label">
                                                                         Pantalla
