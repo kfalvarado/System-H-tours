@@ -109,10 +109,10 @@ Ajustes | inicio
                       <li class="nav-item mr-3">
                         <button class="nav-link " data-bs-toggle="tab" data-bs-target="#profile-edit">Editar Perfil</button>
                       </li>
-      
+                      {{-- 
                       <li class="nav-item mr-3">
                         <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Configuraciones</button>
-                      </li>
+                      </li> --}}
       
                       <li class="nav-item">
                         <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Cambiar contraseña</button>
@@ -137,34 +137,85 @@ Ajustes | inicio
                             <div class="col-lg-3 col-md-4 label ">Estado usuario</div>
                             <div class="col-lg-9 col-md-8">{{$ajustes['EST_USR']}}</div>
                           </div>
-                      
+                          
+                          {{-- INICIO GÉNERO --}}
+                          @if ($ajustes['SEX_PERSONA'] == "F")
+
                           <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Sexo persona</div>
-                            <div class="col-lg-9 col-md-8">{{$ajustes['SEX_PERSONA']}}</div>
+                            <div class="col-lg-3 col-md-4 label">Género</div>
+                            <div class="col-lg-9 col-md-8">FEMENINO</div>
                           </div>
+
+                          @else 
+
+                          <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Género</div>
+                            <div class="col-lg-9 col-md-8">MASCULINO</div>
+                          </div>
+                            
+                          @endif
+                          {{-- FIN GÉNERO --}}
+                          
                       
                           <div class="row">
                             <div class="col-lg-3 col-md-4 label">Edad</div>
                             <div class="col-lg-9 col-md-8">{{$ajustes['EDA_PERSONAL']}}</div>
                           </div>
-                      
+                          
+
+                          @if ($ajustes['TIP_PERSONA'] == "N")
+
                           <div class="row">
                             <div class="col-lg-3 col-md-4 label">Tipo de persona</div>
-                            <div class="col-lg-9 col-md-8">{{$ajustes['TIP_PERSONA']}}</div>
+                            <div class="col-lg-9 col-md-8">NORMAL</div>
                           </div>
+                          
+                          @else
+
+                          <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Tipo de persona</div>
+                            <div class="col-lg-9 col-md-8">JURIDICA</div>
+                          </div>
+
+                          @endif
                       
                           <div class="row">
                             <div class="col-lg-3 col-md-4 label">Numero ID</div>
                             <div class="col-lg-9 col-md-8">{{$ajustes['NUM_IDENTIDAD']}}</div>
                           </div>
-                      
+                          
+                          @if($ajustes['IND_CIVIL'] == "S")
+
                           <div class="row">
                             <div class="col-lg-3 col-md-4 label">Estado civil</div>
-                            <div class="col-lg-9 col-md-8">{{$ajustes['IND_CIVIL']}}</div>
+                            <div class="col-lg-9 col-md-8">SOLTERO</div>
                           </div>
+
+                          @elseif($ajustes['IND_CIVIL'] == "C")
+
+                          <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Estado civil</div>
+                            <div class="col-lg-9 col-md-8">CASADO</div>
+                          </div>
+
+                          @elseif($ajustes['IND_CIVIL'] == "D")
+
+                          <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Estado civil</div>
+                            <div class="col-lg-9 col-md-8">DIVORCIADO</div>
+                          </div>
+
+                          @else
+
+                          <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Estado civil</div>
+                            <div class="col-lg-9 col-md-8">VIUDO</div>
+                          </div>
+
+                          @endif
                       
                           <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Telefono</div>
+                            <div class="col-lg-3 col-md-4 label">Teléfono</div>
                             <div class="col-lg-9 col-md-8">{{$ajustes['TELEFONO']}}</div>
                           </div>
                       
@@ -183,56 +234,56 @@ Ajustes | inicio
                             <div class="row mb-3">
                               <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nombre de usuario</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="NOM_USR" type="text" class="form-control text-white" id="fullName" value="{{$ajustes['NOM_USR']}}">
+                                <input name="NOM_USR" type="text" class="form-control text-white" id="fullName" placeholder="NOMBRE DE USUARIO" value="{{$ajustes['NOM_USR']}}">
                               </div>
                             </div>
         
                             <div class="row mb-3">
-                              <label for="about" class="col-md-4 col-lg-3 col-form-label">Genero</label>
+                              <label for="about" class="col-md-4 col-lg-3 col-form-label">Género</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="SEX_PERSONA" type="text" class="form-control text-white" id="about" value="{{$ajustes['SEX_PERSONA']}}" >
+                                <input name="SEX_PERSONA" type="text" class="form-control text-white" id="about" placeholder="GÉNERO" value="{{$ajustes['SEX_PERSONA']}}" >
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="age" class="col-md-4 col-lg-3 col-form-label">Edad</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="EDA_PERSONAL" type="number" class="form-control text-white" id="age" value="{{$ajustes['EDA_PERSONAL']}}">
+                                <input name="EDA_PERSONAL" type="number" class="form-control text-white" id="age" placeholder="EDAD" value="{{$ajustes['EDA_PERSONAL']}}">
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="Job" class="col-md-4 col-lg-3 col-form-label">Tipo de persona</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="TIP_PERSONA" type="text" class="form-control text-white" id="Job" value="{{$ajustes['TIP_PERSONA']}}">
+                                <input name="TIP_PERSONA" type="text" class="form-control text-white" id="Job" placeholder="TIPO DE PERSONA" value="{{$ajustes['TIP_PERSONA']}}">
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="ID" class="col-md-4 col-lg-3 col-form-label">Identidad</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="NUM_IDENTIDAD" type="text" class="form-control text-white" id="ID" value="{{$ajustes['NUM_IDENTIDAD']}}">
+                                <input name="NUM_IDENTIDAD" type="text" class="form-control text-white" id="ID" placeholder="Nr° ID" value="{{$ajustes['NUM_IDENTIDAD']}}">
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="Address" class="col-md-4 col-lg-3 col-form-label">Estado Civil</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="IND_CIVIL" type="text" class="form-control text-white" id="Address" value="{{$ajustes['IND_CIVIL']}}">
+                                <input name="IND_CIVIL" type="text" class="form-control text-white" id="Address" placeholder="ESTADO CIVIL" value="{{$ajustes['IND_CIVIL']}}">
                               </div>
                             </div>
         
                             <div class="row mb-3">
-                              <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Telefono</label>
+                              <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Teléfono</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="TELEFONO" type="tel" class="form-control text-white" id="Phone" value="{{$ajustes['TELEFONO']}}">
+                                <input name="TELEFONO" type="tel" class="form-control text-white" id="Phone" placeholder="TELÉFONO" value="{{$ajustes['TELEFONO']}}">
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="" class="col-md-4 col-lg-3 col-form-label">Tipo de telefono</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="TIP_TELEFONO" type="tel" class="form-control text-white" id="Email" value="{{$ajustes['TIP_TELEFONO']}}">
+                                <input name="TIP_TELEFONO" type="tel" class="form-control text-white" id="Email" placeholder="TIPO DE TELÉFONO" value="{{$ajustes['TIP_TELEFONO']}}">
                               </div>
                             </div>
         
@@ -244,7 +295,7 @@ Ajustes | inicio
                           <!-- FINAL DE EDITAR PERFIL -->
         
                       </div>
-  
+  {{-- 
                       <!-- CONFIGURAR PERFIL -->
                       <div class="tab-pane fade pt-3" id="profile-settings">
   
@@ -287,7 +338,7 @@ Ajustes | inicio
                           </form><!-- End settings Form -->
         
                       </div>
-  
+   --}}
                       <!-- CAMBIAR CONTRASEÑA -->
                       <div class="tab-pane fade pt-3" id="profile-change-password">
                           
@@ -301,6 +352,7 @@ Ajustes | inicio
                                 <input 
                                   name="CONTRA_ACTUAL" 
                                   type="password" 
+                                  {{-- type="text"  --}}
                                   class="form-control" 
                                   id="currentPassword"
                                   required>
@@ -312,7 +364,8 @@ Ajustes | inicio
                               <div class="col-md-8 col-lg-9">
                                 <input 
                                   name="CONTRASEGNA" 
-                                  type="password" 
+                                  type="password"
+                                  {{-- type="text"  --}}
                                   class="form-control" 
                                   id="newPassword"
                                   required>
@@ -325,6 +378,7 @@ Ajustes | inicio
                                 <input 
                                   name="" 
                                   type="password" 
+                                  {{-- type="text" --}}
                                   class="form-control" 
                                   id="renewPassword"
                                   required>

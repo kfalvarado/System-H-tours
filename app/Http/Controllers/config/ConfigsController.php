@@ -77,12 +77,13 @@ class ConfigsController extends Controller
             "CONTRA_ACTUAL" => md5($req->CONTRA_ACTUAL),
             "CONTRASEGNA" => md5($req->CONTRASEGNA),
             "USR"=>Cache::get('user')
-    ]);
-    $CONTRA_INCORRECTA = strrpos($mod_contra, "CONTRASEÑA INCORRECTA");
-    if ($CONTRA_INCORRECTA > 0 ){
-        Session::flash("contra_actual_incorrecta","1");
-        return back();
-    }
+        ]);
+        //return $mod_contra;
+        $CONTRA_INCORRECTA = strrpos($mod_contra, "INCORRECTA");
+        if ($CONTRA_INCORRECTA > 0 ){
+            Session::flash("contra_actual_incorrecta","1");
+            return back();
+        }
     Session::flash("actualizado_contra","1");
     return back();
     }

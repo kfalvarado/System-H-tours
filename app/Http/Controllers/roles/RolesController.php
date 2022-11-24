@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Session;
 class RolesController extends Controller
 {
 
-    protected $url = 'http://localhost:3000/roles';
+    protected $url = 'http://localhost:3000';
 
     public function mostrar()
     {
-        $rols = http::withToken(Cache::get('token'))->get($this->url.'/sel_rol');
+        $rols = http::withToken(Cache::get('token'))->get($this->url.'/roles/sel_rol');
         //return $rols;
         $rolsArr = $rols->json();
 
@@ -39,7 +39,7 @@ class RolesController extends Controller
     public function insertar( Request $req)
     {
         //return $req;
-        $rols = http::withToken(Cache::get('token'))->post($this->url.'/ins_rol',[
+        $rols = http::withToken(Cache::get('token'))->post($this->url.'/roles/ins_rol',[
                
                 "ROL" => $req->ROL,
                 "DES_ROL" => $req->DES_ROL
@@ -51,7 +51,7 @@ class RolesController extends Controller
 
     public function actualizar( Request $req)
     {
-        $rols = http::withToken(Cache::get('token'))->put($this->url.'/upd_rol',[
+        $rols = http::withToken(Cache::get('token'))->put($this->url.'/roles/upd_rol',[
                
                 "ROL" => $req->ROL,
                 "DES_ROL" => $req->DES_ROL,
