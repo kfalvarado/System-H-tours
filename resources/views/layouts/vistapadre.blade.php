@@ -45,7 +45,21 @@
 </head>
 
 <body onbeforeunload="return CacheTime();">
-  <div class="container-scroller">
+
+<div class="container-scroller">
+    {{-- Recuperacion de datos de acceso de la cache --}}
+<?php
+$intentos = Cache::get('totalaccesos'); 
+
+$accesos = []; ?>
+@for ($i=0; $i<= $intentos; $i++)
+  <?php array_push($accesos,Cache::get('access'.$i)) ?>
+@endfor
+
+<?php 
+$largo = count($accesos) -1;
+
+?>
     <!-- partial:../../partials/_sidebar.html -->
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
       <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
@@ -113,6 +127,11 @@
         <li class="nav-item nav-category">
           <span class="nav-link">Navegacion</span>
         </li>
+        {{-- Comienza permisos --}}
+        
+@for ($i = 0; $i<=$largo; $i++)
+@if ($accesos[$i] == 'HOME')
+
         <li class="nav-item menu-items">
           <a class="nav-link" href="{{route('inicio')}}">
             <span class="menu-icon">
@@ -121,21 +140,38 @@
             <span class="menu-title">Inicio</span>
           </a>
         </li>
+
+        @endif
+        @endfor
+
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
             <span class="menu-icon">
               <i class="mdi mdi-laptop"></i>
             </span>
+
             <span class="menu-title">Modulo de Cuentas</span>
             <i class="menu-arrow"></i>
           </a>
           <div class="collapse" id="ui-basic">
             <ul class="nav flex-column sub-menu">
+              @for ($i = 0; $i<=$largo; $i++)
+              @if ($accesos[$i] == 'CUENTAS') 
+              
               <li class="nav-item"> <a class="nav-link" href="{{route('mostrar.cuentas')}}">Gestion de cuentas</a></li>
+        
+@endif 
+@if ($accesos[$i] == 'SUBCUENTAS') 
+            
               <li class="nav-item"> <a class="nav-link" href="{{route('mostrar.subcuentas')}}">Gestion de subcuentas</a></li>
+   
+@endif
+@endfor       
+         
             </ul>
           </div>
         </li>
+      
         <!-- Modulo Contable  -->
         <li class="nav-item menu-items">
           <a class="nav-link" data-toggle="collapse" href="#periodo-contable" aria-expanded="false" aria-controls="ui-basic">
@@ -147,10 +183,21 @@
           </a>
           <div class="collapse" id="periodo-contable">
             <ul class="nav flex-column sub-menu">
+              @for ($i = 0; $i<=$largo; $i++)
+              @if ($accesos[$i] == 'LIBRODIARIO') 
               <li class="nav-item"> <a class="nav-link" href="{{route('mostrar.librodiario')}}">Libro Diario</a></li>
+              @endif
+              @if ($accesos[$i] == 'PERIODO')
               <li class="nav-item"> <a class="nav-link" href="{{route('periodo.inicio')}}">Periodo/Libro Mayor</a></li>
+              @endif
+              @if ($accesos[$i] == 'BALANCE')
+
               <li class="nav-item"> <a class="nav-link" href="{{route('balance.inicio')}}">Reporte Balance General</a></li>
+              @endif
+              @if ($accesos[$i] == 'RESULTADOS')
               <li class="nav-item"> <a class="nav-link" href="{{route('Resultado.mostrar')}}">Reporte Estado de Resultado</a></li>
+              @endif
+              @endfor
             </ul>
           </div>
         </li>
@@ -165,10 +212,22 @@
           </a>
           <div class="collapse" id="mantenimiento">
             <ul class="nav flex-column sub-menu">
+              @for ($i = 0; $i<=$largo; $i++)
+              @if ($accesos[$i] == 'CLASIFICACION') 
               <li class="nav-item"> <a class="nav-link" href="{{route('clasificacion.inicio')}}">Clasificacion</a></li>
+              @endif
+              @if ($accesos[$i] == 'GRUPOS') 
               <li class="nav-item"> <a class="nav-link" href="{{route('mostrar.grupos')}}">Grupos</a></li>
+              @endif
+              
+              @if ($accesos[$i] == 'PERSONAS') 
               <li class="nav-item"> <a class="nav-link" href="{{route('personas.inicio')}}">Personas</a></li>
+              @endif
+              @if ($accesos[$i] == 'OBJETOS') 
+              
               <li class="nav-item"> <a class="nav-link" href="{{route('objetos.inicio')}}"> Objetos </a></li>
+              @endif
+              @endfor
             </ul>
           </div>
         </li>
@@ -185,12 +244,29 @@
           <div class="collapse" id="auth">
             <ul class="nav flex-column sub-menu">
               {{-- <li class="nav-item"> <a class="nav-link" href="{{route('admins.inicio')}}"> Administrador </a></li> --}}
+              @for ($i = 0; $i<=$largo; $i++)
+              @if ($accesos[$i] == 'USUARIOS') 
               <li class="nav-item"> <a class="nav-link" href="{{route('usuarios.inicio')}}"> Usuarios </a></li>
+              @endif
+              @if ($accesos[$i] == 'ROLES') 
+              
               <li class="nav-item"> <a class="nav-link" href="{{ route('mostrar.roles') }}">Roles</a></li>
+              @endif
+              @if ($accesos[$i] == 'PERMISOS') 
               <li class="nav-item"> <a class="nav-link" href="{{ route('mostrar.permisos') }}"> Permisos </a></li>
+              @endif
+              @if ($accesos[$i] == 'BITACORAS') 
+              
               <li class="nav-item"> <a class="nav-link" href="{{ route('mostrar.bitacoras') }}"> Bitacoras </a></li>
+              @endif
+              @if ($accesos[$i] == 'PARAMETROS') 
               <li class="nav-item"> <a class="nav-link" href="{{route('parametro.inicio')}}"> Parametros </a></li>
+              @endif
+              
+              @if ($accesos[$i] == 'PREGUNTAS') 
               <li class="nav-item"> <a class="nav-link" href="{{route('preguntas.inicio')}}"> Preguntas </a></li>
+              @endif
+              @endfor
             </ul>
           </div>
         </li>

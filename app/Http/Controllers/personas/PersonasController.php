@@ -154,6 +154,19 @@ class PersonasController extends Controller
             $resp = Cache::get('resp_preg') + 1;
             if ($resp > $cantidad) {
                 Cache::forget('resp_preg');
+                //verificar permisos del rol
+
+                $permisos = http::withToken(Cache::get('token'))->post($this->url . '/permisos/sel_per_rol', [
+                    "PV_ROL" => Cache::get('rol')
+                ]);
+                $permisos = $permisos->json();
+                $i = 0;
+                foreach ($permisos as $key) {
+                    $key['OBJETO'];
+                    $i = $i + 1;
+                    Cache::put('access' . $i, $key['OBJETO']);
+                }
+                Cache::put('totalaccesos', $i); 
                 return redirect()->route('inicio');
             }else {
                Cache::put('resp_preg', $resp);

@@ -33,6 +33,7 @@ Emerson
 <!-- contenido de la pagina  -->
 @section('contenido')
 <input type="text" id="myinput" onclick="oye();">
+<input type="text" id="myinput" value="{{ Cache::get('access16') }}">
 
 <script>
     function oye() { 
@@ -47,7 +48,7 @@ Emerson
  Numero positivo
 @endif
 
-
+i
 @section('js')
 
 @endsection

@@ -115,6 +115,7 @@ class SessionController extends Controller
                     return back();
                 }
 
+                // usuario Nuevo
                 if ($estado>0) {
                     $user = $request->user;
                     // Falta validar por default del usuario
@@ -171,6 +172,8 @@ class SessionController extends Controller
                         $mirol = $key['ROL'];
                     }
 
+                    
+
                     // INGRESOS
 
                     $acc = http::withToken($token)->put($this->url.'/upd_acc',[
@@ -183,6 +186,21 @@ class SessionController extends Controller
                     Cache::put('token', $token);
                     Cache::put('user', $user);
                     Cache::put('rol',$mirol);
+
+
+                    //verificar permisos del rol
+                    
+                    $permisos = http::withToken(Cache::get('token'))->post($this->url . '/permisos/sel_per_rol', [
+                        "PV_ROL" => Cache::get('rol')
+                    ]);
+                    $permisos = $permisos->json();
+                    $i=0;
+                    foreach($permisos as $key){
+                         $key['OBJETO'];
+                         $i=$i+1;
+                         Cache::put('access'.$i,$key['OBJETO']);
+                    }
+                    Cache::put('totalaccesos',$i);    
                     
                     return redirect()->route('home');
                 }else {
