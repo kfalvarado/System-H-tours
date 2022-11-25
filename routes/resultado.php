@@ -16,5 +16,6 @@ use App\Http\Controllers\resultado\ResultadoController;
 
 
 Route::get('/', [ResultadoController::class,'mostrar'])->name('Resultado.mostrar');
+Route::post('/ins_resul', [ResultadoController::class,'insertar'])->name('Resultado.insertar');
 
 
