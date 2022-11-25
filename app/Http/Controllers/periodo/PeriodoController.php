@@ -292,8 +292,8 @@ class PeriodoController extends Controller
     {
         $periodo = http::withToken(Cache::get('token'))->get($this->url . '/periodo');
 
-        $personArr = $periodo->json();
-        return view('periodo.periodoPDF',compact('personArr')); 
+        $periodo = $periodo->json();
+        return view('periodo.periodoPDF',compact('periodo')); 
     }
 
    

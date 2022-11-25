@@ -93,8 +93,8 @@
     </nav>
     <p align="right" valign="baseline">
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
-        <button type="button" class="btn btn-danger btn-sm" onclick="imprimir();"><i
-                class="mdi mdi-file-pdf"></i>Generar PDF</button>
+        <a type="button" href="{{ route('periodo.pdf') }}" class="btn btn-danger btn-sm" ><i
+                class="mdi mdi-file-pdf"></i>Generar PDF</a>
         <button id="btnExportar" class="btn btn-success btn-sm">
             <i class="mdi mdi-file-excel"></i> Generar Excel
         </button>
@@ -403,7 +403,7 @@ function imprimir() {
         var titulo = document.getElementById('titulo').innerText,
             data = document.getElementById('tabla').innerText;
          
-        var img = '{{ asset('assets/images/HTOURS.png') }} '
+        // var img = '{{ asset('assets/images/HTOURS.png') }} '
 
         doc.setFontSize(22);
         doc.text('Empresa H Tours S. de R. L', 100, 50);
