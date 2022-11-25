@@ -40,8 +40,6 @@ class UsuariosController extends Controller
 
     }
 
-
-  
     public function actualizar( Request $req)
     {
         $usr = http::withToken(Cache::get('token'))->put($this->url.'/upd_usr',[
@@ -68,5 +66,14 @@ class UsuariosController extends Controller
         Session::flash("actualizado","1");
         return back();
     }
+    
+    
+   public function crearPDF()
+   {
+    
+   }
+
 
 }
+
+
