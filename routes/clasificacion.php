@@ -22,6 +22,6 @@ Route::delete('/eliminar',[clasificacionController::class,'eliminar'])->middlewa
 
 
 //pdf
-Route::get('/mostrarpdf',[clasificacionController::class,'mostrarPDF'])->middleware('CheckToken')->name('clasificacion.pdf');
+Route::get('/c_pdf',[clasificacionController::class,'mostrarPDF'])->middleware('CheckToken')->name('clasificacion.pdf');
 
 //excel

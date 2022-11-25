@@ -287,7 +287,16 @@ class clasificacionController extends Controller
     */
     public function mostrarPDF()
     {
-        return view('clasificacion.clasificacionPDF'); 
+        try {
+            //code...
+            $clasificacion = http::withToken(Cache::get('token'))->get($this->url . '/clasificacion');
+
+            $clasificacion = $clasificacion->json();
+        } catch (\Throwable $th) {
+            //throw $th;
+            return 'error clasificacion 22';
+        }
+        return view('clasificacion.clasificacionPDF',compact('clasificacion')); 
     }
 
    
