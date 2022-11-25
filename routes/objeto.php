@@ -26,6 +26,6 @@ Route::delete('/eliminar',[ObjetosController::class,'eliminar'])->middleware('Ch
 
 
 //pdf
-Route::get('/mostrarpdf',[ObjetosController::class,'mostrarPDF'])->middleware('CheckToken')->name('objetos.pdf');
+Route::get('/objetopdf',[ObjetosController::class,'mostrarPDF'])->middleware('CheckToken')->name('objetos.pdf');
 
 //excel

@@ -291,7 +291,10 @@ class ObjetosController extends Controller
     */
     public function mostrarPDF()
     {
-        return view('objetos.objetosPDF'); 
+        $objeto = http::withToken(Cache::get('token'))->get($this->url . '/objetos');
+
+        $objetos = $objeto->json();
+        return view('objetos.objetosPDF',compact('objetos')); 
     }
 
    
