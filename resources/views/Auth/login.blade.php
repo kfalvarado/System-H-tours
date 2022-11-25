@@ -26,7 +26,7 @@
 </head>
 
 <body>
- <input type="hidden" value="{{ Cache::flush() }}"> 
+
   @if(Session::has('bloqueado'))
   <script>
     Swal.fire({
@@ -118,6 +118,11 @@
  </script>
   @endif
   <input type="hidden" name="" value="{{ Cache::forget('correctas') }}">
+  <input type="hidden" value="{{ Cache::forget('rol') }}"> 
+  <input type="hidden" value="{{ Cache::forget('user') }}"> 
+  <input type="hidden" value="{{ Cache::forget('token') }}"> 
+  <input type="hidden" value="{{ Cache::forget('paso') }}"> 
+  <input type="hidden" value="{{ Cache::forget('genero') }}"> 
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="row w-100 m-0">
