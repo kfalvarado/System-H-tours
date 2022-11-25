@@ -80,7 +80,7 @@
     <br>
     <p align="right" valign="baseline">
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
-        <a type="button" href="{{ route('periodo.pdf') }}" class="btn btn-danger"><i class="mdi mdi-file-pdf"></i> Generar
+        <a type="button" href="{{ route('personas.pdf') }}" class="btn btn-danger"><i class="mdi mdi-file-pdf"></i> Generar
             PDF</a>
         {{-- cambiar la ruta de perido.pdf a periodo.excel  --}}
         <button type="button" href="{{ route('periodo.pdf') }}" id="btnExportar" class="btn btn-success"><i

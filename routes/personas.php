@@ -18,3 +18,4 @@ Route::get('/',[PersonasController::class,'inicio'])->middleware('CheckToken')->
 Route::post('/',[PersonasController::class,'insertar'])->middleware('CheckToken')->name('personas.insertar');
 Route::put('/actualizar',[PersonasController::class,'actualizar'])->middleware('CheckToken')->name('personas.actualizar');
 Route::put('/eliminar',[PersonasController::class,'eliminado'])->middleware('CheckToken')->name('personas.eliminar');
+Route::get('/pdf',[PersonasController::class,'mostrarPDF'])->middleware('CheckToken')->name('personas.pdf');

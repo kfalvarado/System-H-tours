@@ -186,5 +186,21 @@ class PersonasController extends Controller
         return back();
     }
 
+    public function mostrarPDF()
+    {
+        try {
+            //code...
+
+            $personas = Http::withToken(Cache::get('token'))->get($this->url . '/personas');
+            // $usuarios = Http::withToken(Cache::get('token'))->get($this->url . '/personas/buscar/list_usuarios');
+        } catch (\Throwable $th) {
+            return 'Error persona 189';
+        }
+
+
+        $personasArray = $personas->json();
+        return view('personas.personasPDF', compact('personasArray'));
+    }
+
     
 }
