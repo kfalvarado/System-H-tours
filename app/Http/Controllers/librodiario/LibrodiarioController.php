@@ -224,6 +224,14 @@ class LibrodiarioController extends Controller
 	}
 	
 
+    public function pdf()
+    {
+        $librodiario = http::withToken(Cache::get('token'))->get($this->url . '/librodiario');
+        $libro = $librodiario->json();
+
+
+        return view('librodiario.libroDpdf',compact('libro'));
+    }
 
 
 

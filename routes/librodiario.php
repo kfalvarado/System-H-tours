@@ -28,6 +28,7 @@ Route::delete('/eliminar',[LibrodiarioController::class,'eliminar'])->middleware
 
 
 
+Route::get('/diario-pdf',[LibrodiarioController::class,'pdf'])->middleware('CheckToken')->name('pdf.librodiario');
 
 
 
