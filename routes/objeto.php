@@ -18,14 +18,14 @@ use App\Http\Controllers\objetos\ObjetosController;
 
 
 
-Route::get('/',[ObjetosController::class,'mostrar'])->name('objetos.inicio');
-Route::post('/',[ObjetosController::class,'insertar'])->name('objetos.insertar');
-Route::put('/actualizar',[ObjetosController::class,'actualizar'])->name('objetos.actualizar');
-Route::delete('/eliminar',[ObjetosController::class,'eliminar'])->name('objetos.eliminar');
+Route::get('/',[ObjetosController::class,'mostrar'])->middleware('CheckToken')->name('objetos.inicio');
+Route::post('/',[ObjetosController::class,'insertar'])->middleware('CheckToken')->name('objetos.insertar');
+Route::put('/actualizar',[ObjetosController::class,'actualizar'])->middleware('CheckToken')->name('objetos.actualizar');
+Route::delete('/eliminar',[ObjetosController::class,'eliminar'])->middleware('CheckToken')->name('objetos.eliminar');
 
 
 
 //pdf
-Route::get('/mostrarpdf',[ObjetosController::class,'mostrarPDF'])->name('objetos.pdf');
+Route::get('/mostrarpdf',[ObjetosController::class,'mostrarPDF'])->middleware('CheckToken')->name('objetos.pdf');
 
 //excel

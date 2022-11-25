@@ -15,14 +15,14 @@ use App\Http\Controllers\periodo\PeriodoController;
 */
 
 
-Route::get('/mostrar',[PeriodoController::class,'mostrar'])->name('periodo.inicio');
-Route::post('/',[PeriodoController::class,'insertar'])->name('periodo.insertar');
-Route::put('/actualizar',[PeriodoController::class,'actualizar'])->name('periodo.actualizar');
-Route::delete('/eliminar',[PeriodoController::class,'eliminar'])->name('periodo.eliminar');
+Route::get('/mostrar',[PeriodoController::class,'mostrar'])->middleware('CheckToken')->name('periodo.inicio');
+Route::post('/',[PeriodoController::class,'insertar'])->middleware('CheckToken')->name('periodo.insertar');
+Route::put('/actualizar',[PeriodoController::class,'actualizar'])->middleware('CheckToken')->name('periodo.actualizar');
+Route::delete('/eliminar',[PeriodoController::class,'eliminar'])->middleware('CheckToken')->name('periodo.eliminar');
 
 
 
 //pdf
-Route::get('/mostrarpdf',[PeriodoController::class,'mostrarPDF'])->name('periodo.pdf');
+Route::get('/mostrarpdf',[PeriodoController::class,'mostrarPDF'])->middleware('CheckToken')->name('periodo.pdf');
 
 //excel

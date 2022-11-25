@@ -14,8 +14,8 @@ use App\Http\Controllers\permisos\PermisosController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/',[PermisosController::class,'mostrar'])->name('mostrar.permisos');
-Route::post('/seleccionar_rol',[PermisosController::class,'roles'])->name('permisos.roles');
-Route::post('/insertar',[PermisosController::class,'insertar'])->name('permisos.insertar');
-Route::put('/actua',[PermisosController::class,'actualizar'])->name('permisos.actua');
-Route::delete('/ep',[PermisosController::class,'eliminar'])->name('permisos.eliminar');
+Route::get('/',[PermisosController::class,'mostrar'])->middleware('CheckToken')->name('mostrar.permisos');
+Route::post('/seleccionar_rol',[PermisosController::class,'roles'])->middleware('CheckToken')->name('permisos.roles');
+Route::post('/insertar',[PermisosController::class,'insertar'])->middleware('CheckToken')->name('permisos.insertar');
+Route::put('/actua',[PermisosController::class,'actualizar'])->middleware('CheckToken')->name('permisos.actua');
+Route::delete('/ep',[PermisosController::class,'eliminar'])->middleware('CheckToken')->name('permisos.eliminar');

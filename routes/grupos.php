@@ -15,7 +15,7 @@ use App\Http\Controllers\grupos\GrupoController;
 |
 */
 
-Route::get('/',[GrupoController::class,'vista'])->name('mostrar.grupos');
-Route::post('/insertar',[GrupoController::class,'insertar'])->name('grupo.insertar');
-Route::put('/actualizar',[GrupoController::class,'actualizar'])->name('grupo.actualizar');
-Route::delete('/eliminar',[GrupoController::class,'eliminar'])->name('grupo.eliminar');
+Route::get('/',[GrupoController::class,'vista'])->middleware('CheckToken')->name('mostrar.grupos');
+Route::post('/insertar',[GrupoController::class,'insertar'])->middleware('CheckToken')->name('grupo.insertar');
+Route::put('/actualizar',[GrupoController::class,'actualizar'])->middleware('CheckToken')->name('grupo.actualizar');
+Route::delete('/eliminar',[GrupoController::class,'eliminar'])->middleware('CheckToken')->name('grupo.eliminar');

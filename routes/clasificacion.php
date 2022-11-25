@@ -14,14 +14,14 @@ use App\Http\Controllers\clasificacion\clasificacionController;
 |
 */
 
-Route::get('/',[clasificacionController::class,'mostrar'])->name('clasificacion.inicio');
-Route::post('/',[clasificacionController::class,'insertar'])->name('clasificacion.insertar');
-Route::put('/actualizar',[clasificacionController::class,'actualizar'])->name('clasificacion.actualizar');
-Route::delete('/eliminar',[clasificacionController::class,'eliminar'])->name('clasificacion.eliminar');
+Route::get('/',[clasificacionController::class,'mostrar'])->middleware('CheckToken')->name('clasificacion.inicio');
+Route::post('/',[clasificacionController::class,'insertar'])->middleware('CheckToken')->name('clasificacion.insertar');
+Route::put('/actualizar',[clasificacionController::class,'actualizar'])->middleware('CheckToken')->name('clasificacion.actualizar');
+Route::delete('/eliminar',[clasificacionController::class,'eliminar'])->middleware('CheckToken')->name('clasificacion.eliminar');
 
 
 
 //pdf
-Route::get('/mostrarpdf',[clasificacionController::class,'mostrarPDF'])->name('clasificacion.pdf');
+Route::get('/mostrarpdf',[clasificacionController::class,'mostrarPDF'])->middleware('CheckToken')->name('clasificacion.pdf');
 
 //excel

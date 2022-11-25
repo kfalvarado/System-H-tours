@@ -16,7 +16,7 @@ use App\Http\Controllers\subcuentas\SubcuentasController;
 */
 // hubo un cambio
 
-Route::get('/',[SubcuentasController::class,'ver'])->name('mostrar.subcuentas');
-Route::post('/',[SubcuentasController::class,'insertar'])->name('insertar.subcuentas');
-Route::post('/busca',[SubcuentasController::class,'busca'])->name('busca.subcuentas');
-Route::put('/',[SubcuentasController::class,'actualizar'])->name('subcuentas.actualizar');
+Route::get('/',[SubcuentasController::class,'ver'])->middleware('CheckToken')->name('mostrar.subcuentas');
+Route::post('/',[SubcuentasController::class,'insertar'])->middleware('CheckToken')->name('insertar.subcuentas');
+Route::post('/busca',[SubcuentasController::class,'busca'])->middleware('CheckToken')->name('busca.subcuentas');
+Route::put('/',[SubcuentasController::class,'actualizar'])->middleware('CheckToken')->name('subcuentas.actualizar');

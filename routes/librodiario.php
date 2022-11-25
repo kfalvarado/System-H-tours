@@ -20,11 +20,11 @@ use App\Http\Controllers\librodiario\LibrodiarioController;
 //     return view('Auth.login');
 // });
 
-Route::get('/',[LibrodiarioController::class,'mostrar'])->name('mostrar.librodiario');
-Route::post('/insertar',[LibrodiarioController::class,'insertar'])->name('librodiario.insertar');
-Route::put('/actualizar',[LibrodiarioController::class,'actualizar'])->name('librodiario.actualizar');
+Route::get('/',[LibrodiarioController::class,'mostrar'])->middleware('CheckToken')->name('mostrar.librodiario');
+Route::post('/insertar',[LibrodiarioController::class,'insertar'])->middleware('CheckToken')->name('librodiario.insertar');
+Route::put('/actualizar',[LibrodiarioController::class,'actualizar'])->middleware('CheckToken')->name('librodiario.actualizar');
 
-Route::delete('/eliminar',[LibrodiarioController::class,'eliminar'])->name('librodiario.eliminar');
+Route::delete('/eliminar',[LibrodiarioController::class,'eliminar'])->middleware('CheckToken')->name('librodiario.eliminar');
 
 
 

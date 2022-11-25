@@ -16,14 +16,14 @@ use App\Http\Controllers\parametros\ParametrosController;
 
 
 
-Route::get('/',[ParametrosController::class,'mostrar'])->name('parametro.inicio');
-Route::post('/',[ParametrosController::class,'insertar'])->name('parametro.insertar');
-Route::put('/actualizar',[ParametrosController::class,'actualizar'])->name('parametro.actualizar');
-Route::delete('/eliminar',[ParametrosController::class,'eliminar'])->name('parametro.eliminar');
+Route::get('/',[ParametrosController::class,'mostrar'])->middleware('CheckToken')->name('parametro.inicio');
+Route::post('/',[ParametrosController::class,'insertar'])->middleware('CheckToken')->name('parametro.insertar');
+Route::put('/actualizar',[ParametrosController::class,'actualizar'])->middleware('CheckToken')->name('parametro.actualizar');
+Route::delete('/eliminar',[ParametrosController::class,'eliminar'])->middleware('CheckToken')->name('parametro.eliminar');
 
 
 
 //pdf
-Route::get('/mostrarpdf',[ParametroController::class,'mostrarPDF'])->name('parametro.pdf');
+Route::get('/mostrarpdf',[ParametroController::class,'mostrarPDF'])->middleware('CheckToken')->name('parametro.pdf');
 
 //excel
