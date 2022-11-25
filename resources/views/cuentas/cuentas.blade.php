@@ -52,7 +52,12 @@ Cuentas | inicio
         </center>
     </div>
     <p align="right" valign="baseline">
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button> <a type="button" class="btn btn-success" href="javascript:window.print();">Generar PDF</a>
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button> 
+        <a type="button" href="{{ route('periodo.pdf') }}" class="btn btn-danger btn-sm"><i
+            class="mdi mdi-file-pdf"></i>Generar PDF</a>
+            <button id="btnExportar" class="btn btn-success btn-sm">
+                <i class="mdi mdi-file-excel"></i> Generar Excel
+            </button>
     </p>
     <div class="row">
 
@@ -90,7 +95,9 @@ Cuentas | inicio
                                     <td> {{$cuentas ['NUM_CUENTA'] }} </td>
                                     <td> {{$cuentas ['cod_grupo'] }} </td>
                                     <td> {{$cuentas ['NOM_CUENTA'] }}</td>
-                                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-editar-{{ $cuentas['COD_CUENTA'] }}">Editar</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-eliminar-{{ $cuentas['COD_CUENTA'] }}">Eliminar</button> </td>
+                                    <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-editar-{{ $cuentas['COD_CUENTA'] }}"><i
+                                        class="mdi mdi-table-edit"></i>Editar</button> <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-eliminar-{{ $cuentas['COD_CUENTA'] }}"><i
+                                            class="mdi mdi-delete-forever"></i>Eliminar</button> </td>
                                 </tr>
 
                                 <!-- INICIO MODAL PARA EDITAR  -->
