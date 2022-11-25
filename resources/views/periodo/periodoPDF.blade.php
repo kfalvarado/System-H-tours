@@ -54,6 +54,11 @@
                 
             </tbody>
         </table>
+        @if (count($periodo)> 12)
+
+        <img id="imagen"  style="float: right;position:relative;top: -760px;" src="{{asset('assets\images\HTOURS.png')}}" alt="logo de Htours" height="500" width="500">
+    
+        @endif
     </center>
    
     
