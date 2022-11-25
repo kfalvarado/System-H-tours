@@ -99,7 +99,9 @@ Subcuentas | inicio
                                         <td>{{$subcuentas ['COD_CUENTA'] }} </td>
                                         <td>{{$subcuentas ['NUM_SUBCUENTA'] }} </td>
                                         <td> {{$subcuentas ['NOM_SUBCUENTA'] }}</td>
-                                        <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-editar-{{ $subcuentas['COD_SUBCUENTA'] }}">Editar</button> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-eliminar-{{ $subcuentas['COD_SUBCUENTA'] }}">Eliminar</button> </td>
+                                        <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-editar-{{ $subcuentas['COD_SUBCUENTA'] }}"><i
+                                            class="mdi mdi-table-edit"></i>Editar</button> <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-eliminar-{{ $subcuentas['COD_SUBCUENTA'] }}"><i
+                                            class="mdi mdi-delete-forever"></i>Eliminar</button> </td>
 
                                     </tr>
 
