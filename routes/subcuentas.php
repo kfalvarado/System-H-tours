@@ -20,3 +20,5 @@ Route::get('/',[SubcuentasController::class,'ver'])->middleware('CheckToken')->n
 Route::post('/',[SubcuentasController::class,'insertar'])->middleware('CheckToken')->name('insertar.subcuentas');
 Route::post('/busca',[SubcuentasController::class,'busca'])->middleware('CheckToken')->name('busca.subcuentas');
 Route::put('/',[SubcuentasController::class,'actualizar'])->middleware('CheckToken')->name('subcuentas.actualizar');
+
+Route::get('/subpdf',[SubcuentasController::class,'pdf'])->middleware('CheckToken')->name('pdf.subcuentas');

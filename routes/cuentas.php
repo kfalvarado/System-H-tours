@@ -19,3 +19,5 @@ Route::get('/ver',[CuentasController::class,'ver'])->middleware('CheckToken')->n
 Route::post('/insertar',[CuentasController::class,'insertar'])->middleware('CheckToken')->name('insertar.cuentas');
 Route::put('/actualiza',[CuentasController::class,'actualizar'])->middleware('CheckToken')->name('cuentas.actualizar');
 Route::delete('/eliminar',[CuentasController::class,'eliminar'])->middleware('CheckToken')->name('cuentas.eliminar');
+
+Route::get('/cuentas-pdf',[CuentasController::class,'mostrarPDF'])->middleware('CheckToken')->name('cuentas.pdf');

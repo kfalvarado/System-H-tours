@@ -82,4 +82,12 @@ class CuentasController extends Controller
 
 
     }
+
+    public function mostrarPDF()
+    {
+        $cuentas = http::withToken(Cache::get('token'))->get($this->url.'/cuentas');
+        $cuentas = $cuentas->json();
+
+        return view('cuentas.cuentasPDF',compact('cuentas'));
+    }
 }

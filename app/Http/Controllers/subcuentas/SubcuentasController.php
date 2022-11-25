@@ -93,4 +93,11 @@ class SubcuentasController extends Controller
         Session::flash('actualizado', "1");
         return back();
     }
+
+    public function pdf()
+    {
+        $subcuentas = http::withToken(Cache::get('token'))->get($this->url . '/subcuentas');
+        $subcuenta = $subcuentas->json();
+        return view('subcuentas.subcuentasPDF',compact('subcuenta'));
+    }
 }
