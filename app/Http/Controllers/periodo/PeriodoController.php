@@ -290,7 +290,10 @@ class PeriodoController extends Controller
     */
     public function mostrarPDF()
     {
-        return view('periodo.periodoPDF'); 
+        $periodo = http::withToken(Cache::get('token'))->get($this->url . '/periodo');
+
+        $personArr = $periodo->json();
+        return view('periodo.periodoPDF',compact('personArr')); 
     }
 
    

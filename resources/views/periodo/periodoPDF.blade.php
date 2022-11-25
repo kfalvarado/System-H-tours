@@ -12,42 +12,29 @@
 <body>
 <button onclick="imprimir();">Imprimir</button>
     <center>
-        <img id="imagen" src="{{asset('assets\images\HTOURS.png')}}" alt="logo de Htours" height="500" width="500">
+        <p aling="right">
+            <img id="imagen" src="{{asset('assets\images\HTOURS.png')}}" alt="logo de Htours" height="500" width="500">
+        </p>
         <h1 id="titulo">Reporte Periodo</h1>
         <h2 id="fecha">Fecha:{{date('m/d/Y')}}</h2>
         <table id="datos">
             <thead>
                 <th>#</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
+                <th>Nombre de periodo</th>
+                <th>Fecha inicial</th>
+                <th>Fechas final</th>
+                <th>Estado del periodo </th>
             </thead>
             <tbody>
+                @foreach ( as )
+                    
                 <tr>
-                    <th>1</th>
+                    <th></th>
                     <th>Emerson</th>
                     <th>Ramos</th>
                 </tr>
-                <tr>
-                    <th>2</th>
-                    <th>Emerson</th>
-                    <th>Ramos</th>
-                </tr>
-                <tr>
-                    <th>3</th>
-                    <th>Emerson</th>
-                    <th>Ramos</th>
-                </tr>
-                <tr>
-                    <th>4</th>
-                    <th>Emerson</th>
-                    <th>Ramos</th>
-                </tr>
-                <tr>
-                    <th>5</th>
-                    <th>Emerson</th>
-                    <th>Ramos</th>
-                </tr>
-               
+                @endforeach
+                
             </tbody>
         </table>
     </center>

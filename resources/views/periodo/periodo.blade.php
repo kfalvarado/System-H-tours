@@ -14,6 +14,8 @@
 @endsection
 
 @section('encabezado')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.js"></script>
 @endsection
 
 <!-- nombre del usuario de la barra lateral  -->
@@ -91,8 +93,8 @@
     </nav>
     <p align="right" valign="baseline">
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
-        <a type="button" href="{{ route('periodo.pdf') }}" class="btn btn-danger btn-sm"><i
-                class="mdi mdi-file-pdf"></i>Generar PDF</a>
+        <button type="button" class="btn btn-danger btn-sm" onclick="imprimir();"><i
+                class="mdi mdi-file-pdf"></i>Generar PDF</button>
         <button id="btnExportar" class="btn btn-success btn-sm">
             <i class="mdi mdi-file-excel"></i> Generar Excel
         </button>
@@ -102,9 +104,10 @@
         <div class="col-lg-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">
+                    <h4  id="titulo" class="card-title">
                         <center>Periodos Contables</center>
                     </h4>
+          
                     <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
                         <input type="text" class="form-control" placeholder="Buscar periodo">
                     </form>
@@ -323,6 +326,7 @@
         </div>
     </div>
     <!-- FIN DE MODAL PARA NUEVA  -->
+    <input type="hidden"  id="imagen" value="{{asset('assets\images\HTOURS.png')}}">
 
 @section('js')
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>
@@ -344,6 +348,76 @@
                 .merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
         });
     </script>
+
+<script>
+    async function generarPDF() {
+  let elements = document.querySelectorAll("#tabla");
+  let pdf = jsPDF('p', 'pt','a4', 1);
+  var options = {
+    background: '#fff',
+  };
+  var pageHeight = pdf.internal.pageSize.height; // Tamaño de una pagina
+  var pageHeightLeft = pageHeight; // La utilizaremos para ver cuanto espacio nos queda
+  position = 0;
+
+  for(let i = 0; i < elements.length; i++) {
+    await html2canvas(elements[i]).then(function(canvas) {
+      // Comprobamos salto
+      if (pageHeightLeft - canvas.height <= 0) {
+        pdf.addPage();
+        position = 0; // Pintaremos en el inicio de la nueva pagina
+      }
+      pdf.addImage(canvas.toDataURL('{{ asset('assets/images/HTOURS.png') }}'), 'PNG', 0, position, canvas.width, canvas.height, options);
+      position += canvas.height; // Marcamos el siguiente inicio
+      pageHeightLeft -= canvas.height; // Marcamos cuanto espacio nos queda
+    });
+  }
+
+  pdf.save("informe.pdf");
+}
+function imprimir() {
+            var titulo = document.getElementById('titulo').innerText,
+                data = document.getElementById('datos').innerText,
+                fecha = document.getElementById('fecha').innerText;
+            var img = document.getElementById('imagen');
+
+            var doc = new jsPDF();
+            doc.setFontSize(22);
+            doc.text('Empresa H Tours S. de R. L', 60, 10);
+            doc.setFontSize(22);
+            doc.text(titulo, 80, 20);
+            doc.setFontSize(11);
+            doc.text(fecha, 10, 30);
+            doc.setFontSize(16);
+            doc.addImage(img,150,10,60,30)
+            doc.text(data, 10, 60);
+            doc.save('Reporte-Periodo.pdf');
+        }
+    function imprimir() {
+        console.log('click');
+        var doc = new jsPDF();
+        var margin = 10;
+        var scale = (doc.internal.pageSize.width - margin * 2) / document.body.scrollWidth;
+        var date = new Date();
+        fecha = date.toLocaleString();
+        var titulo = document.getElementById('titulo').innerText,
+            data = document.getElementById('tabla').innerText;
+         
+        var img = '{{ asset('assets/images/HTOURS.png') }} '
+
+        doc.setFontSize(22);
+        doc.text('Empresa H Tours S. de R. L', 100, 50);
+        doc.setFontSize(22);
+        doc.text(titulo, 100, 50);
+        doc.setFontSize(11);
+        doc.text(fecha, 100, 50);
+        doc.setFontSize(16);
+        // doc.addImage(img,150,10,60,30)
+        doc.text(data, 1, 90);
+ 
+        doc.save('Reporte-Periodo.pdf');
+    }
+</script>
 @endsection
 
 @endsection
