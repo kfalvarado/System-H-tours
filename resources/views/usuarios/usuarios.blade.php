@@ -68,7 +68,7 @@ Usuarios | inicio
     <p align="right" valign="baseline">
       {{-- <button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
          --}}
-        <a type="button" href="{{route('periodo.pdf')}}" class="btn btn-danger btn-sm"  ><i class="mdi mdi-file-pdf"></i>Generar PDF</a>
+        <a type="button" href="{{route('usuarios.pdf')}}" class="btn btn-danger btn-sm"  ><i class="mdi mdi-file-pdf"></i>Generar PDF</a>
       
         <button id="btnExportar" class="btn btn-success btn-sm">
         <i class="mdi mdi-file-excel"></i> Generar Excel
@@ -430,7 +430,7 @@ Usuarios | inicio
                     exportButtons: false, // No queremos botones
                     filename: "Reporte de Usuarios", //Nombre del archivo de Excel
                     sheetname: "Reporte de Usuarios", //Título de la hoja
-                    ignoreCols: 10,  
+                    ignoreCols: 9,  
                 });
                 let datos = tableExport.getExportData();
                 let preferenciasDocumento = datos.tabla.xlsx;
