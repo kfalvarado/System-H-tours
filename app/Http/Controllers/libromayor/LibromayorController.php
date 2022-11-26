@@ -49,20 +49,20 @@ class LibromayorController extends Controller
 
 		try {
 
-            $clasificacion = http::withToken(Cache::get('token'))->get($this->url . '/clasificacion');
-            $clasificacionArr = $clasificacion->json();
-            //nombre de cuenta
-            $nombrecuenta = http::withToken(Cache::get('token'))->get($this->url . '/cuentas');
-            $nombrecuentaArr = $nombrecuenta->json();
+			$clasificacion = http::withToken(Cache::get('token'))->get($this->url . '/clasificacion');
+			$clasificacionArr = $clasificacion->json();
+			//nombre de cuenta
+			$nombrecuenta = http::withToken(Cache::get('token'))->get($this->url . '/cuentas');
+			$nombrecuentaArr = $nombrecuenta->json();
 
-            $periodo = http::withToken(Cache::get('token'))->get($this->url . '/periodo');
-            $periodoArr = $periodo->json();
+			$periodo = http::withToken(Cache::get('token'))->get($this->url . '/periodo');
+			$periodoArr = $periodo->json();
 
 
-            # code...
-        } catch (\Throwable $th) {
-            return 'error libro diario 29';
-        }
+			# code...
+		} catch (\Throwable $th) {
+			return 'error libro diario 29';
+		}
 
 
 		try {
@@ -92,7 +92,7 @@ class LibromayorController extends Controller
 			return 'Error Libro Mayor 43';
 		}
 
-		return view('libromayor.libromayor', compact('personArr','clasificacionArr', 'nombrecuentaArr', 'periodoArr'));
+		return view('libromayor.libromayor', compact('personArr', 'clasificacionArr', 'nombrecuentaArr', 'periodoArr'));
 	}
 
 
@@ -102,62 +102,55 @@ class LibromayorController extends Controller
 	// ...ES EN SALDO Y LAS OTRAS SON SOLO RADIO BUTTON, COMO INSERTAR SOLO EN DEBE O EN HABER SI SOLO SE INSERTA EN SALDO. (ARCHIVO= libromayor.blade)
 	public function insertar(Request $request)
 	{
-		
+
 		try {
 
 			if ($request->debe == '1') {
 				# code...
-			
-		$insertar = Http::withToken(Cache::get('token'))->post($this->url.'/libromayor/insertar',[
 
-			"COD_PERIODO"=>$request->periodo,
-			"NOM_CUENTA" => $request->cuenta,
-			"SAL_DEBE" => $request->saldo,
-			"SAL_HABER" => 0,
-		
-	
+				$insertar = Http::withToken(Cache::get('token'))->post($this->url . '/libromayor/insertar', [
 
-		]);
+					"COD_PERIODO" => $request->periodo,
+					"NOM_CUENTA" => $request->cuenta,
+					"SAL_DEBE" => $request->saldo,
+					"SAL_HABER" => 0,
 
 
 
-	}elseif ($request->haber == '1'){
-		
-		$insertar = Http::withToken(Cache::get('token'))->post($this->url.'/libromayor/insertar',[
+				]);
+			} elseif ($request->haber == '1') {
 
-			"COD_PERIODO"=>$request->periodo,
-			"NOM_CUENTA" => $request->cuenta,
-			"SAL_DEBE" => 0,
-			"SAL_HABER" => $request->saldo,
-		
+				$insertar = Http::withToken(Cache::get('token'))->post($this->url . '/libromayor/insertar', [
 
-		]);
+					"COD_PERIODO" => $request->periodo,
+					"NOM_CUENTA" => $request->cuenta,
+					"SAL_DEBE" => 0,
+					"SAL_HABER" => $request->saldo,
 
 
-
-	}
+				]);
+			}
 		} catch (\Throwable $e) {
 			return 'Error libromayor 44';
 		}
 
-	
+
 
 
 
 		try {
-            $bitacora = Http::withToken(Cache::get('Token'))->post($this->url.'/seguridad/bitacora/insertar',[
-    
-                "USR" => Cache::get('user)'),
-                "ACCION" => 'PANTALLA METODO POST',
-                "DES" => Cache::get('user') . 'INSERTO EL DATO DE'.$request->libromayor.' A LA PANTALLA DE LIBRO MAYOR',
-                "OBJETO" => 'LIBROMAYOR'
-    
-            ]);
-    
-            } catch (\Throwable $th) {
-                return 'Error Libro Mayor 43';
-            }
-            
+			$bitacora = Http::withToken(Cache::get('Token'))->post($this->url . '/seguridad/bitacora/insertar', [
+
+				"USR" => Cache::get('user)'),
+				"ACCION" => 'PANTALLA METODO POST',
+				"DES" => Cache::get('user') . 'INSERTO EL DATO DE' . $request->libromayor . ' A LA PANTALLA DE LIBRO MAYOR',
+				"OBJETO" => 'LIBROMAYOR'
+
+			]);
+		} catch (\Throwable $th) {
+			return 'Error Libro Mayor 43';
+		}
+
 
 
 
@@ -174,10 +167,10 @@ class LibromayorController extends Controller
 	// PERO SI ACTUALIZO DE ESOS L 50 EN DEBE A HABER ES ES PROBLEMA POR LAS MISMAS TRAS VARIABLES. (ARCHIVO= libromayor.blade)
 	public function actualizar(Request $request)
 	{
-		
-		try {	
 
-			$actualizar = Http::withToken(Cache::get('token'))->put($this->url.'/libromayor/actualizar/'.$request->f,[
+		try {
+
+			$actualizar = Http::withToken(Cache::get('token'))->put($this->url . '/libromayor/actualizar/' . $request->f, [
 
 
 
@@ -192,63 +185,69 @@ class LibromayorController extends Controller
 		} catch (\Throwable $e) {
 			# code...
 			return 'error libro mayor 76';
-		}		
+		}
 
 		try {
-            $bitacora = Http::withToken(Cache::get('Token'))->post($this->url.'/seguridad/bitacora/insertar',[
-    
-                "USR" => Cache::get('user)'),
-                "ACCION" => 'ACTUALIZO UN DATO EN PANTALLA ',
-                "DES" => Cache::get('user') . 'ACTUALIZO EL DATO DE'.$request->libromayor.' A LA PANTALLA DE LIBRO MAYOR',
-                "OBJETO" => 'LIBROMAYOR'
-    
-            ]);
-    
-            } catch (\Throwable $th) {
-                return 'Error Libro Mayor 43';
-            }
-            
+			$bitacora = Http::withToken(Cache::get('Token'))->post($this->url . '/seguridad/bitacora/insertar', [
+
+				"USR" => Cache::get('user)'),
+				"ACCION" => 'ACTUALIZO UN DATO EN PANTALLA ',
+				"DES" => Cache::get('user') . 'ACTUALIZO EL DATO DE' . $request->libromayor . ' A LA PANTALLA DE LIBRO MAYOR',
+				"OBJETO" => 'LIBROMAYOR'
+
+			]);
+		} catch (\Throwable $th) {
+			return 'Error Libro Mayor 43';
+		}
+
 
 
 
 
 		Session::flash('actualizado', '1');
 		return back();
-		
-		
+
+
 		// return $request;
-	
+
 	}
 
-// ELIMINADO NORMAL NO ELIMINA PERO POR QUE DEBE SER ELIMINADO LOGICO
+	// ELIMINADO NORMAL NO ELIMINA PERO POR QUE DEBE SER ELIMINADO LOGICO
 	public function eliminar(Request $request)
 	{
 
-		$delete = Http::withToken(Cache::get("Token"))->delete($this->url.'/libromayor/eliminar/'.$request->f,);
+		$delete = Http::withToken(Cache::get("Token"))->delete($this->url . '/libromayor/eliminar/' . $request->f,);
 
 
-		
 
-        try {
-            $bitacora = Http::withToken(Cache::get('Token'))->post($this->url.'/seguridad/bitacora/insertar',[
-    
-                "USR" => Cache::get('user)'),
-                "ACCION" => 'ELIMINO UN DATO ',
-                "DES" => Cache::get('user') . 'ACTUALIZO EL DATO CON CODIGO'.$request->f.' A LA PANTALLA DE LIBRO MAYOR',
-                "OBJETO" => 'LIBROMAYOR'
-    
-            ]);
-    
-            } catch (\Throwable $th) {
-                return 'Error Libro Mayor 43';
-            }
 
-		Session::flash('eliminado','1');
+		try {
+			$bitacora = Http::withToken(Cache::get('Token'))->post($this->url . '/seguridad/bitacora/insertar', [
+
+				"USR" => Cache::get('user)'),
+				"ACCION" => 'ELIMINO UN DATO ',
+				"DES" => Cache::get('user') . 'ACTUALIZO EL DATO CON CODIGO' . $request->f . ' A LA PANTALLA DE LIBRO MAYOR',
+				"OBJETO" => 'LIBROMAYOR'
+
+			]);
+		} catch (\Throwable $th) {
+			return 'Error Libro Mayor 43';
+		}
+
+		Session::flash('eliminado', '1');
 		return back();
 
 
 		// return $request;
 
 	}
-	
+
+	public function pdf()
+	{
+		$libromayor = http::withToken(Cache::get('token'))->get($this->url . '/libromayor');
+
+		$mayor = $libromayor->json();
+
+		return view('libromayor.mayorPDF', compact('mayor'));
+	}
 }

@@ -14,7 +14,7 @@ use App\Http\Controllers\libromayor\LibromayorController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/mostrar',[LibromayorController::class,'mostrar'])->middleware('CheckToken')->name('mostrar.libromayor');
+Route::get('/',[LibromayorController::class,'mostrar'])->middleware('CheckToken')->name('mostrar.libromayor');
 Route::post('/insertar',[LibromayorController::class,'insertar'])->middleware('CheckToken')->name('libromayor.insertar');
 Route::put('/actualizar',[LibromayorController::class,'actualizar'])->middleware('CheckToken')->name('libromayor.actualizar');
 // ELIMINACION NORMAL NO ELIMINA POR QUE DEBE SER ELIMINADO LOGICO
@@ -22,4 +22,5 @@ Route::delete('/eliminar',[LibromayorController::class,'eliminar'])->middleware(
 
 
 
+Route::get('/mayor-pdf',[LibromayorController::class,'pdf'])->middleware('CheckToken')->name('pdf.libromayor');
 
