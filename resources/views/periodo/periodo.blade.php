@@ -292,10 +292,14 @@
                                 @csrf
                                 <label class="form-label">
                                     Nombre del Periodo
-                                    <input type='text' list="lista-programacion" name='periodo'
+                                    <input type='text' list="lista" name='periodo'
                                         class="form-control text-white" required>
-                                    <datalist id="lista-programacion">
-                                        <option value="Periodo-2022-ene-1-004">
+
+                                    <datalist id="lista">
+                                        @foreach ($incrementable as $key)
+                                            
+                                        <option value="Periodo-{{ date("Y") }}-{{ date('M') }}-00{{ $key['MAX(COD_PERIODO)'] }}">
+                                            @endforeach
                                     </datalist>
                                     </input>
                                 </label>

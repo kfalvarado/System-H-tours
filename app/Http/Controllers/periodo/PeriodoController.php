@@ -44,6 +44,8 @@ class PeriodoController extends Controller
                 $periodo = http::withToken(Cache::get('token'))->get($this->url . '/periodo');
 
                 $personArr = $periodo->json();
+                $incrementable = http::withToken(Cache::get('token'))->get($this->url . '/incrementable');
+                $incrementable = $incrementable->json();
             } catch (\Throwable $th) {
                 //throw $th;
                 return 'error periodo 22';
@@ -66,7 +68,7 @@ class PeriodoController extends Controller
         }
 
 
-        return view('periodo.periodo', compact('personArr'));
+        return view('periodo.periodo', compact('personArr','incrementable'));
     }
 
     /**
