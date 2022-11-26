@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
+
 class RolesController extends Controller
 {
 
@@ -16,7 +17,7 @@ class RolesController extends Controller
 
     public function mostrar()
     {
-        $rols = http::withToken(Cache::get('token'))->get($this->url.'/roles/sel_rol');
+        $rols = http::withToken(Cache::get('token'))->get($this->url . '/roles/sel_rol');
         //return $rols;
         $rolsArr = $rols->json();
 
@@ -32,34 +33,43 @@ class RolesController extends Controller
             return 'ERROR ROLES BITACORA';
         }
 
-        return view('roles.roles',compact('rolsArr'));
+        return view('roles.roles', compact('rolsArr'));
     }
 
 
-    public function insertar( Request $req)
+    public function insertar(Request $req)
     {
         //return $req;
-        $rols = http::withToken(Cache::get('token'))->post($this->url.'/roles/ins_rol',[
-               
-                "ROL" => $req->ROL,
-                "DES_ROL" => $req->DES_ROL
+        $rols = http::withToken(Cache::get('token'))->post($this->url . '/roles/ins_rol', [
+
+            "ROL" => $req->ROL,
+            "DES_ROL" => $req->DES_ROL
         ]);
         //return $rols;
-        Session::flash("insertado","1");
+        Session::flash("insertado", "1");
         return back();
     }
 
-    public function actualizar( Request $req)
+    public function actualizar(Request $req)
     {
-        $rols = http::withToken(Cache::get('token'))->put($this->url.'/roles/upd_rol',[
-               
-                "ROL" => $req->ROL,
-                "DES_ROL" => $req->DES_ROL,
-                "FILA" => $req->COD_ROL
+        $rols = http::withToken(Cache::get('token'))->put($this->url . '/roles/upd_rol', [
+
+            "ROL" => $req->ROL,
+            "DES_ROL" => $req->DES_ROL,
+            "FILA" => $req->COD_ROL
         ]);
         //return $rols;
-        Session::flash("actualizado","1");
+        Session::flash("actualizado", "1");
         return back();
     }
 
+    public function pdf()
+    {
+        $rols = http::withToken(Cache::get('token'))->get($this->url . '/roles/sel_rol');
+        //return $rols;
+        $rolsArr = $rols->json();
+
+        return view('roles.rolespdf',compact('rolsArr'));
+
+    }
 }
