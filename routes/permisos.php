@@ -19,3 +19,6 @@ Route::post('/seleccionar_rol',[PermisosController::class,'roles'])->middleware(
 Route::post('/insertar',[PermisosController::class,'insertar'])->middleware('CheckToken')->name('permisos.insertar');
 Route::put('/actua',[PermisosController::class,'actualizar'])->middleware('CheckToken')->name('permisos.actua');
 Route::delete('/ep',[PermisosController::class,'eliminar'])->middleware('CheckToken')->name('permisos.eliminar');
+
+
+Route::get('/pdf-permisos',[PermisosController::class,'pdf'])->middleware('CheckToken')->name('pdf.permisos');

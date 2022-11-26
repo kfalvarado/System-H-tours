@@ -188,11 +188,16 @@
         <h5>________________________________________________________________________________________________________________
         </h5>
         <!-- <ul class="nav nav-pills nav-stacked">
-                                      <li class="active"><a href="#"></a></li>
-                                    </ul> -->
+                                          <li class="active"><a href="#"></a></li>
+                                        </ul> -->
         <p align="right" valign="baseline">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#dialogo1">(+)
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo1">(+)
                 Nuevo</button>
+            <a type="button" href="{{ route('pdf.permisos') }}" class="btn btn-danger btn-sm"><i
+                    class="mdi mdi-file-pdf"></i>Generar PDF</a>
+            <button id="btnExportar" class="btn btn-success btn-sm">
+                <i class="mdi mdi-file-excel"></i> Generar Excel
+            </button>
         </p>
 
         <ul class="nav nav-pills nav-stacked">
@@ -405,50 +410,56 @@
                                                 </div>
                                             </div>
                                             <!-- FIN DE MODAL PARA EDITAR  -->
-                                            
 
 
 
 
 
-    <!-- INICIO MODAL PARA BORRAR  -->
-    <div class="modal-container">
-        <div class="modal fade bd-example-modal-lg" id="modal-eliminar-{{ $key['COD_PERMISO'] }}">
-            <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <!-- CABECERA DEL DIALOGO EDITAR -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Eliminar permisos</h4>
-                        <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
-                    </div>
-                    <!-- CUERPO DEL DIALOGO BORRAR -->
-                    <div class="modal-body">
-                        <center>
-                            <form action="{{ route('permisos.eliminar') }}" method="post">
-                                @csrf @method('DELETE')
 
-                                <input type="hidden" name="f" value="{{ $key['COD_PERMISO'] }}">
-                                <label class="form-label">
-                                    <i class="mdi mdi-delete-forever" style="font-size: 100px;"></i> <br>
-                                    ¿ Desea revocar el permiso a la pantalla ?
+                                            <!-- INICIO MODAL PARA BORRAR  -->
+                                            <div class="modal-container">
+                                                <div class="modal fade bd-example-modal-lg"
+                                                    id="modal-eliminar-{{ $key['COD_PERMISO'] }}">
+                                                    <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+                                                    <div class="modal-dialog modal-sm">
+                                                        <div class="modal-content">
+                                                            <!-- CABECERA DEL DIALOGO EDITAR -->
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title">Eliminar permisos</h4>
+                                                                <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                                                            </div>
+                                                            <!-- CUERPO DEL DIALOGO BORRAR -->
+                                                            <div class="modal-body">
+                                                                <center>
+                                                                    <form action="{{ route('permisos.eliminar') }}"
+                                                                        method="post">
+                                                                        @csrf @method('DELETE')
 
-                                </label>
+                                                                        <input type="hidden" name="f"
+                                                                            value="{{ $key['COD_PERMISO'] }}">
+                                                                        <label class="form-label">
+                                                                            <i class="mdi mdi-delete-forever"
+                                                                                style="font-size: 100px;"></i> <br>
+                                                                            ¿ Desea revocar el permiso a la pantalla ?
+
+                                                                        </label>
 
 
 
-                                <button type="submit" class="btn btn btn-primary">SI</button>
-                                <a href="" class="btn btn-secondary">NO</a>
+                                                                        <button type="submit"
+                                                                            class="btn btn btn-primary">SI</button>
+                                                                        <a href="" class="btn btn-secondary">NO</a>
 
-                            </form>
-                    </div>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                    </center>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- FIN DE MODAL PARA BORRAR  -->
+                                                                    </form>
+                                                            </div>
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-dismiss="modal">Cerrar</button>
+                                                            </center>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- FIN DE MODAL PARA BORRAR  -->
                                         @endforeach
                                     @else
                                         <td colspan="7">No hay resultados</td>

@@ -138,4 +138,11 @@ class PermisosController extends Controller
 		Session::flash('eliminado','1');
 		return redirect()->route('mostrar.permisos');
 	}
+	public function pdf()
+	{
+		$permisos = http::withToken(Cache::get('token'))->get($this->url . '/permisos/sel_per');
+		// return $rols;
+		$permisos = $permisos->json();
+		return view('permisos.permisospdf',compact('permisos'));
+	}
 }
