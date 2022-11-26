@@ -70,7 +70,9 @@ class UsuariosController extends Controller
     
    public function crearPDF()
    {
-    
+    $usr = http::withToken(Cache::get('token'))->get($this->url.'/sel_usr');
+    $usrArr = $usr->json();
+    return view('usuarios.usuariospdf',compact('usrArr'));
    }
 
 
