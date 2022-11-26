@@ -537,11 +537,11 @@ Libro Diario | inicio
                                 </label>
                                 <br>
                                 <label class="radio-inline">
-                                  <input type="radio" name="" value="">Debe
+                                  <input type="radio" name="debe" value="1">Debe
                                 </label>
                                 &nbsp;&nbsp;
                                 <label class="radio-inline">
-                                  <input type="radio" name="" value="">Haber
+                                  <input type="radio" name="haber" value="1">Haber
                                 </label>
                                 <hr />
                                 <label class="form-label">

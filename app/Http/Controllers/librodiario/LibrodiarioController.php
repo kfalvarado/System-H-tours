@@ -142,12 +142,13 @@ class LibrodiarioController extends Controller
     }
 
 
-// CONSULTAR POR QUE COD PERIODO LO PIDE EL PROCEDIMIENTO Y ESTE NO ESTAN EN LA VISTA ENTONCES PASE LA CUENTA ...
-// QUE DE NON_CUENTA (NUMERO DE LA CUENTA) LA MISMA VARIBALE A COD_PERIDOO PARA QUE FUNCIONE EL PROCEMDIMIENTO
+
     public function actualizar(Request $request)
 	{
 		
 		try {	
+
+            if ($request->debe == '1') {
 
 			$actualizar = Http::withToken(Cache::get('token'))->put($this->url.'/librodiario/actualizar/'.$request->f,[
 
@@ -156,9 +157,25 @@ class LibrodiarioController extends Controller
                 "NOM_CUENTA"=> $request->cuenta,
                 "NOM_SUBCUENTA"=> $request->nombresubcuenta,
                 "SAL_DEBE"=> $request->saldo,
+                "SAL_HABER"=> 0,
+			]);
+
+        } elseif ($request->haber == '2') {
+
+
+            
+			$actualizar = Http::withToken(Cache::get('token'))->put($this->url.'/librodiario/actualizar/'.$request->f,[
+
+
+                "COD_PERIODO"=> $request->periodo,
+                "NOM_CUENTA"=> $request->cuenta,
+                "NOM_SUBCUENTA"=> $request->nombresubcuenta,
+                "SAL_DEBE"=> 0,
                 "SAL_HABER"=> $request->saldo,
 			]);
 
+
+        }
 			# code...
 		} catch (\Throwable $e) {
 			# code...
