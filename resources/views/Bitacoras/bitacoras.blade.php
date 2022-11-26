@@ -260,7 +260,8 @@ Bitacora | inicio
                 class="btn btn-success"  
                 data-toggle="modal" 
                 data-target="#dialogo1">(+) Nuevo</button> --}}
-
+                <a type="button" href="{{ route('pdf.bitacoras') }}" class="btn btn-danger btn-sm" ><i
+                  class="mdi mdi-file-pdf"></i>Generar PDF</a>
                 <button id="btnExportar" class="btn btn-success btn-sm">
                   <i class="mdi mdi-file-excel"></i> Generar Excel
                 </button>
