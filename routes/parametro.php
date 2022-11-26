@@ -24,6 +24,6 @@ Route::delete('/eliminar',[ParametrosController::class,'eliminar'])->middleware(
 
 
 //pdf
-Route::get('/mostrarpdf',[ParametroController::class,'mostrarPDF'])->middleware('CheckToken')->name('parametro.pdf');
+Route::get('/mostrarpdf',[ParametrosController::class,'mostrarPDF'])->middleware('CheckToken')->name('parametro.pdf');
 
 //excel

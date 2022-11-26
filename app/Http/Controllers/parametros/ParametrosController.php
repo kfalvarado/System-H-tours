@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
+
 class ParametrosController extends Controller
 {
 
@@ -75,7 +76,7 @@ class ParametrosController extends Controller
      */
     public function insertar(Request $request)
     {
-          /**
+        /**
          * Seguridad de roles y perimisos metodo GET
          */
 
@@ -97,7 +98,7 @@ class ParametrosController extends Controller
         if ($insercion == '1') {
             try {
                 $insertar = Http::withToken(Cache::get('token'))->post($this->url . '/parametros/insertar', [
-                   
+
                     "PARAMETRO" => $request->parametros,
                     "VALOR" => $request->valor,
                     "USR" => Cache::get('user'),
@@ -151,13 +152,13 @@ class ParametrosController extends Controller
     public function actualizar(Request $request)
     {
 
-         /**
+        /**
          * Seguridad de roles y perimisos metodo GET
          */
 
         try {
             //code...
-            $search = Http::withToken(Cache::get('token'))->post($this->url.'/permisos/sel_per_obj',[
+            $search = Http::withToken(Cache::get('token'))->post($this->url . '/permisos/sel_per_obj', [
                 "PV_ROL" => Cache::get('rol'),
                 "PV_OBJ" => "PARAMETROS"
             ]);
@@ -166,38 +167,38 @@ class ParametrosController extends Controller
             foreach ($permisos as $key) {
                 $update = $key['PER_ACTUALIZACION'];
             }
-         } catch (\Throwable $th) {
+        } catch (\Throwable $th) {
             //throw $th;
             return 'Error Parametro 21';
-         }
-         if ($update == '1') {
-        try {
-            //code...
-            $actualizar = Http::withToken(Cache::get('token'))->put($this->url.'/parametros/actualizar/'.$request->f,[
-             
+        }
+        if ($update == '1') {
+            try {
+                //code...
+                $actualizar = Http::withToken(Cache::get('token'))->put($this->url . '/parametros/actualizar/' . $request->f, [
+
                     "PARAMETRO" => $request->parametro,
                     "VALOR" => $request->valor,
                     "USR" => Cache::get('user'),
                     "FEC_CREACION" => $request->creacion,
                     "FEC_MODIFICACION" => $request->modificacio
-            ]);
-        } catch (\Throwable $th) {
-            //throw $th;
-            return 'error parametros 50';
-        }
+                ]);
+            } catch (\Throwable $th) {
+                //throw $th;
+                return 'error parametros 50';
+            }
 
-        try {
-            $bitacora = Http::withToken(Cache::get('token'))->post($this->url.'/seguridad/bitacora/insertar',[
-                "USR"=> Cache::get('user'),
-                "ACCION"=> 'ACTUALIZO UN DATO EN PANTALLA ',
-                "DES"=> Cache::get('user').' ACTUALIZO EL DATO DE '.$request->parametros.' EN LA PANTALLA DE PARAMETROS',
-                "OBJETO"=> 'PARAMETROS'
+            try {
+                $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                    "USR" => Cache::get('user'),
+                    "ACCION" => 'ACTUALIZO UN DATO EN PANTALLA ',
+                    "DES" => Cache::get('user') . ' ACTUALIZO EL DATO DE ' . $request->parametros . ' EN LA PANTALLA DE PARAMETROS',
+                    "OBJETO" => 'PARAMETROS'
 
-            ]);
-        } catch (\Throwable $th) {
-            //throw $th;
-            return 'Error parametros 32';
-        }
+                ]);
+            } catch (\Throwable $th) {
+                //throw $th;
+                return 'Error parametros 32';
+            }
             Session::flash('actualizado', '1');
         } else {
             try {
@@ -284,16 +285,17 @@ class ParametrosController extends Controller
         return back();
     }
 
-  
-     /*
+
+    /*
     ======================================
     Pantalla PDF de Parametros
     ======================================
     */
     public function mostrarPDF()
     {
-        return view('parametros.parametrosPDF'); 
-    }
+        $parametros = http::withToken(Cache::get('token'))->get($this->url . '/parametros');
 
-   
+        $parametros = $parametros->json();
+        return view('parametro.parametrosPDF',compact('parametros'));
+    }
 }
