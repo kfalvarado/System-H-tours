@@ -110,7 +110,7 @@
                         <div class="col-9">
                             <div class="d-flex align-items-center align-self-start">
                                 <h3 class="mb-0">Periodo Activo</h3>
-                                <p class="text-success ml-lg-2 mb-0 font-weight-medium">{{ substr($array['PERIODO'], 12) }}
+                                <p class="text-success ml-lg-2 mb-0 font-weight-medium">{{ substr($array['PERIODO'], 19) }}
                                 </p>
                             </div>
                         </div>
