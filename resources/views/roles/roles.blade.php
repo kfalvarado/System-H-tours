@@ -137,21 +137,19 @@ Roles | inicio
             
             <ul class="nav nav-pills nav-stacked">
               <li class="active"><a href="#"></a></li>
-              </ul>
-              
-              
-            
-              
-            
-           
+              </ul>          
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <center><h4 class="card-title">Registros de Roles</h4></center>
                     <!-- <p class="card-description"> Add class <code>.table-striped</code> -->
-                    </p>
+                    {{-- </p> --}}
+                    <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                      <input class="form-control me-2 light-table-filter text-white" data-table="table_id"
+                          type="text" placeholder="Buscar un rol">
+                  </form>
                     <div class="table-responsive">
-                      <table id="tabla" class="table table-bordered table-contextual">
+                      <table id="tabla" class="table table-bordered table-contextual table_id">
                         <thead>
                           <tr class="text-dark bg-white">
                               <th class="text-dark bg-white">#</th>
@@ -297,6 +295,8 @@ Roles | inicio
 
 
         @section('js')
+        
+<script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
         {{-- PAGINACIÓN --}}
         <script src="{{ asset('assets/js/ab-page.js') }}"></script>
         {{-- GENERADOR DE EXCEL --}}

@@ -95,7 +95,7 @@
                     </h4>
                     <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
                         <input class="form-control me-2 light-table-filter text-white" data-table="table_id"
-                            type="text" placeholder="Buscar un Grupos">
+                            type="text" placeholder="Buscar una personas">
                     </form>
 
                     <div class="table-responsive">
