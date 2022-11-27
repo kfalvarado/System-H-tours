@@ -108,7 +108,7 @@
         }
 
         /*<elemento class="oculto-impresion"><!-- AQUI EMPIEZA PARA OCULTAR EN LA IMPRESION INICIO-->
-          </elemento><!-- AQUI SE QUITA PARA IMPRIMIR ESTO NO SALDRA FIN-->*/
+              </elemento><!-- AQUI SE QUITA PARA IMPRIMIR ESTO NO SALDRA FIN-->*/
     </style>
 
 
@@ -183,7 +183,7 @@
 
 
     <!-- <div class="main-panel">
-              <div class="content-wrapper"> -->
+                  <div class="content-wrapper"> -->
     <!--<center> <h1>Libro Diario</h1> </center>-->
     <center>
         <h1>Libro Diario</h1>
@@ -207,7 +207,8 @@
                         <!-- CUERPO DEL DIALOGO NUEVA -->
                         <div class="modal-body">
                             <center>
-                                <form action="{{ route('librodiario.insertar') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('librodiario.insertar') }}" method="post"
+                                    enctype="multipart/form-data">
                                     @csrf
 
                                     <label class="form-label">
@@ -257,11 +258,11 @@
                                                 class="form-control text-white" required>
 
                                             <!-- <select class="form-control text-white">
-                      <option value=""></option>
-                      <option value="">Cheques</option>
-                      <option value="">Depositos</option>
-                      <option value="">Aportacions</option>
-                    </select> -->
+                          <option value=""></option>
+                          <option value="">Cheques</option>
+                          <option value="">Depositos</option>
+                          <option value="">Aportacions</option>
+                        </select> -->
                                         </label>
 
                                         <button> + </button>
@@ -283,11 +284,11 @@
                                         <label class="form-label">
                                             Comprobante
                                             <br>
-                                         
-                                                <input type="file" name="comprobante" id="fileUpload" accept="image/*">
-                                                @error('comprobante')
-                                                  <small class="text-danger">{{ $message }}</small>
-                                                @enderror
+
+                                            <input type="file" name="comprobante" id="fileUpload" accept="image/*">
+                                            @error('comprobante')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
                                         </label>
                                         <label class="form-label">
                                             Fecha
@@ -297,7 +298,8 @@
                                         <br>
 
                                         <a href="" class="btn btn-secondary">Cancelar</a>
-                                        <button type="submit" class="btn btn-primary" onclick="validar();">Registrar </button>
+                                        <button type="submit" class="btn btn-primary" onclick="validar();">Registrar
+                                        </button>
 
                                 </form>
                         </div>
@@ -451,7 +453,8 @@
                                             <td> {{ $librodiario['NOM_SUBCUENTA'] }} </td>
                                             <td> {{ $librodiario['SAL_DEBE'] }} </td>
                                             <td> {{ $librodiario['SAL_HABER'] }}</td>
-                                            <td> <a href="" data-toggle="modal" data-target="#comprobante-{{ $librodiario['COD_LIBDIARIO'] }}">
+                                            <td> <a href="" data-toggle="modal"
+                                                    data-target="#comprobante-{{ $librodiario['COD_LIBDIARIO'] }}">
                                                     Ver imagen</a> </td>
                                             <td> {{ substr($librodiario['FEC_LIBDIARIO'], 0, 10) }} </td>
                                             <td><button type="button" class="btn btn-primary" data-toggle="modal"
@@ -465,35 +468,38 @@
                                         </tr>
 
 
-    <!-- INICIO MODAL PARA comprobante  -->
-    <div class="modal-container">
-      <div class="modal fade bd-example-modal-lg" id="comprobante-{{ $librodiario['COD_LIBDIARIO'] }}">
-          <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-          <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                  <!-- CABECERA DEL DIALOGO EDITAR -->
-                  <div class="modal-header">
-                      <h4 class="modal-title">Comprobante de  Transaccion</h4>
-                      <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
-                  </div>
-                  <!-- CUERPO DEL DIALOGO EDITAR -->
-                  <div class="modal-body">
-                      <center>
-                        @if ($librodiario['DIRRECCION'] == 'Transaccion sin compronte')
-                          <h1>Sin Comprobante de Transaccion</h1>
-                        @else
-                          
-                        <img src="{{ $librodiario['DIRRECCION'] }}" alt="imagen comprobante" width="500" height="500" >
-                        @endif
-                      </center>
-                  </div>
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                  </center>
-              </div>
-          </div>
-      </div>
-  </div>
-  <!-- FIN DE MODAL PARA comprobante  -->
+                                        <!-- INICIO MODAL PARA comprobante  -->
+                                        <div class="modal-container">
+                                            <div class="modal fade bd-example-modal-lg"
+                                                id="comprobante-{{ $librodiario['COD_LIBDIARIO'] }}">
+                                                <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <!-- CABECERA DEL DIALOGO EDITAR -->
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Comprobante de Transaccion</h4>
+                                                            <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                                                        </div>
+                                                        <!-- CUERPO DEL DIALOGO EDITAR -->
+                                                        <div class="modal-body">
+                                                            <center>
+                                                                @if ($librodiario['DIRRECCION'] == 'Transaccion sin compronte')
+                                                                    <h1>Sin Comprobante de Transaccion</h1>
+                                                                @else
+                                                                    <img src="{{ $librodiario['DIRRECCION'] }}"
+                                                                        alt="imagen comprobante" width="500"
+                                                                        height="500">
+                                                                @endif
+                                                            </center>
+                                                        </div>
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-dismiss="modal">Cerrar</button>
+                                                        </center>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- FIN DE MODAL PARA comprobante  -->
 
 
 
@@ -543,13 +549,13 @@
                                                                                 class="form-control text-white" required>
 
                                                                             <!-- <select class="form-control text-white" name="cuenta" id="">
-                      <option value=""></option>
-                      <option value="">Caja</option>
-                      <option value="">Proveedores</option>
-                      <option value="">Capital</option>
-                    </select> -->
+                          <option value=""></option>
+                          <option value="">Caja</option>
+                          <option value="">Proveedores</option>
+                          <option value="">Capital</option>
+                        </select> -->
                                                                             <!-- </input>
-                  </label> -->
+                      </label> -->
                                                                             <label class="form-label">
                                                                                 Nombre de Sub Cuenta
                                                                                 <input type='text' list=""
@@ -559,11 +565,11 @@
                                                                                     required>
 
                                                                                 <!-- <select class="form-control text-white" >
-                      <option value=""></option>
-                      <option value="">Cheques</option>
-                      <option value="">Depositos</option>
-                      <option value="">Aportacions</option>
-                    </select> -->
+                          <option value=""></option>
+                          <option value="">Cheques</option>
+                          <option value="">Depositos</option>
+                          <option value="">Aportacions</option>
+                        </select> -->
 
                                                                             </label>
                                                                             <label class="form-label">
@@ -686,18 +692,18 @@
 
 
     <script>
-      function validar() {
-        let periodo = document.getElementById('periodo').value
-        if (periodo == 'SELECCIONAR') {
-          Swal.fire({
-                icon: 'error',
-                text: 'No selecciono un periodo'
-                // footer: '<a href="">Why do I have this issue?</a>'
-            })
-            event.preventDefault();
+        function validar() {
+            let periodo = document.getElementById('periodo').value
+            if (periodo == 'SELECCIONAR') {
+                Swal.fire({
+                    icon: 'error',
+                    text: 'No selecciono un periodo'
+                    // footer: '<a href="">Why do I have this issue?</a>'
+                })
+                event.preventDefault();
+            }
+
         }
-       
-      }
     </script>
 
 
