@@ -16,6 +16,9 @@ use App\Http\Controllers\libromayor\LibromayorController;
 */
 Route::get('/',[LibromayorController::class,'mostrar'])->middleware('CheckToken')->name('mostrar.libromayor');
 Route::post('/insertar',[LibromayorController::class,'insertar'])->middleware('CheckToken')->name('libromayor.insertar');
+Route::post('/mayorizacion',[LibromayorController::class,'mayorizacion'])->middleware('CheckToken')->name('libromayor.mayorizacion');
+
+
 Route::put('/actualizar',[LibromayorController::class,'actualizar'])->middleware('CheckToken')->name('libromayor.actualizar');
 // ELIMINACION NORMAL NO ELIMINA POR QUE DEBE SER ELIMINADO LOGICO
 Route::delete('/eliminar',[LibromayorController::class,'eliminar'])->middleware('CheckToken')->name('libromayor.eliminar');

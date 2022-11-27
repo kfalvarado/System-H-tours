@@ -157,6 +157,25 @@ class LibromayorController extends Controller
 	}
 
 
+
+	public function mayorizacion(Request $request)
+	{
+
+
+		$insertar = Http::withToken(Cache::get('token'))->post($this->url . '/libromayor/mayorizacion', [
+
+			"COD_PERIODO" => $request->periodo,
+			"NOM_CUENTA" => $request->cuenta,
+
+		]);
+		// return $request;
+		Session::flash('insertado', '1');
+		return back();
+
+
+	}
+
+
 	// CONSULTA DE LA MISMA FORMA DEL METODO INSERT SOBRE EL DEBE Y HABER, SI ACTUALIZO L 50 EN DEBE A L 500 ESTA BIEN...
 	// PERO SI ACTUALIZO DE ESOS L 50 EN DEBE A HABER ES ES PROBLEMA POR LAS MISMAS TRAS VARIABLES. (ARCHIVO= libromayor.blade)
 	public function actualizar(Request $request)

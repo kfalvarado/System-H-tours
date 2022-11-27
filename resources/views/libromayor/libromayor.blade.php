@@ -243,21 +243,49 @@ Libro Mayor | inicio
    <div class="modal-header">
    <h4 class="modal-title"> <center> Seleccionar Periodo</center></h4>
         <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+
    </div>
         <!-- CUERPO DEL DIALOGO PERIODO -->
    <div class="modal-body">
    <center>
-   <form action="" method="post">
-   <Label>Seleccionar periodo</Label>
-   <select class="form-control text-white" name="" id="">
-    <option value="" selected></option>
-    <option value="">periodo-2020-ene-1-001</option>
-    <option value="">periodo-2021-ene-1-002</option>
-    <option value="">periodo-2022-ene-1-003</option>
-    </select>
-    <br>
-    <br>
-   <a href="" class="btn btn-secondary">Cancelar</a>
+   <form action="{{ route('libromayor.mayorizacion')}}" method="post">
+    @csrf 
+   <label class="form-label">
+                    Periodo
+                    <select class="form-control text-white" name="periodo" id="periodo" onchange="datos();" required>
+                    <option hidden selected>SELECCIONAR</option>
+                    @foreach($periodoArr as $key)
+                    <option value="{{$key['COD_PERIODO'] }}">{{$key['NOM_PERIODO'] }}</option>
+                    @endforeach
+
+                  </select>
+
+    
+    <label class="form-label">
+                Clasificacion
+                <select class="form-control text-white" name="naturaleza" id="clasificacion" onchange="datos();" required>
+                    <option hidden selected>SELECCIONAR</option>
+                    @foreach($clasificacionArr as $key)
+                    <option value="{{$key['NATURALEZA'] }}">{{$key['NATURALEZA'] }} </option>
+                    @endforeach
+
+                  </select>
+                </label>
+
+    
+    <label class="form-label">
+                  Seleccionar Cuenta
+                 
+                  <select class="form-control text-white" name="cuenta" id="cuenta" required>
+                    <option hidden selected>SELECCIONAR</option>
+                    @foreach($nombrecuentaArr as $key)
+                    <option value="{{$key['NOM_CUENTA'] }}">{{$key['NOM_CUENTA'] }}</option>
+                    @endforeach
+
+                  </select>
+                </label>
+   <!-- <a href="" class="btn btn-secondary">Cancelar</a> -->
+   <br>
    <button type="submit" class="btn btn-primary">Aceptar</button>
    </form>
    </div> 
@@ -362,7 +390,7 @@ Libro Mayor | inicio
         </nav>
 
             <p align="right" valign="baseline">
-              <button type="button"  class="btn btn-success"  data-toggle="modal" data-target="#dialogo4">Periodo</button>  <button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button> <a type="button"  class="btn btn-danger btn-sm" href="{{ route('pdf.libromayor') }}"><i class="mdi mdi-file-pdf"></i>Generar PDF</a>
+              <button type="button"  class="btn btn-success"  data-toggle="modal" data-target="#dialogo4" ><i class="mdi mdi-book-open-page-variant"> </i>Mayorizar</button>  <button type="button"  class="btn btn-info"  data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button> <a type="button"  class="btn btn-danger btn-sm" href="{{ route('pdf.libromayor') }}"><i class="mdi mdi-file-pdf"></i>Generar PDF</a>
               <button id="btnExportar" class="btn btn-success btn-sm">
                 <i class="mdi mdi-file-excel"></i> Generar Excel
             </button>
