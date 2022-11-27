@@ -339,7 +339,7 @@ class SessionController extends Controller
                 $bitacora = Http::withToken(Cache::get('key'))->post($this->url . '/seguridad/bitacora/insertar', [
                     "USR" => 'Usuario_Auto_Registrado',
                     "ACCION" => 'Creacion de Usuario',
-                    "DES" => 'Registro  de Usuario:' . $request->user,
+                    "DES" => 'Registro  de Usuario: ' . $request->user,
                     "OBJETO" => $obj
                 ]);
             } catch (\Throwable $th) {
