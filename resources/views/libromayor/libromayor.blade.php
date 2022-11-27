@@ -562,6 +562,8 @@ Libro Mayor | inicio
               <input type="hidden" name="f" value="{{$libromayor['COD_LIBMAYOR']}}">
 
              <label class="form-label">
+              <i class="mdi mdi-delete-forever"
+              style="font-size: 100px;"></i> <br>
              ¿ Desea Eliminar la Transaccion ?
              </label>
              
