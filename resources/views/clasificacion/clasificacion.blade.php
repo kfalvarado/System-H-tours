@@ -99,10 +99,11 @@ Clasificacion | inicio
                   <div class="card-body">
                     <h4 class="card-title"> <center>Clasificacion</center></h4>
                     <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                      <input type="text" class="form-control" placeholder="Buscar Calsificacion">
-                    </form>
+                      <input class="form-control me-2 light-table-filter text-white" data-table="table_id" type="text" 
+                      placeholder="Buscar una clasificacion">
+                  </form>
                     <div class="table-responsive">
-                      <table id="tabla" class="table table-bordered table-contextual">
+                      <table id="tabla" class="table table-bordered table-contextual table_id">
                         <thead>
                         <tr class="text-dark bg-white">
                   <th class="text-dark bg-white">#</th>
@@ -265,6 +266,8 @@ Clasificacion | inicio
                 <!-- FIN DE MODAL PARA NUEVA  -->
   
  @section('js')
+ 
+ <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
                 <script src="{{ asset('assets/js/ab-page.js') }}"></script>
                 <script>
                   const $btnExportar = document.querySelector("#btnExportar"),

@@ -92,9 +92,12 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Gestion de Grupos</h4>
-
+                        <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                            <input class="form-control me-2 light-table-filter text-white" data-table="table_id" type="text" 
+                            placeholder="Buscar un Grupos">
+                        </form>
                         <div class="table-responsive">
-                            <table id="tabla"  class="table table-bordered table-contextual">
+                            <table id="tabla"  class="table table-bordered table-contextual table_id">
                                 <thead>
                                     <tr>
                                         <th class="text-dark bg-white"> # </th>
@@ -305,6 +308,7 @@
     <!-- content-wrapper ends -->
     <!-- partial:../../partials/_footer.html -->
     @section('js')
+    <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>
     <script>
         const $btnExportar = document.querySelector("#btnExportar"),
