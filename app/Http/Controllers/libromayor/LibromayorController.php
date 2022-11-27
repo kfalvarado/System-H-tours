@@ -239,8 +239,8 @@ class LibromayorController extends Controller
 	// ELIMINADO NORMAL NO ELIMINA PERO POR QUE DEBE SER ELIMINADO LOGICO
 	public function eliminar(Request $request)
 	{
-		return $request;
-		$delete = Http::withToken(Cache::get("token"))->delete($this->url . '/libromayor/eliminar/' . $request->f);
+
+		$delete = Http::withToken(Cache::get("token"))->delete($this->url . '/libromayor/eliminar/' . $request->f,);
 
 
 
