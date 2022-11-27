@@ -451,8 +451,8 @@
                                             <td> {{ $librodiario['COD_LIBDIARIO'] }} </td>
                                             <td> {{ $librodiario['NUM_SUBCUENTA'] }} </td>
                                             <td> {{ $librodiario['NOM_SUBCUENTA'] }} </td>
-                                            <td> {{ $librodiario['SAL_DEBE'] }} </td>
-                                            <td> {{ $librodiario['SAL_HABER'] }}</td>
+                                            <td> {{ number_format($librodiario['SAL_DEBE']) }} </td>
+                                            <td> {{ number_format($librodiario['SAL_HABER']) }}</td>
                                             <td> <a href="" data-toggle="modal"
                                                     data-target="#comprobante-{{ $librodiario['COD_LIBDIARIO'] }}">
                                                     Ver imagen</a> </td>
