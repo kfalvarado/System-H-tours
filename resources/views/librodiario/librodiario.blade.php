@@ -500,7 +500,7 @@ Libro Diario | inicio
                               <label class="form-label">
                     Periodo
                     <select class="form-control text-white" name="periodo" id="periodo" onchange="datos();" required>
-                    <option hidden selected>SELECCIONAR</option>
+                    <required><option hidden selected> </option></required>
                     @foreach($periodoArr as $key)
                     <option value="{{$key['COD_PERIODO'] }}">{{$key['NOM_PERIODO'] }}</option>
                     @endforeach
