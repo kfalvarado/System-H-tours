@@ -240,7 +240,7 @@ class LibromayorController extends Controller
 	public function eliminar(Request $request)
 	{
 
-		$delete = Http::withToken(Cache::get("Token"))->delete($this->url . '/libromayor/eliminar/' . $request->f,);
+		$delete = Http::withToken(Cache::get("token"))->delete($this->url . '/libromayor/eliminar/' . $request->f,);
 
 
 
