@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class LibrodiarioController extends Controller
 {
@@ -84,10 +85,21 @@ class LibrodiarioController extends Controller
     public function insertar(Request $request)
     {
         // return $request;
+        if (isset($request->comprobante)) {
+            $request->validate([
+                "comprobante"=>'required|image|max:2048'
+            ]);
 
+            $imagenes =  $request->file('comprobante')->store('public/comprobantesimg');
+
+            $url = Storage::url($imagenes);
+            // return $url;
+          }
+
+       
 
         try {
-            if ($request->debe == '1') {
+            if ($request->transaccion == '1') {
 
                 $insertar = Http::withToken(Cache::get('token'))->post($this->url . '/librodiario/insertar', [
 
@@ -100,7 +112,7 @@ class LibrodiarioController extends Controller
 
 
                 ]);
-            } elseif ($request->haber == '1') {
+            } elseif ($request->transaccion == '0') {
 
 
                 $insertar = Http::withToken(Cache::get('token'))->post($this->url . '/librodiario/insertar', [
@@ -113,6 +125,18 @@ class LibrodiarioController extends Controller
                     "SAL_HABER" => $request->saldo,
 
 
+                ]);
+            }
+
+            //despues de insertar vamos a guardar el comprobante
+            if (isset($request->comprobante)) {
+
+                $comprobante = Http::withToken(Cache::get('token'))->post($this->url . '/comprobantes/insertar', [
+                    "NOMBRE" => $url
+                ]);
+            }else {
+                $comprobante = Http::withToken(Cache::get('token'))->post($this->url . '/comprobantes/insertar', [
+                    "NOMBRE" => 'Transaccion sin compronte'
                 ]);
             }
         } catch (\Throwable $e) {
