@@ -184,7 +184,7 @@ Libro Mayor | inicio
                 <select class="form-control text-white" name="naturaleza" id="clasificacion" onchange="datos();" required>
                     <option hidden selected>SELECCIONAR</option>
                     @foreach($clasificacionArr as $key)
-                    <option value="{{$key['NATURALEZA'] }}">{{$key['NATURALEZA'] }}</option>
+                    <option value="{{$key['NATURALEZA'] }}">{{$key['NATURALEZA'] }} </option>
                     @endforeach
 
                   </select>
@@ -204,7 +204,7 @@ Libro Mayor | inicio
 
             <label class="form-label">
             Saldo
-            <input type='text' name='saldo' class="form-control text-white"  required></input> 
+            <input type='number' name='saldo' class="form-control text-white"  required></input> 
             </label>
             <br>
                   <label class="radio-inline">
@@ -487,7 +487,7 @@ Libro Mayor | inicio
             </label>
             <label class="form-label">
             Saldo
-            <input type='text' value="{{ $libromayor['SAL_DEBE'] }}" name='saldo' class="form-control text-white"  required></input> 
+            <input type='number' value="{{ $libromayor['SAL_DEBE'] }}" name='saldo' class="form-control text-white"  required></input> 
             </label>
             <br>
                   <label class="radio-inline">
@@ -589,6 +589,32 @@ Libro Mayor | inicio
 
         @section('js')
                 <script src="{{ asset('assets/js/ab-page.js') }}"></script>
+
+
+
+          
+
+<script>
+  function valida() {
+    let cuenta = document.getElementById('cuenta').value
+    if (cuenta == 'SELECCIONAR') {
+      Swal.fire({
+            icon: 'error',
+            text: 'No selecciono un periodo'
+            // footer: '<a href="">Why do I have this issue?</a>'
+        })
+        event.preventDefault();
+    }
+   
+  }
+</script>
+
+
+
+
+
+
+
 
 
 
