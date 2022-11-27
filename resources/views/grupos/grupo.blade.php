@@ -79,11 +79,12 @@
             </center>
         </div>
         <p align="right" valign="baseline">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button> 
-            <a type="button" href="{{route('pdf.grupos')}}" class="btn btn-danger btn-sm"  ><i class="mdi mdi-file-pdf"></i>Generar PDF</a>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
+            <a type="button" href="{{ route('pdf.grupos') }}" class="btn btn-danger btn-sm"><i
+                    class="mdi mdi-file-pdf"></i>Generar PDF</a>
             <button id="btnExportar" class="btn btn-success btn-sm">
-              <i class="mdi mdi-file-excel"></i> Generar Excel
-          </button>
+                <i class="mdi mdi-file-excel"></i> Generar Excel
+            </button>
         </p>
         <div class="row">
 
@@ -93,11 +94,11 @@
                     <div class="card-body">
                         <h4 class="card-title">Gestion de Grupos</h4>
                         <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                            <input class="form-control me-2 light-table-filter text-white" data-table="table_id" type="text" 
-                            placeholder="Buscar un Grupos">
+                            <input class="form-control me-2 light-table-filter text-white" data-table="table_id"
+                                type="text" placeholder="Buscar un Grupos">
                         </form>
                         <div class="table-responsive">
-                            <table id="tabla"  class="table table-bordered table-contextual table_id">
+                            <table id="tabla" class="table table-bordered table-contextual table_id">
                                 <thead>
                                     <tr>
                                         <th class="text-dark bg-white"> # </th>
@@ -307,25 +308,26 @@
     </div>
     <!-- content-wrapper ends -->
     <!-- partial:../../partials/_footer.html -->
-    @section('js')
+@section('js')
     <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>
     <script>
         const $btnExportar = document.querySelector("#btnExportar"),
             $tabla = document.querySelector("#tabla");
-      
+
         $btnExportar.addEventListener("click", function() {
             let tableExport = new TableExport($tabla, {
                 exportButtons: false, // No queremos botones
                 filename: "Reporte de Grupos", //Nombre del archivo de Excel
                 sheetname: "Reporte de Grupos", //Título de la hoja
-                ignoreCols: 4,  
+                ignoreCols: 4,
             });
             let datos = tableExport.getExportData();
             let preferenciasDocumento = datos.tabla.xlsx;
-            tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType, preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento.merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
+            tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType,
+                preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento
+                .merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
         });
-      </script>
-        
-    @endsection
+    </script>
+@endsection
 @endsection
