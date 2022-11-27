@@ -82,9 +82,14 @@ Usuarios | inicio
           <div class="card-body p-1">
             <center><h4 class="card-title">Registros de usuarios</h4></center>
             <!-- <p class="card-description"> Add class <code>.table-striped</code> -->
-            </p>
+            {{-- </p> --}}
+            <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+              <input class="form-control me-2 light-table-filter text-white" data-table="table_id"
+                  type="text" placeholder="Buscar un usuario">
+          </form>
+
             <div class="table-responsive">
-              <table id="tabla" class="table table-bordered table-contextual">
+              <table id="tabla" class="table table-bordered table-contextual table_id">
                 <thead>
                   <tr class="text-dark bg-white">
                       <th class="text-dark bg-white"># Codigo</th>
@@ -418,6 +423,9 @@ Usuarios | inicio
 </main>
 
           @section('js')
+          
+
+<script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
           {{-- PAGINACIÓN --}}
           <script src="{{ asset('assets/js/ab-page.js') }}"></script>
           {{-- GENERADOR DE EXCEL --}}
