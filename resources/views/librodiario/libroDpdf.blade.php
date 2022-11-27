@@ -53,8 +53,8 @@
                     <td> {{ $diario['COD_LIBDIARIO'] }} </td>
                     <td> {{ $diario['NUM_SUBCUENTA'] }} </td>
                     <td> {{ $diario['NOM_SUBCUENTA'] }} </td>
-                    <td> {{ $diario['SAL_DEBE'] }} </td>
-                    <td> {{ $diario['SAL_HABER'] }}</td>
+                    <td> {{ number_format( $diario['SAL_DEBE']) }} </td>
+                    <td> {{ number_format($diario['SAL_HABER']) }}</td>
                     <td> {{ substr( $diario['FEC_LIBDIARIO'],0,10) }} </td>
                 </tr>
           @endforeach

@@ -454,8 +454,8 @@ Libro Mayor | inicio
                             <td> {{ $libromayor['COD_CLASIFICACION'] }} </td>
                             <td> {{ $libromayor['NUM_CUENTA'] }} </td>
                             <td> {{ $libromayor['NOM_CUENTA'] }} </td>
-                            <td> {{ $libromayor['SAL_DEBE'] }} </td>
-                            <td>  {{ $libromayor['SAL_HABER'] }}</td>
+                            <td> {{ number_format($libromayor['SAL_DEBE']) }} </td>
+                            <td>  {{ number_format($libromayor['SAL_HABER']) }}</td>
                             <td> {{ substr( $libromayor['FEC_LIBMAYOR'],0,10) }} </td>
                             <td><button type="button"  class="btn btn-primary"  data-toggle="modal" data-target="#dialogo5">Ingresada</button>
                            

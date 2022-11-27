@@ -43,7 +43,6 @@
                 <th class="text-dark bg-white"> Saldo Debe </th>
                 <th class="text-dark bg-white"> Saldo Haber </th>
                 <th class="text-dark bg-white"> Fecha </th>
-                <th class="text-dark bg-white"> Estado Cuenta </th>
             </thead>
             <tbody>
                 @foreach ($mayor as $mayor)
@@ -54,8 +53,8 @@
                     <td> {{ $mayor['COD_CLASIFICACION'] }} </td>
                     <td> {{ $mayor['NUM_CUENTA'] }} </td>
                     <td> {{ $mayor['NOM_CUENTA'] }} </td>
-                    <td> {{ $mayor['SAL_DEBE'] }} </td>
-                    <td>  {{ $mayor['SAL_HABER'] }}</td>
+                    <td> {{ number_format($mayor['SAL_DEBE']) }} </td>
+                    <td>  {{ number_format($mayor['SAL_HABER'] )}}</td>
                     <td> {{ substr( $mayor['FEC_LIBMAYOR'],0,10) }} </td>
                 </tr>
           @endforeach
