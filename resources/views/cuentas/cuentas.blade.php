@@ -71,7 +71,7 @@ Cuentas | inicio
                         placeholder="Buscar una cuenta">
                     </form>
                     <div class="table-responsive">
-                        <table class="table table-bordered table-contextual table_id">
+                        <table  id="tabla"  class="table table-bordered table-contextual table_id">
                             <thead>
                                 <tr>
                                     <th class="text-dark bg-white"> # </th>
@@ -190,6 +190,7 @@ Cuentas | inicio
                             </tbody>
                         </table>
                     </div>
+                    <div id="paginador" class=""></div>
                 </div>
             </div>
 
@@ -280,6 +281,7 @@ Cuentas | inicio
 @section('js')
 
 <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
+<script src="{{ asset('assets/js/ab-page.js') }}"></script>
 @endsection
 
 @endsection
