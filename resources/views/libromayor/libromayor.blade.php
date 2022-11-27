@@ -208,11 +208,11 @@ Libro Mayor | inicio
             </label>
             <br>
                   <label class="radio-inline">
-                      <input type="radio" name="transaccion" value="1">Debe
+                      <input type="radio" name="transaccion" value="1" required>Debe
                   </label>
                   &nbsp;&nbsp; 
                   <label class="radio-inline">
-                      <input type="radio" name="transaccion" value="0">Haber
+                      <input type="radio" name="transaccion" value="0" required>Haber
                   </label><hr />
             <label class="form-label">
             Fecha
@@ -491,12 +491,12 @@ Libro Mayor | inicio
             </label>
             <br>
                   <label class="radio-inline">
-                      <input type="radio" name="transaccion" value="1">Debe
+                      <input type="radio" name="transaccion" value="1" required>Debe
                   </label>
 
                   &nbsp;&nbsp; 
                   <label class="radio-inline">
-                      <input type="radio" name="transaccion" value="0">Haber
+                      <input type="radio" name="transaccion" value="0" required>Haber
                   </label><hr />
                  
             <label class="form-label">

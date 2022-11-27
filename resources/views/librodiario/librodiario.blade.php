@@ -273,11 +273,11 @@
                                         </label>
                                         <br>
                                         <label class="radio-inline">
-                                            <input type="radio" name="transaccion" value="1">Debe
+                                            <input type="radio" name="transaccion" value="1" required>Debe
                                         </label>
                                         &nbsp;&nbsp;
                                         <label class="radio-inline">
-                                            <input type="radio" name="transaccion" value="0">Haber
+                                            <input type="radio" name="transaccion" value="0" required>Haber
                                         </label>
                                         <hr />
                                         <label class="form-label">
@@ -527,7 +527,7 @@
                                                                         <select class="form-control text-white"
                                                                             name="periodo" id="periodo"
                                                                             onchange="datos();" required>
-                                                                            <option hidden selected>SELECCIONAR</option>
+                                                                            <option hidden selected> </option>
                                                                             @foreach ($periodoArr as $key)
                                                                                 <option value="{{ $key['COD_PERIODO'] }}">
                                                                                     {{ $key['NOM_PERIODO'] }}</option>
@@ -576,13 +576,13 @@
                                                                             </label>
                                                                             <br>
                                                                             <label class="radio-inline">
-                                                                                <input type="radio" name=""
-                                                                                    value="">Debe
+                                                                                <input type="radio" name="transaccion"
+                                                                                    value="1" required>Debe
                                                                             </label>
                                                                             &nbsp;&nbsp;
                                                                             <label class="radio-inline">
-                                                                                <input type="radio" name=""
-                                                                                    value="">Haber
+                                                                                <input type="radio" name="transaccion"
+                                                                                    value="0" required>Haber
                                                                             </label>
                                                                             <hr />
                                                                             <label class="form-label">
