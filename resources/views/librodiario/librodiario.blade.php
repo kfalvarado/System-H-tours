@@ -409,8 +409,10 @@
     <div class="demo">
         <form class="form-search">
             <div class="input-group">
-                <input class="form-controlprueba form-text" maxlength="1000" placeholder="Buscar" size="30"
-                    type="text" /> &nbsp;
+                <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                    <input class="form-controlprueba form-text me-2 light-table-filter text-white" data-table="table_id" type="text" 
+                    placeholder="Buscar en libro diario">
+                </form> &nbsp;
                 <button class="btnprueba"> BUSCAR </button>
             </div>
         </form>
@@ -422,9 +424,9 @@
         <div class="col-lg-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-
+                    
                     <div class="table-responsive">
-                        <table id="tabla" class="table table-bordered table-contextual">
+                        <table id="tabla" class="table table-bordered table-contextual table_id">
                             <thead>
                                 <tr>
                                     <th class="text-dark bg-white"> # </th>
@@ -688,6 +690,8 @@
 
 
 @section('js')
+
+<script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>
 
 

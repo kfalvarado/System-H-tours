@@ -400,7 +400,8 @@ Libro Mayor | inicio
           <div class="demo">
             <form class="form-search">
               <div class="input-group">
-                <input class="form-controlprueba form-text" maxlength="1000" placeholder="Buscar" size="30" type="text" /> &nbsp;
+                <input class="form-controlprueba form-text me-2 light-table-filter text-white" data-table="table_id" type="text" 
+                    placeholder="Buscar en libro mayor">
                 <button class="btnprueba"> BUSCAR </button>
               </div>
             </form>
@@ -422,7 +423,7 @@ Libro Mayor | inicio
                       </select>
                     </form>
                     <div class="table-responsive">
-                      <table id="tabla" class="table table-bordered table-contextual"  >
+                      <table id="tabla" class="table table-bordered table-contextual table_id"  >
                         <thead>
                           <tr>
                             <th class="text-dark bg-white"> # </th>
@@ -622,6 +623,7 @@ Libro Mayor | inicio
 
      
 
+                <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
 <script>
   function validar() {
     let cuenta = document.getElementById('cuenta').value
