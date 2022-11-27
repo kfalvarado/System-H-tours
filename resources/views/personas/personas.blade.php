@@ -93,20 +93,13 @@
                     <h4 class="card-title">
                         <center>Personas Registradas</center>
                     </h4>
-                    <form action="" class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                        <input type="text" id="buscador" class="form-control" placeholder="Buscar Usuario">
-                        {{-- <Select class="form-control bg-dark text-white" style="position: relative;  " name="nume">
-                        <option value="{{ count($personasArray) }}"> Ver todos ({{ count($personasArray) }})</option>
-                        <option value="5"> 5</option>
-                        <option value="10"> 10</option>
-                        <option value="15"> 15</option>
-                        <option value="30"> 30</option>
-                      </Select> --}}
-                        <button class="btn btn-info" type="submit">Buscar</button>
+                    <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                        <input class="form-control me-2 light-table-filter text-white" data-table="table_id"
+                            type="text" placeholder="Buscar un Grupos">
                     </form>
 
                     <div class="table-responsive">
-                        <table id="tblDatos" class="table table-striped table-bordered table-condensed table-hover"
+                        <table id="tblDatos" class="table table-striped table-bordered table-condensed table-hover table_id"
                             cellspacing="0" cellpadding="0" width="100%">
                             <thead>
                                 <tr>
@@ -591,6 +584,8 @@
     </script>
 
 @section('js')
+
+<script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
     {{-- Enlace a paginador de javascript --}}
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>
 
