@@ -220,7 +220,7 @@ Libro Mayor | inicio
             </label>
             <br>
             <a href="" class="btn btn-secondary">Cancelar</a>
-            <button type="submit" class="btn btn-primary">Registrar </button>
+            <button type="submit" onclick="validar()" class="btn btn-primary">Registrar </button>
             </form>
             </div> 
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -590,12 +590,10 @@ Libro Mayor | inicio
         @section('js')
                 <script src="{{ asset('assets/js/ab-page.js') }}"></script>
 
-
-
-          
+     
 
 <script>
-  function valida() {
+  function validar() {
     let cuenta = document.getElementById('cuenta').value
     if (cuenta == 'SELECCIONAR') {
       Swal.fire({
