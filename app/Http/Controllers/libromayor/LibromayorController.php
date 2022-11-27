@@ -102,7 +102,7 @@ class LibromayorController extends Controller
 
 		try {
 
-			if ($request->debe == '1') {
+			if ($request->transaccion == '1') {
 				# code...
 
 				$insertar = Http::withToken(Cache::get('token'))->post($this->url . '/libromayor/insertar', [
@@ -115,7 +115,7 @@ class LibromayorController extends Controller
 
 
 				]);
-			} elseif ($request->haber == '1') {
+			} elseif ($request->transaccion == '0') {
 
 				$insertar = Http::withToken(Cache::get('token'))->post($this->url . '/libromayor/insertar', [
 
@@ -166,7 +166,7 @@ class LibromayorController extends Controller
 	{
 
 		try {
-
+			if($request->transaccion == '1'){
 			$actualizar = Http::withToken(Cache::get('token'))->put($this->url . '/libromayor/actualizar/' . $request->f, [
 
 
@@ -175,8 +175,26 @@ class LibromayorController extends Controller
 				"COD_PERIODO" => $request->clasificacionperiodo,
 				"NOM_CUENTA" => $request->nombrecuenta,
 				"SAL_DEBE" => $request->saldo,
+				"SAL_HABER" => 0,
+			]);
+		}elseif ($request->transaccion == '0'){
+
+			$actualizar = Http::withToken(Cache::get('token'))->put($this->url . '/libromayor/actualizar/' . $request->f, [
+
+				"COD_PERIODO" => $request->clasificacionperiodo,
+				"NOM_CUENTA" => $request->nombrecuenta,
+				"SAL_DEBE" => 0,
 				"SAL_HABER" => $request->saldo,
 			]);
+
+
+
+
+
+
+
+
+		}
 
 			# code...
 		} catch (\Throwable $e) {
