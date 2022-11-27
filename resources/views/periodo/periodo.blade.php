@@ -109,10 +109,12 @@
                     </h4>
 
                     <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                        <input type="text" class="form-control" placeholder="Buscar periodo">
+                        <input class="form-control me-2 light-table-filter text-white" data-table="table_id" type="text" 
+                        placeholder="Buscar un periodo">
                     </form>
+
                     <div class="table-responsive">
-                        <table id="tabla" class="table table-bordered table-contextual">
+                        <table id="tabla" class="table table-bordered table-contextual table_id">
                             <thead>
                                 <tr>
                                     <th class="text-dark bg-white">#</th>
@@ -334,6 +336,7 @@
 
 @section('js')
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>
+    <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
     <script>
         const $btnExportar = document.querySelector("#btnExportar"),
             $tabla = document.querySelector("#tabla");
