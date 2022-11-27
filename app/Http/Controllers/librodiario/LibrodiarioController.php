@@ -172,7 +172,7 @@ class LibrodiarioController extends Controller
 	{
 		
 		try {	
-
+            if ($request->transaccion == '1') {
 			$actualizar = Http::withToken(Cache::get('token'))->put($this->url.'/librodiario/actualizar/'.$request->f,[
 
 
@@ -180,8 +180,21 @@ class LibrodiarioController extends Controller
                 "NOM_CUENTA"=> $request->cuenta,
                 "NOM_SUBCUENTA"=> $request->nombresubcuenta,
                 "SAL_DEBE"=> $request->saldo,
+                "SAL_HABER"=> 0,
+			]);
+
+        } elseif ($request->transaccion == '0') {
+
+            $actualizar = Http::withToken(Cache::get('token'))->put($this->url.'/librodiario/actualizar/'.$request->f,[
+
+
+                "COD_PERIODO"=> $request->periodo,
+                "NOM_CUENTA"=> $request->cuenta,
+                "NOM_SUBCUENTA"=> $request->nombresubcuenta,
+                "SAL_DEBE"=> 0,
                 "SAL_HABER"=> $request->saldo,
 			]);
+        }
 
 			# code...
 		} catch (\Throwable $e) {
