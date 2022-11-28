@@ -127,12 +127,12 @@
                                                         <button type="button" class="btn btn-info" data-toggle="modal"
                                                             data-target="#modal-editar-{{ $usuario['CODIGO_USUARIO'] }}">Editar
                                                         </button>
-                                                        {{-- <button 
-                        type="button"  
-                        class="btn btn-danger"  
-                        data-toggle="modal" 
-                        data-target="#modal-eliminar-{{$usuario['CODIGO_USUARIO']}}">Eliminar
-                      </button>  --}}
+                                                            {{-- <button 
+                                                                    type="button"  
+                                                                    class="btn btn-danger"  
+                                                                    data-toggle="modal" 
+                                                                    data-target="#modal-eliminar-{{$usuario['CODIGO_USUARIO']}}">Eliminar
+                                                                </button>  --}}
                                                     </td>
                                                 </tr>
 
@@ -212,18 +212,18 @@
                                                                             </label>
                                                                             <br>
                                                                             {{-- <label class="form-label">
-                                                  Contraseña
-                                                  <input 
-                                                    type='password' 
-                                                    name='CONTRASEGNA' 
-                                                    class="form-control text-white"  
-                                                    required></input> 
-                                                </label> --}}
+                                                                                    Contraseña
+                                                                                    <input 
+                                                                                        type='password' 
+                                                                                        name='CONTRASEGNA' 
+                                                                                        class="form-control text-white"  
+                                                                                        required></input> 
+                                                                                    </label> --}}
                                                                             <br>
                                                                             {{-- <label class="form-label">
-                                              Fecha de vencimiento
-                                              <input type='date' name='fecha' class="form-control text-white"  required></input> 
-                                              </label>  --}}
+                                                                                Fecha de vencimiento
+                                                                                <input type='date' name='fecha' class="form-control text-white"  required></input> 
+                                                                                </label>  --}}
                                                                             <!-- INICIO MODAL PARA NUEVA  -->
                                                                             <br>
 
@@ -240,11 +240,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <!-- FIN DE MODAL PARA EDITAR  -->
 
                                                 <!-- INICIO MODAL PARA BORRAR  -->
-                                                <div class="modal-container">
+                                                {{-- <div class="modal-container">
                                                     <div class="modal fade bd-example-modal-lg"
                                                         id="modal-eliminar-{{ $usuario['CODIGO_USUARIO'] }}">
                                                         <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
@@ -275,7 +274,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <!-- FIN DE MODAL PARA BORRAR  -->
                                             @endforeach
                                         @endif
