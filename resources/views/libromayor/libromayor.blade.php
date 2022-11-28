@@ -454,7 +454,7 @@ Libro Mayor | inicio
 
                 <tr class="text-white bg-dark">
                   <td> {{ $libromayor['COD_LIBMAYOR'] }} </td>
-                  <td> {{ $libromayor['COD_CLASIFICACION'] }} </td>
+                  <td> {{ $libromayor['NATURALEZA'] }} </td>
                   <td> {{ $libromayor['NUM_CUENTA'] }} </td>
                   <td> {{ $libromayor['NOM_CUENTA'] }} </td>
                   <td> {{ number_format($libromayor['SAL_DEBE']) }} </td>
@@ -489,7 +489,7 @@ Libro Mayor | inicio
                               <label class="form-label">
                     Clasificacion
                     <select class="form-control text-white" name="naturaleza" id="clasificacion" onchange="datos();" required>
-                      <option hidden selected>SELECCIONAR</option>
+                      <option hidden selected value="{{ $libromayor['NATURALEZA'] }}">{{ $libromayor['NATURALEZA'] }}</option>
                       @foreach($clasificacionArr as $key)
                       <option value="{{$key['NATURALEZA'] }}">{{$key['NATURALEZA'] }} </option>
                       @endforeach
