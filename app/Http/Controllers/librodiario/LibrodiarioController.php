@@ -90,63 +90,87 @@ class LibrodiarioController extends Controller
         // return $request;
         if (isset($request->comprobante)) {
             $request->validate([
-                "comprobante"=>'required|image|max:2048'
+                "comprobante" => 'required|image|max:2048'
             ]);
 
             $imagenes =  $request->file('comprobante')->store('public/comprobantesimg');
 
             $url = Storage::url($imagenes);
             // return $url;
-          }
+        }
 
+        //cuentas y subcuentas
+        if ($request->nombresubcuenta_cargo != "SELECCIONAR" && $request->nombresubcuenta_abono !="SELECCIONAR") {
+            # code...
        
-
+        
         try {
-            
-
-                $cargo = Http::withToken(Cache::get('token'))->post($this->url . '/librodiario/insertar', [
 
 
-                    "COD_PERIODO" => $request->periodo,
-                    "NOM_CUENTA" => $request->cuenta_cargo,
-                    "NOM_SUBCUENTA" => $request->nombresubcuenta_cargo,
-                    "SAL_DEBE" => $request->saldo_cargo,
-                    "SAL_HABER" => 0,
+            $cargo = Http::withToken(Cache::get('token'))->post($this->url . '/librodiario/insertar', [
 
 
-                ]);
-            
+                "COD_PERIODO" => $request->periodo,
+                "NOM_CUENTA" => $request->cuenta_cargo,
+                "NOM_SUBCUENTA" => $request->nombresubcuenta_cargo,
+                "SAL_DEBE" => $request->saldo_cargo,
+                "SAL_HABER" => 0,
 
 
-                $abono = Http::withToken(Cache::get('token'))->post($this->url . '/librodiario/insertar', [
+            ]);
 
 
-                    "COD_PERIODO" => $request->periodo,
-                    "NOM_CUENTA" => $request->cuenta_abono,
-                    "NOM_SUBCUENTA" => $request->nombresubcuenta_abono,
-                    "SAL_DEBE" => 0,
-                    "SAL_HABER" => $request->saldo_abono,
+
+            $abono = Http::withToken(Cache::get('token'))->post($this->url . '/librodiario/insertar', [
 
 
-                ]);
-            
+                "COD_PERIODO" => $request->periodo,
+                "NOM_CUENTA" => $request->cuenta_abono,
+                "NOM_SUBCUENTA" => $request->nombresubcuenta_abono,
+                "SAL_DEBE" => 0,
+                "SAL_HABER" => $request->saldo_abono,
 
-            //despues de insertar vamos a guardar el comprobante
-            if (isset($request->comprobante)) {
 
-                $comprobante = Http::withToken(Cache::get('token'))->post($this->url . '/comprobantes/insertar', [
-                    "NOMBRE" => $url
-                ]);
-            }else {
-                $comprobante = Http::withToken(Cache::get('token'))->post($this->url . '/comprobantes/insertar', [
-                    "NOMBRE" => 'Transaccion sin compronte'
-                ]);
-            }
+            ]);    
         } catch (\Throwable $e) {
             return 'Error librodiario 47';
         }
 
+    } else {
+        try {
+            //code...
+            $cargo = Http::withToken(Cache::get('token'))->post($this->url . '/librodiario/insertar_s_cuentas', [
+                    "COD_PERIODO" => $request->periodo,
+                    "NOM_CUENTA" =>  $request->cuenta_cargo,
+                    "SAL_DEBE" => $request->saldo_cargo,
+                    "SAL_HABER" => 0
+            ]);
 
+            $abono = Http::withToken(Cache::get('token'))->post($this->url . '/librodiario/insertar_s_cuentas', [
+                "COD_PERIODO" => $request->periodo,
+                "NOM_CUENTA" =>  $request->cuenta_abono,
+                "SAL_DEBE" => 0,
+                "SAL_HABER" => $request->saldo_abono
+            ]);
+
+        } catch (\Throwable $th) {
+            throw $th;
+            return 'solo cuentas 155';
+        }
+
+    }
+
+      //despues de insertar vamos a guardar el comprobante
+      if (isset($request->comprobante)) {
+
+        $comprobante = Http::withToken(Cache::get('token'))->post($this->url . '/comprobantes/insertar', [
+            "NOMBRE" => $url
+        ]);
+    } else {
+        $comprobante = Http::withToken(Cache::get('token'))->post($this->url . '/comprobantes/insertar', [
+            "NOMBRE" => 'Transaccion sin compronte'
+        ]);
+    }
         try {
             $bitacora = Http::withToken(Cache::get('Token'))->post($this->url . '/seguridad/bitacora/insertar', [
 
