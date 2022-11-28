@@ -688,13 +688,4 @@ Libro Diario | inicio
 </script>
 @endsection
 
-
-
-
-
-
-
-
-
-
 @endsection
