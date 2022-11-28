@@ -188,8 +188,8 @@ class LibromayorController extends Controller
 
 
 
-				"COD_PERIODO" => $request->clasificacionperiodo,
-				"NOM_CUENTA" => $request->nombrecuenta,
+				"COD_PERIODO" => $request->periodo,
+				"NOM_CUENTA" => $request->cuenta,
 				"SAL_DEBE" => $request->saldo,
 				"SAL_HABER" => 0,
 			]);
@@ -197,8 +197,8 @@ class LibromayorController extends Controller
 
 			$actualizar = Http::withToken(Cache::get('token'))->put($this->url . '/libromayor/actualizar/' . $request->f, [
 
-				"COD_PERIODO" => $request->clasificacionperiodo,
-				"NOM_CUENTA" => $request->nombrecuenta,
+				"COD_PERIODO" => $request->periodo,
+				"NOM_CUENTA" => $request->cuenta,
 				"SAL_DEBE" => 0,
 				"SAL_HABER" => $request->saldo,
 			]);

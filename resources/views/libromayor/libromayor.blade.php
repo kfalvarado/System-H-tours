@@ -487,35 +487,28 @@ Libro Mayor | inicio
                               <input type="hidden" name="f" value="{{$libromayor['COD_LIBMAYOR']}}">
 
                               <label class="form-label">
-                                Clasificacion
-                                <input type='text' value="{{ $libromayor['COD_CLASIFICACION'] }}" list="lista-clasificacion" name='clasificacionperiodo' class="form-control text-white" required>
-                                <datalist id="lista-clasificacion">
-                                  <option value="Acitvo">
-                                  <option value="Pasivo">
-                                  <option value="Patrimonio">
-                                  <option value="Resultado">
-                                  </option>
-                                  </option>
-                                  </option>
-                                  </option>
-                                </datalist>
-                                </input>
-                              </label>
-                              <label class="form-label">
-                                Nombre de Cuenta
-                                <input type='text' value="{{ $libromayor['NOM_CUENTA'] }}" list="lista-cuentas" name='nombrecuenta' class="form-control text-white" required>
-                                <datalist id="lista-cuentas">
-                                  <option value="Caja">
-                                  <option value="Banco">
-                                  <option value="Proveedores">
-                                  <option value="Capital">
-                                  </option>
-                                  </option>
-                                  </option>
-                                  </option>
-                                </datalist>
-                                </input>
-                              </label>
+                    Clasificacion
+                    <select class="form-control text-white" name="naturaleza" id="clasificacion" onchange="datos();" required>
+                      <option hidden selected>SELECCIONAR</option>
+                      @foreach($clasificacionArr as $key)
+                      <option value="{{$key['NATURALEZA'] }}">{{$key['NATURALEZA'] }} </option>
+                      @endforeach
+
+                    </select>
+                  </label>
+
+                  <label class="form-label">
+                    Seleccionar Cuenta
+
+                    <select class="form-control text-white" name="cuenta" id="cuenta" required>
+                      <option hidden selected>SELECCIONAR</option>
+                      @foreach($nombrecuentaArr as $key)
+                      <option value="{{$key['NOM_CUENTA'] }}">{{$key['NOM_CUENTA'] }}</option>
+                      @endforeach
+
+                    </select>
+                  </label>
+
                               <label class="form-label">
                                 Saldo
                                 <input type='number' value="{{ $libromayor['SAL_DEBE'] }}" name='saldo' class="form-control text-white" required></input>
@@ -623,23 +616,49 @@ Libro Mayor | inicio
 @section('js')
 <script src="{{ asset('assets/js/ab-page.js') }}"></script>
 
-
-
 <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
 <script>
   function validar() {
+    let periodo = document.getElementById('periodo').value
     let cuenta = document.getElementById('cuenta').value
-    if (cuenta == 'SELECCIONAR') {
+    let clasificacion =document.getElementById('clasificacion').value
+    if (periodo == 'SELECCIONAR') {
       Swal.fire({
         icon: 'error',
-        text: 'No selecciono un periodo'
+        text: 'No selecciono un Periodo'
         // footer: '<a href="">Why do I have this issue?</a>'
       })
       event.preventDefault();
     }
 
+    if (clasificacion == 'SELECCIONAR') {
+      Swal.fire({
+        icon: 'error',
+        text: 'No selecciono una Clasificacion'
+        // footer: '<a href="">Why do I have this issue?</a>'
+      })
+      event.preventDefault();
+    }
+
+
+
+    if (cuenta == 'SELECCIONAR') {
+      Swal.fire({
+        icon: 'error',
+        text: 'No selecciono un cuenta'
+        // footer: '<a href="">Why do I have this issue?</a>'
+      })
+      event.preventDefault();
+    }
+
+    
+
+
+
   }
 </script>
+
+
 
 
 
