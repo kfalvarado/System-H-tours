@@ -487,6 +487,18 @@ Libro Mayor | inicio
                               <input type="hidden" name="f" value="{{$libromayor['COD_LIBMAYOR']}}">
 
                               <label class="form-label">
+                  Periodo
+                  <select class="form-control text-white" name="periodo" id="periodo" onchange="datos();" required>
+                    <option hidden selected>SELECCIONAR</option>
+                    @foreach($periodoArr as $key)
+                    <option value="{{$key['COD_PERIODO'] }}">{{$key['NOM_PERIODO'] }}</option>
+                    @endforeach
+
+                  </select>
+
+
+
+                              <label class="form-label">
                     Clasificacion
                     <select class="form-control text-white" name="naturaleza" id="clasificacion" onchange="datos();" required>
                       <option hidden selected value="{{ $libromayor['NATURALEZA'] }}">{{ $libromayor['NATURALEZA'] }}</option>
