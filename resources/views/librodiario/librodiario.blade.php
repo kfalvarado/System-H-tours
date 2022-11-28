@@ -591,7 +591,13 @@ Libro Diario | inicio
                                                                     </label>
                                                                     <label class="form-label">
                                                                         Saldo
+                                                                        @if ($librodiario['SAL_DEBE'] >0)
                                                                         <input type='number' min="0" name="saldo" value="{{ $librodiario['SAL_DEBE'] }}" class="form-control text-white bg-dark" required></input>
+                                                                        
+                                                                        @else
+                                                                        <input type='number' min="0" name="saldo" value="{{ $librodiario['SAL_HABER'] }}" class="form-control text-white bg-dark" required></input>
+                                                                        
+                                                                        @endif
                                                                     </label>
                                                                     <br>
                                                                     <label class="radio-inline">
