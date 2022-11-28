@@ -489,7 +489,7 @@ Libro Mayor | inicio
                               <label class="form-label">
                   Periodo
                   <select class="form-control text-white" name="periodo" id="periodo" onchange="datos();" required>
-                    <option hidden selected>SELECCIONAR</option>
+                    <option hidden selected value="{{$libromayor['COD_PERIODO'] }}">{{ $libromayor['NOM_PERIODO'] }}</option>
                     @foreach($periodoArr as $key)
                     <option value="{{$key['COD_PERIODO'] }}">{{$key['NOM_PERIODO'] }}</option>
                     @endforeach
@@ -513,17 +513,23 @@ Libro Mayor | inicio
                     Seleccionar Cuenta
 
                     <select class="form-control text-white" name="cuenta" id="cuenta" required>
-                      <option hidden selected>SELECCIONAR</option>
+                      <option hidden selected value="{{$libromayor['NOM_CUENTA'] }}">{{$libromayor['NOM_CUENTA'] }}</option>
                       @foreach($nombrecuentaArr as $key)
                       <option value="{{$key['NOM_CUENTA'] }}">{{$key['NOM_CUENTA'] }}</option>
                       @endforeach
 
                     </select>
                   </label>
-
-                              <label class="form-label">
-                                Saldo
+                  
+                  
+                  <label class="form-label">
+                    Saldo
+                    @if ($libromayor['SAL_DEBE'] >0)
                                 <input type='number' value="{{ $libromayor['SAL_DEBE'] }}" name='saldo' class="form-control text-white" required></input>
+                                @else
+                                
+                                <input type='number' value="{{ $libromayor['SAL_HABER'] }}" name='saldo' class="form-control text-white" required></input>
+                                @endif
                               </label>
                               <br>
                               <label class="radio-inline">
