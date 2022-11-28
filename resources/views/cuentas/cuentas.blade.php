@@ -45,6 +45,42 @@
             })
         </script>
     @endif
+    @if (Session::has('eliminado'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            text: 'La cuenta se elimino Correctamente'
+            // footer: '<a href="">Why do I have this issue?</a>'
+        })
+    </script>
+@endif
+@if (Session::has('nopuedes'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            text: 'No puedes eliminar ya se esta usando en libro diairo'
+            // footer: '<a href="">Why do I have this issue?</a>'
+        })
+    </script>
+@endif
+@if (Session::has('sinpermiso'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            text: 'No cuentas con  permiso para realizar esta accion'
+            // footer: '<a href="">Why do I have this issue?</a>'
+        })
+    </script>
+@endif
+@if (Session::has('actualizado'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        text: 'La cuenta se actualizo correctamente'
+        // footer: '<a href="">Why do I have this issue?</a>'
+    })
+</script>
+@endif
     <div class="content-wrapper">
         <div class="page-header">
             <center>
@@ -182,13 +218,17 @@
                                                             <!-- CUERPO DEL DIALOGO BORRAR -->
                                                             <div class="modal-body">
                                                                 <center>
-                                                                    <form action="" method="post">
+                                                                    <form action="{{ route('cuentas.eliminar') }}" method="post">
+                                                                        @csrf @method('DELETE')
                                                                         <label class="form-label">
+                                                                            <input type="hidden" name="f" value="{{  $cuentas['COD_CUENTA']  }}">
+                                                                            <i class="mdi mdi-delete-forever"
+                                                                            style="font-size: 100px;"></i> <br>
                                                                             ¿ Desea Eliminar el Registro ?
 
                                                                         </label>
                                                                         <br>
-                                                                        <a href="" class="btn btn btn-primary">SI</a>
+                                                                        <button type="submit" class="btn btn btn-primary">SI</button>
                                                                         <a href="" class="btn btn-secondary">NO</a>
                                                                     </form>
                                                             </div>

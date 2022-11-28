@@ -229,10 +229,10 @@ class CuentasController extends Controller
      */
     public function eliminar(Request $request)
     {
-            /**
+        /**
          * Seguridad de roles y perimisos metodo delete
          */
-        
+        // return $request;
         try {
             //code...
             $search = Http::withToken(Cache::get('token'))->post($this->url . '/permisos/sel_per_obj', [
@@ -251,32 +251,32 @@ class CuentasController extends Controller
 
         if ($eliminacion == '1') {
             try {
-        $eliminar = Http::withToken(Cache::get('token'))->delete(
-            $this->url . '/cuentas/eliminar/' . $request->f
-        );
-    } catch (\Throwable $th) {
-        //throw $th;
-        return 'Error CUENTAS 250';
-    }
+                $eliminar = Http::withToken(Cache::get('token'))->delete(
+                    $this->url . '/cuentas/eliminar/' . $request->f
+                );
+            } catch (\Throwable $th) {
+                //throw $th;
+                return 'Error CUENTAS 250';
+            }
 
-        Session::flash('eliminado', "1");
-    } else {
-        # code...
-        try {
-            $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
-                "USR" => Cache::get('user'),
-                "ACCION" => 'SIN PERMISO METODO DELETE',
-                "DES" => Cache::get('user') . ' INTENTO ELIMININAR EL DATO  con codigo' . $request->f . ' EN LA PANTALLA DE CUENTAS',
-                "OBJETO" => 'CUENTAS'
+            Session::flash('eliminado', "1");
+        } else {
+            # code...
+            try {
+                $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                    "USR" => Cache::get('user'),
+                    "ACCION" => 'SIN PERMISO METODO DELETE',
+                    "DES" => Cache::get('user') . ' INTENTO ELIMININAR EL DATO  con codigo' . $request->f . ' EN LA PANTALLA DE CUENTAS',
+                    "OBJETO" => 'CUENTAS'
 
-            ]);
+                ]);
 
-            Session::flash('sinpermiso', '1');
-        } catch (\Throwable $th) {
-            //throw $th;
-            return 'Error periodo 268';
+                Session::flash('sinpermiso', '1');
+            } catch (\Throwable $th) {
+                //throw $th;
+                return 'Error periodo 268';
+            }
         }
-    }
         return back();
     }
 
