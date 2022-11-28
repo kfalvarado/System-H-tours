@@ -182,7 +182,7 @@ Libro Mayor | inicio
 
                   <label class="form-label">
                     Clasificacion
-                    <select class="form-control text-white" name="naturaleza" id="clasificacion" onchange="datos();" required>
+                    <select class="form-control text-white" name="naturaleza_cargo" id="naturaleza_cargo" onchange="datos();" required>
                       <option hidden selected>SELECCIONAR</option>
                       @foreach($clasificacionArr as $key)
                       <option value="{{$key['NATURALEZA'] }}">{{$key['NATURALEZA'] }} </option>
@@ -194,7 +194,7 @@ Libro Mayor | inicio
                   <label class="form-label">
                     Seleccionar Cuenta
 
-                    <select class="form-control text-white" name="cuenta" id="cuenta" required>
+                    <select class="form-control text-white" name="cuenta_cargo" id="cuenta_cargo" required>
                       <option hidden selected>SELECCIONAR</option>
                       @foreach($nombrecuentaArr as $key)
                       <option value="{{$key['NOM_CUENTA'] }}">{{$key['NOM_CUENTA'] }}</option>
@@ -204,17 +204,41 @@ Libro Mayor | inicio
                   </label>
 
                   <label class="form-label">
-                    Saldo
-                    <input type='number' name='saldo' class="form-control text-white" required></input>
-                  </label>
+                    Cargo
+                    <input type='number' min="0" name='saldo_cargo'
+                        class="form-control text-white" required></input>
+                </label>
+
                   <br>
-                  <label class="radio-inline">
-                    <input type="radio" name="transaccion" value="1" required>Debe
+              
+                  <label class="form-label">
+                    Clasificacion
+                    <select class="form-control text-white" name="naturaleza_abono" id="naturaleza_abono" onchange="datos();" required>
+                      <option hidden selected>SELECCIONAR</option>
+                      @foreach($clasificacionArr as $key)
+                      <option value="{{$key['NATURALEZA'] }}">{{$key['NATURALEZA'] }} </option>
+                      @endforeach
+
+                    </select>
                   </label>
-                  &nbsp;&nbsp;
-                  <label class="radio-inline">
-                    <input type="radio" name="transaccion" value="0" required>Haber
+
+                  <label class="form-label">
+                    Seleccionar Cuenta
+
+                    <select class="form-control text-white" name="cuenta_abono" id="cuenta_abono" required>
+                      <option hidden selected>SELECCIONAR</option>
+                      @foreach($nombrecuentaArr as $key)
+                      <option value="{{$key['NOM_CUENTA'] }}">{{$key['NOM_CUENTA'] }}</option>
+                      @endforeach
+
+                    </select>
                   </label>
+
+                  <label class="form-label">
+                    abono
+                    <input type='number' min="0" name='saldo_abono'
+                        class="form-control text-white" required></input>
+                </label>
                   <hr />
                   <label class="form-label">
                     Fecha
@@ -649,25 +673,25 @@ Libro Mayor | inicio
       event.preventDefault();
     }
 
-    if (clasificacion == 'SELECCIONAR') {
-      Swal.fire({
-        icon: 'error',
-        text: 'No selecciono una Clasificacion'
-        // footer: '<a href="">Why do I have this issue?</a>'
-      })
-      event.preventDefault();
-    }
+    // if (clasificacion == 'SELECCIONAR') {
+    //   Swal.fire({
+    //     icon: 'error',
+    //     text: 'No selecciono una Clasificacion'
+    //     // footer: '<a href="">Why do I have this issue?</a>'
+    //   })
+    //   event.preventDefault();
+    // }
 
 
 
-    if (cuenta == 'SELECCIONAR') {
-      Swal.fire({
-        icon: 'error',
-        text: 'No selecciono un cuenta'
-        // footer: '<a href="">Why do I have this issue?</a>'
-      })
-      event.preventDefault();
-    }
+    // if (cuenta == 'SELECCIONAR') {
+    //   Swal.fire({
+    //     icon: 'error',
+    //     text: 'No selecciono un cuenta'
+    //     // footer: '<a href="">Why do I have this issue?</a>'
+    //   })
+    //   event.preventDefault();
+    // }
 
     
 

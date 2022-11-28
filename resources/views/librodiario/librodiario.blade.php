@@ -258,13 +258,6 @@
 
                                             </select>
                                         </label>
-                                        <br>
-                                        <label for="">
-                                            ingresar subcuentas
-                                            <input type="checkbox" name="chkbx1" id="chkbx1" checked>
-
-                                        </label>
-                                        <br>
                                         <div id="subcuentas1">
 
                                             <label class="form-label">
@@ -281,6 +274,13 @@
                                                 </select>
                                             </label>
                                         </div>
+                                        <br>
+                                        <label for="">
+                                            ingresar subcuentas
+                                            <input type="checkbox" name="chkbx1" id="chkbx1" checked>
+
+                                        </label>
+                                        <br>
 
                                         <label class="form-label">
                                             Cargo

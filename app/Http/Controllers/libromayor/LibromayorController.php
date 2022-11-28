@@ -99,34 +99,33 @@ class LibromayorController extends Controller
 
 	public function insertar(Request $request)
 	{
-
+		// return $request;
 		try {
 
-			if ($request->transaccion == '1') {
+		
 				# code...
 
-				$insertar = Http::withToken(Cache::get('token'))->post($this->url . '/libromayor/insertar', [
+				$cargo = Http::withToken(Cache::get('token'))->post($this->url . '/libromayor/insertar', [
 
 					"COD_PERIODO" => $request->periodo,
-					"NOM_CUENTA" => $request->cuenta,
-					"SAL_DEBE" => $request->saldo,
+					"NOM_CUENTA" => $request->cuenta_cargo,
+					"SAL_DEBE" => $request->saldo_cargo,
 					"SAL_HABER" => 0,
 
 
 
 				]);
-			} elseif ($request->transaccion == '0') {
-
-				$insertar = Http::withToken(Cache::get('token'))->post($this->url . '/libromayor/insertar', [
+		
+				$abono = Http::withToken(Cache::get('token'))->post($this->url . '/libromayor/insertar', [
 
 					"COD_PERIODO" => $request->periodo,
-					"NOM_CUENTA" => $request->cuenta,
+					"NOM_CUENTA" => $request->cuenta_abono,
 					"SAL_DEBE" => 0,
-					"SAL_HABER" => $request->saldo,
+					"SAL_HABER" => $request->saldo_abono,
 
 
 				]);
-			}
+			
 		} catch (\Throwable $e) {
 			return 'Error libromayor 44';
 		}
