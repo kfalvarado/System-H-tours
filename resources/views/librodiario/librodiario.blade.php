@@ -108,7 +108,7 @@
         }
 
         /*<elemento class="oculto-impresion"><!-- AQUI EMPIEZA PARA OCULTAR EN LA IMPRESION INICIO-->
-              </elemento><!-- AQUI SE QUITA PARA IMPRIMIR ESTO NO SALDRA FIN-->*/
+                  </elemento><!-- AQUI SE QUITA PARA IMPRIMIR ESTO NO SALDRA FIN-->*/
     </style>
 
 
@@ -183,7 +183,7 @@
 
 
     <!-- <div class="main-panel">
-                  <div class="content-wrapper"> -->
+                      <div class="content-wrapper"> -->
     <!--<center> <h1>Libro Diario</h1> </center>-->
     <center>
         <h1>Libro Diario</h1>
@@ -258,11 +258,11 @@
                                                 class="form-control text-white" required>
 
                                             <!-- <select class="form-control text-white">
-                          <option value=""></option>
-                          <option value="">Cheques</option>
-                          <option value="">Depositos</option>
-                          <option value="">Aportacions</option>
-                        </select> -->
+                              <option value=""></option>
+                              <option value="">Cheques</option>
+                              <option value="">Depositos</option>
+                              <option value="">Aportacions</option>
+                            </select> -->
                                         </label>
 
                                         <button> + </button>
@@ -410,8 +410,8 @@
         <form class="form-search">
             <div class="input-group">
                 <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                    <input class="form-controlprueba form-text me-2 light-table-filter text-white" data-table="table_id" type="text" 
-                    placeholder="Buscar en libro diario">
+                    <input class="form-controlprueba form-text me-2 light-table-filter text-white" data-table="table_id"
+                        type="text" placeholder="Buscar en libro diario">
                 </form> &nbsp;
                 <button class="btnprueba"> BUSCAR </button>
             </div>
@@ -424,7 +424,7 @@
         <div class="col-lg-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    
+
                     <div class="table-responsive">
                         <table id="tabla" class="table table-bordered table-contextual table_id">
                             <thead>
@@ -551,13 +551,13 @@
                                                                                 class="form-control text-white" required>
 
                                                                             <!-- <select class="form-control text-white" name="cuenta" id="">
-                          <option value=""></option>
-                          <option value="">Caja</option>
-                          <option value="">Proveedores</option>
-                          <option value="">Capital</option>
-                        </select> -->
+                              <option value=""></option>
+                              <option value="">Caja</option>
+                              <option value="">Proveedores</option>
+                              <option value="">Capital</option>
+                            </select> -->
                                                                             <!-- </input>
-                      </label> -->
+                          </label> -->
                                                                             <label class="form-label">
                                                                                 Nombre de Sub Cuenta
                                                                                 <input type='text' list=""
@@ -567,11 +567,11 @@
                                                                                     required>
 
                                                                                 <!-- <select class="form-control text-white" >
-                          <option value=""></option>
-                          <option value="">Cheques</option>
-                          <option value="">Depositos</option>
-                          <option value="">Aportacions</option>
-                        </select> -->
+                              <option value=""></option>
+                              <option value="">Cheques</option>
+                              <option value="">Depositos</option>
+                              <option value="">Aportacions</option>
+                            </select> -->
 
                                                                             </label>
                                                                             <label class="form-label">
@@ -690,8 +690,7 @@
 
 
 @section('js')
-
-<script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
+    <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>
 
 
