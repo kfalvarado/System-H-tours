@@ -27,16 +27,18 @@
             <a class="btn btn btn-outline-primary " href="javascript:window.print();"><h3>Imprimir</h3></a>
         </div>
        </div>
-        
-
-        <img id="imagen"  style="float: right;" src="{{asset('assets\images\HTOURS.png')}}" alt="logo de Htours" height="100" width="100">
+       
+       <img id="imagen"  style="float: right;" src="{{asset('assets\images\HTOURS.png')}}" alt="logo de Htours" height="100" width="100">
     
      <div class="container">
         <center>
     
-            <h1 id="titulo">Reporte Usuarios</h1>
-            <br>
-            <h2 id="fecha">Fecha:{{date('m/d/Y')}}</h2>
+            <h1 id="titulo">Reporte Usuarios </h1>
+            <div class="row">
+                <h2>Generado por : {{ Cache::get('user') }} - {{ Cache::get('rol') }}</h2>
+                <h2 id="fecha">Fecha - {{date('d/m/Y')}} | Hora - {{date('H:i:s a')}}</h2>
+            </div>
+            
             <br>
             <div class="table">
                 <table id="datos" class="table table-bordered table-contextual table_id" style=" border: 1px ridge black;">

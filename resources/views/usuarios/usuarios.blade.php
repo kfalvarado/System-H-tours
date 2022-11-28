@@ -15,11 +15,11 @@
 
 <!-- nombre del usuario de la barra lateral  -->
 @section('Usuario-Lateral')
-    {{ cache::get('user') }}
+    {{ Cache::get('user') }}
 @endsection
 <!-- rol del usuario de la barra lateral  -->
 @section('rol-usuario')
-    {{ cache::get('rol') }}
+    {{ Cache::get('rol') }}
 @endsection
 
 <!-- foto del menu de la derecha -->
@@ -32,7 +32,7 @@
 @endsection
 <!-- nombre del menu de la derecha  -->
 @section('Usuario-Menu')
-    {{ cache::get('user') }}
+    {{ Cache::get('user') }}
 @endsection
 
 @section('contenido')
@@ -119,7 +119,7 @@
                                                     <td>{{ $usuario['ESTADO_USUARIO'] }}</td>
                                                     <td>{{ $usuario['COD_ROL'] }}</td>
                                                     <td>{{ $usuario['TIPO'] }}</td>
-                                                    <td>{{ substr($usuario['FECHA_ULTIMO_ACCESO'], 0, 10) }}</td>
+                                                    <td>{{ ($usuario['FECHA_ULTIMO_ACCESO'] )}}</td>
                                                     {{-- <td>{{$usuario['PREGUNTA_RESPONDIDA']}}</td> --}}
                                                     <td>{{ $usuario['PRIMER_ACCESO'] }}</td>
                                                     <td>{{ $usuario['CORREO_ELECTRONICO'] }}</td>
