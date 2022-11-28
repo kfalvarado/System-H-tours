@@ -21,45 +21,51 @@
 </head>
 
 <body>
+    <main class="container">
+        <div class="container-fluid mt-3 mb-3">
+            <div class="d-grid gap-2 oculto-impresion">
+                <a class="btn btn btn-outline-primary " href="javascript:window.print();"><h3>Imprimir</h3></a>
+            </div>
+        </div>
+            
     
-    <img id="imagen"  style="float: right;" src="{{asset('assets\images\HTOURS.png')}}" alt="logo de Htours" height="500" width="500">
- 
-    <div class="d-grid gap-2 oculto-impresion">
-    <a class="btn btn btn-outline-dark" href="javascript:window.print();">Imprimir</a>
-    </div>
- 
-    <center>
+            <img id="imagen"  style="float: right;" src="{{asset('assets\images\HTOURS.png')}}" alt="logo de Htours" height="100" width="100">
+        
+            <div class="container">
+                <center>
 
-        <h1 id="titulo">Reporte Roles</h1>
-        <br>
-        <h2 id="fecha">Fecha:{{date('m/d/Y')}}</h2>
-        <br>
-        <table id="datos" >
-            <thead>
-                <th class="text-dark bg-white">#</th>
-                <th class="text-dark bg-white">Rol</th>
-                <th class="text-dark bg-white">Descripción</th>
-            </thead>
-            <tbody>
-                @foreach ($rolsArr as $rols)
-          
+                    <h1 id="titulo">Reporte Roles</h1>
+                    <div class="row">
+                        <h2>Generado por : {{ Cache::get('user') }} - {{ Cache::get('rol') }}</h2>
+                        <h2 id="fecha">Fecha - {{date('d/m/Y')}} | Hora - {{date('H:i:s a')}}</h2>
+                    </div>
+                    <br> 
+                    <div class="table">
+                        <table id="datos" class="table table-bordered table-contextual table_id" style=" border: 1px ridge black;">
+                             <thead>
+                                <th class="text-dark bg-white">#</th>
+                                <th class="text-dark bg-white">Rol</th>
+                                <th class="text-dark bg-white">Descripción</th>
+                            </thead>
+                            <tbody>
+                                @foreach ($rolsArr as $rols)
+                                    <tr>
+                                        <td>{{$rols['COD_ROL']}}</td>
+                                        <td>{{$rols['ROL']}}</td>
+                                        <td>{{$rols['DES_ROL']}}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    @if (count($rolsArr)> 12)
+
+                    <img id="imagen"  style="float: right;position:relative;top: -760px;" src="{{asset('assets\images\HTOURS.png')}}" alt="logo de Htours" height="500" width="500">
                 
-                <tr>
-                    <td>{{$rols['COD_ROL']}}</td>
-                    <td>{{$rols['ROL']}}</td>
-                    <td>{{$rols['DES_ROL']}}</td>
-                </tr>
-          @endforeach
-         
-            </tbody>
-        </table>
-        @if (count($rolsArr)> 12)
-
-        <img id="imagen"  style="float: right;position:relative;top: -760px;" src="{{asset('assets\images\HTOURS.png')}}" alt="logo de Htours" height="500" width="500">
-    
-        @endif
-    </center>
-    
+                    @endif
+                </center>
+            </div>
+                
     
     <script>
         function imprimir() {
@@ -82,6 +88,8 @@
         }
     </script>
 
+    </main>
+    
 </body>
 
 </html>
