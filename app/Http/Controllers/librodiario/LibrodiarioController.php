@@ -34,7 +34,7 @@ class LibrodiarioController extends Controller
 
             $permisos = $search->json();
             foreach ($permisos as $key) {
-                $insercion = $key['PER_INSERCION'];
+                $insercion = $key['PER_CONSULTAR'];
             }
         } catch (\Throwable $e) {
             return 'Error Libro Diario 40';
@@ -56,6 +56,9 @@ class LibrodiarioController extends Controller
             $librodiario = http::withToken(Cache::get('token'))->get($this->url . '/librodiario');
             $personArr = $librodiario->json();
 
+            $subcuentas = http::withToken(Cache::get('token'))->get($this->url . '/subcuentas');
+            $subcuentas= $subcuentas->json();
+
 
             # code...
         } catch (\Throwable $th) {
@@ -75,7 +78,7 @@ class LibrodiarioController extends Controller
             return 'Error Libro Mayor 43';
         }
 
-        return view('librodiario.librodiario', compact('personArr', 'clasificacionArr', 'nombrecuentaArr', 'periodoArr'));
+        return view('librodiario.librodiario', compact('personArr', 'clasificacionArr', 'nombrecuentaArr', 'periodoArr', 'subcuentas'));
     }
     
 
@@ -99,34 +102,34 @@ class LibrodiarioController extends Controller
        
 
         try {
-            if ($request->transaccion == '1') {
+            
 
-                $insertar = Http::withToken(Cache::get('token'))->post($this->url . '/librodiario/insertar', [
+                $cargo = Http::withToken(Cache::get('token'))->post($this->url . '/librodiario/insertar', [
 
 
                     "COD_PERIODO" => $request->periodo,
-                    "NOM_CUENTA" => $request->cuenta,
-                    "NOM_SUBCUENTA" => $request->nombresubcuenta,
-                    "SAL_DEBE" => $request->saldo,
+                    "NOM_CUENTA" => $request->cuenta_cargo,
+                    "NOM_SUBCUENTA" => $request->nombresubcuenta_cargo,
+                    "SAL_DEBE" => $request->saldo_cargo,
                     "SAL_HABER" => 0,
 
 
                 ]);
-            } elseif ($request->transaccion == '0') {
+            
 
 
-                $insertar = Http::withToken(Cache::get('token'))->post($this->url . '/librodiario/insertar', [
+                $abono = Http::withToken(Cache::get('token'))->post($this->url . '/librodiario/insertar', [
 
 
                     "COD_PERIODO" => $request->periodo,
-                    "NOM_CUENTA" => $request->cuenta,
-                    "NOM_SUBCUENTA" => $request->nombresubcuenta,
+                    "NOM_CUENTA" => $request->cuenta_abono,
+                    "NOM_SUBCUENTA" => $request->nombresubcuenta_abono,
                     "SAL_DEBE" => 0,
-                    "SAL_HABER" => $request->saldo,
+                    "SAL_HABER" => $request->saldo_abono,
 
 
                 ]);
-            }
+            
 
             //despues de insertar vamos a guardar el comprobante
             if (isset($request->comprobante)) {
