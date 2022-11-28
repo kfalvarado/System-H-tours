@@ -244,8 +244,12 @@ class PeriodoController extends Controller
         if ($eliminacion == '1') {
 
 
-
+            try {
             $delete = Http::withToken(Cache::get("token"))->delete($this->url . '/periodo/eliminar/' . $request->f);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return 'Error periodo 250';
+        }
 
 
             try {
