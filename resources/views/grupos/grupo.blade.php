@@ -284,8 +284,9 @@
                                             
                                         <label class="form-label">
                                             Nombre de grupo
-                                            <input type='text' name='name' class="form-control text-white"
+                                            <input type='text' name='name' class="form-control text-white" id="nom_grupo" onkeyup="validarLgrupos(this)"
                                                 required>
+                                                <div id="divgrupo"></div>
                                         </label>
                                         <br>
                                         <button type="submit" class="btn btn-primary">Registrar </button>

@@ -56,10 +56,10 @@ function validarletras(e) {
 }
 
 function validarNgrupos(e) {
-    let cuentas = document.getElementById('num_grupo').value;
+    let numgrupo = document.getElementById('num_grupo').value;
     let div = document.getElementById('div_num');
     // console.log(cuentas);
-    if (expresiones.numeros.test(cuentas)) {
+    if (expresiones.numeros.test(numgrupo)) {
         document.getElementById('num_grupo').classList.remove('incorrecto') 
         document.getElementById('num_grupo').classList.add('correcto') 
         console.log('correcto');
@@ -70,4 +70,25 @@ function validarNgrupos(e) {
         console.log('incorrecto');
         
     }
+}
+function validarLgrupos(e) {
+    let nom_grupo = document.getElementById('nom_grupo').value;
+    let div = document.getElementById('divgrupo');
+
+    if (expresiones.nombre.test(nom_grupo)) {
+        document.getElementById('nom_grupo').classList.remove('incorrecto') 
+        document.getElementById('nom_grupo').classList.add('correcto') 
+ 
+        div.innerHTML='';
+        console.log('correcto');
+    }else{
+        document.getElementById('nom_grupo').classList.add('incorrecto') 
+      
+        div.innerHTML='<font color="red"> <h5>Solo puedes ingresar letras</h5></font>'
+
+        console.log('incorrecto');
+
+    }
+    
+
 }
