@@ -64,6 +64,12 @@ class PeriodoController extends Controller
                 return 'Error periodo 32';
             }
         } else {
+            $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                "USR" => Cache::get('user'),
+                "ACCION" => 'ACCESO NO AUTORIZADO PERIODO METODO GET',
+                "DES" => Cache::get('user') . ' INTENTO INGRESAR A LA PANTALLA DE ROLES',
+                "OBJETO" => 'PERIODO'
+            ]);
             return view('Auth.no-auth');
         }
 
