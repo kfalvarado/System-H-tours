@@ -12,7 +12,10 @@
         {{ asset('assets/images/dama.png') }}
     @endif
 @endsection
-
+@section('encabezado')
+<link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
+    
+@endsection
 <!-- nombre del usuario de la barra lateral  -->
 @section('Usuario-Lateral')
     {{ Cache::get('user') }}
@@ -99,7 +102,7 @@
                     </form>
 
                     <div class="table-responsive">
-                        <table id="tblDatos" class="table table-striped table-bordered table-condensed table-hover table_id"
+                        <table id="tabla" class="table table-striped table-bordered table-condensed table-hover table_id"
                             cellspacing="0" cellpadding="0" width="100%">
                             <thead>
                                 <tr>
@@ -491,14 +494,16 @@
 
                             <label for="" style="background-color: #0778b199">
                                 <font color='white'> &nbsp; Edad </font>
-                                <input type="number" id="edad" name="edad" placeholder="0" min="0"
+                                <input type="number" id="edad" name="edad" onkeyup="validarEdad(this)" placeholder="0" min="0"
                                     max="100" class="form-control bg-white text-dark" required>
+                                    <div id="divedad"></div>
                             </label>
                             <label for="" style="background-color: #0778b199">
                                 <font color='white'> &nbsp; Identidad </font>
-                                <input type="tel" onclick="tipopersona();"minlength="0" min="0"
+                                <input type="tel" onclick="tipopersona();"minlength="0" id="dni" onkeyup="validarDNI(this)" min="0"
                                     placeholder="0801-2000-09115" pattern="[0-9]{4}-[0-9]{4}-[0-9]{5}"id="identidad"
                                     name="identidad" class="form-control p_input text-dark bg-white" required>
+                                    <div id="divdni"></div>
                             </label>
                             <br>
                             {{-- centrado  --}}
@@ -515,9 +520,10 @@
                             {{-- fin centrado --}}
                             <label style="background-color: #0778b199">
                                 <font color='white'>Teléfono </font>
-                                <input type="tel" id="telefono" name="telefono"
-                                    class="form-control p_input text-dark bg-white" placeholder="+504 90213300"
+                                <input type="tel" id="telefono" name="telefono" onkeyup="validarTel(this)"
+                                    class="form-control p_input text-dark bg-white"  placeholder="+504 90213300"
                                     pattern="[+0-9]{4} [0-9]{8}" required>
+                                    <div id="divtelefono"></div>
                             </label>
                             <label style="background-color: #0778b199">
                                 <font color='white'>&nbsp;&nbsp;Tipo de Teléfono &nbsp;&nbsp;</font>
@@ -577,14 +583,10 @@
         });
     </script>
 
-    <script>
-        $(document).ready(function() {
-            $('#tabla').DataTable();
-        });
-    </script>
+
 
 @section('js')
-
+<script src="{{ asset('assets/js/ab-formularios.js') }}"></script>
 <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
     {{-- Enlace a paginador de javascript --}}
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>

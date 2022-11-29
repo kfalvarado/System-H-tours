@@ -127,6 +127,7 @@
                                             <font color='white'> &nbsp; Edad </font>
                                             <input type="number" id="edad" name="edad" placeholder="0"
                                                 min="0" max="100" class="form-control" required>
+                                                <div id="divedad"></div>
                                         </label>
                                     </th>
                                     <th></th>
