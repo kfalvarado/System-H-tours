@@ -5,27 +5,7 @@
     Cuentas | inicio
 @endsection
 @section('encabezado')
-    <style>
-        .formulario__correcto {
-            background-color: #1ed12d;
-            opacity: 1;
-        }
-
-        .formulario__incorrecto {
-            background: #bb2929;
-            opacity: 1;
-        }
-        .correcto {
-            border-color: rgb(68, 255, 0);
-            box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075)inset, 0 0 8px rgba(30, 255, 0, 0.6);
-            outline: 0 none;
-        }
-        .incorrecto{
-            border-color: rgb(255, 0, 0);
-    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075)inset, 0 0 8px rgb(255, 0, 0);
-    outline: 0 none;
-        }
-    </style>
+<link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')

@@ -54,3 +54,20 @@ function validarletras(e) {
     
 
 }
+
+function validarNgrupos(e) {
+    let cuentas = document.getElementById('num_grupo').value;
+    let div = document.getElementById('div_num');
+    // console.log(cuentas);
+    if (expresiones.numeros.test(cuentas)) {
+        document.getElementById('num_grupo').classList.remove('incorrecto') 
+        document.getElementById('num_grupo').classList.add('correcto') 
+        console.log('correcto');
+        div.innerHTML='';
+    }else{
+        document.getElementById('num_grupo').classList.add('incorrecto')
+        div.innerHTML='<font color="red"> <h5>Solo puedes ingresar numeros</h5></font>'
+        console.log('incorrecto');
+        
+    }
+}

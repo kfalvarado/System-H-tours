@@ -12,7 +12,10 @@
         {{ asset('assets/images/dama.png') }}
     @endif
 @endsection
-
+@section('encabezado')
+<link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
+    
+@endsection
 <!-- nombre del usuario de la barra lateral  -->
 @section('Usuario-Lateral')
     {{ Cache::get('user') }}
@@ -251,10 +254,7 @@
                                 <!-- CUERPO DEL DIALOGO NUEVA -->
                                 <div class="modal-body">
                                     <center>
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th>
+                                  
                                                         <form action="{{ route('grupo.insertar') }}" method="post">
                                                             @csrf
                                                             <label class="form-label">
@@ -271,22 +271,23 @@
                                                                         @endforeach
                                                                     </select>
                                                                 </label>
+                                                                <br>
                                                                 <label class="form-label">
                                                                     Numero de Grupo
 
-                                                                    <input type='number' name='grupo' min="0"
-                                                                        class="form-control text-white" maxlength="3"
+                                                                    <input type='number' name='grupo' min="0" id="num_grupo"
+                                                                        class="form-control text-white" maxlength="3" onkeyup="validarNgrupos(this)"
                                                                         required>
                                                                 </label>
+                                                                <div id="div_num"></div>
 
-                                                </tr>
-                                            </thead>
-                                        </table>
+                                            
                                         <label class="form-label">
                                             Nombre de grupo
                                             <input type='text' name='name' class="form-control text-white"
                                                 required>
                                         </label>
+                                        <br>
                                         <button type="submit" class="btn btn-primary">Registrar </button>
                                         </form>
                                 </div>
@@ -311,6 +312,7 @@
 @section('js')
     <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>
+    <script src="{{ asset('assets/js/ab-formularios.js') }}"></script>
     <script>
         const $btnExportar = document.querySelector("#btnExportar"),
             $tabla = document.querySelector("#tabla");
