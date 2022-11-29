@@ -12,6 +12,32 @@ Subcuentas | inicio
 {{ asset('assets/images/dama.png')}}
 @endif
 @endsection
+{{-- estilos css  --}}
+@section('encabezado')
+    <style>
+        .formulario__correcto {
+            background-color: #1ed12d;
+            opacity: 1;
+        }
+
+        .formulario__incorrecto {
+            background: #bb2929;
+            opacity: 1;
+        }
+        .correcto {
+            border-color: rgb(68, 255, 0);
+            box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075)inset, 0 0 8px rgba(30, 255, 0, 0.6);
+            outline: 0 none;
+        }
+        .incorrecto{
+            border-color: rgb(255, 0, 0);
+            box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075)inset, 0 0 8px rgb(255, 0, 0);
+            outline: 0 none;
+        }
+    </style>
+@endsection
+{{-- fin estilos css  --}}
+
 
 <!-- nombre del usuario de la barra lateral  -->
 @section('Usuario-Lateral')
@@ -262,11 +288,13 @@ Subcuentas | inicio
 
                                             <label class="form-label">
                                                 Numero de la sub Cuenta
-                                                <input type='number' min="0" name='numerosubcuenta' class="form-control text-white" required></input>
+                                                <input type='number' min="0" name='numerosubcuenta' class="form-control text-white" id="num_subcuenta" onkeyup="validarnumeros(this)"  required>
+                                                <div id="divnum"></div>
                                             </label>
                                             <label class="form-label">
                                                 Nombre de la Sub Cuenta
-                                                <input type='text' name='nombresubcuenta' class="form-control text-white" required></input>
+                                                <input type='text' name='nombresubcuenta' id="nom_subcuenta" class="form-control text-white" onkeyup="validarletras(this)" required>
+                                                <div id="divsubcuenta"></div>
                                             </label>
                                             <a href="" class="btn btn-secondary">Cancelar</a>
                                             <button type="submit" class="btn btn-primary">NUEVO</button>
@@ -292,6 +320,7 @@ Subcuentas | inicio
     </div>
     @section('js')
     <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
+    <script src="{{ asset('assets/js/ab-subcuentas.js') }}"></script>
     @routes
     <script>
         function datos() {

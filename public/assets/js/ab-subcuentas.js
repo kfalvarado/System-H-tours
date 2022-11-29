@@ -4,28 +4,20 @@ const expresiones = {
     password: /^.{4,12}$/, // 4 a 12 digitos.
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     telefono: /^\d{7,14}$/, // 7 a 14 numeros.
-    numeros: /^\d{1,10}$/ // 7 a 14 numeros.
-}
-
-const campos = {
-    usuario: false,
-    nombre: false,
-    password: false,
-    correo: false,
-    telefono: false
+    numeros: /^\d{1,10}$/ // 1 a 10 numeros.
 }
 
 function validarnumeros(e) {
-    let cuentas = document.getElementById('num_cuenta').value;
+    let subcuentas = document.getElementById('num_subcuenta').value;
     let div = document.getElementById('divnum');
-    // console.log(cuentas);
-    if (expresiones.numeros.test(cuentas)) {
-        document.getElementById('num_cuenta').classList.remove('incorrecto') 
-        document.getElementById('num_cuenta').classList.add('correcto') 
+    // console.log(subcuentas);
+    if (expresiones.numeros.test(subcuentas)) {
+        document.getElementById('num_subcuenta').classList.remove('incorrecto') 
+        document.getElementById('num_subcuenta').classList.add('correcto') 
         console.log('correcto');
         div.innerHTML='';
     }else{
-        document.getElementById('num_cuenta').classList.add('incorrecto')
+        document.getElementById('num_subcuenta').classList.add('incorrecto')
         div.innerHTML='<font color="red"> <h5>Solo puedes ingresar numeros</h5></font>'
         console.log('incorrecto');
         
@@ -33,18 +25,21 @@ function validarnumeros(e) {
     
 }    
 
+
+
+
 function validarletras(e) {
-    let cuentas = document.getElementById('nom_cuenta').value;
-    let div = document.getElementById('divcuenta');
+    let cuentas = document.getElementById('nom_subcuenta').value;
+    let div = document.getElementById('divsubcuenta');
 
     if (expresiones.nombre.test(cuentas)) {
-        document.getElementById('nom_cuenta').classList.remove('incorrecto') 
-        document.getElementById('nom_cuenta').classList.add('correcto') 
+        document.getElementById('nom_subcuenta').classList.remove('incorrecto') 
+        document.getElementById('nom_subcuenta').classList.add('correcto') 
  
         div.innerHTML='';
         console.log('correcto');
     }else{
-        document.getElementById('nom_cuenta').classList.add('incorrecto') 
+        document.getElementById('nom_subcuenta').classList.add('incorrecto') 
       
         div.innerHTML='<font color="red"> <h5>Solo puedes ingresar letras</h5></font>'
 

@@ -58,5 +58,5 @@ function CacheTime() {
     time = document.getElementById('time').value
     // console.log(time);
     localStorage.setItem('time',time)
-    console.log('si se puede otro tipo de codigo bro :o');
+   
   }
