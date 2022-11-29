@@ -4,6 +4,29 @@
 @section('titulo')
     Cuentas | inicio
 @endsection
+@section('encabezado')
+    <style>
+        .formulario__correcto {
+            background-color: #1ed12d;
+            opacity: 1;
+        }
+
+        .formulario__incorrecto {
+            background: #bb2929;
+            opacity: 1;
+        }
+        .correcto {
+            border-color: rgb(68, 255, 0);
+            box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075)inset, 0 0 8px rgba(30, 255, 0, 0.6);
+            outline: 0 none;
+        }
+        .incorrecto{
+            border-color: rgb(255, 0, 0);
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075)inset, 0 0 8px rgb(255, 0, 0);
+    outline: 0 none;
+        }
+    </style>
+@endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
     @if (Cache::get('genero') == 'M')
@@ -46,41 +69,41 @@
         </script>
     @endif
     @if (Session::has('eliminado'))
-    <script>
-        Swal.fire({
-            icon: 'success',
-            text: 'La cuenta se elimino Correctamente'
-            // footer: '<a href="">Why do I have this issue?</a>'
-        })
-    </script>
-@endif
-@if (Session::has('nopuedes'))
-    <script>
-        Swal.fire({
-            icon: 'error',
-            text: 'No puedes eliminar ya se esta usando en libro diairo'
-            // footer: '<a href="">Why do I have this issue?</a>'
-        })
-    </script>
-@endif
-@if (Session::has('sinpermiso'))
-    <script>
-        Swal.fire({
-            icon: 'error',
-            text: 'No cuentas con  permiso para realizar esta accion'
-            // footer: '<a href="">Why do I have this issue?</a>'
-        })
-    </script>
-@endif
-@if (Session::has('actualizado'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        text: 'La cuenta se actualizo correctamente'
-        // footer: '<a href="">Why do I have this issue?</a>'
-    })
-</script>
-@endif
+        <script>
+            Swal.fire({
+                icon: 'success',
+                text: 'La cuenta se elimino Correctamente'
+                // footer: '<a href="">Why do I have this issue?</a>'
+            })
+        </script>
+    @endif
+    @if (Session::has('nopuedes'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                text: 'No puedes eliminar ya se esta usando en libro diairo'
+                // footer: '<a href="">Why do I have this issue?</a>'
+            })
+        </script>
+    @endif
+    @if (Session::has('sinpermiso'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                text: 'No cuentas con  permiso para realizar esta accion'
+                // footer: '<a href="">Why do I have this issue?</a>'
+            })
+        </script>
+    @endif
+    @if (Session::has('actualizado'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                text: 'La cuenta se actualizo correctamente'
+                // footer: '<a href="">Why do I have this issue?</a>'
+            })
+        </script>
+    @endif
     <div class="content-wrapper">
         <div class="page-header">
             <center>
@@ -172,21 +195,23 @@
                                                                                 @endforeach
                                                                             </select>
                                                                         </label>
-                                                                        <label class="form-label">
-                                                                            Numero de Cuenta
-                                                                            <input type='text' name='numero'
+                                                                      
+                                                                            <label class="form-label">
+                                                                                Numero de Cuenta
+                                                                                <input type='text' name='numero'
                                                                                 value="{{ $cuentas['NUM_CUENTA'] }}"
                                                                                 class="form-control text-white"
                                                                                 required></input>
-                                                                        </label>
-                                                                        <label class="form-label">
-                                                                            Nombre de la Cuenta
-                                                                            <input type='text' name='cuenta'
+                                                                            </label>
+                                                                           <label class="form-label">
+                                                                                Nombre de la Cuenta
+                                                                                <input type='text' name='cuenta'
                                                                                 value="{{ $cuentas['NOM_CUENTA'] }}"
                                                                                 min="0"
                                                                                 class="form-control text-white"
                                                                                 required></input>
-                                                                        </label>
+                                                                            </label>
+                                                               
 
                                                                         <button type="submit"
                                                                             class="btn btn-primary">Actualizar </button>
@@ -218,17 +243,20 @@
                                                             <!-- CUERPO DEL DIALOGO BORRAR -->
                                                             <div class="modal-body">
                                                                 <center>
-                                                                    <form action="{{ route('cuentas.eliminar') }}" method="post">
+                                                                    <form action="{{ route('cuentas.eliminar') }}"
+                                                                        method="post">
                                                                         @csrf @method('DELETE')
                                                                         <label class="form-label">
-                                                                            <input type="hidden" name="f" value="{{  $cuentas['COD_CUENTA']  }}">
+                                                                            <input type="hidden" name="f"
+                                                                                value="{{ $cuentas['COD_CUENTA'] }}">
                                                                             <i class="mdi mdi-delete-forever"
-                                                                            style="font-size: 100px;"></i> <br>
+                                                                                style="font-size: 100px;"></i> <br>
                                                                             ¿ Desea Eliminar el Registro ?
 
                                                                         </label>
                                                                         <br>
-                                                                        <button type="submit" class="btn btn btn-primary">SI</button>
+                                                                        <button type="submit"
+                                                                            class="btn btn btn-primary">SI</button>
                                                                         <a href="" class="btn btn-secondary">NO</a>
                                                                     </form>
                                                             </div>
@@ -268,7 +296,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>
-                                                        <form action="{{ route('insertar.cuentas') }}" method="post">
+                                                        <form action="{{ route('insertar.cuentas') }}" method="post"
+                                                            id="formulario">
                                                             @csrf
                                                             <label class="form-label">
                                                                 Clasificacion
@@ -300,24 +329,30 @@
                                                         </label>
                                                     </th>
 
-
-                                                    &nbsp;
-                                                    <th>
-                                                        <label class="form-label">
-                                                            Numero de Cuenta
-                                                            <input type='number' name='numerocuenta' min="0"
-                                                                class="form-control text-white" maxlength="3"
-                                                                required></input>
-                                                        </label>
-                                                    </th>
                                                 </tr>
                                             </thead>
                                         </table>
+                                                  
+                                                        <label class="form-label">
+                                                         
+                                                            Numero de Cuenta
+                                                            <input title="Ingresar solo numeros" type='number' name='numerocuenta' id="num_cuenta"
+                                                            onkeyup="validarnumeros(this)" oninvalid=""
+                                                            min="0"
+                                                            class="form-control text-white " maxlength="3"
+                                                            required>
+                                                            <span for=""id="divnum"></span>
+                                                           
+                                                        </label>
+                                                  <br>
                                         <label class="form-label">
                                             Nombre de la Cuenta
-                                            <input type='text' name='nombrecuenta' class="form-control text-white"
-                                                required></input>
+                                            <input type='text' name='nombrecuenta' id="nom_cuenta"
+                                            class="form-control text-white" onkeyup="validarletras(this)"
+                                            required>
+                                            <label for=""id="divcuenta"></label>
                                         </label>
+                                        <br>
                                         <button type="submit" class="btn btn-primary">Registrar </button>
                                         </form>
                                 </div>
@@ -329,11 +364,6 @@
                 </div>
                 <!-- FIN DE MODAL PARA NUEVA  -->
 
-
-
-
-
-
             </div>
         </div>
     </div>
@@ -343,6 +373,8 @@
 @section('js')
     <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>
+    <script src="{{ asset('assets/js/ab-formularios.js') }}"></script>
+    {{-- <script src="{{ asset('assets/css/formularios.css') }}"></script> --}}
 @endsection
 
 @endsection

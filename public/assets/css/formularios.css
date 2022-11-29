@@ -1,0 +1,11 @@
+.formulario__correcto{
+    color: #1ed12d;
+    opacity: 1;
+}
+
+.formulario__incorrecto{
+    color: #bb2929;
+    opacity: 1;
+}
+
+
