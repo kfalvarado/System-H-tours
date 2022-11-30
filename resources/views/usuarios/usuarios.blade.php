@@ -46,6 +46,15 @@
             })
         </script>
     @endif
+    @if (Session::has('sinpermiso'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                text: 'No cuentas con  permiso para realizar esta accion'
+                // footer: '<a href="">Why do I have this issue?</a>'
+            })
+        </script>
+    @endif
 
     <main>
         <div class="container-scroller">
@@ -55,8 +64,8 @@
                 </center>
 
                 <!-- <ul class="nav nav-pills nav-stacked">
-          <li class="active"><a href="#"></a></li>
-        </ul> -->
+              <li class="active"><a href="#"></a></li>
+            </ul> -->
 
                 {{-- <p align="right" valign="baseline">
       <button type="button"  class="btn btn-success mr-3"  data-toggle="modal " data-target="#dialogo1">(+) Nuevo</button>
@@ -119,7 +128,7 @@
                                                     <td>{{ $usuario['ESTADO_USUARIO'] }}</td>
                                                     <td>{{ $usuario['COD_ROL'] }}</td>
                                                     <td>{{ $usuario['TIPO'] }}</td>
-                                                    <td>{{ ($usuario['FECHA_ULTIMO_ACCESO'] )}}</td>
+                                                    <td>{{ $usuario['FECHA_ULTIMO_ACCESO'] }}</td>
                                                     {{-- <td>{{$usuario['PREGUNTA_RESPONDIDA']}}</td> --}}
                                                     <td>{{ $usuario['PRIMER_ACCESO'] }}</td>
                                                     <td>{{ $usuario['CORREO_ELECTRONICO'] }}</td>
@@ -127,7 +136,7 @@
                                                         <button type="button" class="btn btn-info" data-toggle="modal"
                                                             data-target="#modal-editar-{{ $usuario['CODIGO_USUARIO'] }}">Editar
                                                         </button>
-                                                            {{-- <button 
+                                                        {{-- <button 
                                                                     type="button"  
                                                                     class="btn btn-danger"  
                                                                     data-toggle="modal" 

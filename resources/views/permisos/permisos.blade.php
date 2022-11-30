@@ -37,6 +37,15 @@
             })
         </script>
     @endif
+    @if (Session::has('sinpermiso'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                text: 'No cuentas con  permiso para realizar esta accion'
+                // footer: '<a href="">Why do I have this issue?</a>'
+            })
+        </script>
+    @endif
 
 
     <!-- ESTE CSS ES PARA OCULTAR DATOS EN LA IMPRESION-->
@@ -188,8 +197,8 @@
         <h5>________________________________________________________________________________________________________________
         </h5>
         <!-- <ul class="nav nav-pills nav-stacked">
-                                          <li class="active"><a href="#"></a></li>
-                                        </ul> -->
+                                              <li class="active"><a href="#"></a></li>
+                                            </ul> -->
         <p align="right" valign="baseline">
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo1">(+)
                 Nuevo</button>

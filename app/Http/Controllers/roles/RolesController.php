@@ -44,7 +44,7 @@ class RolesController extends Controller
                 $rolsArr = $rols->json();
             } catch (\Throwable $th) {
                 //throw $th;
-                return 'error periodo 22';
+                return 'error ROLES 43';
             }
 
             try {
@@ -148,7 +148,7 @@ class RolesController extends Controller
             //code...
             $search = Http::withToken(Cache::get('token'))->post($this->url . '/permisos/sel_per_obj', [
                 "PV_ROL" => Cache::get('rol'),
-                "PV_OBJ" => "PERIODO"
+                "PV_OBJ" => "ROLES"
             ]);
 
             $permisos = $search->json();
@@ -157,7 +157,7 @@ class RolesController extends Controller
             }
         } catch (\Throwable $th) {
             //throw $th;
-            return 'Error Periodo 21';
+            return 'Error ROLES 149';
         }
         if ($update == '1') {
             try {
