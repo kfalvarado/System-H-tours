@@ -30,6 +30,15 @@ Libro Mayor | inicio
 {{ asset('assets/images/dama.png')}}
 @endif
 @endsection
+
+
+@section('encabezado')
+<link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
+@endsection
+
+
+
+
 <!-- nombre del menu de la derecha  -->
 @section('Usuario-Menu')
 {{ Cache::get('user') }}
@@ -205,8 +214,9 @@ Libro Mayor | inicio
 
                   <label class="form-label">
                     Cargo
-                    <input type='number' min="0" name='saldo_cargo'
+                    <input type='number' min="0" id="cargo" onkeyup="validarnumeroscargo(this)" name='saldo_cargo'
                         class="form-control text-white" required></input>
+                        <div id="divcargo"></div>
                 </label>
 
                   <br>
@@ -236,8 +246,9 @@ Libro Mayor | inicio
 
                   <label class="form-label">
                     abono
-                    <input type='number' min="0" name='saldo_abono'
+                    <input type='number' min="0" name='saldo_abono' id="abono" onkeyup="validarnumerosabono(this)"
                         class="form-control text-white" required></input>
+                        <div id="divabono"></div>
                 </label>
                   <hr />
                   <label class="form-label">
@@ -246,7 +257,7 @@ Libro Mayor | inicio
                   </label>
                   <br>
                   <a href="" class="btn btn-secondary">Cancelar</a>
-                  <button type="submit" onclick="validar()" class="btn btn-primary">Registrar </button>
+                  <button type="submit" onclick="" class="btn btn-primary">Registrar </button>
               </form>
           </div>
           <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -314,7 +325,7 @@ Libro Mayor | inicio
                   </label>
                   <!-- <a href="" class="btn btn-secondary">Cancelar</a> -->
                   <br>
-                  <button type="submit" class="btn btn-primary">Aceptar</button>
+                  <button type="submit"  onclick="validar();" class="btn btn-primary">Aceptar</button>
               </form>
           </div>
           <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -418,7 +429,7 @@ Libro Mayor | inicio
 </nav>
 
 <p align="right" valign="baseline">
-  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#dialogo4"><i class="mdi mdi-book-open-page-variant"> </i>Mayorizar</button> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button> <a type="button" class="btn btn-danger btn-sm" href="{{ route('pdf.libromayor') }}"><i class="mdi mdi-file-pdf"></i>Generar PDF</a>
+  <button type="button" class="btn btn-success" data-toggle="modal"  data-target="#dialogo4"><i class="mdi mdi-book-open-page-variant"> </i>Mayorizar</button> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button> <a type="button" class="btn btn-danger btn-sm" href="{{ route('pdf.libromayor') }}"><i class="mdi mdi-file-pdf"></i>Generar PDF</a>
   <button id="btnExportar" class="btn btn-success btn-sm">
     <i class="mdi mdi-file-excel"></i> Generar Excel
   </button>
@@ -549,11 +560,14 @@ Libro Mayor | inicio
                   <label class="form-label">
                     Saldo
                     @if ($libromayor['SAL_DEBE'] >0)
-                                <input type='number' value="{{ $libromayor['SAL_DEBE'] }}" name='saldo' class="form-control text-white" required></input>
+                                <input type='number' value="{{ $libromayor['SAL_DEBE'] }}" name='saldo' id="saldo" class="form-control text-white" onkeyup="validarnumerossaldo(this)" required></input>
+                                
+                                                                                        
                                 @else
                                 
-                                <input type='number' value="{{ $libromayor['SAL_HABER'] }}" name='saldo' class="form-control text-white" required></input>
+                                <input type='number' value="{{ $libromayor['SAL_HABER'] }}" name='saldo' id="saldo" onkeyup="validarnumerossaldo(this)" class="form-control text-white" required></input>
                                 @endif
+                                <div id="divsaldoemayor"></div>
                               </label>
                               <br>
                               <label class="radio-inline">
@@ -659,46 +673,54 @@ Libro Mayor | inicio
 <script src="{{ asset('assets/js/ab-page.js') }}"></script>
 
 <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
+<script src="{{ asset('assets/js/ab-libromayor.js')}}"></script>
+
+
+
+
 <script>
-  function validar() {
-    let periodo = document.getElementById('periodo').value
-    let cuenta = document.getElementById('cuenta').value
-    let clasificacion =document.getElementById('clasificacion').value
-    if (periodo == 'SELECCIONAR') {
-      Swal.fire({
-        icon: 'error',
-        text: 'No selecciono un Periodo'
-        // footer: '<a href="">Why do I have this issue?</a>'
-      })
-      event.preventDefault();
-    }
-
-    // if (clasificacion == 'SELECCIONAR') {
-    //   Swal.fire({
-    //     icon: 'error',
-    //     text: 'No selecciono una Clasificacion'
-    //     // footer: '<a href="">Why do I have this issue?</a>'
-    //   })
-    //   event.preventDefault();
-    // }
+        function validar() {
+            let periodo = document.getElementById('periodo').value
+            let clasificacion = document.getElementById('clasificacion').value
+            let seleccionarcuenta = document.getElementById('cuenta').value
+            
 
 
-
-    // if (cuenta == 'SELECCIONAR') {
-    //   Swal.fire({
-    //     icon: 'error',
-    //     text: 'No selecciono un cuenta'
-    //     // footer: '<a href="">Why do I have this issue?</a>'
-    //   })
-    //   event.preventDefault();
-    // }
-
-    
+            if (periodo == 'SELECCIONAR') {
+                Swal.fire({
+                    icon: 'error',
+                    text: 'No selecciono un periodo'
+                    // footer: '<a href="">Why do I have this issue?</a>'
+                })
+                event.preventDefault();
+            }
 
 
+            if (clasificacion == 'SELECCIONAR') {
+                Swal.fire({
+                    icon: 'error',
+                    text: 'No selecciono un clasificacion'
+                    // footer: '<a href="">Why do I have this issue?</a>'
+                })
+                event.preventDefault();
+            }
 
-  }
-</script>
+
+            if (seleccionarcuenta == 'SELECCIONAR') {
+                Swal.fire({
+                    icon: 'error',
+                    text: 'No selecciono una cuenta'
+                    // footer: '<a href="">Why do I have this issue?</a>'
+                })
+                event.preventDefault();
+            }
+
+
+
+        }
+    </script>
+
+
 
 
 
