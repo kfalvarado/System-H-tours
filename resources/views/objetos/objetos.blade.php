@@ -12,6 +12,9 @@
         {{ asset('assets/images/dama.png') }}
     @endif
 @endsection
+@section('encabezado')
+<link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
+@endsection
 
 @section('encabezado')
 @endsection
@@ -291,7 +294,8 @@
                                 <label class="form-label">
                                     Objeto
                                     <input type='text' list="lista-programacion" name='objetos'
-                                        class="form-control text-white" required>
+                                        class="form-control text-white" id="objeto" onkeyup="validarobjeto(this)"  required>
+                                        <div id="divobjeto"></div>
                                     <datalist id="lista-programacion">
                                         <option value="Periodo-2022-ene-1-004">
                                     </datalist>
@@ -301,7 +305,8 @@
                                 <label class="form-label">
                                     Descripcion
                                     <input type='text' list="lista-programacion" name='descripcion'
-                                        class="form-control text-white" required>
+                                        class="form-control text-white" id="descripcion" onkeyup="validardescripcion(this)" required>
+                                        <div id="divdescrip"></div>
                                     <datalist id="lista-programacion">
                                         <option value="Periodo-2022-ene-1-004">
                                     </datalist>
@@ -311,7 +316,8 @@
                                 <label class="form-label">
                                     Tipo de Objeto
                                     <input type='text' list="lista-programacion" name='tipo'
-                                        class="form-control text-white" required>
+                                        class="form-control text-white"  id="tipobjeto" onkeyup="validartipo(this)" required>
+                                        <div id="divtipo"></div>
                                     <datalist id="lista-programacion">
                                         <option value="Periodo-2022-ene-1-004">
                                     </datalist>
@@ -337,6 +343,7 @@
 @section('js')
     <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>
+    <script src="{{ asset('assets/js/ab-objetos.js') }}"></script>
     <script>
         const $btnExportar = document.querySelector("#btnExportar"),
             $tabla = document.querySelector("#tabla");

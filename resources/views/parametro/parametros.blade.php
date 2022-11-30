@@ -12,6 +12,12 @@
         {{ asset('assets/images/dama.png') }}
     @endif
 @endsection
+@section('encabezado')
+<link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
+@endsection
+
+@section('encabezado')
+@endsection
 
 @section('encabezado')
 @endsection
@@ -293,7 +299,8 @@
                                 <label class="form-label">
                                     Parametro
                                     <input type='text' list="lista-programacion" name='parametros'
-                                        class="form-control text-white" required>
+                                        class="form-control text-white" id="parametro" onkeyup="validarparametro(this)"required>
+                                        <div id="divparame"></div>
                                     <datalist id="lista-programacion">
                                         <option value="Periodo-2022-ene-1-004">
                                     </datalist>
@@ -303,7 +310,8 @@
                                 <label class="form-label">
                                     Valor
                                     <input type='text' list="lista-programacion" name='valor'
-                                        class="form-control text-white" required>
+                                        class="form-control text-white" id="valor" onkeyup="validarvalor(this)"required>
+                                        <div id="divvalor"></div>
                                     <datalist id="lista-programacion">
                                         <option value="Periodo-2022-ene-1-004">
                                     </datalist>
@@ -330,6 +338,7 @@
 
 <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>
+    <script src="{{ asset('assets/js/ab-parametros.js') }}"></script>
     <script>
         const $btnExportar = document.querySelector("#btnExportar"),
             $tabla = document.querySelector("#tabla");
