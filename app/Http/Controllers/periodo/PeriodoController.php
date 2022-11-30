@@ -247,7 +247,7 @@ class PeriodoController extends Controller
             return 'Error Periodo 21';
         }
 
-        if ($eliminacion == '1') {
+        if (isset($eliminacion) == '1') {
 
 
             try {

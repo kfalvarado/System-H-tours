@@ -38,7 +38,7 @@ class ObjetosController extends Controller
             return 'Error Objeto 21';
         }
 
-        if ($consultar == '1') {
+        if (isset($consultar) == '1') {
             try {
                 //code...
                 $objeto = http::withToken(Cache::get('token'))->get($this->url . '/objetos');
@@ -93,7 +93,7 @@ class ObjetosController extends Controller
             //throw $th;
             return 'Error Objetos 21';
         }
-        if ($insercion == '1') {
+        if (isset($insercion) == '1') {
             try {
                 $insertar = Http::withToken(Cache::get('token'))->post($this->url . '/objetos/insertar', [
                     "USR" => Cache::get('user'),
@@ -170,7 +170,7 @@ class ObjetosController extends Controller
             return 'Error Objeto 21';
          }
         
-         if ($update == '1') {
+         if (isset($update) == '1') {
         try {
                 //code...
                 $actualizar = Http::withToken(Cache::get('token'))->put($this->url . '/objetos/actualizar/' . $request->f, [
@@ -240,7 +240,7 @@ class ObjetosController extends Controller
             return 'Error Objetos 21';
         }
 
-        if ($eliminacion == '1') {
+        if (isset($eliminacion) == '1') {
 
 
 

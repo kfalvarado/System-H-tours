@@ -12,7 +12,12 @@ Clasificacion | inicio
 {{ asset('assets/images/dama.png')}}
 @endif
 @endsection
+@section('encabezado')
+<link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
+@endsection
 
+@section('encabezado')
+@endsection
 @section('encabezado')
 
 
@@ -242,7 +247,8 @@ Clasificacion | inicio
                              @csrf
                               <label class="form-label">
                                 Clasificacion
-                                <input type='text' list="lista-programacion" name='clasificacion' class="form-control text-white" required>
+                                <input type='text' list="lista-programacion" name='clasificacion' class="form-control text-white" id="clasificacion" onkeyup="validarclasificacion(this)" required>
+                                <div id="divclasi"></div>
                                 <datalist id="lista-programacion">
                                   <option value="Periodo-2022-ene-1-004">
                                 </datalist>
@@ -269,6 +275,7 @@ Clasificacion | inicio
  
  <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
                 <script src="{{ asset('assets/js/ab-page.js') }}"></script>
+                <script src="{{ asset('assets/js/ab-clasificacion.js') }}"></script>
                 <script>
                   const $btnExportar = document.querySelector("#btnExportar"),
                       $tabla = document.querySelector("#tabla");
