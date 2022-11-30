@@ -148,4 +148,24 @@ function validarTel(e) {
         console.log('incorrecto');
     }
 }
+//preguntas
+function validarRes(e) {
+    let cuentas = document.getElementById('respuesta').value;
+    let div = document.getElementById('divres');
 
+    if (expresiones.nombre.test(cuentas)) {
+        document.getElementById('respuesta').classList.remove('incorrecto') 
+        document.getElementById('respuesta').classList.add('correcto') 
+ 
+        div.innerHTML='';
+        console.log('correcto');
+    }else{
+        document.getElementById('respuesta').classList.add('incorrecto') 
+      
+        div.innerHTML='<font color="red"> <h5>Solo puedes ingresar letras</h5></font>'
+
+        console.log('incorrecto');
+
+    }
+    
+}

@@ -30,6 +30,15 @@
         {{ asset('assets/images/dama.png') }}
     @endif
 @endsection
+
+
+@section('encabezado')
+<link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
+@endsection
+
+
+
+
 <!-- nombre del menu de la derecha  -->
 @section('Usuario-Menu')
     {{ Cache::get('user') }}
@@ -284,8 +293,10 @@
 
                                         <label class="form-label">
                                             Cargo
-                                            <input type='number' min="0" name='saldo_cargo'
+                                            <input type='number' id="cargo" min="0" name='saldo_cargo'
+                                            onkeyup="validarnumeroscargo(this)"
                                                 class="form-control text-white" required></input>
+                                                <div id="divcargo"></div>
                                         </label>
 
 
@@ -341,8 +352,10 @@
 
                                             <label class="form-label">
                                                 Abono
-                                                <input type='number' min="0" name='saldo_abono'
+                                                <input type='number' id="abono" min="0" name='saldo_abono'
+                                                onkeyup="validarnumerosabono(this)"
                                                     class="form-control text-white" required></input>
+                                                    <div id="divabono"></div>
                                             </label>
 
                                             <br>
@@ -364,7 +377,7 @@
                                             <br>
 
                                         </div>
-                                        <button type="submit" class="btn btn-primary" onclick="validar();">Registrar
+                                        <button type="submit" class="btn btn-primary" onclick="validar(); ">Registrar
                                         </button>
 
                                 </form>
@@ -620,8 +633,11 @@
                                                                             <input type='text'
                                                                                 value="{{ $librodiario['NUM_SUBCUENTA'] }}"
                                                                                 name='cuenta'
+                                                                                id="num_cuenta"
+                                                                                onkeyup="validarnumeros(this)"
                                                                                 class="form-control text-white" required>
-
+                                                                                <div id="divnum"></div>
+                                                                        </label>
                                                                             <!-- <select class="form-control text-white" name="cuenta" id="">
                               <option value=""></option>
                               <option value="">Caja</option>
@@ -634,33 +650,47 @@
                                                                                 Nombre de Sub Cuenta
                                                                                 <input type='text' list=""
                                                                                     name="nombresubcuenta"
+                                                                                    id="nom_subcuenta"
+                                                                                    onkeyup="validarletras(this)"
                                                                                     value="{{ $librodiario['NOM_SUBCUENTA'] }}"
                                                                                     class="form-control text-white bg-dark"
                                                                                     required>
-
+                                                                                    
                                                                                 <!-- <select class="form-control text-white" >
                               <option value=""></option>
                               <option value="">Cheques</option>
                               <option value="">Depositos</option>
                               <option value="">Aportacions</option>
                             </select> -->
-
+                                                                                <div id="divnom"></div>
                                                                             </label>
                                                                             <label class="form-label">
+                                                                            
                                                                                 Saldo
                                                                                 @if ($librodiario['SAL_DEBE'] > 0)
                                                                                     <input type='number' min="0"
                                                                                         name="saldo"
+                                                                                        id="saldo"
+                                                                                        
+                                                                                       
+                                                                                        onkeyup="validarnumerossaldo(this)"
                                                                                         value="{{ $librodiario['SAL_DEBE'] }}"
                                                                                         class="form-control text-white bg-dark"
                                                                                         required></input>
+                                                                                        <div id="divsaldoe"></div>
                                                                                 @else
                                                                                     <input type='number' min="0"
                                                                                         name="saldo"
+                                                                                        id="saldo"
+                                                                                        onkeyup="validarnumerossaldo(this)"
                                                                                         value="{{ $librodiario['SAL_HABER'] }}"
                                                                                         class="form-control text-white bg-dark"
+                                                                                        
                                                                                         required></input>
+                                                                                        <div id="divsaldoe"></div>
                                                                                 @endif
+                                                                                
+                                                                                
                                                                             </label>
                                                                             <br>
                                                                             <label class="radio-inline">
@@ -772,11 +802,17 @@
 @section('js')
     <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>
+    <script src="{{ asset('assets/js/ab-librodiario.js')}}"></script>
 
 
     <script>
         function validar() {
             let periodo = document.getElementById('periodo').value
+            let clasificacion = document.getElementById('clasificacion').value
+            let seleccionarcuenta = document.getElementById('cuenta').value
+            
+
+
             if (periodo == 'SELECCIONAR') {
                 Swal.fire({
                     icon: 'error',
@@ -786,8 +822,35 @@
                 event.preventDefault();
             }
 
+
+            if (clasificacion == 'SELECCIONAR') {
+                Swal.fire({
+                    icon: 'error',
+                    text: 'No selecciono un clasificacion'
+                    // footer: '<a href="">Why do I have this issue?</a>'
+                })
+                event.preventDefault();
+            }
+
+
+            if (seleccionarcuenta == 'SELECCIONAR') {
+                Swal.fire({
+                    icon: 'error',
+                    text: 'No selecciono una cuenta'
+                    // footer: '<a href="">Why do I have this issue?</a>'
+                })
+                event.preventDefault();
+            }
+
+
+
         }
     </script>
+
+
+
+
+
 
     <script>
         $(document).ready(function() {
