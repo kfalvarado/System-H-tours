@@ -4,11 +4,6 @@
 @section('titulo')
     Usuarios | inicio
 @endsection
-
-@section('encabezado')
-<link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
-@endsection
-
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
     @if (Cache::get('genero') == 'M')
@@ -181,11 +176,8 @@
                                                                                 Nombre del usuario
                                                                                 <input type='text' name='NOMBRE_USUARIO'
                                                                                     class="form-control text-white"
-                                                                                    id="nom_usr"
-                                                                                    onkeyup="validarletras(this)"
                                                                                     value="{{ $usuario['NOMBRE_USUARIO'] }} "
                                                                                     required>
-                                                                                    <div id="divUsuarios">r</div>
                                                                             </label>
                                                                             <label class="form-label">
                                                                                 Seleccionar el estado
@@ -305,7 +297,7 @@
 
                 <!-- content-wrapper ends -->
 
-                {{-- 
+
                 <div class="modal-container">
                     <div class="modal fade bd-example-modal-lg" id="dialogo1">
                         <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
@@ -369,7 +361,7 @@
                             </div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
                 <!-- FIN DE MODAL PARA NUEVA  -->
 
 
@@ -462,10 +454,7 @@
     </main>
 
 @section('js')
-    {{-- BUSCADOR --}}
     <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
-    {{-- FORMULARIOS VALIDACIÓN --}}
-    <script src="{{ asset('assets/js/a_ms-vf-usuarios.js') }}"></script>
     {{-- PAGINACIÓN --}}
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>
     {{-- GENERADOR DE EXCEL --}}
