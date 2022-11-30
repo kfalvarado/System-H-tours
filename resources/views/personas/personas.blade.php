@@ -12,6 +12,7 @@
         {{ asset('assets/images/dama.png') }}
     @endif
 @endsection
+
 @section('encabezado')
     <link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
 @endsection
