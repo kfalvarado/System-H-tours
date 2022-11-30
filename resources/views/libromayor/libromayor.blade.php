@@ -181,7 +181,7 @@ Libro Mayor | inicio
 
                 <label class="form-label">
                   Periodo
-                  <select class="form-control text-white" name="periodo" id="periodo" onchange="datos();" required>
+                  <select class="form-control text-white" name="periodo" id="periodo_nuevo" onchange="datos();" required>
                     <option hidden selected>SELECCIONAR</option>
                     @foreach($periodoArr as $key)
                     <option value="{{$key['COD_PERIODO'] }}">{{$key['NOM_PERIODO'] }}</option>
@@ -257,7 +257,7 @@ Libro Mayor | inicio
                   </label>
                   <br>
                   <a href="" class="btn btn-secondary">Cancelar</a>
-                  <button type="submit" onclick="validar();" class="btn btn-primary">Registrar </button>
+                  <button type="submit" onclick="validarbotonnuevo();" class="btn btn-primary">Registrar </button>
               </form>
           </div>
           <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -684,8 +684,7 @@ Libro Mayor | inicio
             let clasificacion = document.getElementById('clasificacion_mayorizacion').value
             let seleccionarcuenta = document.getElementById('cuenta_mayorizacion').value
             
-            let periodonuevo = document.getElementById('periodo').value
-            
+        
 
 
             if (periodo == 'SELECCIONAR') {
@@ -716,10 +715,20 @@ Libro Mayor | inicio
                 })
                 event.preventDefault();
             }
+          }
 
+</script>
 
+<script>
+// VALIDACIONES PARA BOTON NUEVO LIBRO MAYOR
+function validarbotonnuevo() {
 
-
+            let periodonuevo = document.getElementById('periodo_nuevo').value
+            let naturalezacargo = document.getElementById('naturaleza_cargo').value
+            let cuentacargo = document.getElementById('cuenta_cargo').value
+            let naturalezaabono = document.getElementById('naturaleza_abono').value
+            let cuentaabono = document.getElementById('cuenta_abono').value
+            
             
             if (periodonuevo == 'SELECCIONAR') {
                 Swal.fire({
@@ -730,7 +739,50 @@ Libro Mayor | inicio
                 event.preventDefault();
             }
 
+
+            if (naturalezacargo == 'SELECCIONAR') {
+                Swal.fire({
+                    icon: 'error',
+                    text: 'No selecciono clasificacion'
+                    // footer: '<a href="">Why do I have this issue?</a>'
+                })
+                event.preventDefault();
+            }
+
+
+            if (cuentacargo == 'SELECCIONAR') {
+                Swal.fire({
+                    icon: 'error',
+                    text: 'No selecciono la cuenta '
+                    // footer: '<a href="">Why do I have this issue?</a>'
+                })
+                event.preventDefault();
+            }
+
+            if (naturalezaabono == 'SELECCIONAR') {
+                Swal.fire({
+                    icon: 'error',
+                    text: 'No selecciono la clasificacion'
+                    // footer: '<a href="">Why do I have this issue?</a>'
+                })
+                event.preventDefault();
+            }
+
+            if (cuentaabono == 'SELECCIONAR') {
+                Swal.fire({
+                    icon: 'error',
+                    text: 'No selecciono la cuenta '
+                    // footer: '<a href="">Why do I have this issue?</a>'
+                })
+                event.preventDefault();
+            }
+
+
+
         }
+
+
+        
     </script>
 
 

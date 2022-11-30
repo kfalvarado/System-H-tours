@@ -13,9 +13,8 @@ class LibrodiarioController extends Controller
 {
 
 
-
+    //MOSTRAR FUNCIONAL 
     protected $url = 'http://localhost:3000';
-
     public function mostrar()
     {
 
@@ -84,7 +83,7 @@ class LibrodiarioController extends Controller
 
 
 
-    
+    // INSERTAR FUNCIONAL
     public function insertar(Request $request)
     {
         // return $request;
@@ -185,6 +184,20 @@ class LibrodiarioController extends Controller
         }
 
 
+        
+        try {
+            $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+
+                "USR" => Cache::get('user'),
+                "ACCION" => 'PANTALLA METODO POST',
+                "DES" => Cache::get('user') . 'INSERTO UN DATO '.$request->librodiario. 'EN LA PANTALLA DE LIBRO DIARIO',
+                "OBJETO" => 'LIBRODIARIO'
+
+            ]);
+        } catch (\Throwable $th) {
+            return 'Error Libro Mayor 43';
+        }
+
         Session::flash('insertado', '1');
         return back();
 
@@ -193,8 +206,7 @@ class LibrodiarioController extends Controller
     }
 
 
-// CONSULTAR POR QUE COD PERIODO LO PIDE EL PROCEDIMIENTO Y ESTE NO ESTAN EN LA VISTA ENTONCES PASE LA CUENTA ...
-// QUE DE NON_CUENTA (NUMERO DE LA CUENTA) LA MISMA VARIBALE A COD_PERIDOO PARA QUE FUNCIONE EL PROCEMDIMIENTO
+    // ACTUALIZAR FUNCIONAL
     public function actualizar(Request $request)
 	{
 		
@@ -232,32 +244,29 @@ class LibrodiarioController extends Controller
 
 
 
-        
         try {
-            $bitacora = Http::withToken(Cache::get('Token'))->post($this->url.'/seguridad/bitacora/insertar',[
-    
-                "USR" => Cache::get('user)'),
-                "ACCION" => 'ACTUALIZO UN DATO EN PANTALLA ',
-                "DES" => Cache::get('user') . 'ACTUALIZO EL DATO DE'.$request->libromayor.' A LA PANTALLA DE LIBRO DIARIO',
-                "OBJETO" => 'LIBRODIARIO'
-    
-            ]);
-    
-            } catch (\Throwable $th) {
-                return 'Error Libro diario 43';
-            }
-            
+			$bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+
+				"USR" => Cache::get('user'),
+				"ACCION" => 'PANTALLA METODO PUT',
+				"DES" => Cache::get('user') . 'ACTUALIZO EL DATO DE  '.$request->librodiario.'EN LA PANTALLA DE LIBRO DIARIO',
+				"OBJETO" => 'LIBRODIARIO'
+
+			]);
+		} catch (\Throwable $th) {
+			return 'Error Libro Diario 43';
+		}
+		
 
 		Session::flash('actualizado', '1');
 		return back();
-		
 		
 		// return $request;
 	
 	}
 
 
-    // ELIMINADO NORMAL NO ELIMINA PERO POR QUE DEBE SER ELIMINADO LOGICO
+    // ELIMINAR DEBE SER LOGICO
     public function eliminar(Request $request)
 	{
 
@@ -265,29 +274,27 @@ class LibrodiarioController extends Controller
 
 
         try {
-            $bitacora = Http::withToken(Cache::get('Token'))->post($this->url.'/seguridad/bitacora/insertar',[
-    
-                "USR" => Cache::get('user)'),
-                "ACCION" => 'ELIMINO UN DATO ',
-                "DES" => Cache::get('user') . 'ACTUALIZO EL DATO CON CODIGO'.$request->f.' A LA PANTALLA DE LIBRO DIARIO',
-                "OBJETO" => 'LIBRODIARIO'
-    
-            ]);
-    
-            } catch (\Throwable $th) {
-                return 'Error Libro Diario 43';
-            }
-            
+			$bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
 
-		Session::flash('eliminado','1');
+				"USR" => Cache::get('user'),
+				"ACCION" => 'ELIMINO UN DATO',
+				"DES" => Cache::get('user') . 'ELIMINO EL DATO CON CODIGO DE  '.$request->f. 'EN LA PANTALLA DE LIBRO DIARIO',
+				"OBJETO" => 'LIBRODIARIO'
+
+			]);
+		} catch (\Throwable $th) {
+			return 'Error Libro Diario 43';
+		}
+
+
+		Session::flash('eliminado', '1');
 		return back();
-
 
 		// return $request;
 
 	}
 	
-
+    // FUNCION PARA PDF FUNCIONAL 
     public function pdf()
     {
         $librodiario = http::withToken(Cache::get('token'))->get($this->url . '/librodiario');

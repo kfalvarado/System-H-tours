@@ -13,7 +13,7 @@ class LibromayorController extends Controller
 
 
 
-
+	// MOSTRAR FUNCIONAL
 	protected $url = 'http://localhost:3000';
 	public function mostrar()
 	{
@@ -96,7 +96,7 @@ class LibromayorController extends Controller
 	}
 
 
-
+	// INSERTAR FUNCIONAL
 	public function insertar(Request $request)
 	{
 		// return $request;
@@ -156,7 +156,7 @@ class LibromayorController extends Controller
 	}
 
 
-
+	// MAYORIZACION FUNCIONAL
 	public function mayorizacion(Request $request)
 	{
 
@@ -175,8 +175,7 @@ class LibromayorController extends Controller
 	}
 
 
-	// CONSULTA DE LA MISMA FORMA DEL METODO INSERT SOBRE EL DEBE Y HABER, SI ACTUALIZO L 50 EN DEBE A L 500 ESTA BIEN...
-	// PERO SI ACTUALIZO DE ESOS L 50 EN DEBE A HABER ES ES PROBLEMA POR LAS MISMAS TRAS VARIABLES. (ARCHIVO= libromayor.blade)
+	// ACTUALIZAR FUNCIONAL
 	public function actualizar(Request $request)
 	{
 
@@ -235,7 +234,7 @@ class LibromayorController extends Controller
 
 	}
 
-	// ELIMINADO NORMAL NO ELIMINA PERO POR QUE DEBE SER ELIMINADO LOGICO
+	// ELIMINAR FUNCIONAL
 	public function eliminar(Request $request)
 	{
 
@@ -249,7 +248,7 @@ class LibromayorController extends Controller
 
 				"USR" => Cache::get('user'),
 				"ACCION" => 'ELIMINO UN DATO',
-				"DES" => Cache::get('user') . 'ELIMINO EL DATO CON CODIGO DE  '.$request->libromayor.'EN LA PANTALLA DE LIBRO MAYOR',
+				"DES" => Cache::get('user') . 'ELIMINO EL DATO CON CODIGO DE  '.$request->f. 'EN LA PANTALLA DE LIBRO MAYOR',
 				"OBJETO" => 'LIBROMAYOR'
 
 			]);
@@ -266,6 +265,8 @@ class LibromayorController extends Controller
 
 	}
 
+
+	// FUNCION PARA PDF FUNCIONAL 
 	public function pdf()
 	{
 		$libromayor = http::withToken(Cache::get('token'))->get($this->url . '/libromayor');
