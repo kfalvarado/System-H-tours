@@ -291,7 +291,7 @@ Libro Mayor | inicio
                 @csrf
                 <label class="form-label">
                   Periodo
-                  <select class="form-control text-white" name="periodo" id="periodo" onchange="datos();" required>
+                  <select class="form-control text-white" name="periodo" id="periodo_mayorizacion" onchange="datos();" required>
                     <option hidden selected>SELECCIONAR</option>
                     @foreach($periodoArr as $key)
                     <option value="{{$key['COD_PERIODO'] }}">{{$key['NOM_PERIODO'] }}</option>
@@ -302,7 +302,7 @@ Libro Mayor | inicio
 
                   <label class="form-label">
                     Clasificacion
-                    <select class="form-control text-white" name="naturaleza" id="clasificacion" onchange="datos();" required>
+                    <select class="form-control text-white" name="naturaleza" id="clasificacion_mayorizacion" onchange="datos();" required>
                       <option hidden selected>SELECCIONAR</option>
                       @foreach($clasificacionArr as $key)
                       <option value="{{$key['NATURALEZA'] }}">{{$key['NATURALEZA'] }} </option>
@@ -315,7 +315,7 @@ Libro Mayor | inicio
                   <label class="form-label">
                     Seleccionar Cuenta
 
-                    <select class="form-control text-white" name="cuenta" id="cuenta" required>
+                    <select class="form-control text-white" name="cuenta" id="cuenta_mayorizacion" required>
                       <option hidden selected>SELECCIONAR</option>
                       @foreach($nombrecuentaArr as $key)
                       <option value="{{$key['NOM_CUENTA'] }}">{{$key['NOM_CUENTA'] }}</option>
@@ -680,9 +680,9 @@ Libro Mayor | inicio
 
 <script>
         function validar() {
-            let periodo = document.getElementById('periodo').value
-            let clasificacion = document.getElementById('clasificacion').value
-            let seleccionarcuenta = document.getElementById('cuenta').value
+            let periodo = document.getElementById('periodo_mayorizacion').value
+            let clasificacion = document.getElementById('clasificacion_mayorizacion').value
+            let seleccionarcuenta = document.getElementById('cuenta_mayorizacion').value
             
 
 
