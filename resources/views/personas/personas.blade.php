@@ -13,8 +13,7 @@
     @endif
 @endsection
 @section('encabezado')
-<link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
-    
+    <link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
 @endsection
 <!-- nombre del usuario de la barra lateral  -->
 @section('Usuario-Lateral')
@@ -97,13 +96,14 @@
                         <center>Personas Registradas</center>
                     </h4>
                     <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                        <input class="form-control me-2 light-table-filter text-white" data-table="table_id"
-                            type="text" placeholder="Buscar una personas">
+                        <input class="form-control me-2 light-table-filter text-white" data-table="table_id" type="text"
+                            placeholder="Buscar una personas">
                     </form>
 
                     <div class="table-responsive">
-                        <table id="tabla" class="table table-striped table-bordered table-condensed table-hover table_id"
-                            cellspacing="0" cellpadding="0" width="100%">
+                        <table id="tabla"
+                            class="table table-striped table-bordered table-condensed table-hover table_id" cellspacing="0"
+                            cellpadding="0" width="100%">
                             <thead>
                                 <tr>
 
@@ -309,8 +309,7 @@
                                                                         <font color='white'>&nbsp;&nbsp;Estado
                                                                             &nbsp;&nbsp;</font>
                                                                         <Select class="form-control bg-white text-dark"
-                                                                            id="estado" name="estado"
-                                                                            required>
+                                                                            id="estado" name="estado" required>
                                                                             <option hidden selected>
                                                                                 {{ $persona['EST_USR'] }}</option>
                                                                             <option value="ACTIVO">ACTIVO</option>
@@ -494,16 +493,18 @@
 
                             <label for="" style="background-color: #0778b199">
                                 <font color='white'> &nbsp; Edad </font>
-                                <input type="number" id="edad" name="edad" onkeyup="validarEdad(this)" placeholder="0" min="0"
-                                    max="100" class="form-control bg-white text-dark" required>
-                                    <div id="divedad"></div>
+                                <input type="number" id="edad" name="edad" onkeyup="validarEdad(this)"
+                                    placeholder="0" min="0" max="100"
+                                    class="form-control bg-white text-dark" required>
+                                <div id="divedad"></div>
                             </label>
                             <label for="" style="background-color: #0778b199">
                                 <font color='white'> &nbsp; Identidad </font>
-                                <input type="tel" onclick="tipopersona();"minlength="0" id="dni" onkeyup="validarDNI(this)" min="0"
-                                    placeholder="0801-2000-09115" pattern="[0-9]{4}-[0-9]{4}-[0-9]{5}"id="identidad"
-                                    name="identidad" class="form-control p_input text-dark bg-white" required>
-                                    <div id="divdni"></div>
+                                <input type="tel" onclick="tipopersona();"minlength="0" id="dni"
+                                    onkeyup="validarDNI(this)" min="0" placeholder="0801-2000-09115"
+                                    pattern="[0-9]{4}-[0-9]{4}-[0-9]{5}"id="identidad" name="identidad"
+                                    class="form-control p_input text-dark bg-white" required>
+                                <div id="divdni"></div>
                             </label>
                             <br>
                             {{-- centrado  --}}
@@ -521,9 +522,9 @@
                             <label style="background-color: #0778b199">
                                 <font color='white'>Teléfono </font>
                                 <input type="tel" id="telefono" name="telefono" onkeyup="validarTel(this)"
-                                    class="form-control p_input text-dark bg-white"  placeholder="+504 90213300"
+                                    class="form-control p_input text-dark bg-white" placeholder="+504 90213300"
                                     pattern="[+0-9]{4} [0-9]{8}" required>
-                                    <div id="divtelefono"></div>
+                                <div id="divtelefono"></div>
                             </label>
                             <label style="background-color: #0778b199">
                                 <font color='white'>&nbsp;&nbsp;Tipo de Teléfono &nbsp;&nbsp;</font>
@@ -586,8 +587,8 @@
 
 
 @section('js')
-<script src="{{ asset('assets/js/ab-formularios.js') }}"></script>
-<script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
+    <script src="{{ asset('assets/js/ab-formularios.js') }}"></script>
+    <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
     {{-- Enlace a paginador de javascript --}}
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>
 
