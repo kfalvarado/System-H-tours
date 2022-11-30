@@ -86,10 +86,10 @@ Subcuentas | inicio
                                 <thead>
                                     <tr>
                                         <th class="text-dark bg-white"> # </th>
-                                        <th class="text-dark bg-white"> <b>Clasificacion</b> </th>
+                                        <th class="text-dark bg-white"> <b>Clasificación</b> </th>
                                         <th class="text-dark bg-white"> <b>Cuenta</b> </th>
-                                        <th class="text-dark bg-white"> </b>Codigo</b> </th>
-                                        <th class="text-dark bg-white"> </b>Nombre de Sub Cuentas</b> </th>
+                                        <th class="text-dark bg-white"> </b>Código</b> </th>
+                                        <th class="text-dark bg-white"> </b>Nombre de subcuentas</b> </th>
                                         <th class="text-dark bg-white"> </b>Acciones</b> </th>
                                     </tr>
                                 </thead>
@@ -134,7 +134,7 @@ Subcuentas | inicio
                                                                 <input type="hidden" name="f" value="{{$subcuentas ['COD_SUBCUENTA'] }}">
                                                                 <label class="form-label">
                     
-                                                                    Clasificacion
+                                                                    Clasificación
                     
                                                                     <select class="form-control text-white" name="naturaleza" id="" required>
                                                                     <option value="{{ $subcuentas['COD_CLASIFICACION'] }}" hidden selected>{{ $subcuentas['NATURALEZA'] }}</option>
@@ -146,7 +146,7 @@ Subcuentas | inicio
                                                                 </label>
                     
                                                                 <label class="form-label">
-                                                                    Nombre de Cuenta
+                                                                    Cuenta
                     
                                                                     <Select class="form-control text-white" name="nombrecuenta" id="" required>
                                                                         <option value="{{ $subcuentas['COD_CUENTA'] }}" hidden selected>{{ $subcuentas['COD_CUENTA'] }}</option>
@@ -158,16 +158,16 @@ Subcuentas | inicio
                                                                 </label>
                     
                                                                 <label class="form-label">
-                                                                    Numero de la sub Cuenta
+                                                                    Número de la subcuenta
                                                                     <input type='text' min="0" name='numerosubcuenta' value= "{{$subcuentas ['NUM_SUBCUENTA'] }}" class="form-control text-white" required></input>
                                                                 </label>
                                                                 <label class="form-label">
-                                                                    Nombre de la Sub Cuenta
+                                                                    Nombre de la subcuenta
                                                                     <input type='text' name='nombresubcuenta' value="{{$subcuentas ['NOM_SUBCUENTA'] }}" class="form-control text-white" required></input>
                                                                 </label>
                     
                     
-                                                                <a href="" class="btn btn-secondary">Cancelar</a>
+                                                              
                                                                 <button type="submit" class="btn btn-primary">EDITAR </button>
                                                             </form>
                                                     </div>
@@ -241,7 +241,7 @@ Subcuentas | inicio
                                         <form action="{{ route('insertar.subcuentas') }}" method="post">
                                              @csrf
                                             <label class="form-label">
-                                                Clasificacion
+                                                Clasificación
 
                                                 <select class="form-control text-white" name="naturaleza" id="clasificacion"  onchange="datos();" required>
                                                 <option hidden selected>SELECCIONAR</option>
@@ -254,7 +254,7 @@ Subcuentas | inicio
 
 
                                             <label class="form-label">
-                                                Nombre de Cuenta
+                                               Cuenta
 
                                                 <Select class="form-control text-white" name="nombrecuenta" id="cuentas" required>
                                                     <option hidden selected>SELECCIONAR</option>
@@ -267,16 +267,16 @@ Subcuentas | inicio
                                             </label>
 
                                             <label class="form-label">
-                                                Numero de la sub Cuenta
+                                                Número de la subcuenta
                                                 <input type='number' min="0" name='numerosubcuenta' class="form-control text-white" id="num_subcuenta" onkeyup="validarnumeros(this)"  required>
                                                 <div id="divnum"></div>
                                             </label>
                                             <label class="form-label">
-                                                Nombre de la Sub Cuenta
+                                                Nombre de la subcuenta
                                                 <input type='text' name='nombresubcuenta' id="nom_subcuenta" class="form-control text-white" onkeyup="validarletras(this)" required>
                                                 <div id="divsubcuenta"></div>
                                             </label>
-                                            <a href="" class="btn btn-secondary">Cancelar</a>
+                                            
                                             <button type="submit" class="btn btn-primary">NUEVO</button>
                                         </form>
                                 </div>

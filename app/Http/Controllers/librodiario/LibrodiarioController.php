@@ -40,7 +40,7 @@ class LibrodiarioController extends Controller
         }
 
         
-        if (isset($consultar) == '1') {
+        if ($consultar == '1') {
             
 
 
@@ -113,14 +113,13 @@ class LibrodiarioController extends Controller
 
             $permisos = $search->json();
             foreach ($permisos as $key) {
-                $consultar = $key['PER_CONSULTAR'];
+                $insercion = $key['PER_INSERCION'];
             }
         } catch (\Throwable $e) {
             return 'Error Libro Diario 39';
         }
 
-        if (isset($insercion) == '1'
-        ) {
+        if ($insercion == '1' ) {
 
 
             // return $request;
@@ -286,8 +285,7 @@ class LibrodiarioController extends Controller
         }
 
 
-        if (isset($update) == '1'
-        ) {
+        if ($update == '1' ) {
 
             try {
                 if ($request->transaccion == '1') {
@@ -386,7 +384,7 @@ class LibrodiarioController extends Controller
             return 'Error Libro Diario 39';
         }
 
-        if (isset($eliminacion) == '1'
+        if ($eliminacion == '1'
         ) {
 
             $delete = Http::withToken(Cache::get("Token"))->delete($this->url . '/librodiario/eliminar/' . $request->f,);

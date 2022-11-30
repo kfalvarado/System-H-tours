@@ -134,7 +134,7 @@
                             <i class="mdi mdi-laptop"></i>
                         </span>
 
-                        <span class="menu-title">Modulo de Cuentas</span>
+                        <span class="menu-title">Módulo de Cuentas</span>
                         <i class="menu-arrow"></i>
                     </a>
                     <div class="collapse" id="ui-basic">
@@ -142,11 +142,11 @@
                             @for ($i = 0; $i <= $largo; $i++)
                                 @if ($accesos[$i] == 'CUENTAS')
                                     <li class="nav-item"> <a class="nav-link"
-                                            href="{{ route('mostrar.cuentas') }}">Gestion de cuentas</a></li>
+                                            href="{{ route('mostrar.cuentas') }}">Gestión de cuentas</a></li>
                                 @endif
                                 @if ($accesos[$i] == 'SUBCUENTAS')
                                     <li class="nav-item"> <a class="nav-link"
-                                            href="{{ route('mostrar.subcuentas') }}">Gestion de subcuentas</a></li>
+                                            href="{{ route('mostrar.subcuentas') }}">Gestión de subcuentas</a></li>
                                 @endif
                             @endfor
 
@@ -161,7 +161,7 @@
                         <span class="menu-icon">
                             <i class="mdi mdi-table-large"></i>
                         </span>
-                        <span class="menu-title">Modulo Contable</span>
+                        <span class="menu-title">Módulo Contable</span>
                         <i class="menu-arrow"></i>
                     </a>
                     <div class="collapse" id="periodo-contable">

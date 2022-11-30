@@ -37,7 +37,7 @@ class RolesController extends Controller
             return 'Error rol 24';
         }
 
-        if (isset( $consultar) == '1') {
+        if ($consultar == '1') {
             try {
                 $rols = http::withToken(Cache::get('token'))->get($this->url . '/roles/sel_rol');
                 //return $rols;
@@ -93,7 +93,7 @@ class RolesController extends Controller
             //throw $th;
             return 'Error ROLES 21';
         }
-        if (isset( $insercion) == '1') {
+        if ($insercion == '1') {
             try {
                 //return $req;
                 $rols = http::withToken(Cache::get('token'))->post($this->url . '/roles/ins_rol', [
@@ -159,7 +159,7 @@ class RolesController extends Controller
             //throw $th;
             return 'Error ROLES 149';
         }
-        if (isset( $update) == '1') {
+        if ($update == '1') {
             try {
                 $rols = http::withToken(Cache::get('token'))->put($this->url . '/roles/upd_rol', [
 

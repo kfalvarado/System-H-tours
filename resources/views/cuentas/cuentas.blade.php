@@ -114,10 +114,10 @@
                                 <thead>
                                     <tr>
                                         <th class="text-dark bg-white"> # </th>
-                                        <th class="text-dark bg-white"> <b>Clasificacion</b> </th>
-                                        <th class="text-dark bg-white"> <b>Codigo</b> </th>
+                                        <th class="text-dark bg-white"> <b>Clasificación</b> </th>
+                                        <th class="text-dark bg-white"> <b>Código</b> </th>
                                         <th class="text-dark bg-white"> <b>Grupo</b> </th>
-                                        <th class="text-dark bg-white"> </b>Nombre de Cuentas</b> </th>
+                                        <th class="text-dark bg-white"> </b>Nombre de cuentas</b> </th>
                                         <th class="text-dark bg-white"> </b>Acciones</b> </th>
                                     </tr>
                                 </thead>
