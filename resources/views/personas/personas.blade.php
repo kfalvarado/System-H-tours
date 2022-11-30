@@ -309,7 +309,7 @@
                                                                         <font color='white'>&nbsp;&nbsp;Estado
                                                                             &nbsp;&nbsp;</font>
                                                                         <Select class="form-control bg-white text-dark"
-                                                                            id="tipotelefono" name="tipotelefono"
+                                                                            id="estado" name="estado"
                                                                             required>
                                                                             <option hidden selected>
                                                                                 {{ $persona['EST_USR'] }}</option>
