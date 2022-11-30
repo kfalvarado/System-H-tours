@@ -23,6 +23,7 @@ class ResultadoController extends Controller
             ]);
 
             $permisos = $search->json();
+            $consultar = 0;
             foreach ($permisos as $key) {
                 $consultar = $key['PER_CONSULTAR'];
             }
@@ -74,6 +75,7 @@ class ResultadoController extends Controller
             ]);
 
             $permisos = $search->json();
+            $consultar = 0;
             foreach ($permisos as $key) {
                 $consultar = $key['PER_CONSULTAR'];
             }
