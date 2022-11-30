@@ -4,8 +4,8 @@
 @section('titulo')
 Preguntas | inicio
 @endsection
+@section('encabezado')
 <link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
-@section('css')
   
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
