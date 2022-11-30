@@ -77,6 +77,15 @@ Libro Mayor | inicio
 </script>
 @endif
 
+@if (Session::has('sinpermiso'))
+<script>
+  Swal.fire({
+    icon: 'success',
+    text: 'No Cuentas con permiso para realizar esta accion'
+    // footer: '<a href="">Why do I have this issue?</a>'
+  })
+</script>
+@endif
 
 
 
