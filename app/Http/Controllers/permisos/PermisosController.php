@@ -36,7 +36,7 @@ class PermisosController extends Controller
 			return 'Error rol 24';
 		}
 
-		if (isset($consultar) == '1') {
+		if ( $consultar == '1') {
 			try {
 				$rols = http::withToken(Cache::get('token'))->get($this->url . '/roles/sel_rol');
 				// return $rols;
@@ -97,7 +97,7 @@ class PermisosController extends Controller
 			return 'Error rol 24';
 		}
 
-		if (isset($consultar) == '1') {
+		if ( $consultar == '1') {
 			try {
 				Cache::forget('permisosa');
 
@@ -165,7 +165,7 @@ class PermisosController extends Controller
 			//throw $th;
 			return 'Error ROLES 21';
 		}
-		if (isset($insercion) == '1') {
+		if ($insercion == '1') {
 			try {
 				//validar informacion entrante
 				if (isset($request->PERMISO_INSERCION)) {
@@ -257,7 +257,7 @@ class PermisosController extends Controller
 			return 'Error ROLES 149';
 		}
 
-		if (isset($update) == '1') {
+		if ($update == '1') {
 			try {
 				//validar informacion entrante
 				if (isset($request->PERMISO_INSERCION)) {
@@ -352,7 +352,7 @@ class PermisosController extends Controller
 			return 'Error PERMISOS 21';
 		}
 
-		if (isset($eliminacion) == '1') {
+		if ($eliminacion == '1') {
 
 			try {
 				$eliminar = http::withToken(Cache::get('token'))->delete($this->url . '/permisos/del_permiso/' . $request->f);
