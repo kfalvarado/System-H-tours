@@ -39,7 +39,7 @@ class clasificacionController extends Controller
             return 'Error Clasificacion 21';
         }
 
-        if ($consultar == '1') {
+        if (isset($consultar) == '1') {
             try {
                 //code...
                 $clasificacion = http::withToken(Cache::get('token'))->get($this->url . '/clasificacion');
@@ -94,7 +94,7 @@ class clasificacionController extends Controller
             //throw $th;
             return 'Error Clasificacion 21';
         }
-        if ($insercion == '1') {
+        if (isset ($insercion) == '1') {
             try {
                 $insertar = Http::withToken(Cache::get('token'))->post($this->url . '/clasificacion/insertar', [
                     "USR" => Cache::get('user'),
@@ -168,7 +168,7 @@ class clasificacionController extends Controller
             //throw $th;
             return 'Error Clasificacion 21';
          }
-         if ($update == '1') {
+         if (isset($update) == '1') {
         try {
             //code...
             $actualizar = Http::withToken(Cache::get('token'))->put($this->url.'/clasificacion/actualizar/'.$request->f,[
@@ -236,7 +236,7 @@ class clasificacionController extends Controller
             return 'Error Clasificacion 21';
         }
 
-        if ($eliminacion == '1') {
+        if (isset($eliminacion) == '1') {
 
 
 
