@@ -34,7 +34,7 @@ function validarnumerossaldo(e) {
 }  
 // FINAL MODAL EDITAR
 
-// INICIO MODAL NUEVO
+
 
 // INICIO MODAL NUEVO
 
@@ -58,24 +58,28 @@ function validarnumeroscargo(e) {
 }  
 
 
+
 function validarnumerosabono(e) {
-    let abon = document.getElementById('abono').value;
-    let divabon = document.getElementById('divabono');
+    let abono = document.getElementById('abono').value;
+    let divabono = document.getElementById('divabono');
     // console.log(cuentas);
-    if (expresiones.numeros.test(abon)) {
+    if (expresiones.numeros.test(abono)) {
         document.getElementById('abono').classList.remove('incorrecto') 
         document.getElementById('abono').classList.add('correcto') 
         console.log('correcto');
-        divabon.innerHTML='';
+        divabono.innerHTML='';
     }else{
-        document.getElementById('cargo').classList.add('incorrecto')
-        divabon.innerHTML='<font color="red"> <h5>Solo puedes ingresar numeros</h5></font>'
+        document.getElementById('abono').classList.add('incorrecto')
+        divabono.innerHTML='<font color="red"> <h5>Solo puedes ingresar numeros</h5></font>'
         console.log('incorrecto');
         
     }
     
 }  
 
-// FINAL MODAL NUEVO
+
+
 
 // FINAL MODAL NUEVO
+
+
