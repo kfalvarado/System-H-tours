@@ -4,10 +4,11 @@
 @section('titulo')
 Preguntas | inicio
 @endsection
+
 @section('encabezado')
 <link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
-  
 @endsection
+
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
 @if (Cache::get('genero') == 'M')
@@ -16,6 +17,7 @@ Preguntas | inicio
 {{ asset('assets/images/dama.png')}}
 @endif
 @endsection
+
 <!-- nombre del usuario de la barra lateral  -->
 @section('Usuario-Lateral')
 {{cache::get('user')}}
@@ -149,8 +151,6 @@ Preguntas | inicio
                             <input 
                               type='text' 
                               name='RESPUESTA'
-                              id="respuesta"
-                              onkeyup="validarRes(this)"
                               size="50" maxlength="100" 
                               id="res_usr"
                               onkeyup="validarRes(this)"
@@ -272,7 +272,6 @@ Preguntas | inicio
         <!-- FIN DE MODAL PARA BORRAR  -->
 </main>
           @section('js')
-          <script src="{{ asset('assets/js/ab-formularios.js') }}"></script>
           <script src="{{ asset('assets/js/ab-page.js') }}"></script>
            {{-- FORMULARIOS VALIDACIÓN --}}
           <script src="{{ asset('assets/js/ab-formularios.js') }}"></script>
