@@ -196,7 +196,7 @@ class LibromayorController extends Controller
 		Session::flash('insertado', '1');
 		return back();
 	}
-
+ 
 
 	// MAYORIZACION FUNCIONAL OCUPA SEGURIDAD??
 	public function mayorizacion(Request $request)
