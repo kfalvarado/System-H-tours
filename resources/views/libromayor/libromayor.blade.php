@@ -257,7 +257,7 @@ Libro Mayor | inicio
                   </label>
                   <br>
                   <a href="" class="btn btn-secondary">Cancelar</a>
-                  <button type="submit" onclick="" class="btn btn-primary">Registrar </button>
+                  <button type="submit" onclick="validar();" class="btn btn-primary">Registrar </button>
               </form>
           </div>
           <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -684,6 +684,8 @@ Libro Mayor | inicio
             let clasificacion = document.getElementById('clasificacion_mayorizacion').value
             let seleccionarcuenta = document.getElementById('cuenta_mayorizacion').value
             
+            let periodonuevo = document.getElementById('periodo').value
+            
 
 
             if (periodo == 'SELECCIONAR') {
@@ -716,6 +718,17 @@ Libro Mayor | inicio
             }
 
 
+
+
+            
+            if (periodonuevo == 'SELECCIONAR') {
+                Swal.fire({
+                    icon: 'error',
+                    text: 'No selecciono un periodo'
+                    // footer: '<a href="">Why do I have this issue?</a>'
+                })
+                event.preventDefault();
+            }
 
         }
     </script>
