@@ -23,6 +23,7 @@ class BalanceController extends Controller
             ]);
 
             $permisos = $search->json();
+            $consultar = 0;
             foreach ($permisos as $key) {
                 $consultar = $key['PER_CONSULTAR'];
             }
@@ -31,7 +32,7 @@ class BalanceController extends Controller
             return 'Error rol 24';
         }
 
-        if (isset($consultar) == '1') {
+        if ( $consultar == '1') {
             try {
                 $periodo = http::withToken(Cache::get('token'))->get($this->url . '/periodo');
 
@@ -81,6 +82,7 @@ class BalanceController extends Controller
             ]);
 
             $permisos = $search->json();
+            $consultar = 0;
             foreach ($permisos as $key) {
                 $consultar = $key['PER_CONSULTAR'];
             }
@@ -89,7 +91,7 @@ class BalanceController extends Controller
             return 'Error rol 24';
         }
 
-        if (isset($consultar) == '1') {
+        if ( $consultar == '1') {
             try {
                 $balance = http::withToken(Cache::get('token'))->post($this->url . '/balance/insertar', [
                     'COD_PERIODO' => $request->periodo

@@ -29,6 +29,7 @@ class RolesController extends Controller
             ]);
 
             $permisos = $search->json();
+            $consultar = 0;
             foreach ($permisos as $key) {
                 $consultar = $key['PER_CONSULTAR'];
             }
@@ -86,6 +87,7 @@ class RolesController extends Controller
             ]);
 
             $permisos = $search->json();
+            $insercion = 0;
             foreach ($permisos as $key) {
                 $insercion = $key['PER_INSERCION'];
             }
@@ -152,6 +154,7 @@ class RolesController extends Controller
             ]);
 
             $permisos = $search->json();
+            $update = 0;
             foreach ($permisos as $key) {
                 $update = $key['PER_ACTUALIZACION'];
             }

@@ -40,7 +40,7 @@ class LibromayorController extends Controller
 		}
 
 
-		if (isset( $consultar) == '1') {
+		if ($consultar == '1') {
 
 
 			try {
@@ -124,7 +124,7 @@ class LibromayorController extends Controller
 			return 'Error Libro Mayor 124';
 		}
 
-		if (isset( $insercion) == '1') {
+		if ( $insercion == '1') {
 			// return $request;
 			try {
 
@@ -239,7 +239,7 @@ class LibromayorController extends Controller
 			return 'Error Libro Mayor 239';
 		}
 
-		if (isset( $update) == '1') {
+		if ($update == '1') {
 
 			try {
 				if ($request->transaccion == '1') {
@@ -344,7 +344,7 @@ class LibromayorController extends Controller
 			return 'Error Libro Mayor 344';
 		}
 
-		if ( isset( $eliminacion )== '1') {
+		if (  $eliminacion == '1') {
 
 			$delete = Http::withToken(Cache::get("token"))->delete($this->url . '/libromayor/eliminar/' . $request->f,);
 

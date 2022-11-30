@@ -30,6 +30,7 @@ class PeriodoController extends Controller
             ]);
 
             $permisos = $search->json();
+            $consultar = 0;
             foreach ($permisos as $key) {
                 $consultar = $key['PER_CONSULTAR'];
             }
@@ -94,6 +95,7 @@ class PeriodoController extends Controller
             ]);
 
             $permisos = $search->json();
+            $insercion = 0;
             foreach ($permisos as $key) {
                 $insercion = $key['PER_INSERCION'];
             }
@@ -170,6 +172,7 @@ class PeriodoController extends Controller
             ]);
 
             $permisos = $search->json();
+            $update = 0;
             foreach ($permisos as $key) {
                 $update = $key['PER_ACTUALIZACION'];
             }
@@ -239,6 +242,7 @@ class PeriodoController extends Controller
             ]);
 
             $permisos = $search->json();
+            $eliminacion = 0;
             foreach ($permisos as $key) {
                 $eliminacion = $key['PER_ELIMINACION'];
             }

@@ -66,7 +66,7 @@ class CuentasController extends Controller
                 "USR" => Cache::get('user'),
                 "ACCION" => 'INTENTO FALLIDO METODO GET',
                 "DES" => Cache::get('user') . 'INTENTO INGRESAR A LA PANTALLA DE CUENTAS Y LEER DATOS',
-                "OBJETO" => 'PERIODO'
+                "OBJETO" => 'CUENTAS'
             ]);
             return view('Auth.no-auth');
         }
@@ -120,7 +120,7 @@ class CuentasController extends Controller
                     "USR" => Cache::get('user'),
                     "ACCION" => 'PANTALLA METODO POST',
                     "DES" => Cache::get('user') . ' INSERTO EL DATO DE ' . $request->nombrecuenta . ' EN LA PANTALLA DE CUENTAS',
-                    "OBJETO" => 'PERIODO'
+                    "OBJETO" => 'CUENTAS'
 
                 ]);
             } catch (\Throwable $th) {
@@ -207,7 +207,7 @@ class CuentasController extends Controller
                     "USR" => Cache::get('user'),
                     "ACCION" => 'SIN PERMISO METODO PUT',
                     "DES" => Cache::get('user') . ' INTENTO ACTUALIZAR EL DATO ' . $request->cuenta . ' EN LA PANTALLA DE CUENTAS',
-                    "OBJETO" => 'PERIODO'
+                    "OBJETO" => 'CUENTAS'
 
                 ]);
 

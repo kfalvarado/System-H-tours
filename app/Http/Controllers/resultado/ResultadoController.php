@@ -23,6 +23,7 @@ class ResultadoController extends Controller
             ]);
 
             $permisos = $search->json();
+            $consultar = 0;
             foreach ($permisos as $key) {
                 $consultar = $key['PER_CONSULTAR'];
             }
@@ -31,7 +32,7 @@ class ResultadoController extends Controller
             return 'Error RESULTADOS 19';
         }
 
-        if (isset($consultar) == '1') {
+        if ( $consultar == '1') {
             try {
                 $periodo = http::withToken(Cache::get('token'))->get($this->url . '/periodo');
                 $periodo = $periodo->json();
@@ -74,6 +75,7 @@ class ResultadoController extends Controller
             ]);
 
             $permisos = $search->json();
+            $consultar = 0;
             foreach ($permisos as $key) {
                 $consultar = $key['PER_CONSULTAR'];
             }
@@ -82,7 +84,7 @@ class ResultadoController extends Controller
             return 'Error RESULTADOS 19';
         }
 
-        if (isset($consultar) == '1') {
+        if ( $consultar == '1') {
             try {
                 //  return $request->periodo;
                 $periodo = http::withToken(Cache::get('token'))->get($this->url . '/periodo');

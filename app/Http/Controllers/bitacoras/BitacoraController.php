@@ -28,6 +28,7 @@ class BitacoraController extends Controller
             ]);
          
             $permisos = $search->json();
+            $consultar = 0;
             foreach ($permisos as $key) {
                 $consultar = $key['PER_CONSULTAR'];
             }
@@ -35,7 +36,7 @@ class BitacoraController extends Controller
             //throw $th;
             return 'Error rol 24';
         }
-        if (isset($consultar) == '1') {
+        if ( $consultar == '1') {
             try {
 
                 $bitacora = http::withToken(Cache::get('token'))->get($this->url . '/seguridad/sel_bitacora');

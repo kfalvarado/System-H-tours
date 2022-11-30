@@ -220,7 +220,7 @@ class clasificacionController extends Controller
         /**
          * Seguridad de roles y perimisos metodo delete
          */
-
+     
         try {
             //code...
             $search = Http::withToken(Cache::get('token'))->post($this->url . '/permisos/sel_per_obj', [
@@ -238,12 +238,8 @@ class clasificacionController extends Controller
         }
 
         if ($eliminacion == '1') {
-
-
-
-            $delete = Http::withToken(Cache::get("token"))->delete($this->url . '/clasificaion/eliminar/' . $request->f);
-
-
+          
+            $delete = Http::withToken(Cache::get("token"))->delete($this->url . '/clasificacion/eliminar/' . $request->f);
             try {
                 $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
                     "USR" => Cache::get('user'),
