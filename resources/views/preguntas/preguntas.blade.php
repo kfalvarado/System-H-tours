@@ -16,7 +16,6 @@ Preguntas | inicio
 {{ asset('assets/images/dama.png')}}
 @endif
 @endsection
-
 <!-- nombre del usuario de la barra lateral  -->
 @section('Usuario-Lateral')
 {{cache::get('user')}}
