@@ -148,4 +148,3 @@ function validarTel(e) {
         console.log('incorrecto');
     }
 }
-

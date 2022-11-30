@@ -4,6 +4,11 @@
 @section('titulo')
 Preguntas | inicio
 @endsection
+
+@section('encabezado')
+<link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
+@endsection
+
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
 @if (Cache::get('genero') == 'M')
@@ -147,9 +152,12 @@ Preguntas | inicio
                               type='text' 
                               name='RESPUESTA'
                               size="50" maxlength="100" 
+                              id="res_usr"
+                              onkeyup="validarRes(this)"
                               class="form-control text-white"
                               value=""  
                               required>
+                              <div id="divres"></div>
                             </label>
                           <label class="form-label">
                           </label>
@@ -265,5 +273,8 @@ Preguntas | inicio
 </main>
           @section('js')
           <script src="{{ asset('assets/js/ab-page.js') }}"></script>
+           {{-- FORMULARIOS VALIDACIÓN --}}
+          <script src="{{ asset('assets/js/ab-formularios.js') }}"></script>
+    
           @endsection
 @endsection
