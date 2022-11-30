@@ -40,7 +40,7 @@ class ParametrosController extends Controller
             return 'Error Parametros 21';
         }
 
-        if ($consultar == '1') {
+        if (isset($consultar) == '1') {
             try {
                 //code...
                 $parametros = http::withToken(Cache::get('token'))->get($this->url . '/parametros');
@@ -95,7 +95,7 @@ class ParametrosController extends Controller
             //throw $th;
             return 'Error Parametros 21';
         }
-        if ($insercion == '1') {
+        if (isset($insercion) == '1') {
             try {
                 $insertar = Http::withToken(Cache::get('token'))->post($this->url . '/parametros/insertar', [
 
@@ -171,7 +171,7 @@ class ParametrosController extends Controller
             //throw $th;
             return 'Error Parametro 21';
         }
-        if ($update == '1') {
+        if (isset($update) == '1') {
             try {
                 //code...
                 $actualizar = Http::withToken(Cache::get('token'))->put($this->url . '/parametros/actualizar/' . $request->f, [
@@ -242,7 +242,7 @@ class ParametrosController extends Controller
             return 'Error Parametros 21';
         }
 
-        if ($eliminacion == '1') {
+        if (isset($eliminacion) == '1') {
 
 
 
