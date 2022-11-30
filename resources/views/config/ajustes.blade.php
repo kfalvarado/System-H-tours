@@ -4,6 +4,11 @@
 @section('titulo')
 Ajustes | inicio
 @endsection
+
+@section('encabezado')
+<link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
+@endsection
+
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
 
@@ -234,56 +239,96 @@ Ajustes | inicio
                             <div class="row mb-3">
                               <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nombre de usuario</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="NOM_USR" type="text" class="form-control text-white" id="fullName" placeholder="NOMBRE DE USUARIO" value="{{$ajustes['NOM_USR']}}">
+                                <input name="NOM_USR" type="text" class="form-control text-white" 
+                                      id="nom_usuario" placeholder="NOMBRE DE USUARIO"  maxlength="50"  
+                                      onkeyup="validarUsrConfig(this)" value="{{$ajustes['NOM_USR']}} "> 
+                                      <center>
+                                        <div style="background-color: white; opacity: 0.5;" id="divusrconfig"></div>
+                                      </center>
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="about" class="col-md-4 col-lg-3 col-form-label">Género</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="SEX_PERSONA" type="text" class="form-control text-white" id="about" placeholder="GÉNERO" value="{{$ajustes['SEX_PERSONA']}}" >
+                                <input name="SEX_PERSONA" type="text" class="form-control text-white" 
+                                      id="gnr_usuario" placeholder="GÉNERO" maxlength="1"
+                                      onkeyup="validarGnrConfig(this)" value="{{$ajustes['SEX_PERSONA']}}" >
+                                      <center>
+                                        <div style="background-color: white; opacity: 0.5;" id="divgnrconfig"></div>
+                                      </center>
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="age" class="col-md-4 col-lg-3 col-form-label">Edad</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="EDA_PERSONAL" type="number" class="form-control text-white" id="age" placeholder="EDAD" value="{{$ajustes['EDA_PERSONAL']}}">
+                                <input name="EDA_PERSONAL" type="number" class="form-control text-white" 
+                                        id="edad_usuario" placeholder="EDAD" min="16"
+                                        onkeyup="validarEdadConfig(this)" value="{{$ajustes['EDA_PERSONAL']}}">
+                                        <center>
+                                          <div style="background-color: white; opacity: 0.5;" id="divedadconfig"></div>
+                                        </center>
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="Job" class="col-md-4 col-lg-3 col-form-label">Tipo de persona</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="TIP_PERSONA" type="text" class="form-control text-white" id="Job" placeholder="TIPO DE PERSONA" value="{{$ajustes['TIP_PERSONA']}}">
+                                <input name="TIP_PERSONA" type="text" class="form-control text-white" 
+                                      id="tp_usuario" placeholder="TIPO DE PERSONA" maxlength="1"
+                                      onkeyup="validarTpConfig(this)" value="{{$ajustes['TIP_PERSONA']}}">
+                                      <center>
+                                        <div style="background-color: white; opacity: 0.5;" id="divtpconfig"></div>
+                                      </center>
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="ID" class="col-md-4 col-lg-3 col-form-label">Identidad</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="NUM_IDENTIDAD" type="text" class="form-control text-white" id="ID" placeholder="Nr° ID" value="{{$ajustes['NUM_IDENTIDAD']}}">
+                                <input name="NUM_IDENTIDAD" type="text" class="form-control text-white" 
+                                      id="id_usuario" placeholder="Nr° ID" maxlength="16"
+                                      onkeyup="validarIdConfig(this)" value="{{$ajustes['NUM_IDENTIDAD']}}">
+                                      <center>
+                                        <div style="background-color: white; opacity: 0.5;" id="dividconfig"></div>
+                                      </center>
                               </div>
                             </div>
         
                             <div class="row mb-3">
-                              <label for="Address" class="col-md-4 col-lg-3 col-form-label">Estado Civil</label>
+                              <label for="E" class="col-md-4 col-lg-3 col-form-label">Estado Civil</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="IND_CIVIL" type="text" class="form-control text-white" id="Address" placeholder="ESTADO CIVIL" value="{{$ajustes['IND_CIVIL']}}">
+                                <input name="IND_CIVIL" type="text" class="form-control text-white" 
+                                      id="EstadoC_usuario" placeholder="ESTADO CIVIL" maxlength="1"
+                                      onkeyup="validarEstCivilConfig(this)" value="{{$ajustes['IND_CIVIL']}}">
+                                      <center>
+                                        <div style="background-color: white; opacity: 0.5;" id="divestcconfig"></div>
+                                      </center>
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Teléfono</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="TELEFONO" type="tel" class="form-control text-white" id="Phone" placeholder="TELÉFONO" value="{{$ajustes['TELEFONO']}}">
+                                <input name="TELEFONO" type="tel" class="form-control text-white" 
+                                      id="tel_usuario" placeholder="TELÉFONO" pattern="[+0-9 ]{4}-[0-9]{4}-[0-9]{4}"
+                                      onkeyup="validarTelConfig(this)" value="{{$ajustes['TELEFONO']}}">
+                                      <center>
+                                        <div style="background-color: white; opacity: 0.5;" id="divtelconfig"></div>
+                                      </center>
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="" class="col-md-4 col-lg-3 col-form-label">Tipo de telefono</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="TIP_TELEFONO" type="tel" class="form-control text-white" id="Email" placeholder="TIPO DE TELÉFONO" value="{{$ajustes['TIP_TELEFONO']}}">
+                                <input name="TIP_TELEFONO" type="text" class="form-control text-white" 
+                                      id="tiptel_usuario" placeholder="TIPO DE TELÉFONO" maxlength="1"
+                                      onkeyup="validarTipoTelConfig(this)" value="{{$ajustes['TIP_TELEFONO']}}">
+                                      <center>
+                                        <div style="background-color: white; opacity: 0.5;" id="divtiptelconfig"></div>
+                                      </center>
                               </div>
                             </div>
         
@@ -352,10 +397,17 @@ Ajustes | inicio
                                 <input 
                                   name="CONTRA_ACTUAL" 
                                   type="password" 
+                                  minlength="10"
+                                  maxlength="32"
                                   {{-- type="text"  --}}
                                   class="form-control" 
-                                  id="currentPassword"
+                                  id="contra_usuario"
+                                  placeholder="INGRESE SU CONTRASEÑA ACTUAL"
+                                  onkeyup="validarUsrConfig(this)"
                                   required>
+                                  <center>
+                                    <div style="background-color: white; opacity: 0.5;" id="divcontraconfig"></div>
+                                  </center>
                               </div>
                             </div>
         
@@ -365,9 +417,12 @@ Ajustes | inicio
                                 <input 
                                   name="CONTRASEGNA" 
                                   type="password"
+                                  minlength="10"
+                                  maxlength="32"
                                   {{-- type="text"  --}}
                                   class="form-control" 
                                   id="newPassword"
+                                  placeholder="INGRESE SU NUEVA CONTRASEÑA"
                                   required>
                               </div>
                             </div>
@@ -377,10 +432,13 @@ Ajustes | inicio
                               <div class="col-md-8 col-lg-9">
                                 <input 
                                   name="" 
-                                  type="password" 
+                                  type="password"
+                                  minlength="10"
+                                  maxlength="32" 
                                   {{-- type="text" --}}
                                   class="form-control" 
                                   id="renewPassword"
+                                  placeholder="RE-INGRESE SU NUEVA CONTRASEÑA"
                                   required>
                               </div>
                             </div>
@@ -403,6 +461,9 @@ Ajustes | inicio
 
 </main>
 
+  @section('js')
+  <script src="{{ asset('assets/js/ab-usuarios.js') }}"></script>
+  @endsection
 
  <!-- ICONOS BOOTSTRAP -->
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" integrity="sha384-ejwKkLla8gPP8t2u0eQyL0Q/4ItcnyveF505U0NIobD/SMsNyXrLti6CWaD0L52l" crossorigin="anonymous">

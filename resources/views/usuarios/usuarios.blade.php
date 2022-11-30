@@ -128,7 +128,7 @@
                                                     <td>{{ $usuario['ESTADO_USUARIO'] }}</td>
                                                     <td>{{ $usuario['COD_ROL'] }}</td>
                                                     <td>{{ $usuario['TIPO'] }}</td>
-                                                    <td>{{ $usuario['FECHA_ULTIMO_ACCESO'] }}</td>
+                                                    <td>{{substr($usuario['FECHA_ULTIMO_ACCESO'], 0, 10)}}</td>
                                                     {{-- <td>{{$usuario['PREGUNTA_RESPONDIDA']}}</td> --}}
                                                     <td>{{ $usuario['PRIMER_ACCESO'] }}</td>
                                                     <td>{{ $usuario['CORREO_ELECTRONICO'] }}</td>
