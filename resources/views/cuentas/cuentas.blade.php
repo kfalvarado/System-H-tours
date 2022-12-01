@@ -5,7 +5,7 @@
     Cuentas | inicio
 @endsection
 @section('encabezado')
-<link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
@@ -175,23 +175,23 @@
                                                                                 @endforeach
                                                                             </select>
                                                                         </label>
-                                                                      
-                                                                            <label class="form-label">
-                                                                                Numero de Cuenta
-                                                                                <input type='text' name='numero'
+
+                                                                        <label class="form-label">
+                                                                            Numero de Cuenta
+                                                                            <input type='text' name='numero'
                                                                                 value="{{ $cuentas['NUM_CUENTA'] }}"
                                                                                 class="form-control text-white"
                                                                                 required></input>
-                                                                            </label>
-                                                                           <label class="form-label">
-                                                                                Nombre de la Cuenta
-                                                                                <input type='text' name='cuenta'
+                                                                        </label>
+                                                                        <label class="form-label">
+                                                                            Nombre de la Cuenta
+                                                                            <input type='text' name='cuenta'
                                                                                 value="{{ $cuentas['NOM_CUENTA'] }}"
                                                                                 min="0"
                                                                                 class="form-control text-white"
                                                                                 required></input>
-                                                                            </label>
-                                                               
+                                                                        </label>
+
 
                                                                         <button type="submit"
                                                                             class="btn btn-primary">Actualizar </button>
@@ -283,7 +283,7 @@
                                                                 Clasificacion
 
                                                                 <select class="form-control text-white" name="naturaleza"
-                                                                    id="" required>
+                                                                    id="clasificacion" onchange="datos()" required>
                                                                     <option hidden selected>SELECCIONAR</option>
                                                                     @foreach ($clasificacionArr as $key)
                                                                         <option value="{{ $key['NATURALEZA'] }}">
@@ -298,7 +298,7 @@
                                                             Grupo
 
                                                             <select class="form-control text-white" name="grupo"
-                                                                id="" required>
+                                                                id="grupos" required>
                                                                 <option hidden selected>SELECCIONAR</option>
                                                                 @foreach ($gruposArr as $key)
                                                                     <option value="{{ $key['COD_GRUPO'] }}">
@@ -312,24 +312,21 @@
                                                 </tr>
                                             </thead>
                                         </table>
-                                                  
-                                                        <label class="form-label">
-                                                         
-                                                            Numero de Cuenta
-                                                            <input title="Ingresar solo numeros" type='number' name='numerocuenta' id="num_cuenta"
-                                                            onkeyup="validarnumeros(this)" oninvalid=""
-                                                            min="0"
-                                                            class="form-control text-white " maxlength="3"
-                                                            required>
-                                                            <span for=""id="divnum"></span>
-                                                           
-                                                        </label>
-                                                  <br>
+
+                                        <label class="form-label">
+
+                                            Numero de Cuenta
+                                            <input title="Ingresar solo numeros" type='number' name='numerocuenta'
+                                                id="num_cuenta" onkeyup="validarnumeros(this)" oninvalid=""
+                                                min="0" class="form-control text-white " maxlength="3" required>
+                                            <span for=""id="divnum"></span>
+
+                                        </label>
+                                        <br>
                                         <label class="form-label">
                                             Nombre de la Cuenta
                                             <input type='text' name='nombrecuenta' id="nom_cuenta"
-                                            class="form-control text-white" onkeyup="validarletras(this)"
-                                            required>
+                                                class="form-control text-white" onkeyup="validarletras(this)" required>
                                             <label for=""id="divcuenta"></label>
                                         </label>
                                         <br>
@@ -354,7 +351,48 @@
     <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>
     <script src="{{ asset('assets/js/ab-formularios.js') }}"></script>
-    {{-- <script src="{{ asset('assets/css/formularios.css') }}"></script> --}}
+    @routes
+    <script>
+        function datos() {
+            window.CSRF_TOKEN = '{{ csrf_token() }}';
+            // const csrftoken = document.head.querySelector('[name~=csrf-token][content]').content;
+            //Vamos a rellenar el select automáticamente.
+            const select = document.getElementById("clasificacion").value;
+            var contenido = document.querySelector('#grupos')
+
+            console.log(select);
+            var url = route('grupo.search')
+            let data = {
+                NATURALEZA: select
+            }
+            fetch(url, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': window.CSRF_TOKEN
+                    }
+                })
+                .then(resp => {
+                    return resp.json()
+                })
+                .then(respuesta => {
+                    // console.log(respuesta);
+                    pinta(respuesta);
+
+                    function pinta(res) {
+                        contenido.innerHTML = '';
+                        contenido.innerHTML = ' <option hidden selected>SELECCIONAR</option>';
+
+                        for (let valor of res) {
+                            contenido.innerHTML +=
+                                `<option name="INV" value="${valor.COD_GRUPO}">${valor.NOM_GRUPO}</option>`
+                        }
+
+                    }
+                }).catch(error => console.error(error))
+        }
+    </script>
 @endsection
 
 @endsection

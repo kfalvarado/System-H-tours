@@ -371,7 +371,7 @@
                     return resp.json()
                 })
                 .then(respuesta => {
-                    console.log(respuesta);
+                    // console.log(respuesta);
                     pinta(respuesta);
                     //   console.log(typeof respuesta);
                     //   const object = JSON.stringify(respuesta)

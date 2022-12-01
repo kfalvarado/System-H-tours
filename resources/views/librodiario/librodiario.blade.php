@@ -814,6 +814,7 @@
 @section('js')
     <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>
+   
     <script src="{{ asset('assets/js/ab-librodiario.js')}}"></script>
 
 
@@ -859,11 +860,6 @@
         }
     </script>
 
-
-
-
-
-
     <script>
         $(document).ready(function() {
             $('#chkbx1').on('change', function() {
@@ -898,6 +894,60 @@
                 .merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
         });
     </script>
+   @routes
+    <script>
+        function datos() {
+    window.CSRF_TOKEN = '{{ csrf_token() }}';
+    // const csrftoken = document.head.querySelector('[name~=csrf-token][content]').content;
+    //Vamos a rellenar el select automáticamente.
+    const select = document.getElementById("clasificacion").value;
+    var contenido = document.querySelector('#cuenta')
+
+    // console.log(select);
+    var url = route('busca.subcuentas')
+    let data = {
+        NATURALEZA: select
+    }
+    fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': window.CSRF_TOKEN
+            }
+        })
+        .then(resp => {
+            return resp.json()
+        })
+        .then(respuesta => {
+            // console.log(respuesta);
+            pinta(respuesta);
+            //   console.log(typeof respuesta);
+            //   const object = JSON.stringify(respuesta)
+            //   console.log(object.NOM_CUENTA[0]);
+            //   var opciones = "";
+            //   for(let i in object.NOM_CUENTA){
+            //     // console.log(object.NOM_CUENTA[]);
+            //     opciones+="<option value='"+object.NOM_CUENTA[i]+"'>"+object.NOM_CUENTA[i]+'</option>';
+            //   }
+            //   document.getElementById('cuentas').innerHTML = opciones;
+            function pinta(res) {
+                contenido.innerHTML = '';
+                contenido.innerHTML = ' <option hidden selected>SELECCIONAR</option>';
+
+                for (let valor of res) {
+                    contenido.innerHTML += `
+                    
+    <option name="INV" value="${valor.NOM_CUENTA}">${valor.NOM_CUENTA}</option>   
+    `
+                }
+
+            }
+        }).catch(error => console.error(error))
+}
+    </script>
+
+
 @endsection
 
 

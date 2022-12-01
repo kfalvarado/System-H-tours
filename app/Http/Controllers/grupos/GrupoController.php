@@ -217,7 +217,7 @@ class GrupoController extends Controller
 
     public function eliminar(Request $request)
     {
-        
+
         /**
          * Seguridad de roles y perimisos metodo delete
          */
@@ -243,44 +243,59 @@ class GrupoController extends Controller
 
 
             try {
-        $eliminar = http::withToken(Cache::get('token'))->delete($this->url . '/grupos/eliminar/' . $request->cod);
-        Session::flash('eliminado', '1');
-    } catch (\Throwable $th) {
-        //throw $th;
-        return 'Error periodo 250';
-    }
+                $eliminar = http::withToken(Cache::get('token'))->delete($this->url . '/grupos/eliminar/' . $request->cod);
+                Session::flash('eliminado', '1');
+            } catch (\Throwable $th) {
+                //throw $th;
+                return 'Error periodo 250';
+            }
 
 
-    try {
-        $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
-            "USR" => Cache::get('user'),
-            "ACCION" => 'ELIMINO UN DATO',
-            "DES" => Cache::get('user') . ' ELIMINO EL DATO CON CODIGO ' . $request->f . ' EN LA PANTALLA DE GRUPOS',
-            "OBJETO" => 'GRUPOS'
+            try {
+                $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                    "USR" => Cache::get('user'),
+                    "ACCION" => 'ELIMINO UN DATO',
+                    "DES" => Cache::get('user') . ' ELIMINO EL DATO CON CODIGO ' . $request->f . ' EN LA PANTALLA DE GRUPOS',
+                    "OBJETO" => 'GRUPOS'
 
-        ]);
-    } catch (\Throwable $th) {
-        //throw $th;
-        return 'Error GRUPOS 250';
-    }
-} else {
-    # code...
-    try {
-        $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
-            "USR" => Cache::get('user'),
-            "ACCION" => 'SIN PERMISO METODO ELIMINADO',
-            "DES" => Cache::get('user') . ' INTENTO ELIMININAR EL DATO  con codigo' . $request->f . ' EN LA PANTALLA DE GRUPOS',
-            "OBJETO" => 'GRUPOS'
+                ]);
+            } catch (\Throwable $th) {
+                //throw $th;
+                return 'Error GRUPOS 250';
+            }
+        } else {
+            # code...
+            try {
+                $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                    "USR" => Cache::get('user'),
+                    "ACCION" => 'SIN PERMISO METODO ELIMINADO',
+                    "DES" => Cache::get('user') . ' INTENTO ELIMININAR EL DATO  con codigo' . $request->f . ' EN LA PANTALLA DE GRUPOS',
+                    "OBJETO" => 'GRUPOS'
 
-        ]);
+                ]);
 
-        Session::flash('sinpermiso', '1');
-    } catch (\Throwable $th) {
-        //throw $th;
-        return 'Error GRUPOS 268';
-    }
-}
+                Session::flash('sinpermiso', '1');
+            } catch (\Throwable $th) {
+                //throw $th;
+                return 'Error GRUPOS 268';
+            }
+        }
         return back();
+    }
+
+    public function gruposSearch(Request $request)
+    {
+        try {
+            //code...
+            $grupo = http::withToken(Cache::get('token'))->post($this->url . '/grupos/unidades',[
+                "NATURALEZA"=>$request->NATURALEZA
+            ]); 
+        } catch (\Throwable $th) {
+            //throw $th;
+            return 'busqueda de grupos';
+        }
+        return $grupo;
+
     }
 
     public function pdf()
