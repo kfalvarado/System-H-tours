@@ -270,7 +270,7 @@ Preguntas | inicio
         <!-- FIN DE MODAL PARA BORRAR  -->
 </main>
           @section('js')
-          <script src="{{ asset('assets/js/ab-formularios.js') }}"></script>
+          <script src="{{ asset('assets/js/ab-usuarios.js') }}"></script>
           <script src="{{ asset('assets/js/ab-page.js') }}"></script>
           @endsection
 @endsection

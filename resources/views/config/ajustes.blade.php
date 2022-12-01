@@ -223,6 +223,11 @@ Ajustes | inicio
                             <div class="col-lg-3 col-md-4 label">Teléfono</div>
                             <div class="col-lg-9 col-md-8">{{$ajustes['TELEFONO']}}</div>
                           </div>
+
+                          <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Correo</div>
+                            <div class="col-lg-9 col-md-8">{{$ajustes['CORREO']}}</div>
+                          </div>
                       
                       </div>
                     @endforeach
@@ -240,7 +245,7 @@ Ajustes | inicio
                               <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nombre de usuario</label>
                               <div class="col-md-8 col-lg-9">
                                 <input name="NOM_USR" type="text" class="form-control text-white" 
-                                      id="nom_usuario" placeholder="NOMBRE DE USUARIO"  maxlength="50"  
+                                      id="nom_usuario" placeholder="NOMBRE DE USUARIO"  maxlength="100"  
                                       onkeyup="validarUsrConfig(this)" value="{{$ajustes['NOM_USR']}} "> 
                                       <center>
                                         <div style="background-color: white; opacity: 0.5;" id="divusrconfig"></div>
@@ -311,8 +316,8 @@ Ajustes | inicio
                             <div class="row mb-3">
                               <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Teléfono</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="TELEFONO" type="tel" class="form-control text-white" 
-                                      id="tel_usuario" placeholder="TELÉFONO" pattern="[+0-9 ]{4}-[0-9]{4}-[0-9]{4}"
+                                <input name="TELEFONO" type="tel" class="form-control text-white" maxlength="32"
+                                      id="tel_usuario" placeholder="TELÉFONO" pattern="[+0-9 ]{2,5} [0-9-]{4,13}[0-9-]{4,13}"
                                       onkeyup="validarTelConfig(this)" value="{{$ajustes['TELEFONO']}}">
                                       <center>
                                         <div style="background-color: white; opacity: 0.5;" id="divtelconfig"></div>
@@ -328,6 +333,18 @@ Ajustes | inicio
                                       onkeyup="validarTipoTelConfig(this)" value="{{$ajustes['TIP_TELEFONO']}}">
                                       <center>
                                         <div style="background-color: white; opacity: 0.5;" id="divtiptelconfig"></div>
+                                      </center>
+                              </div>
+                            </div>
+
+                            <div class="row mb-3">
+                              <label for="" class="col-md-4 col-lg-3 col-form-label">Correo electrónico</label>
+                              <div class="col-md-8 col-lg-9">
+                                <input name="CORREO" type="e-mail" class="form-control text-white" 
+                                      id="correo_usuario" placeholder="CORREO ELECTRÓNICO"  maxlength="100"  
+                                      onkeyup="validarCorreoConfig(this)" value="{{$ajustes['CORREO']}} "> 
+                                      <center>
+                                        <div style="background-color: white; opacity: 0.5;" id="divcorreoconfig"></div>
                                       </center>
                               </div>
                             </div>

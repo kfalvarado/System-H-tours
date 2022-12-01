@@ -63,6 +63,14 @@ class ConfigsController extends Controller
             "TIP_TELEFONO"=>$req->TIP_TELEFONO
 
         ]);
+
+
+        $correo_usr = http::withToken(Cache::get('token'))->put($this->url.'/upd_correo_usr',[
+            "COD" => $req->COD,
+            "CORREO" => $req->CORREO
+        ]);
+
+
         //return $ajustes;
         Session::flash("actualizado_usr","1");
         return back();

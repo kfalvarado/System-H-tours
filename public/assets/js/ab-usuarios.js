@@ -3,7 +3,7 @@ const expresiones = {
     nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
     contrasegna: /^.{4,12}$/, // 4 a 12 digitos.
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-    telefono: /^[+0-9]{4} [0-9]{4}-[0-9]{4}$/, // telefonos numeros.
+    telefono: /^[+0-9 ]{2,5} [0-9-]{4,13}[0-9-]{4,13}$/, // telefonos numeros.
     numeros: /^\d{1,10}$/, // 7 a 14 numeros.
     identidad: /^[0-9]{6}-\d{4}-\d{5}$/, // 7 a 16 numeros.
     genero: /^[M|F]$/,
@@ -26,10 +26,10 @@ const campos = {
 
 
 function validarRes(e) {
-    let cuentas = document.getElementById('respuesta').value;
+    let res = document.getElementById('respuesta').value;
     let div = document.getElementById('divres');
 
-    if (expresiones.nombre.test(cuentas)) {
+    if (expresiones.nombre.test(res)) {
         document.getElementById('respuesta').classList.remove('incorrecto') 
         document.getElementById('respuesta').classList.add('correcto') 
  
@@ -217,6 +217,28 @@ function validarTipoTelConfig(e) {
         document.getElementById('tiptel_usuario').classList.add('incorrecto') 
       
         div.innerHTML='<font color="red"> <h5>Debe ingresar C (CELULAR) ó T (TELÉFONO FIJO) en mayúscula.</h5></font>'
+
+        console.log('incorrecto');
+
+    }
+    
+}
+
+//Correo
+function validarCorreoConfig(e) {
+    let correo_config = document.getElementById('correo_usuario').value;
+    let div = document.getElementById('divcorreoconfig');
+
+    if (expresiones.correo.test(correo_config)) {
+        document.getElementById('correo_usuario').classList.remove('incorrecto') 
+        document.getElementById('correo_usuario').classList.add('correcto') 
+ 
+        div.innerHTML='';
+        console.log('correcto');
+    }else{
+        document.getElementById('correo_usuario').classList.add('incorrecto') 
+      
+        div.innerHTML='<font color="red"> <h5>Debe ingresar un correo valido</h5></font>'
 
         console.log('incorrecto');
 

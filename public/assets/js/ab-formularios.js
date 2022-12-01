@@ -3,7 +3,7 @@ const expresiones = {
     nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
     password: /^.{4,12}$/, // 4 a 12 digitos.
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-    telefono: /^[+0-9]{4} [0-9]{8}$/, // telefonos numeros.
+    telefono: /^[+0-9 ]{2,5} [0-9-]{4,13}[0-9-]{4,13}$/, // telefonos numeros.
     numeros: /^\d{1,10}$/, // 7 a 14 numeros.
     identidad: /^[0-9]{4}-\d{4}-\d{5}$/ // 7 a 14 numeros.
 }

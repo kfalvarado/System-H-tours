@@ -148,7 +148,7 @@
                                             <font color='white'>Teléfono </font>
                                             <input type="tel" id="telefono" name="telefono"
                                                 class="form-control p_input text-dark bg-white"
-                                                placeholder="+504 90213300" pattern="[+0-9]{4} [0-9]{8}" required>
+                                                placeholder="+504 90213300" pattern="[+0-9 ]{2,5} [0-9-]{4,13}[0-9-]{4,13}" required>
                                         </label>
                                     </th>
                                 </thead>
