@@ -111,10 +111,10 @@ class UsuariosController extends Controller
                 "CORREO" => $req->CORREO,
                 "FILA" => $req->COD_USR
         ]);
-    } catch (\Throwable $th) {
-        //throw $th;
-        return 'error USUARIOS 164';
-    }
+        } catch (\Throwable $th) {
+            //throw $th;
+            return 'error USUARIOS 164';
+        }
 
 
         try {
@@ -129,24 +129,24 @@ class UsuariosController extends Controller
             return 'ERROR USUARIOS BITACORA';
         }
         Session::flash("actualizado","1");
-    } else {
-        try {
-            $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
-                "USR" => Cache::get('user'),
-                "ACCION" => 'SIN PERMISO METODO PUT',
-                "DES" => Cache::get('user') . ' INTENTO ACTUALIZAR EL DATO ' . $req->USUARIO . ' EN LA PANTALLA DE USUARIOS',
-                "OBJETO" => 'USUARIOS'
+        } else {
+            try {
+                $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                    "USR" => Cache::get('user'),
+                    "ACCION" => 'SIN PERMISO METODO PUT',
+                    "DES" => Cache::get('user') . ' INTENTO ACTUALIZAR EL DATO ' . $req->USUARIO . ' EN LA PANTALLA DE USUARIOS',
+                    "OBJETO" => 'USUARIOS'
 
-            ]);
+                ]);
 
             Session::flash('sinpermiso', '1');
         } catch (\Throwable $th) {
             //throw $th;
             return 'Error ROLES 32';
         }
-    }
+        }
 
-        return back();
+            return back();
     }
     
     

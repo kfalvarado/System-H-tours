@@ -340,7 +340,7 @@ Ajustes | inicio
                             <div class="row mb-3">
                               <label for="" class="col-md-4 col-lg-3 col-form-label">Correo electrónico</label>
                               <div class="col-md-8 col-lg-9">
-                                <input name="CORREO" type="e-mail" class="form-control text-white" 
+                                <input name="CORREO" type="email" class="form-control text-white" 
                                       id="correo_usuario" placeholder="CORREO ELECTRÓNICO"  maxlength="100"  
                                       onkeyup="validarCorreoConfig(this)" value="{{$ajustes['CORREO']}} "> 
                                       <center>
@@ -410,7 +410,7 @@ Ajustes | inicio
         
                             <div class="row mb-3">
                               <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Contraseña actual</label>
-                              <div class="col-md-8 col-lg-9">
+                              <div class="input-group col-md-8 col-lg-9">
                                 <input 
                                   name="CONTRA_ACTUAL" 
                                   type="password" 
@@ -418,19 +418,26 @@ Ajustes | inicio
                                   maxlength="32"
                                   {{-- type="text"  --}}
                                   class="form-control" 
-                                  id="contra_usuario"
+                                  id="contra_actual_usuario"
                                   placeholder="INGRESE SU CONTRASEÑA ACTUAL"
                                   onkeyup="validarUsrConfig(this)"
                                   required>
+                                  <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary btn-shadow" 
+                                            type="button" id="mostralActual" 
+                                            class="mdi mdi-eye-outline" 
+                                            onclick="mostrarContrasenaActual()">
+                                    </button>
+                                  </div> 
                                   <center>
                                     <div style="background-color: white; opacity: 0.5;" id="divcontraconfig"></div>
                                   </center>
                               </div>
                             </div>
         
-                            <div class="row mb-3">
+                            <div class="row mb-3 ">
                               <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Nueva contraseña</label>
-                              <div class="col-md-8 col-lg-9">
+                              <div class="input-group col-md-8 col-lg-9">
                                 <input 
                                   name="CONTRASEGNA" 
                                   type="password"
@@ -438,15 +445,27 @@ Ajustes | inicio
                                   maxlength="32"
                                   {{-- type="text"  --}}
                                   class="form-control" 
-                                  id="newPassword"
+                                  id="nuevaContra"
                                   placeholder="INGRESE SU NUEVA CONTRASEÑA"
                                   required>
+                                  <div class="input-group-append">
+                                    {{-- <button class="btn btn-outline-secondary btn-shadow" 
+                                            type="button" id="mostrarNueva" 
+                                            class="mdi mdi-eye-outline" 
+                                            onclick="mostrarContrasenaNueva()">
+                                    </button> --}}
+                                    <span id="icon"
+                                      style="color: black; position: center; display: block; bottom: .2rem; right: 1rem; user-select: none;cursor: pointer;">
+                                      <i id="mostrarNueva" class="mdi mdi-eye-outline"
+                                                onclick="mostrarContrasenaNueva()"></i>
+                                    </span>
+                                  </div> 
                               </div>
                             </div>
         
                             <div class="row mb-3">
                               <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-ingresar nueva contraseña</label>
-                              <div class="col-md-8 col-lg-9">
+                              <div class="input-group col-md-8 col-lg-9">
                                 <input 
                                   name="" 
                                   type="password"
@@ -454,17 +473,60 @@ Ajustes | inicio
                                   maxlength="32" 
                                   {{-- type="text" --}}
                                   class="form-control" 
-                                  id="renewPassword"
+                                  id="reingresoContra"
                                   placeholder="RE-INGRESE SU NUEVA CONTRASEÑA"
                                   required>
+                                  <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary btn-shadow" 
+                                            type="button" id="mostrarReNueva" 
+                                            class="mdi mdi-eye-outline" 
+                                            onclick="mostrarContrasenaReingreso()">
+                                    </button>
+                                  </div> 
                               </div>
                             </div>
+
+                            <script>
+                              function mostrarContrasenaActual() {
+                                var tipo = document.getElementById("contra_actual_usuario");
+                                var ojo = document.getElementById("mostralActual");
+                                if (tipo.type == "password") {
+                                  tipo.type = "text";
+                                  ojo.className = 'mdi mdi-eye-off-outline';
+                                } else {
+                                  tipo.type = "password";
+                                  ojo.className = 'mdi mdi-eye-outline';
+                                }
+                              }
+                              function mostrarContrasenaNueva() {
+                                var tipo = document.getElementById("nuevaContra");
+                                var ojo = document.getElementById("mostrarNueva");
+                                if (tipo.type == "password") {
+                                  tipo.type = "text";
+                                  ojo.className = 'mdi mdi-eye-off-outline';
+                                } else {
+                                  tipo.type = "password";
+                                  ojo.className = 'mdi mdi-eye-outline';
+                                }
+                              }
+                              function mostrarContrasenaReingreso() {
+                                var tipo = document.getElementById("reingresoContra");
+                                var ojo = document.getElementById("mostrarReNueva");
+                                if (tipo.type == "password") {
+                                  tipo.type = "text";
+                                  ojo.className = 'mdi mdi-eye-off-outline';
+                                } else {
+                                  tipo.type = "password";
+                                  ojo.className = 'mdi mdi-eye-outline';
+                                }
+                              }
+                            </script>
         
                             <div class="text-center">
-                              <button type="submit" class="btn btn-primary btn-shadow">Cambiar contraseña</button>
+                              <button type="submit" onclick="contra_comparar()" class="btn btn-primary btn-shadow">Cambiar contraseña</button>
                             </div>
                           </form><!-- End Change Password Form -->
-        
+
                         </div>
                       </div>
   

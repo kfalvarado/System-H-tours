@@ -138,10 +138,15 @@ Preguntas | inicio
                             <input 
                               type='text' 
                               name='PREGUNTA'
+                              id="pregunta"
+                              onkeyup="validarPreg(this)"
                               size="50" maxlength="100" 
                               class="form-control text-white"
                               value="{{$preg['PREGUNTA']}}"  
                               required>
+                              <center>
+                                <div style="background-color: white; opacity: 0.5;" id="divpreg"></div>
+                              </center>
                           </label>
                           <br>
                           <label class="form-label">
@@ -155,7 +160,9 @@ Preguntas | inicio
                               class="form-control text-white"
                               value=""  
                               required>
-                              <div id="divres"></div>
+                              <center>
+                                <div style="background-color: white; opacity: 0.5;" id="divcres"></div>
+                              </center>
                             </label>
                           <label class="form-label">
                           </label>
