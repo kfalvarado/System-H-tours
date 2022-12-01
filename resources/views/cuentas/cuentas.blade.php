@@ -123,7 +123,7 @@
                                 </thead>
                                 <tbody>
                                     @if (count($personArr) <= 0)
-                                        <td>No hay resultados</td>
+                                        <td colspan='6'>No hay resultados</td>
                                     @else
                                         @foreach ($personArr as $cuentas)
                                             <tr class="text-white bg-dark">

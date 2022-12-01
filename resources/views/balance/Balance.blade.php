@@ -72,29 +72,44 @@
     <!-- FIN DE MODAL PARA NUEVA  -->
 
     <div class="content-wrapper">
+        @if (count($balanceArr)>0)
+        
+        @foreach ($balanceArr as $key)
         <center>
-            <h1>Balance General H Tours Honduras</h1>
+            <h1>Balance General Empresa {{ $key['NOMBRE_EMPRESA'] }}</h1>
         </center>
+        @endforeach
+
+        @else
+        <center>
+            <h1>Balance General</h1>
+        </center>
+        @endif
         <h5>________________________________________________________________________________________________________________
         </h5>
         <!-- <ul class="nav nav-pills nav-stacked">
                                       <li class="active"><a href="#"></a></li>
                                     </ul> -->
         <center>
-            <h1>Periodo</h1>
-
-            <h1 id="nombre-periodo">1-2021-ene-1-001</h1>
+            @if (count($balanceArr) >0 )
+                @foreach ($balanceArr as $key)
+                    
+                <h1 id="nombre-periodo">{{ $key['PERIODO'] }}</h1>
+                <center>
+                    <br>
+                    <h3>Desde: <input type="date" aria-label="Disabled input example" value="{{ substr($key['FECHA_INICIAL'],0,10)}}" readonly> Hasta: <input
+                            type="date" value="{{ substr($key['FECHA_FINAL'],0,10)}}" readonly></h3>
+                </center>
+                @endforeach
+            @else
+            <h1> Periodo </h1>
+            @endif
         </center>
         <!-- <ul class="nav nav-pills nav-stacked">
                                         <li class="active"><a href="#"></a></li>
                                       </ul> -->
 
-
-        <center>
-            <br>
-            <h3>Desde: <input type="date" aria-label="Disabled input example" value="2021-01-01" readonly> Hasta: <input
-                    type="date" value="2021-12-31" readonly></h3>
-        </center>
+       
         <br>
         <p align="right" valign="baseline">
             <a type="button" href="{{ route('mostrar.libromayor') }}" class="btn btn-info btn-sm"><i class="mdi mdi-eye"></i> Verificar</a>
@@ -173,7 +188,7 @@
                                         <td class="text-dark bg-white" colspan="2">
                                             <center>Total activos</center>
                                         </td>
-                                        @if ($balanceArr <= 0)
+                                        @if (count($balanceArr) <= 0)
                                             <td class="text-dark bg-white"> <b>0.00</b> </td>
                                         @else
                                             @foreach ($balanceArr as $key)
@@ -248,7 +263,7 @@
                                         <td class="text-dark bg-white" colspan="2">
                                             <center>Total pasivos</center>
                                         </td>
-                                        @if ($balanceArr <= 0)
+                                        @if (count($balanceArr) <= 0)
                                             <td class="text-dark bg-white"> <b>0.00</b> </td>
                                         @else
                                             @foreach ($balanceArr as $key)
@@ -298,7 +313,7 @@
                                         <td class="text-dark bg-white" colspan="2">
                                             <center>Total Patrimonio</center>
                                         </td>
-                                        @if ($balanceArr <= 0)
+                                        @if (count($balanceArr) <= 0)
                                             <td class="text-dark bg-white"> <b>0.00</b> </td>
                                         @else
                                             @foreach ($balanceArr as $key)
@@ -326,7 +341,7 @@
                                     <tr class="text-dark bg-white">
                                         <th class="text-dark bg-white">#</th>
                                         <th class="text-dark bg-white">Periodo</th>
-                                        <th class="text-dark bg-white">Fecha</th>
+                                 
                                         <th class="text-dark bg-white">Total Activo</th>
                                         <th class="text-dark bg-white">Total Pasivo + Patrimonio</th>
                                     </tr>
@@ -334,17 +349,17 @@
                                 <tbody>
                                     <tr class="text-white bg-dark">
                                         <td>1</td>
-                                        <td>periodo-2021-ene-1-001</td>
-                                        <td>31/12/2021</td>
-                                        @if ($balanceArr <=0)
+                                        @if (count($balanceArr)<=0)
+                                        
+                                        <td>Periodo </td>
                                         <td>0.00</td>
                                         <td>0.00</td>
                                         
                                         @else
-                                          
-                                        
                                         
                                         @foreach ($balanceArr as $key)
+                                        <td>{{ $key['PERIODO'] }}</td>
+                                        
                                         <td>{{ $key['TOTAL_ACTIVOS'] }}</td>
                                         
                                         <td>{{ $key['TOTAL_PASIVOS'] + $key['TOTAL_PATRIMONIOS']}}</td>

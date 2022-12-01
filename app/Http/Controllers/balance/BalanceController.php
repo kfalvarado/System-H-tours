@@ -41,7 +41,7 @@ class BalanceController extends Controller
                 $activon = 0;
                 $pasivoc = 0;
                 $pasivon = 0;
-                $balanceArr = 0;
+                $balanceArr = [];
                 $patrimonio = 0;
             } catch (\Throwable $th) {
                 //throw $th;

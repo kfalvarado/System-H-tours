@@ -521,7 +521,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-dark bg-white"> # </th>
-                                    <th class="text-dark bg-white"> Codigo </th>
+                                    <th class="text-dark bg-white"> Código </th>
                                     <th class="text-dark bg-white"> Detalle </th>
                                     <th class="text-dark bg-white"> Saldo Debe </th>
                                     <th class="text-dark bg-white"> Saldo Haber </th>
@@ -536,7 +536,7 @@
 
                                 @if (count($personArr) <= 0)
                                     <tr>
-                                        <td colspan="6"> No hay Resultados</td>
+                                        <td colspan="9"> No hay Resultados</td>
                                     </tr>
                                 @else
                                     @foreach ($personArr as $librodiario)

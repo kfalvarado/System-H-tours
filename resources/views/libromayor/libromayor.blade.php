@@ -474,8 +474,8 @@ Libro Mayor | inicio
             <thead>
               <tr>
                 <th class="text-dark bg-white"> # </th>
-                <th class="text-dark bg-white"> Clasificacion </th>
-                <th class="text-dark bg-white"> Codigo </th>
+                <th class="text-dark bg-white"> Clasificación </th>
+                <th class="text-dark bg-white"> Código </th>
                 <th class="text-dark bg-white"> Detalle </th>
                 <th class="text-dark bg-white"> Saldo Debe </th>
                 <th class="text-dark bg-white"> Saldo Haber </th>
