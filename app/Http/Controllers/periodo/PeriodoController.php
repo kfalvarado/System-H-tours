@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
+
 class PeriodoController extends Controller
 {
 
@@ -24,10 +25,13 @@ class PeriodoController extends Controller
 
         try {
             //code...
-            $search = Http::withToken(Cache::get('token'))->post($this->url . '/permisos/sel_per_obj', [
-                "PV_ROL" => Cache::get('rol'),
-                "PV_OBJ" => "PERIODO"
-            ]);
+            $search = Http::withToken(Cache::get('token'))->post(
+                $this->url . '/permisos/sel_per_obj',
+                [
+                    "PV_ROL" => Cache::get('rol'),
+                    "PV_OBJ" => "PERIODO"
+                ]
+            );
 
             $permisos = $search->json();
             $consultar = 0;
@@ -39,7 +43,9 @@ class PeriodoController extends Controller
             return 'Error Periodo 21';
         }
 
-        if ($consultar == '1') {
+        if (
+            $consultar == '1'
+        ) {
             try {
                 //code...
                 $periodo = http::withToken(Cache::get('token'))->get($this->url . '/periodo');
@@ -75,7 +81,7 @@ class PeriodoController extends Controller
         }
 
 
-        return view('periodo.periodo', compact('personArr','incrementable'));
+        return view('periodo.periodo', compact('personArr', 'incrementable'));
     }
 
     /**
@@ -83,7 +89,7 @@ class PeriodoController extends Controller
      */
     public function insertar(Request $request)
     {
-          /**
+        /**
          * Seguridad de roles y perimisos metodo GET
          */
 
@@ -160,13 +166,13 @@ class PeriodoController extends Controller
     public function actualizar(Request $request)
     {
 
-         /**
+        /**
          * Seguridad de roles y perimisos metodo GET
          */
 
         try {
             //code...
-            $search = Http::withToken(Cache::get('token'))->post($this->url.'/permisos/sel_per_obj',[
+            $search = Http::withToken(Cache::get('token'))->post($this->url . '/permisos/sel_per_obj', [
                 "PV_ROL" => Cache::get('rol'),
                 "PV_OBJ" => "PERIODO"
             ]);
@@ -176,37 +182,37 @@ class PeriodoController extends Controller
             foreach ($permisos as $key) {
                 $update = $key['PER_ACTUALIZACION'];
             }
-         } catch (\Throwable $th) {
+        } catch (\Throwable $th) {
             //throw $th;
             return 'Error Periodo 21';
-         }
-         if ($update == '1') {
-        try {
-            //code...
-            $actualizar = Http::withToken(Cache::get('token'))->put($this->url.'/periodo/actualizar/'.$request->f,[
-                "USUARIO" => Cache::get('user'),
-                "NOM_PERIODO" => $request->periodo,
-                "FEC_INI" => $request->inicial,
-                "FEC_FIN" => $request->final,
-                "ESTADO" => $request->estado
-            ]);
-        } catch (\Throwable $th) {
-            //throw $th;
-            return 'error periodo 50';
         }
+        if ($update == '1') {
+            try {
+                //code...
+                $actualizar = Http::withToken(Cache::get('token'))->put($this->url . '/periodo/actualizar/' . $request->f, [
+                    "USUARIO" => Cache::get('user'),
+                    "NOM_PERIODO" => $request->periodo,
+                    "FEC_INI" => $request->inicial,
+                    "FEC_FIN" => $request->final,
+                    "ESTADO" => $request->estado
+                ]);
+            } catch (\Throwable $th) {
+                //throw $th;
+                return 'error periodo 50';
+            }
 
-        try {
-            $bitacora = Http::withToken(Cache::get('token'))->post($this->url.'/seguridad/bitacora/insertar',[
-                "USR"=> Cache::get('user'),
-                "ACCION"=> 'ACTUALIZO UN DATO EN PANTALLA ',
-                "DES"=> Cache::get('user').' ACTUALIZO EL DATO DE '.$request->periodo.' EN LA PANTALLA DE PERIODO',
-                "OBJETO"=> 'PERIODO'
+            try {
+                $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                    "USR" => Cache::get('user'),
+                    "ACCION" => 'ACTUALIZO UN DATO EN PANTALLA ',
+                    "DES" => Cache::get('user') . ' ACTUALIZO EL DATO DE ' . $request->periodo . ' EN LA PANTALLA DE PERIODO',
+                    "OBJETO" => 'PERIODO'
 
-            ]);
-        } catch (\Throwable $th) {
-            //throw $th;
-            return 'Error periodo 32';
-        }
+                ]);
+            } catch (\Throwable $th) {
+                //throw $th;
+                return 'Error periodo 32';
+            }
             Session::flash('actualizado', '1');
         } else {
             try {
@@ -255,11 +261,11 @@ class PeriodoController extends Controller
 
 
             try {
-            $delete = Http::withToken(Cache::get("token"))->delete($this->url . '/periodo/eliminar/' . $request->f);
-        } catch (\Throwable $th) {
-            //throw $th;
-            return 'Error periodo 250';
-        }
+                $delete = Http::withToken(Cache::get("token"))->delete($this->url . '/periodo/eliminar/' . $request->f);
+            } catch (\Throwable $th) {
+                //throw $th;
+                return 'Error periodo 250';
+            }
 
 
             try {
@@ -298,8 +304,8 @@ class PeriodoController extends Controller
         return back();
     }
 
-  
-     /*
+
+    /*
     ======================================
     Pantalla PDF de Periodo
     ======================================
@@ -309,9 +315,6 @@ class PeriodoController extends Controller
         $periodo = http::withToken(Cache::get('token'))->get($this->url . '/periodo');
 
         $periodo = $periodo->json();
-        return view('periodo.periodoPDF',compact('periodo')); 
+        return view('periodo.periodoPDF', compact('periodo'));
     }
-
-   
 }
-

@@ -74,6 +74,15 @@
             })
         </script>
     @endif
+    @if (Session::has('sinpermiso'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                text: 'No cuentas con  permiso para realizar esta accion'
+                // footer: '<a href="">Why do I have this issue?</a>'
+            })
+        </script>
+    @endif
     <div class="content-wrapper">
         <div class="page-header">
             <center>
@@ -202,7 +211,7 @@
                                                     <div class="modal-content">
                                                         <!-- CABECERA DEL DIALOGO EDITAR -->
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Eliminar Cuenta</h4>
+                                                            <h4 class="modal-title">Eliminar Grupo</h4>
                                                             <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                                                         </div>
                                                         <!-- CUERPO DEL DIALOGO BORRAR -->
@@ -212,6 +221,8 @@
                                                                     method="post">
                                                                     @csrf @method('DELETE')
                                                                     <label class="form-label">
+                                                                        <i class="mdi mdi-delete-forever"
+                                                                        style="font-size: 100px;"></i> <br>
                                                                         ¿ Desea Eliminar el Registro ?
                                                                         <input type="hidden" name="cod"
                                                                             value="{{ $grupo['COD_GRUPO'] }}">
@@ -297,12 +308,6 @@
                     </div>
                 </div>
                 <!-- FIN DE MODAL PARA NUEVA  -->
-
-
-
-
-
-
             </div>
         </div>
     </div>
