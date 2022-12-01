@@ -126,7 +126,7 @@
                                         <label for="" style="background-color: #0778b199">
                                             <font color='white'> &nbsp; Edad </font>
                                             <input type="number" id="edad" name="edad" placeholder="0"
-                                                min="0" max="100" class="form-control" required>
+                                                min="16" max="100" class="form-control" required>
                                                 <div id="divedad"></div>
                                         </label>
                                     </th>
