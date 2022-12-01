@@ -120,7 +120,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    @if (count($grupoArr)<=0)
+                                    <tr><td colspan="5">No hay resultados</td></tr>
+                                        
+                                    @else
+                                        
+                                   
                                     @foreach ($grupoArr as $grupo)
                                         <tr class="text-white bg-dark">
                                             <td> {{ $grupo['COD_GRUPO'] }}</td>
@@ -242,6 +247,7 @@
                                         </div>
                                         <!-- FIN DE MODAL PARA BORRAR  -->
                                     @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

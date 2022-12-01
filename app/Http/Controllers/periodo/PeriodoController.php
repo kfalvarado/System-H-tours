@@ -169,7 +169,6 @@ class PeriodoController extends Controller
         /**
          * Seguridad de roles y perimisos metodo GET
          */
-
         try {
             //code...
             $search = Http::withToken(Cache::get('token'))->post($this->url . '/permisos/sel_per_obj', [
@@ -196,6 +195,16 @@ class PeriodoController extends Controller
                     "FEC_FIN" => $request->final,
                     "ESTADO" => $request->estado
                 ]);
+
+                if (!isset($request->estado)) {
+                    $actualizar = Http::withToken(Cache::get('token'))->put($this->url . '/periodo/actualizar/' . $request->f, [
+                        "USUARIO" => Cache::get('user'),
+                        "NOM_PERIODO" => $request->periodo,
+                        "FEC_INI" => $request->inicial,
+                        "FEC_FIN" => $request->final,
+                        "ESTADO" => 'CERRADO'
+                    ]);
+                }
             } catch (\Throwable $th) {
                 //throw $th;
                 return 'error periodo 50';

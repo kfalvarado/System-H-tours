@@ -48,7 +48,42 @@
 </head>
 
 <body onbeforeunload="return CacheTime();">
+    @if (Cache::has('CierreP'))
+        <script>
+            if (!localStorage.getItem("cierraya")) {
+                Swal.fire({
+                    icon: 'info',
+                    text: 'Atención HOY es el cierre contable el periodo termina hoy, debes ir a la vista de PERIODO y ejecutar el cierre de periodo para posteriormente crear uno nuevo',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Ir ahora',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Entendido',
+                    showCancelButton: true,
 
+                    // footer: '<a href="">Why do I have this issue?</a>'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        r = {}
+                        r.ruta = '{{ route('periodo.inicio') }}';
+                        localStorage.setItem('cierraya', '1');
+                        window.location.replace(r.ruta);
+                    } else {
+                        localStorage.setItem('cierraya', '1');
+                    }
+                })
+            }
+        </script>
+    @endif
+    @if (Cache::has('oneday'))
+        <script>
+            Swal.fire({
+                icon: 'warning',
+                text: 'Atención mañana es el último día del periodo contable, se aproxima el cierre contable'
+            })
+        </script>
+
+        <input type="hidden" value="{{ Cache::forget('oneday') }}">
+    @endif
     <div class="container-scroller">
         {{-- Recuperacion de datos de acceso de la cache --}}
         <?php
@@ -94,9 +129,10 @@
                                 class="mdi mdi-dots-vertical"></i></a>
                         <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
                             aria-labelledby="profile-dropdown">
-                       
+
                             <div class="dropdown-divider"></div>
-                            <a href="https://youtube.com/playlist?list=PLMPPqelIfnFJq_2HHNhqHwS57V3w3IvCz" class="dropdown-item preview-item">
+                            <a href="https://youtube.com/playlist?list=PLMPPqelIfnFJq_2HHNhqHwS57V3w3IvCz"
+                                class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
                                     <div class="preview-icon bg-dark rounded-circle">
                                         <i class="mdi mdi-onepassword  text-info"></i>
@@ -106,8 +142,8 @@
                                     <p class="preview-subject ellipsis mb-1 text-small"> Manual de uso</p>
                                 </div>
                             </a>
-                        
-                    </div>
+
+                        </div>
                 </li>
                 <li class="nav-item nav-category">
                     <span class="nav-link">Navegacion</span>
@@ -378,7 +414,7 @@
     });
 </script> --}}
 
-<input type="hidden" name="" id="filas" value="{{ Cache::get('filas') }}">
+    <input type="hidden" name="" id="filas" value="{{ Cache::get('filas') }}">
 
 
 

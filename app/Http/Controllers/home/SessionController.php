@@ -268,11 +268,26 @@ class SessionController extends Controller
         }
 
         Cache::put('genero', $genero);
-        //rol user
 
-        //Tiempo de Inicio de sesion
-        // Cache::put('tiempo',);
-
+       //
+        $periodo = Http::withToken(Cache::get('token'))->get($this->url . '/estado/periodo');
+        $periodo = $periodo->json();
+        $new = '';
+        foreach ($periodo as $key ) {
+            $new =$key['fec_fin'];
+        }
+        $fecha = date('Y-m-d');
+        $oneday = date("Y-m-d",strtotime ( '-1 day' , strtotime ( $new ) ));
+        // return $oneday;
+        if(substr($new,0,10) == $fecha ){
+            Cache::put('CierreP','1');
+        
+        }
+        elseif ( $oneday == $fecha) {
+            Cache::put('oneday','1');
+        
+        }
+        
         return view('home.inicio', compact('newconteo'));
     }
 
@@ -760,7 +775,6 @@ class SessionController extends Controller
         Cache::flush('token');
         Cache::flush('user');
         Cache::flush('genero');
-
         // Cache::flush('resp_preg');
         return redirect('/');
     }
@@ -782,7 +796,7 @@ class SessionController extends Controller
         $token = substr($refresToken, $posicion, -2);
         Cache::put('token', $token);
 
-        Session::flash('todo', 'todo bien crack');
+        Session::flash('todo', 'todo bien');
         return redirect()->route('inicio');
     }
 }

@@ -109,8 +109,8 @@
                     </h4>
 
                     <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                        <input class="form-control me-2 light-table-filter text-white" data-table="table_id" type="text" 
-                        placeholder="Buscar un periodo">
+                        <input class="form-control me-2 light-table-filter text-white" data-table="table_id" type="text"
+                            placeholder="Buscar un periodo">
                     </form>
 
                     <div class="table-responsive">
@@ -195,12 +195,24 @@
                                                                     </label>
                                                                     <br>
                                                                     <div class="custom-control custom-switch">
-                                                                        <input type="checkbox" class="custom-control-input"
-                                                                            id="customSwitch{{ $periodo['COD_PERIODO'] }}"
-                                                                            name="estado" value="activo">
-                                                                        <label class="custom-control-label"
-                                                                            for="customSwitch{{ $periodo['COD_PERIODO'] }}">Estado
-                                                                            <label>
+                                                                        @if ($periodo['ESTADO'] == 'ACTIVO')
+                                                                            <input type="checkbox"
+                                                                                class="custom-control-input"
+                                                                                id="customSwitch{{ $periodo['COD_PERIODO'] }}"
+                                                                                name="estado" value="ACTIVO" checked>
+                                                                            <label class="custom-control-label"
+                                                                                for="customSwitch{{ $periodo['COD_PERIODO'] }}">Estado
+                                                                            </label>
+                                                                        @else
+                                                                            <input type="checkbox"
+                                                                                class="custom-control-input"
+                                                                                id="customSwitch{{ $periodo['COD_PERIODO'] }}"
+                                                                                name="estado"
+                                                                                value="{{ $periodo['ESTADO'] }}" disabled>
+                                                                            <label class="custom-control-label"
+                                                                                for="customSwitch{{ $periodo['COD_PERIODO'] }}">Estado
+                                                                            </label>
+                                                                        @endif
                                                                     </div>
                                                                     <br>
 
@@ -317,7 +329,7 @@
                                 <br>
                                 <div class="custom-control custom-switch">
                                     <input type="checkbox" class="custom-control-input" id="customSwitch" name="estado"
-                                        value="activo">
+                                        value="activo" checked>
                                     <label class="custom-control-label" for="customSwitch">Estado <label>
                                 </div>
                                 <br>
