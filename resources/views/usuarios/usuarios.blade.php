@@ -4,6 +4,11 @@
 @section('titulo')
     Usuarios | inicio
 @endsection
+
+@section('encabezado')
+<link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
+@endsection
+
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
     @if (Cache::get('genero') == 'M')
@@ -169,15 +174,25 @@
                                                                                 Usuario
                                                                                 <input type='text' name='USUARIO'
                                                                                     class="form-control text-white"
+                                                                                    id="nom_usuario" maxlength="50"
+                                                                                    onkeyup="validarNomUsuario(this)"
                                                                                     value="{{ $usuario['USUARIO'] }}"
                                                                                     required>
+                                                                                    <center>
+                                                                                        <div style="background-color: white; opacity: 0.5;" id="divnomusuario"></div>
+                                                                                    </center>
                                                                             </label>
                                                                             <label class="form-label">
                                                                                 Nombre del usuario
                                                                                 <input type='text' name='NOMBRE_USUARIO'
                                                                                     class="form-control text-white"
+                                                                                    id="usr_usuario" maxlength="100"
+                                                                                    onkeyup="validarUsrUsuario(this)"
                                                                                     value="{{ $usuario['NOMBRE_USUARIO'] }} "
                                                                                     required>
+                                                                                    <center>
+                                                                                        <div style="background-color: white; opacity: 0.5;" id="divusrusuario"></div>
+                                                                                    </center>
                                                                             </label>
                                                                             <label class="form-label">
                                                                                 Seleccionar el estado
@@ -215,25 +230,14 @@
                                                                                 Correo Electronico
                                                                                 <input type='email' name='CORREO'
                                                                                     class="form-control text-white"
+                                                                                    id="correo_usuario" 
+                                                                                    onkeyup="validarCorreoConfig(this)"
                                                                                     value="{{ $usuario['CORREO_ELECTRONICO'] }}"
                                                                                     required>
-                                                                                </input>
+                                                                                    <center>
+                                                                                        <div style="background-color: white; opacity: 0.5;" id="divcorreoconfig"></div>
+                                                                                    </center>
                                                                             </label>
-                                                                            <br>
-                                                                            {{-- <label class="form-label">
-                                                                                    Contraseña
-                                                                                    <input 
-                                                                                        type='password' 
-                                                                                        name='CONTRASEGNA' 
-                                                                                        class="form-control text-white"  
-                                                                                        required></input> 
-                                                                                    </label> --}}
-                                                                            <br>
-                                                                            {{-- <label class="form-label">
-                                                                                Fecha de vencimiento
-                                                                                <input type='date' name='fecha' class="form-control text-white"  required></input> 
-                                                                                </label>  --}}
-                                                                            <!-- INICIO MODAL PARA NUEVA  -->
                                                                             <br>
 
                                                                             <a href=""
@@ -454,6 +458,9 @@
     </main>
 
 @section('js')
+    {{-- VALIDACIONES --}}
+    <script src="{{ asset('assets/js/ab-usuarios.js') }}"></script>
+    {{-- BUSCADOR --}}
     <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
     {{-- PAGINACIÓN --}}
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>

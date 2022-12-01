@@ -63,7 +63,7 @@ class PreguntasController extends Controller
             $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
                 "USR" => Cache::get('user'),
                 "ACCION" => 'PANTALLA PREGUNTAS METODO PUT',
-                "DES" => Cache::get('user') . ' ACTUALIZO PREGUNTAS',
+                "DES" => Cache::get('user') . ' ACTUALIZO PREGUNTAS Y/O RESPUESTAS',
                 "OBJETO" => 'PREGUNTAS'
             ]);
         } catch (\Throwable $th) {

@@ -70,6 +70,18 @@ class ConfigsController extends Controller
             "CORREO" => $req->CORREO
         ]);
 
+        try {
+            $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                "USR" => Cache::get('user'),
+                "ACCION" => 'PANTALLA AJUSTES METODO PUT',
+                "DES" => Cache::get('user') . ' ACTUALIZO EL PERFIL DE USUARIO',
+                "OBJETO" => 'AJUSTES'
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return 'ERROR AJUSTES BITACORA';
+        }
+
 
         //return $ajustes;
         Session::flash("actualizado_usr","1");
@@ -78,7 +90,8 @@ class ConfigsController extends Controller
 
 
 
-    public function actualizar( Request $req ){
+    public function actualizar( Request $req )
+    {
        
         $mod_contra = http::withToken(Cache::get('token'))->put($this->url.'/mod_contra_usr',[
            
@@ -92,8 +105,21 @@ class ConfigsController extends Controller
             Session::flash("contra_actual_incorrecta","1");
             return back();
         }
-    Session::flash("actualizado_contra","1");
-    return back();
+
+        try {
+            $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                "USR" => Cache::get('user'),
+                "ACCION" => 'PANTALLA AJUSTES METODO PUT',
+                "DES" => Cache::get('user') . ' ACTUALIZO CONTRASEÑA',
+                "OBJETO" => 'AJUSTES'
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return 'ERROR AJUSTES BITACORA';
+        }
+
+        Session::flash("actualizado_contra","1");
+        return back();
     }
 
 
