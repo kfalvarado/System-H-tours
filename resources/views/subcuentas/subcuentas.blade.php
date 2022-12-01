@@ -58,11 +58,11 @@
             </center>
             <!-- <h1 class="page-title"> Nombre de la Tabla </h1> -->
             <!-- <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">Basic tables</li>
-                    </ol>
-                  </nav> -->
+                                    <ol class="breadcrumb">
+                                      <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                                      <li class="breadcrumb-item active" aria-current="page">Basic tables</li>
+                                    </ol>
+                                  </nav> -->
         </div>
         <p align="right" valign="baseline">
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
@@ -140,7 +140,8 @@
                                                                             Clasificación
 
                                                                             <select class="form-control text-white"
-                                                                                name="naturaleza" id="" required>
+                                                                                name="naturaleza" id="clasificacionedit"
+                                                                                onchange="datosedit();" required>
                                                                                 <option
                                                                                     value="{{ $subcuentas['COD_CLASIFICACION'] }}"
                                                                                     hidden selected>
@@ -156,10 +157,11 @@
                                                                         </label>
 
                                                                         <label class="form-label">
-                                                                            Cuenta
+                                                                            Cuentas
 
                                                                             <Select class="form-control text-white"
-                                                                                name="nombrecuenta" id="" required>
+                                                                                name="nombrecuenta" id="cuentasedit"
+                                                                                required>
                                                                                 <option
                                                                                     value="{{ $subcuentas['COD_CUENTA'] }}"
                                                                                     hidden selected>
@@ -170,6 +172,7 @@
                                                                                         value="{{ $key['NOM_CUENTA'] }}">
                                                                                         {{ $key['NOM_CUENTA'] }}</option>
                                                                                 @endforeach
+
 
                                                                             </Select>
                                                                         </label>
@@ -285,8 +288,7 @@
 
                                                 </select>
                                             </label>
-
-
+                                            <br>
                                             <label class="form-label">
                                                 Cuenta
 
@@ -294,13 +296,14 @@
                                                     id="cuentas" required>
                                                     <option hidden selected>SELECCIONAR</option>
 
-                                                    @foreach ($nombrecuentaArr as $key)
+                                                    {{-- @foreach ($nombrecuentaArr as $key)
                                                         <option value="{{ $key['NOM_CUENTA'] }}">{{ $key['NOM_CUENTA'] }}
                                                         </option>
-                                                    @endforeach
+                                                    @endforeach --}}
 
                                                 </Select>
                                             </label>
+                                            <div id="contenido"></div>
 
                                             <label class="form-label">
                                                 Número de la subcuenta
@@ -349,7 +352,7 @@
             // const csrftoken = document.head.querySelector('[name~=csrf-token][content]').content;
             //Vamos a rellenar el select automáticamente.
             const select = document.getElementById("clasificacion").value;
-            var contenido = document.querySelector('#contenido')
+            var contenido = document.querySelector('#cuentas')
 
             // console.log(select);
             var url = route('busca.subcuentas')
@@ -380,9 +383,62 @@
                     //   }
                     //   document.getElementById('cuentas').innerHTML = opciones;
                     function pinta(res) {
-                        contenido.innerHTML = ''
+                        contenido.innerHTML = '';
+                        contenido.innerHTML = ' <option hidden selected>SELECCIONAR</option>';
+
                         for (let valor of res) {
                             contenido.innerHTML += `
+                            
+            <option name="INV" value="${valor.NOM_CUENTA}">${valor.NOM_CUENTA}</option>   
+            `
+                        }
+
+                    }
+                }).catch(error => console.error(error))
+        }
+
+        function datosedit() {
+            window.CSRF_TOKEN = '{{ csrf_token() }}';
+            // const csrftoken = document.head.querySelector('[name~=csrf-token][content]').content;
+            //Vamos a rellenar el select automáticamente.
+            const select = document.getElementById("clasificacionedit").value;
+            var contenido = document.querySelector('#cuentasedit')
+
+            // console.log(select);
+            var url = route('buscaedit.subcuentas')
+            let data = {
+                NATURALEZA: select
+            }
+            fetch(url, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': window.CSRF_TOKEN
+                    }
+                })
+                .then(resp => {
+                    return resp.json()
+                })
+                .then(respuesta => {
+                    console.log(respuesta);
+                    pinta(respuesta);
+                    //   console.log(typeof respuesta);
+                    //   const object = JSON.stringify(respuesta)
+                    //   console.log(object.NOM_CUENTA[0]);
+                    //   var opciones = "";
+                    //   for(let i in object.NOM_CUENTA){
+                    //     // console.log(object.NOM_CUENTA[]);
+                    //     opciones+="<option value='"+object.NOM_CUENTA[i]+"'>"+object.NOM_CUENTA[i]+'</option>';
+                    //   }
+                    //   document.getElementById('cuentas').innerHTML = opciones;
+                    function pinta(res) {
+                        contenido.innerHTML = '';
+                        contenido.innerHTML = ' <option hidden selected>SELECCIONAR</option>';
+
+                        for (let valor of res) {
+                            contenido.innerHTML += `
+                            
             <option name="INV" value="${valor.NOM_CUENTA}">${valor.NOM_CUENTA}</option>   
             `
                         }

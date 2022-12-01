@@ -51,6 +51,16 @@ class SubcuentasController extends Controller
         // return response()->json($clasificacion);
     }
 
+    public function buscaedit(Request $req)
+    {
+      
+        $clasificacion = http::withToken(Cache::get('token'))->post($this->url . '/clasificacion/cuentas/id', [
+            "NATURALEZA" => $req->NATURALEZA
+        ]);
+
+        return $clasificacion;
+    }
+
     /**
      * Metodo para insertar una subcuenta
      */
