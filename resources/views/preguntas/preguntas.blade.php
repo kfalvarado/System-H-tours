@@ -6,7 +6,6 @@ Preguntas | inicio
 @endsection
 @section('encabezado')
 <link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
-  
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
@@ -171,11 +170,11 @@ Preguntas | inicio
                           </div>
                           </div>
                           </div>
-                          </div>
-                              <!-- FIN DE MODAL PARA NUEVA  -->
+                        </div>
+                        <!-- FIN DE MODAL PARA NUEVA  -->
                 
                               <!-- INICIO MODAL PARA EDITAR  -->
-                          <div class="modal-container">
+                              {{-- <div class="modal-container">
                                 <div class="modal fade bd-example-modal-lg" id="dialogo2">
                                       <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
                                   <div class="modal-dialog modal-sm">
@@ -211,7 +210,7 @@ Preguntas | inicio
                                   </div>
                                   </div>
                                   </div>
-                          </div>
+                              </div> --}}
                               <!-- FIN DE MODAL PARA EDITAR  -->
 
                         @endforeach
