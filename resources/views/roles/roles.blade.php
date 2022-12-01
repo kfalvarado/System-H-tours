@@ -4,6 +4,10 @@
 @section('titulo')
     Roles | inicio
 @endsection
+@section('encabezado')
+<link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
+    
+@endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
     @if (Cache::get('genero') == 'M')
@@ -84,19 +88,21 @@
                                 @csrf @method('POST')
 
                                 <label class="form-label">
-                                    Ingrese el Rol
-                                    <input type='text' name='ROL' class="form-control text-white" required>
+                                    Ingresa el nombre del Rol
+                                    <input type='text' name='ROL' id="rol" class="form-control text-white"  onkeyup="validarletras(this);" required>
+                                    <div id="divrol"></div>
                                 </label>
                                 <br>
                                 <label class="form-label">
                                     Descripción
-                                    <input type='text' size="50" maxlength="50" name='DES_ROL'
+                                    <input type='text' size="50" maxlength="50" name='DES_ROL' id="des" onkeyup="validardescripcion(this);"
                                         class="form-control text-white" required>
+                                        <div id="divres"></div>
                                 </label>
 
                                 <br>
 
-                                <a href="" class="btn btn-secondary">Cancelar</a>
+                                
                                 <button type="submit" class="btn btn-primary">Aceptar</button>
                             </form>
                     </div>
@@ -203,16 +209,18 @@
 
                                                                     <label class="form-label">
                                                                         Rol
-                                                                        <input type='text' name='ROL'
+                                                                        <input type='text' name='ROL' id="editrol"
                                                                             value="{{ $rols['ROL'] }}"
-                                                                            class="form-control text-white" required>
-                                                                    </label>
+                                                                            class="form-control text-white" onkeyup="validareditarROL(this)" required>
+                                                                            <div id="divroledit"></div>
+                                                                        </label>
                                                                     <br>
                                                                     <label class="form-label">
                                                                         Descripción
-                                                                        <input type='text' size="50" maxlength="50"
+                                                                        <input type='text' size="50" maxlength="50" id="editres"
                                                                             name='DES_ROL' value="{{ $rols['DES_ROL'] }}"
-                                                                            class="form-control text-white" required>
+                                                                            class="form-control text-white" onkeyup="validareditarDES(this)" required>
+                                                                            <div id="divrresedit"></div>
                                                                     </label>
                                                                     <br>
 
@@ -286,8 +294,8 @@
         <!-- partial -->
     </div>
 
-
-@section('js')
+    @section('js')
+    <script src="{{ asset('assets/js/ab-roles.js') }}"></script>
     <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
     {{-- PAGINACIÓN --}}
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>
