@@ -71,29 +71,42 @@
 
 
     <div class="content-wrapper">
+        @if (count($resultado)>0)
+        
+        @foreach ($resultado as $key)
         <center>
-            <h1>Estado de Resultado H Tours Honduras</h1>
+            <h1>Estado de Resultado Empresa {{ $key['EMPRESA'] }}</h1>
         </center>
+        @endforeach
+
+        @else
+        <center>
+            <h1>Estado de Resultado </h1>
+        </center>
+        @endif
         <h5>________________________________________________________________________________________________________________
         </h5>
         <!-- <ul class="nav nav-pills nav-stacked">
-                          <li class="active"><a href="#"></a></li>
-                        </ul> -->
-        <center>
-            <h1>Periodo-2021-ene-1-001</h1>
-
-            <!-- <h1 id="nombre-periodo"></h1> </center> -->
-            <!-- <ul class="nav nav-pills nav-stacked">
-                            <li class="active"><a href="#"></a></li>
-                          </ul> -->
-
-
+                                  <li class="active"><a href="#"></a></li>
+                                </ul> -->
+        
             <center>
-                <br>
-                <h3> Desde: <input type="date" aria-label="Disabled input example" value="2021-01-01" readonly> Hasta:
-                    <input type="date" value="2021-12-31" readonly>
-                </h3>
+                @if (count($resultado) >0 )
+                    @foreach ($resultado as $key)
+                        
+                    <h1 id="nombre-periodo">{{ $key['PERIODO'] }}</h1>
+                    <center>
+                        <br>
+                        <h3>Desde: <input type="date" aria-label="Disabled input example" value="{{ substr($key['FECHA_INICIAL'],0,10)}}" readonly> Hasta: <input
+                                type="date" value="{{ substr($key['FECHA_FINAL'],0,10)}}" readonly></h3>
+                    </center>
+                    @endforeach
+                @else
+                <h1> Periodo</h1>
+                @endif
             </center>
+
+     
             <p align="right" valign="baseline">
 
             </p>
@@ -131,11 +144,11 @@
                                     <thead>
                                         <tr class="text-dark">
                                             <th class="text-dark bg-gradient-secondary"><b>Ventas Netas</b></th>
-                                            @if ($resultado <=0)
+                                            @if (count($resultado) <= 0)
                                                 <th class="text-white bg-dark">0,000</th>
                                             @else
                                                 @foreach ($resultado as $key)
-                                                    <th class="text-white bg-dark">{{ $key['VENTAS_NETAS'] }}</th>
+                                                    <th class="text-white bg-dark">{{ number_format($key['VENTAS_NETAS']) }}</th>
                                                 @endforeach
                                             @endif
 
@@ -144,33 +157,33 @@
                                     <tbody>
                                         <tr class="text-white bg-dark">
                                             <td class="text-dark bg-gradient-secondary"> <b>Costos de ventas</b> </td>
-                                            @if ($resultado <=0)
+                                            @if (count($resultado) <= 0)
                                                 <td class="text-white bg-dark">0,000</td>
                                             @else
                                                 @foreach ($resultado as $key)
-                                                    <td class="text-white bg-dark">{{ $key['COS_VENTAS'] }}</td>
+                                                    <td class="text-white bg-dark">{{ number_format($key['COS_VENTAS']) }}</td>
                                                 @endforeach
                                             @endif
 
                                         </tr>
                                         <tr class="text-white bg-dark">
                                             <td class="text-dark bg-gradient-secondary"><B>Utilidad/perdida bruta</B></td>
-                                            @if ($resultado <=0)
+                                            @if (count($resultado) <= 0)
                                                 <td class="text-white bg-dark">0,000</td>
                                             @else
                                                 @foreach ($resultado as $key)
-                                                    <td class="text-white bg-dark">{{ $key['UTI_BRUTA'] }}</td>
+                                                    <td class="text-white bg-dark">{{ number_format($key['UTI_BRUTA'] )}}</td>
                                                 @endforeach
                                             @endif
 
                                         </tr>
                                         <tr class="text-white bg-dark">
                                             <td class="text-dark bg-gradient-secondary"><b> Total Gastos </b></td>
-                                            @if ($resultado <=0)
+                                            @if (count($resultado) <= 0)
                                                 <td class="text-white bg-dark">0,000</td>
                                             @else
                                                 @foreach ($resultado as $key)
-                                                    <td class="text-white bg-dark">{{ $key['TOT_GASTOS'] }}</td>
+                                                    <td class="text-white bg-dark">{{ number_format($key['TOT_GASTOS']) }}</td>
                                                 @endforeach
                                             @endif
 
@@ -178,31 +191,31 @@
                                         <tr class="text-white bg-dark">
                                             <td class="text-dark bg-gradient-secondary"><b> Utilidad/Perdida Antes de
                                                     impuestos </b></td>
-                                            @if ($resultado <=0)
+                                            @if (count($resultado) <= 0)
                                                 <td class="text-white bg-dark">0,000</td>
                                             @else
                                                 @foreach ($resultado as $key)
-                                                    <td class="text-white bg-dark">{{ $key['UTI_ANTIMP'] }}</td>
+                                                    <td class="text-white bg-dark">{{ number_format($key['UTI_ANTIMP']) }}</td>
                                                 @endforeach
                                             @endif
                                         </tr>
                                         <tr class="text-white bg-dark">
                                             <td class="text-dark bg-gradient-secondary"><b>Impuesto a utilidad </b></td>
-                                            @if ($resultado <=0)
+                                            @if (count($resultado) <= 0)
                                                 <td class="text-white bg-dark">0,000</td>
                                             @else
                                                 @foreach ($resultado as $key)
-                                                    <td class="text-white bg-dark">{{ $key['IMP_UTILIDAD'] }}</td>
+                                                    <td class="text-white bg-dark">{{ number_format($key['IMP_UTILIDAD'] )}}</td>
                                                 @endforeach
                                             @endif
                                         </tr>
                                         <tr class="text-white bg-dark">
                                             <td class="text-dark bg-gradient-secondary"><b> Utilidad/Perdida Neta </b></td>
-                                            @if ($resultado <=0)
+                                            @if (count($resultado) <= 0)
                                                 <td class="text-white bg-dark">0,000</td>
                                             @else
                                                 @foreach ($resultado as $key)
-                                                    <td class="text-white bg-dark">{{ $key['UTI_NETA'] }}</td>
+                                                    <td class="text-white bg-dark">{{ number_format($key['UTI_NETA']) }}</td>
                                                 @endforeach
                                             @endif
                                         </tr>

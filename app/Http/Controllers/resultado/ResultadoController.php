@@ -36,7 +36,7 @@ class ResultadoController extends Controller
             try {
                 $periodo = http::withToken(Cache::get('token'))->get($this->url . '/periodo');
                 $periodo = $periodo->json();
-                $resultado = 0;
+                $resultado = [];
             } catch (\Throwable $th) {
                 //throw $th;
                 return 'error RESULTADOS 41';
