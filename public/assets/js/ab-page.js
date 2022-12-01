@@ -1,8 +1,10 @@
+var filas = parseInt(document.getElementById('filas').value); //capturar el valor de filas y convertirlo a int
 Paginador = function(divPaginador, tabla)
 {
+
     this.miDiv = divPaginador; //un DIV donde irán controles de paginación
     this.tabla = tabla;           //la tabla a paginar
-    this.tamPagina = 4; //el tamaño de la página (filas por página)
+    this.tamPagina = filas; //el tamaño de la página (filas por página)
     this.pagActual = 1;         //asumiendo que se parte en página 1
     this.paginas = Math.floor((this.tabla.rows.length - 1) / this.tamPagina); //¿?
  

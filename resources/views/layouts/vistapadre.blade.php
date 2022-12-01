@@ -378,7 +378,7 @@
     });
 </script> --}}
 
-    <script></script>
+<input type="hidden" name="" id="filas" value="{{ Cache::get('filas') }}">
 
 
 

@@ -116,8 +116,21 @@ class SessionController extends Controller
 
                 // usuario Nuevo
                 if ($estado > 0) {
+                    //cantidad de filas por tabla 
+                    $filas = http::withToken($token)->post($this->url . '/parametros/buscar', [
+                        "PARAMETRO" => 'ADMIN_NUM_REGISTROS'
+                    ]);
+                    $filas = $filas->json();
+
+                    foreach ($filas as $key) {
+                        $filas = $key['VALOR'];
+                    }
+                    // return $filas;
+                    Cache::put('filas', $filas);
                     $user = $request->user;
-                    // Falta validar por default del usuario
+                    //Numero de filas por tabla
+
+
                     $rol = http::withToken($token)->post($this->url . '/roles/sel_rol/user', [
                         "USER" => $user
                     ]);
@@ -148,6 +161,20 @@ class SessionController extends Controller
 
                 //Dejar pasar Usuario Activo
                 if ($activo > 0) {
+                    //cantidad de filas por tabla 
+                    $filas = http::withToken($token)->post($this->url . '/parametros/buscar', [
+                        "PARAMETRO" => 'ADMIN_NUM_REGISTROS'
+                    ]);
+                    $filas = $filas->json();
+
+                    foreach ($filas as $key) {
+                        $filas = $key['VALOR'];
+                    }
+                    // return $filas;
+                    Cache::put('filas', $filas);
+
+
+
                     $user = $request->user;
 
                     // Falta validar por default del usuario
