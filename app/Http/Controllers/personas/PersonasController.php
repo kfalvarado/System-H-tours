@@ -45,7 +45,7 @@ class PersonasController extends Controller
                 "TIP_PERSONA" => $request->tipoPersona,
                 "Num_Identidad" => $request->identidad,
                 "IND_CIVIL" => $request->civil,
-                "TELEFONO" => substr($request->telefono, 4),
+                "TELEFONO" => $request->telefono,
                 "TIP_TELEFONO" => $request->tipotelefono
             ]);
         } catch (\Throwable $th) {
@@ -67,7 +67,7 @@ class PersonasController extends Controller
                 "TIP_PERSONA" => $request->tipoPersona,
                 "Num_Identidad" => $request->identidad,
                 "IND_CIVIL" => $request->civil,
-                "TELEFONO" => substr($request->telefono, 4),
+                "TELEFONO" => $request->telefono,
                 "TIP_TELEFONO" => $request->tipotelefono
             ]);
         } catch (\Throwable $th) {
@@ -107,7 +107,7 @@ class PersonasController extends Controller
             "TIP_PERSONA" => $request->tipoPersona,
             "Num_Identidad" => $request->identidad,
             "IND_CIVIL" => $request->civil,
-            "TELEFONO" => substr($request->telefono,4),
+            "TELEFONO" => $request->telefono,
             "TIP_TELEFONO" => $request->tipotelefono
             
         ]);  
