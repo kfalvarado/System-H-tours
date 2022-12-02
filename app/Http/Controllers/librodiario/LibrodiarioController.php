@@ -298,6 +298,11 @@ class LibrodiarioController extends Controller
                         "SAL_DEBE" => $request->saldo,
                         "SAL_HABER" => 0,
                     ]);
+                    $nofound = strrpos($actualizar, "NO ENCONTRADA");
+                    if ($nofound>0) {
+                        Session::flash('No_encontrada',$request->nombresubcuenta);
+                        return back();
+                    }
                 } elseif ($request->transaccion == '0') {
 
                     $actualizar = Http::withToken(Cache::get('token'))->put($this->url . '/librodiario/actualizar/' . $request->f, [
@@ -309,6 +314,11 @@ class LibrodiarioController extends Controller
                             "SAL_DEBE" => 0,
                             "SAL_HABER" => $request->saldo,
                         ]);
+                        $nofound = strrpos($actualizar, "NO ENCONTRADA");
+                        if ($nofound>0) {
+                            Session::flash('No_encontrada',$request->nombresubcuenta);
+                            return back();
+                        }
                 }
 
                 # code...

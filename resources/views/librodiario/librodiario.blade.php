@@ -72,6 +72,17 @@
             })
         </script>
     @endif
+    @if (Session::has('No_encontrada'))
+    <input type="hidden" id="no_found" value="{{ Session::get('No_encontrada') }}">
+        <script>
+     let no = document.getElementById('no_found').value
+            Swal.fire({
+                icon: 'error',
+                text: `La Cuenta ${no} no existe`
+                // footer: '<a href="">Why do I have this issue?</a>'
+            })
+        </script>
+    @endif
 
 
     <!-- ELIMINADO NORMAL NO ELIMINA PERO POR QUE DEBE SER ELIMINADO LOGICO -->
