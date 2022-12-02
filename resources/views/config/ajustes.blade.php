@@ -104,20 +104,16 @@ Ajustes | inicio
   
         <div class="col-xl-8">
             <div class="card ">
-                <div class="card-body pt-3">
-                  <ul class="nav nav-tabs nav-tabs-bordered nav-justified ">
+                <div class="card-body">
+                  <ul class="nav nav-tabs nav-tabs-bordered nav-pills nav-justified">
   
-                      <li class="nav-item mr-3 mb-3">
+                      <li class="nav-item">
                         <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Resumen</button>
                       </li>
       
-                      <li class="nav-item mr-3">
-                        <button class="nav-link " data-bs-toggle="tab" data-bs-target="#profile-edit">Editar Perfil</button>
+                      <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Editar Perfil</button>
                       </li>
-                      {{-- 
-                      <li class="nav-item mr-3">
-                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Configuraciones</button>
-                      </li> --}}
       
                       <li class="nav-item">
                         <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Cambiar contraseña</button>
@@ -127,113 +123,114 @@ Ajustes | inicio
   
                   <div class="tab-content pt-2">
 
-                    @foreach ($ajustesArr as $ajustes)
-                      <!-- RESUMEN -->
-                      <div class="tab-pane fade show active profile-overview text-white" id="profile-overview">
-                          
-                          <h5 class="card-title">Detalles de perfil</h5>
-                      
-                          <div class="row">
-                            <div class="col-lg-3 col-md-4 label ">Nombre</div>
-                            <div class="col-lg-9 col-md-8">{{$ajustes['NOM_USR']}}</div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-lg-3 col-md-4 label ">Estado usuario</div>
-                            <div class="col-lg-9 col-md-8">{{$ajustes['EST_USR']}}</div>
-                          </div>
-                          
-                          {{-- INICIO GÉNERO --}}
-                          @if ($ajustes['SEX_PERSONA'] == "F")
-
-                          <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Género</div>
-                            <div class="col-lg-9 col-md-8">FEMENINO</div>
-                          </div>
-
-                          @else 
-
-                          <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Género</div>
-                            <div class="col-lg-9 col-md-8">MASCULINO</div>
-                          </div>
+                      @foreach ($ajustesArr as $ajustes)
+                        <!-- RESUMEN -->
+                        <div class="tab-pane fade show active text-white" id="profile-overview">
                             
-                          @endif
-                          {{-- FIN GÉNERO --}}
+                            <h5 class="card-title">Detalles de perfil</h5>
+                        
+                            <div class="row">
+                              <div class="col-lg-3 col-md-4 label ">Nombre</div>
+                              <div class="col-lg-9 col-md-8">{{$ajustes['NOM_USR']}}</div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-lg-3 col-md-4 label ">Estado usuario</div>
+                              <div class="col-lg-9 col-md-8">{{$ajustes['EST_USR']}}</div>
+                            </div>
+                            
+                            {{-- INICIO GÉNERO --}}
+                            @if ($ajustes['SEX_PERSONA'] == "F")
+
+                            <div class="row">
+                              <div class="col-lg-3 col-md-4 label">Género</div>
+                              <div class="col-lg-9 col-md-8">FEMENINO</div>
+                            </div>
+
+                            @else 
                           
-                      
-                          <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Edad</div>
-                            <div class="col-lg-9 col-md-8">{{$ajustes['EDA_PERSONAL']}}</div>
-                          </div>
-                          
 
-                          @if ($ajustes['TIP_PERSONA'] == "N")
+                            <div class="row">
+                              <div class="col-lg-3 col-md-4 label">Género</div>
+                              <div class="col-lg-9 col-md-8">MASCULINO</div>
+                            </div>
+                              
+                            @endif
+                            {{-- FIN GÉNERO --}}
+                            
+                        
+                            <div class="row">
+                              <div class="col-lg-3 col-md-4 label">Edad</div>
+                              <div class="col-lg-9 col-md-8">{{$ajustes['EDA_PERSONAL']}}</div>
+                            </div>
+                            
 
-                          <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Tipo de persona</div>
-                            <div class="col-lg-9 col-md-8">NORMAL</div>
-                          </div>
-                          
-                          @else
+                            @if ($ajustes['TIP_PERSONA'] == "N")
 
-                          <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Tipo de persona</div>
-                            <div class="col-lg-9 col-md-8">JURIDICA</div>
-                          </div>
+                            <div class="row">
+                              <div class="col-lg-3 col-md-4 label">Tipo de persona</div>
+                              <div class="col-lg-9 col-md-8">NORMAL</div>
+                            </div>
+                            
+                            @else
 
-                          @endif
-                      
-                          <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Numero ID</div>
-                            <div class="col-lg-9 col-md-8">{{$ajustes['NUM_IDENTIDAD']}}</div>
-                          </div>
-                          
-                          @if($ajustes['IND_CIVIL'] == "S")
+                            <div class="row">
+                              <div class="col-lg-3 col-md-4 label">Tipo de persona</div>
+                              <div class="col-lg-9 col-md-8">JURIDICA</div>
+                            </div>
 
-                          <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Estado civil</div>
-                            <div class="col-lg-9 col-md-8">SOLTERO</div>
-                          </div>
+                            @endif
+                        
+                            <div class="row">
+                              <div class="col-lg-3 col-md-4 label">Numero ID</div>
+                              <div class="col-lg-9 col-md-8">{{$ajustes['NUM_IDENTIDAD']}}</div>
+                            </div>
+                            
+                            @if($ajustes['IND_CIVIL'] == "S")
 
-                          @elseif($ajustes['IND_CIVIL'] == "C")
+                            <div class="row">
+                              <div class="col-lg-3 col-md-4 label">Estado civil</div>
+                              <div class="col-lg-9 col-md-8">SOLTERO</div>
+                            </div>
 
-                          <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Estado civil</div>
-                            <div class="col-lg-9 col-md-8">CASADO</div>
-                          </div>
+                            @elseif($ajustes['IND_CIVIL'] == "C")
 
-                          @elseif($ajustes['IND_CIVIL'] == "D")
+                            <div class="row">
+                              <div class="col-lg-3 col-md-4 label">Estado civil</div>
+                              <div class="col-lg-9 col-md-8">CASADO</div>
+                            </div>
 
-                          <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Estado civil</div>
-                            <div class="col-lg-9 col-md-8">DIVORCIADO</div>
-                          </div>
+                            @elseif($ajustes['IND_CIVIL'] == "D")
 
-                          @else
+                            <div class="row">
+                              <div class="col-lg-3 col-md-4 label">Estado civil</div>
+                              <div class="col-lg-9 col-md-8">DIVORCIADO</div>
+                            </div>
 
-                          <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Estado civil</div>
-                            <div class="col-lg-9 col-md-8">VIUDO</div>
-                          </div>
+                            @else
 
-                          @endif
-                      
-                          <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Teléfono</div>
-                            <div class="col-lg-9 col-md-8">{{$ajustes['TELEFONO']}}</div>
-                          </div>
+                            <div class="row">
+                              <div class="col-lg-3 col-md-4 label">Estado civil</div>
+                              <div class="col-lg-9 col-md-8">VIUDO</div>
+                            </div>
 
-                          <div class="row">
-                            <div class="col-lg-3 col-md-4 label">Correo</div>
-                            <div class="col-lg-9 col-md-8">{{$ajustes['CORREO']}}</div>
-                          </div>
-                      
-                      </div>
-                    @endforeach
+                            @endif
+                        
+                            <div class="row">
+                              <div class="col-lg-3 col-md-4 label">Teléfono</div>
+                              <div class="col-lg-9 col-md-8">{{$ajustes['TELEFONO']}}</div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-lg-3 col-md-4 label">Correo</div>
+                              <div class="col-lg-9 col-md-8">{{$ajustes['CORREO']}}</div>
+                            </div>
+                        
+                        </div>
+                      @endforeach
   
                       <!-- EDITAR PERFIL -->
-                      <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+                      <div class="tab-pane fade" id="profile-edit">
   
                           <!-- EDITAR PERFIL FORMULARIO -->
                           <form action="{{ route('ajustes.actualizar_usr') }}" >
@@ -357,64 +354,21 @@ Ajustes | inicio
                           <!-- FINAL DE EDITAR PERFIL -->
         
                       </div>
-  {{-- 
-                      <!-- CONFIGURAR PERFIL -->
-                      <div class="tab-pane fade pt-3" id="profile-settings">
-  
-                          <!-- FORMULARIO DE CONFIGURAR -->
-                          <form>
-        
-                            <div class="row mb-3">
-                              <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Configuración a accesos</label>
-                              <div class="col-md-8 col-lg-8">
-                                <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" id="changesMade" checked>
-                                  <label class="form-check-label" for="changesMade">
-                                    Administrar usuarios
-                                  </label>
-                                </div>
-                                <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" id="newProducts" checked>
-                                  <label class="form-check-label" for="newProducts">
-                                    Informacion usuarios
-                                  </label>
-                                </div>
-                                <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" id="proOffers">
-                                  <label class="form-check-label" for="proOffers">
-                                    Accesos
-                                  </label>
-                                </div>
-                                <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" id="securityNotify">
-                                  <label class="form-check-label" for="securityNotify">
-                                    Modificaciones
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-        
-                            <div class="text-center">
-                              <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                            </div>
-                          </form><!-- End settings Form -->
-        
-                      </div>
-   --}}
+
                       <!-- CAMBIAR CONTRASEÑA -->
-                      <div class="tab-pane fade pt-3" id="profile-change-password">
+                      <div class="tab-pane fade " id="profile-change-password">
                           
                           <!-- Change Password Form -->
                           <form action="{{ route('ajustes.actualizar') }}" >
                             @csrf @method('PUT') 
         
                             <div class="row mb-3">
-                              <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Contraseña actual</label>
-                              <div class="input-group col-md-8 col-lg-9">
+                              <label class="col-md-4 col-lg-4 col-sm-4 col-form-label">Contraseña actual</label>
+                              <div class="input-group col-md-8 col-lg-8 col-sm-8">
                                 <input 
                                   name="CONTRA_ACTUAL" 
                                   type="password" 
-                                  minlength="10"
+                                  minlength="10" 
                                   maxlength="32"
                                   {{-- type="text"  --}}
                                   class="form-control" 
@@ -423,21 +377,17 @@ Ajustes | inicio
                                   onkeyup="validarUsrConfig(this)"
                                   required>
                                   <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary btn-shadow" 
-                                            type="button" id="mostralActual" 
-                                            class="mdi mdi-eye-outline" 
-                                            onclick="mostrarContrasenaActual()">
-                                    </button>
-                                  </div> 
+                                    <button  class="btn btn-primary" type="button" onclick="mostrarContraActual()"> <span class="fa fa-eye-slash icon"></span> </button>
+                                  </div>
                                   <center>
                                     <div style="background-color: white; opacity: 0.5;" id="divcontraconfig"></div>
                                   </center>
                               </div>
                             </div>
         
-                            <div class="row mb-3 ">
-                              <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Nueva contraseña</label>
-                              <div class="input-group col-md-8 col-lg-9">
+                            <div class="row mb-3">
+                              <label class="col-md-4 col-lg-4 col-sm-4 col-form-label">Nueva contraseña</label>
+                              <div class="input-group col-md-8 col-lg-8 col-sm-8">
                                 <input 
                                   name="CONTRASEGNA" 
                                   type="password"
@@ -449,23 +399,14 @@ Ajustes | inicio
                                   placeholder="INGRESE SU NUEVA CONTRASEÑA"
                                   required>
                                   <div class="input-group-append">
-                                    {{-- <button class="btn btn-outline-secondary btn-shadow" 
-                                            type="button" id="mostrarNueva" 
-                                            class="mdi mdi-eye-outline" 
-                                            onclick="mostrarContrasenaNueva()">
-                                    </button> --}}
-                                    <span id="icon"
-                                      style="color: black; position: center; display: block; bottom: .2rem; right: 1rem; user-select: none;cursor: pointer;">
-                                      <i id="mostrarNueva" class="mdi mdi-eye-outline"
-                                                onclick="mostrarContrasenaNueva()"></i>
-                                    </span>
-                                  </div> 
+                                    <button  class="btn btn-primary" type="button" onclick="mostrarContraNueva()"> <span class="fa fa-eye-slash icon"></span> </button>
+                                  </div>
                               </div>
                             </div>
         
                             <div class="row mb-3">
-                              <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-ingresar nueva contraseña</label>
-                              <div class="input-group col-md-8 col-lg-9">
+                              <label class="col-md-4 col-lg-4 col-sm-4 col-form-label">Reescribir contraseña</label>
+                              <div class="input-group col-md-8 col-lg-8 col-sm-8">
                                 <input 
                                   name="" 
                                   type="password"
@@ -474,61 +415,61 @@ Ajustes | inicio
                                   {{-- type="text" --}}
                                   class="form-control" 
                                   id="reingresoContra"
-                                  placeholder="RE-INGRESE SU NUEVA CONTRASEÑA"
+                                  placeholder="REESCRIBA SU NUEVA CONTRASEÑA"
                                   required>
                                   <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary btn-shadow" 
-                                            type="button" id="mostrarReNueva" 
-                                            class="mdi mdi-eye-outline" 
-                                            onclick="mostrarContrasenaReingreso()">
-                                    </button>
-                                  </div> 
+                                    <button id="verContra" class="btn btn-primary " type="button" onclick="mostrarContraReNueva()"> <span class="fa fa-eye-slash icon"></span> </button>
+                                  </div>
                               </div>
                             </div>
+                            
+                            <script type="text/javascript">
 
-                            <script>
-                              function mostrarContrasenaActual() {
-                                var tipo = document.getElementById("contra_actual_usuario");
-                                var ojo = document.getElementById("mostralActual");
-                                if (tipo.type == "password") {
-                                  tipo.type = "text";
-                                  ojo.className = 'mdi mdi-eye-off-outline';
-                                } else {
-                                  tipo.type = "password";
-                                  ojo.className = 'mdi mdi-eye-outline';
+                              function mostrarContraActual(){
+                                  var cambio = document.getElementById("contra_actual_usuario");
+                                  if(cambio.type == "password"){
+                                    cambio.type = "text";
+                                    $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+                                  }else{
+                                    cambio.type = "password";
+                                    $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+                                  }
+                                } 
+                              
+
+                                function mostrarContraNueva(){
+                                  var cambio = document.getElementById("nuevaContra");
+                                  if(cambio.type == "password"){
+                                    cambio.type = "text";
+                                    $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+                                  }else{
+                                    cambio.type = "password";
+                                    $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+                                  }
                                 }
-                              }
-                              function mostrarContrasenaNueva() {
-                                var tipo = document.getElementById("nuevaContra");
-                                var ojo = document.getElementById("mostrarNueva");
-                                if (tipo.type == "password") {
-                                  tipo.type = "text";
-                                  ojo.className = 'mdi mdi-eye-off-outline';
-                                } else {
-                                  tipo.type = "password";
-                                  ojo.className = 'mdi mdi-eye-outline';
-                                }
-                              }
-                              function mostrarContrasenaReingreso() {
-                                var tipo = document.getElementById("reingresoContra");
-                                var ojo = document.getElementById("mostrarReNueva");
-                                if (tipo.type == "password") {
-                                  tipo.type = "text";
-                                  ojo.className = 'mdi mdi-eye-off-outline';
-                                } else {
-                                  tipo.type = "password";
-                                  ojo.className = 'mdi mdi-eye-outline';
-                                }
-                              }
-                            </script>
+                                
+                                function mostrarContraReNueva(){
+                                  var cambio = document.getElementById("reingresoContra");
+                                  if(cambio.type == "password"){
+                                    cambio.type = "text";
+                                    $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+                                  }else{
+                                    cambio.type = "password";
+                                    $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+                                  }
+                                } 
+                              
+                              </script>
+
+                            
         
                             <div class="text-center">
                               <button type="submit" onclick="contra_comparar()" class="btn btn-primary btn-shadow">Cambiar contraseña</button>
                             </div>
                           </form><!-- End Change Password Form -->
 
-                        </div>
                       </div>
+                  </div>
   
   
                 </div>

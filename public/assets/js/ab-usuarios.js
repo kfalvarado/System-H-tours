@@ -316,19 +316,19 @@ function validarCorreoConfig(e) {
 
 // Contraseña
 function validarContraConfig(e) {
-    let contra_config = document.getElementById('contra_usuario').value;
+    let contra_config = document.getElementById('contra_actual_usuario').value;
     let div = document.getElementById('divcontraconfig');
 
     if (expresiones.contrasegna.test(tipotel_config)) {
-        document.getElementById('contra_usuario').classList.remove('incorrecto') 
-        document.getElementById('contra_usuario').classList.add('correcto') 
+        document.getElementById('contra_actual_usuario').classList.remove('incorrecto') 
+        document.getElementById('contra_actual_usuario').classList.add('correcto') 
  
         div.innerHTML='';
         console.log('correcto');
     }else{
-        document.getElementById('contra_usuario').classList.add('incorrecto') 
+        document.getElementById('contra_actual_usuario').classList.add('incorrecto') 
       
-        div.innerHTML='<font color="red"> <h5>Debe ingresar C (CELULAR) ó T (TELÉFONO FIJO) en mayúscula.</h5></font>'
+        div.innerHTML='<font color="red"> <h5>Debe ingresar una contraseña alfanumerica y mayor a 10 caracteres.</h5></font>'
 
         console.log('incorrecto');
 

@@ -310,7 +310,8 @@ Bitacora | inicio
                           @foreach ($bitacoraArr as $bitacora)
                           <tr class="text-white bg-dark">
                             <td>{{$bitacora['COD_BITACORA']}}</td>
-                            <td>{{ substr($bitacora['FEC_REGISTRO'],0,10)}}</td>
+                            <td>{{$bitacora['FEC_REGISTRO']}}</td>
+                            {{-- <td>{{ substr($bitacora['FEC_REGISTRO'],0,10)}}</td> --}}
                             <td>{{$bitacora['USR_REGISTRA']}}</td>
                             <td>{{$bitacora['ACC_SISTEMA']}}</td>
                             <td>{{$bitacora['DES_BITACORA']}}</td>
