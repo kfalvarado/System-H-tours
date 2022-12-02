@@ -1,5 +1,5 @@
 const expresiones = {
-    usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
+    usuario: /^[a-zA-Z0-9\_\-]{4,25}$/, // Letras, numeros, guion y guion_bajo
     nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
     password: /^.{4,12}$/, // 4 a 12 digitos.
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
@@ -147,4 +147,31 @@ function validarTel(e) {
         div.innerHTML='<font color="yellow"> <h5>Ingresa un telefono</h5></font>'
         console.log('incorrecto');
     }
+}
+
+
+//validar periodo
+function Validarperiodo(e) {
+    let periodo = document.getElementById('periodo_ins').value;
+    let div = document.getElementById('divperiodo');
+
+    if (expresiones.usuario.test(periodo)) {
+        document.getElementById('periodo_ins').classList.remove('incorrecto') 
+        document.getElementById('periodo_ins').classList.add('correcto') 
+ 
+        div.innerHTML='';
+        console.log('correcto');
+    }else{
+        document.getElementById('periodo_ins').classList.add('incorrecto') 
+      
+        div.innerHTML='<font color="red"> <h5>Solo puedes ingresar letras</h5></font>'
+
+        console.log('incorrecto');
+
+    }
+    
+}
+
+function ValidarperiodoEdit(e) {
+    
 }

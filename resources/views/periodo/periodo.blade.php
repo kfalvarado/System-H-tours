@@ -16,6 +16,7 @@
 @section('encabezado')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.js"></script>
+    <link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
 @endsection
 
 <!-- nombre del usuario de la barra lateral  -->
@@ -306,8 +307,9 @@
                                 @csrf
                                 <label class="form-label">
                                     Nombre del Periodo
-                                    <input type='text' list="lista" name='periodo' class="form-control text-white"
+                                    <input type='text' list="lista" name='periodo' id="periodo_ins" class="form-control text-white" onkeyup="Validarperiodo(this)"
                                         required>
+                                        <div id="divperiodo"></div>
 
                                     <datalist id="lista">
                                         @foreach ($incrementable as $key)
@@ -349,6 +351,7 @@
 @section('js')
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>
     <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
+    <script src="{{ asset('assets/js/ab-formularios.js') }}"></script>
     <script>
         const $btnExportar = document.querySelector("#btnExportar"),
             $tabla = document.querySelector("#tabla");
