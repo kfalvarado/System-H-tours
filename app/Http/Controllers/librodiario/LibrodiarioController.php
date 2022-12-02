@@ -32,6 +32,7 @@ class LibrodiarioController extends Controller
             ]);
 
             $permisos = $search->json();
+            $consultar = 0;
             foreach ($permisos as $key) {
                 $consultar = $key['PER_CONSULTAR'];
             }
@@ -39,9 +40,9 @@ class LibrodiarioController extends Controller
             return 'Error Libro Diario 39';
         }
 
-        
+
         if ($consultar == '1') {
-            
+
 
 
 
@@ -81,8 +82,6 @@ class LibrodiarioController extends Controller
             } catch (\Throwable $th) {
                 return 'Error Libro Mayor 77';
             }
-
-            
         } else {
             return view('Auth.no-auth');
         }
@@ -112,6 +111,7 @@ class LibrodiarioController extends Controller
             ]);
 
             $permisos = $search->json();
+            $insercion = 0;
             foreach ($permisos as $key) {
                 $insercion = $key['PER_INSERCION'];
             }
@@ -119,7 +119,7 @@ class LibrodiarioController extends Controller
             return 'Error Libro Diario 39';
         }
 
-        if ($insercion == '1' ) {
+        if ($insercion == '1') {
 
 
             // return $request;
@@ -231,7 +231,8 @@ class LibrodiarioController extends Controller
                 return 'Error Libro Diario 198';
             }
 
-            Session::flash('insertado',
+            Session::flash(
+                'insertado',
                 '1'
             );
         } else {
@@ -277,6 +278,7 @@ class LibrodiarioController extends Controller
             ]);
 
             $permisos = $search->json();
+            $update = 0;
             foreach ($permisos as $key) {
                 $update = $key['PER_ACTUALIZACION'];
             }
@@ -285,7 +287,7 @@ class LibrodiarioController extends Controller
         }
 
 
-        if ($update == '1' ) {
+        if ($update == '1') {
 
             try {
                 if ($request->transaccion == '1') {
@@ -377,6 +379,7 @@ class LibrodiarioController extends Controller
             ]);
 
             $permisos = $search->json();
+            $eliminacion = 0;
             foreach ($permisos as $key) {
                 $eliminacion = $key['PER_ELIMINACION'];
             }
@@ -384,7 +387,8 @@ class LibrodiarioController extends Controller
             return 'Error Libro Diario 39';
         }
 
-        if ($eliminacion == '1'
+        if (
+            $eliminacion == '1'
         ) {
 
             $delete = Http::withToken(Cache::get("Token"))->delete($this->url . '/librodiario/eliminar/' . $request->f,);
@@ -406,7 +410,8 @@ class LibrodiarioController extends Controller
             }
 
 
-            Session::flash('eliminado',
+            Session::flash(
+                'eliminado',
                 '1'
             );
         } else {
