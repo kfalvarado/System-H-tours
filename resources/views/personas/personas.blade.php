@@ -205,7 +205,7 @@
                                                                     <center> Género</center>
                                                                     <select class="form-control bg-white text-dark"
                                                                         name="genero" id="genero" required>
-                                                                        <option hidden selected>
+                                                                        <option value="{{ $persona['SEX_PERSONA'] }}" hidden selected>
                                                                             {{ $persona['SEX_PERSONA'] }}</option>
                                                                         <option value="F">Femenino</option>
                                                                         <option value="M">Masculino</option>
@@ -216,7 +216,7 @@
                                                                     </center>
                                                                     <Select class="form-control bg-white text-dark"
                                                                         id="tipoPersona" name="tipoPersona" required>
-                                                                        <option hidden selected>
+                                                                        <option value="{{ $persona['TIP_PERSONA'] }}" hidden selected>
                                                                             {{ $persona['TIP_PERSONA'] }}</option>
                                                                         <option value="N">Normal</option>
                                                                         <option value="J">Jurídica</option>
@@ -230,7 +230,7 @@
                                                                     </center>
                                                                     <Select id="civil" name="civil"
                                                                         class="form-control bg-white text-dark" required>
-                                                                        <option hidden selected>{{ $persona['IND_CIVIL'] }}
+                                                                        <option value="{{ $persona['IND_CIVIL'] }}" hidden selected>{{ $persona['IND_CIVIL'] }}
                                                                         </option>
                                                                         <option value="S">Soltero</option>
                                                                         <option value="V">Viudo</option>
@@ -251,66 +251,67 @@
                                                                 &nbsp;
 
                                                                 {{-- fin centrado --}}
+                                                                <center>
 
-                                                                <label for="" style="background-color: #0778b199">
-                                                                    <font color='white'> &nbsp; Edad </font>
-                                                                    <input type="number" id="edad" name="edad"
-                                                                        placeholder="0" min="0" max="100"
+                                                                    <label for="" style="background-color: #0778b199">
+                                                                        <font color='white'> &nbsp; Edad </font>
+                                                                    <input type="number" id="edad-edit-{{  $persona['COD_PERSONA'] }}" name="edad"
+                                                                    placeholder="0" min="0" max="100" onkeyup="validarEdadEdit({{  $persona['COD_PERSONA'] }})"
                                                                         class="form-control bg-white text-dark"
                                                                         value="{{ $persona['EDA_PERSONAL'] }}" required>
                                                                 </label>
+                                                                <div id="div-editar-{{ $persona['COD_PERSONA'] }}"></div>
+                                                               
                                                                 <label for="" style="background-color: #0778b199">
                                                                     <font color='white'> &nbsp; Identidad </font>
                                                                     <input type="tel"
                                                                         value="{{ $persona['NUM_IDENTIDAD'] }}"
+                                                                        id="indentidad-edit-{{  $persona['COD_PERSONA']  }}"
                                                                         onclick="tipopersona();"minlength="0"
+                                                                        onkeyup="validarDNIedit({{  $persona['COD_PERSONA'] }})"
                                                                         min="0" placeholder="0801-2000-09115"
-                                                                        pattern="[0-9]{4}-[0-9]{4}-[0-9]{5}"id="identidad"
+                                                                        pattern="[0-9]{4}-[0-9]{4}-[0-9]{5}"
                                                                         name="identidad"
                                                                         class="form-control p_input text-dark bg-white"
                                                                         required>
                                                                 </label>
-                                                                <br>
+                                                                <div id="divedit-{{   $persona['COD_PERSONA']}}"></div>
+                                                               
                                                                 {{-- centrado  --}}
-                                                                &nbsp;
-                                                                &nbsp;
-                                                                &nbsp;
-                                                                &nbsp;
-                                                                &nbsp;
-                                                                &nbsp;
-                                                                &nbsp;
-                                                                &nbsp;
-                                                                &nbsp;
+                                                             
+                                                             
 
                                                                 {{-- fin centrado --}}
                                                                 <label style="background-color: #0778b199">
                                                                     <font color='white'>Teléfono </font>
                                                                     <input type="tel"
-                                                                        value="{{ '+504 ' . $persona['TELEFONO'] }}"
-                                                                        id="telefono" name="telefono"
-                                                                        class="form-control p_input text-dark bg-white"
-                                                                        placeholder="+504-90213300"
-                                                                        pattern="[+0-9]{4} [0-9]{8}" required>
+                                                                    value="{{ $persona['TELEFONO'] }}"
+                                                                    id="telefono-edit-{{ $persona['COD_PERSONA'] }}" name="telefono"
+                                                                    class="form-control p_input text-dark bg-white"
+                                                                    placeholder="+504 9021-3300"
+                                                                    pattern="[+0-9 ]{2,5} [0-9-]{4,13}[0-9-]{4,13}" required>
                                                                 </label>
+                                                               
                                                                 <label style="background-color: #0778b199">
                                                                     <font color='white'>&nbsp;&nbsp;Tipo de Teléfono
                                                                         &nbsp;&nbsp;</font>
-                                                                    <Select class="form-control bg-white text-dark"
+                                                                        <Select class="form-control bg-white text-dark"
                                                                         id="tipotelefono" name="tipotelefono" required>
-                                                                        <option hidden selected>
+                                                                        <option value="{{ $persona['TIP_TELEFONO'] }}" hidden selected>
                                                                             {{ $persona['TIP_TELEFONO'] }}</option>
-                                                                        <option value="C">Celular</option>
-                                                                        <option value="T">Teléfono Fijo</option>
-                                                                    </Select>
-                                                                </label>
-                                                                <center>
-
-                                                                    <label style="background-color: #0778b199">
-                                                                        <font color='white'>&nbsp;&nbsp;Estado
-                                                                            &nbsp;&nbsp;</font>
+                                                                            <option value="C">Celular</option>
+                                                                            <option value="T">Teléfono Fijo</option>
+                                                                        </Select>
+                                                                    </label>
+                                                                </center>
+                                                                    <center>
+                                                                        
+                                                                        <label style="background-color: #0778b199">
+                                                                            <font color='white'>&nbsp;&nbsp;Estado
+                                                                                &nbsp;&nbsp;</font>
                                                                         <Select class="form-control bg-white text-dark"
                                                                             id="estado" name="estado" required>
-                                                                            <option hidden selected>
+                                                                            <option value=" {{ $persona['EST_USR'] }}" hidden selected>
                                                                                 {{ $persona['EST_USR'] }}</option>
                                                                             <option value="ACTIVO">ACTIVO</option>
                                                                             <option value="INACTIVO">INACTIVO</option>
@@ -490,52 +491,47 @@
                             &nbsp;
 
                             {{-- fin centrado --}}
+                            <center>
 
-                            <label for="" style="background-color: #0778b199">
-                                <font color='white'> &nbsp; Edad </font>
-                                <input type="number" id="edad" name="edad" onkeyup="validarEdad(this)"
+                                <label for="" style="background-color: #0778b199">
+                                    <font color='white'> &nbsp; Edad </font>
+                                    <input type="number" id="edad" name="edad" onkeyup="validarEdad(this)"
                                     placeholder="0" min="0" max="100"
                                     class="form-control bg-white text-dark" required>
+                                </label>
                                 <div id="divedad"></div>
-                            </label>
+                                <br>
                             <label for="" style="background-color: #0778b199">
                                 <font color='white'> &nbsp; Identidad </font>
                                 <input type="tel" onclick="tipopersona();"minlength="0" id="dni"
                                     onkeyup="validarDNI(this)" min="0" placeholder="0801-2000-09115"
                                     pattern="[0-9]{4}-[0-9]{4}-[0-9]{5}"id="identidad" name="identidad"
                                     class="form-control p_input text-dark bg-white" required>
+                                </label>
                                 <div id="divdni"></div>
-                            </label>
                             <br>
                             {{-- centrado  --}}
-                            &nbsp;
-                            &nbsp;
-                            &nbsp;
-                            &nbsp;
-                            &nbsp;
-                            &nbsp;
-                            &nbsp;
-                            &nbsp;
-                            &nbsp;
-
+                         
                             {{-- fin centrado --}}
                             <label style="background-color: #0778b199">
                                 <font color='white'>Teléfono </font>
                                 <input type="tel" id="telefono" name="telefono" onkeyup="validarTel(this)"
-                                    class="form-control p_input text-dark bg-white" placeholder="+504 90213300"
-                                    pattern="[+0-9]{4} [0-9]{8}" required>
+                                    class="form-control p_input text-dark bg-white" placeholder="+504 9021-3300"
+                                    pattern="[+0-9 ]{2,5} [0-9-]{4,13}[0-9-]{4,13}" required>
                                 <div id="divtelefono"></div>
                             </label>
+                            <br>
                             <label style="background-color: #0778b199">
                                 <font color='white'>&nbsp;&nbsp;Tipo de Teléfono &nbsp;&nbsp;</font>
                                 <Select class="form-control bg-white text-dark" id="tipotelefono" name="tipotelefono"
-                                    required>
-                                    <option hidden selected>Seleccionar</option>
-                                    <option value="C">Celular</option>
-                                    <option value="T">Teléfono Fijo</option>
-                                </Select>
+                                required>
+                                <option hidden selected>Seleccionar</option>
+                                <option value="C">Celular</option>
+                                <option value="T">Teléfono Fijo</option>
+                            </Select>
                             </label>
                             <br>
+                        </center>
                             {{-- centrado  --}}
                             &nbsp;
                             &nbsp;

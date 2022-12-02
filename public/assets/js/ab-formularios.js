@@ -179,7 +179,7 @@ function validarLgruposEdit(e) {
 function validarEdad(e) {
     let edad = document.getElementById('edad').value;
     let div = document.getElementById('divedad');
-    // console.log(cuentas);
+    console.log(edad);
     if (expresiones.numeros.test(edad)) {
         document.getElementById('edad').classList.remove('incorrecto') 
         document.getElementById('edad').classList.add('correcto') 
@@ -187,12 +187,13 @@ function validarEdad(e) {
         div.innerHTML='';
     }else{
         document.getElementById('edad').classList.add('incorrecto')
-        div.innerHTML='<font color="red"> <h5>Solo puedes ingresar numeros</h5></font>'
+        div.innerHTML='<font color="red"> <h5  style="background-color:pink;">Solo ingresar numeros</h5></font>'
         console.log('incorrecto');
         
     }
     
 }
+
 
 function validarDNI(e) {
     let dni = document.getElementById('dni').value;
@@ -212,6 +213,56 @@ function validarDNI(e) {
 }
 
 function validarTel(e) {
+    let telefono = document.getElementById('telefono').value;
+    let div = document.getElementById('divtelefono');
+    // console.log(cuentas);
+    if (expresiones.telefono.test(telefono)) {
+        document.getElementById('telefono').classList.remove('incorrecto') 
+        document.getElementById('telefono').classList.add('correcto') 
+        console.log('correcto');
+        div.innerHTML='';
+    }else{
+        document.getElementById('telefono').classList.add('incorrecto')
+        div.innerHTML='<font color="yellow"> <h5>Ingresa un telefono</h5></font>'
+        console.log('incorrecto');
+    }
+}
+//personas  editar
+function validarEdadEdit(e) {
+    let edad = document.getElementById(`edad-edit-${e}`).value;
+    let div = document.getElementById(`div-editar-${e}`);
+    console.log(edad);
+    if (expresiones.numeros.test(edad)) {
+        document.getElementById(`edad-edit-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`edad-edit-${e}`).classList.add('correcto') 
+        console.log('correcto');
+        div.innerHTML='';
+    }else{
+        document.getElementById(`edad-edit-${e}`).classList.add('incorrecto')
+        div.innerHTML='<font color="red"> <h5  style="background-color:pink;">Solo ingresar numeros</h5></font>'
+        console.log('incorrecto');
+        
+    }
+    
+}
+function validarDNIedit(e) {
+    let dni = document.getElementById(`indentidad-edit-${e}`).value;
+    let div = document.getElementById(`divedit-${e}`);
+    // console.log(cuentas);
+    if (expresiones.identidad.test(dni)) {
+        document.getElementById(`indentidad-edit-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`indentidad-edit-${e}`).classList.add('correcto') 
+        console.log('correcto');
+        div.innerHTML='';
+    }else{
+        document.getElementById(`indentidad-edit-${e}`).classList.add('incorrecto')
+        div.innerHTML='<font color="yellow"> <h5>Escriba un numero de DNI valido</h5></font>'
+        console.log('incorrecto');
+        
+    } 
+}
+
+function validarTeledit(e) {
     let telefono = document.getElementById('telefono').value;
     let div = document.getElementById('divtelefono');
     // console.log(cuentas);
@@ -249,6 +300,7 @@ function Validarperiodo(e) {
     }
     
 }
+//validar periodo editar
 function ValidarperiodoEdit(e) {
     let periodo = document.getElementById(`periodo-edit-${e}`).value;
     let div = document.getElementById(`div-periodo-${e}`);
