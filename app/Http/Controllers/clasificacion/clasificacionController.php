@@ -248,6 +248,19 @@ class clasificacionController extends Controller
                     "OBJETO" => 'CLASIFICACION'
 
                 ]);
+
+                $respuesta = strrpos($delete,'ELIMINAR ESTA CLASIFICACION');
+                if ($respuesta>0) {
+                    Session::flash('nopuedes', "1");
+                    $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                        "USR" => Cache::get('user'),
+                        "ACCION" => 'SE INTENTO ELIMINAR SUBCUENTAS EN USO',
+                        "DES" => Cache::get('user') . ' INTENTO ELIMININAR EL DATO  con codigo' . $request->f . ' EN LA PANTALLA DE SUBCUENTAS',
+                        "OBJETO" => 'SUBCUENTAS'
+    
+                    ]);
+                    return back();
+                }
             } catch (\Throwable $th) {
                 //throw $th;
                 return 'Error Clasificacion 250';

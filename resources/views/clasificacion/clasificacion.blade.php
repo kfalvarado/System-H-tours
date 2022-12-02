@@ -84,6 +84,15 @@ Clasificacion | inicio
   })
   </script>
 @endif
+@if (Session::has('nopuedes'))
+<script>
+    Swal.fire({
+        icon: 'error',
+        text: 'No puedes eliminar esta clasificacion, se encuentra en uso'
+        // footer: '<a href="">Why do I have this issue?</a>'
+    })
+</script>
+@endif
 
 <center><h1> Clasificacion  </h1></center> 
             <div class="page-header">
