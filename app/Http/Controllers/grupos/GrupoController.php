@@ -243,7 +243,21 @@ class GrupoController extends Controller
 
 
             try {
+                $respuesta = 0;
                 $eliminar = http::withToken(Cache::get('token'))->delete($this->url . '/grupos/eliminar/' . $request->cod);
+       
+                $respuesta = strrpos($eliminar,'ESTA EN USO');
+                if ($respuesta>0) {
+                    Session::flash('nopuedes', "1");
+                    $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                        "USR" => Cache::get('user'),
+                        "ACCION" => 'SE INTENTO ELIMINAR GRUPO EN USO',
+                        "DES" => Cache::get('user') . ' INTENTO ELIMININAR EL DATO  con codigo' . $request->f . ' EN LA PANTALLA DE GRUPOS',
+                        "OBJETO" => 'GRUPOS'
+    
+                    ]);
+                    return back();
+                }
                 Session::flash('eliminado', '1');
             } catch (\Throwable $th) {
                 //throw $th;

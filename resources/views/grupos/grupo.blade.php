@@ -83,6 +83,15 @@
             })
         </script>
     @endif
+    @if (Session::has('nopuedes'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                text: 'No puedes eliminar esta clasificacion, se encuentra en uso'
+                // footer: '<a href="">Why do I have this issue?</a>'
+            })
+        </script>
+    @endif
     <div class="content-wrapper">
         <div class="page-header">
             <center>
@@ -120,135 +129,142 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (count($grupoArr)<=0)
-                                    <tr><td colspan="5">No hay resultados</td></tr>
-                                        
-                                    @else
-                                        
-                                   
-                                    @foreach ($grupoArr as $grupo)
-                                        <tr class="text-white bg-dark">
-                                            <td> {{ $grupo['COD_GRUPO'] }}</td>
-                                            <td> {{ $grupo['NATURALEZA'] }}</td>
-                                            <td> {{ $grupo['NUM_GRUPO'] }} </td>
-                                            <td> {{ $grupo['NOM_GRUPO'] }}</td>
-                                            <td><button type="button" class="btn btn-info" data-toggle="modal"
-                                                    data-target="#modal-editar-{{ $grupo['COD_GRUPO'] }}">Editar</button>
-                                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                    data-target="#modal-eliminar-{{ $grupo['COD_GRUPO'] }}">Eliminar</button>
-                                            </td>
+                                    @if (count($grupoArr) <= 0)
+                                        <tr>
+                                            <td colspan="5">No hay resultados</td>
                                         </tr>
+                                    @else
+                                        @foreach ($grupoArr as $grupo)
+                                            <tr class="text-white bg-dark">
+                                                <td> {{ $grupo['COD_GRUPO'] }}</td>
+                                                <td> {{ $grupo['NATURALEZA'] }}</td>
+                                                <td> {{ $grupo['NUM_GRUPO'] }} </td>
+                                                <td> {{ $grupo['NOM_GRUPO'] }}</td>
+                                                <td><button type="button" class="btn btn-info" data-toggle="modal"
+                                                        data-target="#modal-editar-{{ $grupo['COD_GRUPO'] }}">Editar</button>
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                        data-target="#modal-eliminar-{{ $grupo['COD_GRUPO'] }}">Eliminar</button>
+                                                </td>
+                                            </tr>
 
 
 
-                                        <!-- INICIO MODAL PARA EDITAR  -->
-                                        <div class="modal-container">
-                                            <div class="modal fade bd-example-modal-lg"
-                                                id="modal-editar-{{ $grupo['COD_GRUPO'] }}">
-                                                <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-                                                <div class="modal-dialog modal-sm">
-                                                    <div class="modal-content">
-                                                        <!-- CABECERA DEL DIALOGO EDITAR -->
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Editar Grupo</h4>
-                                                            <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
-                                                        </div>
-                                                        <!-- CUERPO DEL DIALOGO EDITAR -->
-                                                        <div class="modal-body">
-                                                            <center>
-                                                                <form action="{{ route('grupo.actualizar') }}"
-                                                                    method="post">
-                                                                    @csrf @method('PUT')
-                                                                    <input type="hidden" name="cod"
-                                                                        value="{{ $grupo['COD_GRUPO'] }}">
-                                                                    <label class="form-label">
-                                                                        Clasificacion
-                                                                        <select class="form-control text-white"
-                                                                            name="clasificacion" id="" required>
-                                                                            <option value="{{ $grupo['NATURALEZA'] }}"
-                                                                                hidden selected>
-                                                                                {{ $grupo['NATURALEZA'] }}</option>
-                                                                            @foreach ($clasificacionArr as $key)
-                                                                                <option
-                                                                                    value="{{ $key['COD_CLASIFICACION'] }}">
-                                                                                    {{ $key['NATURALEZA'] }}</option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                    </label>
-                                                                    <label class="form-label">
-                                                                        Numero de grupo
+                                            <!-- INICIO MODAL PARA EDITAR  -->
+                                            <div class="modal-container">
+                                                <div class="modal fade bd-example-modal-lg"
+                                                    id="modal-editar-{{ $grupo['COD_GRUPO'] }}">
+                                                    <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+                                                    <div class="modal-dialog modal-sm">
+                                                        <div class="modal-content">
+                                                            <!-- CABECERA DEL DIALOGO EDITAR -->
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title">Editar Grupo</h4>
+                                                                <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                                                            </div>
+                                                            <!-- CUERPO DEL DIALOGO EDITAR -->
+                                                            <div class="modal-body">
+                                                                <center>
+                                                                    <form action="{{ route('grupo.actualizar') }}"
+                                                                        method="post">
+                                                                        @csrf @method('PUT')
+                                                                        <input type="hidden" name="cod"
+                                                                            value="{{ $grupo['COD_GRUPO'] }}">
+                                                                        <label class="form-label">
+                                                                            Clasificacion
+                                                                            <select class="form-control text-white"
+                                                                                name="clasificacion" id=""
+                                                                                required>
+                                                                                <option value="{{ $grupo['NATURALEZA'] }}"
+                                                                                    hidden selected>
+                                                                                    {{ $grupo['NATURALEZA'] }}</option>
+                                                                                @foreach ($clasificacionArr as $key)
+                                                                                    <option
+                                                                                        value="{{ $key['COD_CLASIFICACION'] }}">
+                                                                                        {{ $key['NATURALEZA'] }}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </label>
+                                                                        <label class="form-label">
+                                                                            Numero de grupo
 
-                                                                        <input type='text' name='grupo'
-                                                                            value="{{ $grupo['NUM_GRUPO'] }}" id="num_grupo-{{ $grupo['COD_GRUPO'] }}" onkeyup="validarNgruposEdit({{  $grupo['COD_GRUPO'] }})"
-                                                                            class="form-control text-white" maxlength="3"
-                                                                            required>
-                                                                            <div id="div_grupo-{{ $grupo['COD_GRUPO'] }}"></div>
+                                                                            <input type='text' name='grupo'
+                                                                                value="{{ $grupo['NUM_GRUPO'] }}"
+                                                                                id="num_grupo-{{ $grupo['COD_GRUPO'] }}"
+                                                                                onkeyup="validarNgruposEdit({{ $grupo['COD_GRUPO'] }})"
+                                                                                class="form-control text-white"
+                                                                                maxlength="3" required>
+                                                                            <div id="div_grupo-{{ $grupo['COD_GRUPO'] }}">
+                                                                            </div>
                                                                         </label>
                                                                         <label class="form-label">
                                                                             Nombre del grupo
                                                                             <input type='text' name='name'
-                                                                            value="{{ $grupo['NOM_GRUPO'] }}" id="nom_grupo-{{ $grupo['COD_GRUPO'] }}" onkeyup="validarLgruposEdit({{ $grupo['COD_GRUPO']  }})"
-                                                                            min="0" class="form-control text-white"
-                                                                            required></input>
-                                                                            <div id="div_nom-{{ $grupo['COD_GRUPO'] }}"></div>    
-                                                                    </label>
+                                                                                value="{{ $grupo['NOM_GRUPO'] }}"
+                                                                                id="nom_grupo-{{ $grupo['COD_GRUPO'] }}"
+                                                                                onkeyup="validarLgruposEdit({{ $grupo['COD_GRUPO'] }})"
+                                                                                min="0"
+                                                                                class="form-control text-white"
+                                                                                required></input>
+                                                                            <div id="div_nom-{{ $grupo['COD_GRUPO'] }}">
+                                                                            </div>
+                                                                        </label>
 
-                                                                    <button type="submit"
-                                                                        class="btn btn-primary">Actualizar
-                                                                    </button>
-                                                                </form>
+                                                                        <button type="submit"
+                                                                            class="btn btn-primary">Actualizar
+                                                                        </button>
+                                                                    </form>
+                                                            </div>
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-dismiss="modal">Cerrar</button>
+                                                            </center>
                                                         </div>
-                                                        <button type="button" class="btn btn-danger"
-                                                            data-dismiss="modal">Cerrar</button>
-                                                        </center>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- FIN DE MODAL PARA EDITAR  -->
+                                            <!-- FIN DE MODAL PARA EDITAR  -->
 
 
 
-                                        <!-- INICIO MODAL PARA BORRAR  -->
-                                        <div class="modal-container">
-                                            <div class="modal fade bd-example-modal-lg"
-                                                id="modal-eliminar-{{ $grupo['COD_GRUPO'] }}">
-                                                <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-                                                <div class="modal-dialog modal-sm">
-                                                    <div class="modal-content">
-                                                        <!-- CABECERA DEL DIALOGO EDITAR -->
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Eliminar Grupo</h4>
-                                                            <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                                            <!-- INICIO MODAL PARA BORRAR  -->
+                                            <div class="modal-container">
+                                                <div class="modal fade bd-example-modal-lg"
+                                                    id="modal-eliminar-{{ $grupo['COD_GRUPO'] }}">
+                                                    <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
+                                                    <div class="modal-dialog modal-sm">
+                                                        <div class="modal-content">
+                                                            <!-- CABECERA DEL DIALOGO EDITAR -->
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title">Eliminar Grupo</h4>
+                                                                <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
+                                                            </div>
+                                                            <!-- CUERPO DEL DIALOGO BORRAR -->
+                                                            <div class="modal-body">
+                                                                <center>
+                                                                    <form action="{{ route('grupo.eliminar') }}"
+                                                                        method="post">
+                                                                        @csrf @method('DELETE')
+                                                                        <label class="form-label">
+                                                                            <i class="mdi mdi-delete-forever"
+                                                                                style="font-size: 100px;"></i> <br>
+                                                                            ¿ Desea Eliminar el Registro ?
+                                                                            <input type="hidden" name="cod"
+                                                                                value="{{ $grupo['COD_GRUPO'] }}">
+                                                                        </label>
+                                                                        <br>
+                                                                        <button type="submit"
+                                                                            class="btn btn btn-primary">SI</button>
+                                                                        <a href="" class="btn btn-secondary">NO</a>
+                                                                    </form>
+                                                            </div>
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-dismiss="modal">Cerrar</button>
+                                                            </center>
                                                         </div>
-                                                        <!-- CUERPO DEL DIALOGO BORRAR -->
-                                                        <div class="modal-body">
-                                                            <center>
-                                                                <form action="{{ route('grupo.eliminar') }}"
-                                                                    method="post">
-                                                                    @csrf @method('DELETE')
-                                                                    <label class="form-label">
-                                                                        <i class="mdi mdi-delete-forever"
-                                                                        style="font-size: 100px;"></i> <br>
-                                                                        ¿ Desea Eliminar el Registro ?
-                                                                        <input type="hidden" name="cod"
-                                                                            value="{{ $grupo['COD_GRUPO'] }}">
-                                                                    </label>
-                                                                    <br>
-                                                                    <button type="submit"
-                                                                        class="btn btn btn-primary">SI</button>
-                                                                    <a href="" class="btn btn-secondary">NO</a>
-                                                                </form>
-                                                        </div>
-                                                        <button type="button" class="btn btn-danger"
-                                                            data-dismiss="modal">Cerrar</button>
-                                                        </center>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- FIN DE MODAL PARA BORRAR  -->
-                                    @endforeach
+                                            <!-- FIN DE MODAL PARA BORRAR  -->
+                                        @endforeach
                                     @endif
                                 </tbody>
                             </table>
