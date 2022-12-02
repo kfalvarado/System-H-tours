@@ -57,6 +57,46 @@ function validarletras(e) {
     
 
 }
+function validarnumerosEDIT(e) {
+    let cuentas = document.getElementById(`num_cuenta-edit-${e}`).value;
+    let div = document.getElementById(`divnumedit-${e}`);
+    // console.log(cuentas);
+    if (expresiones.numeros.test(cuentas)) {
+        document.getElementById(`num_cuenta-edit-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`num_cuenta-edit-${e}`).classList.add('correcto') 
+        console.log('correcto');
+        div.innerHTML='';
+    }else{
+        document.getElementById(`num_cuenta-edit-${e}`).classList.add('incorrecto')
+        div.innerHTML='<font color="red"> <h5>Solo puedes ingresar numeros</h5></font>'
+        console.log('incorrecto');
+        
+    }
+    
+}    
+
+function validarletrasEDIT(e) {
+    let cuentas = document.getElementById(`nom_cuenta-edit-${e}`).value;
+    let div = document.getElementById(`divnomedit-${e}`);
+
+
+    if (expresiones.nombre.test(cuentas)) {
+        document.getElementById(`nom_cuenta-edit-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`nom_cuenta-edit-${e}`).classList.add('correcto') 
+ 
+        div.innerHTML='';
+        console.log('correcto');
+    }else{
+        document.getElementById(`nom_cuenta-edit-${e}`).classList.add('incorrecto') 
+      
+        div.innerHTML='<font color="red"> <h5>Solo puedes ingresar letras</h5></font>'
+
+        console.log('incorrecto');
+
+    }
+    
+
+}
 
 // validaciones grupos 
 function validarNgrupos(e) {
@@ -97,6 +137,44 @@ function validarLgrupos(e) {
 
 }
 
+// validaciones editar grupos 
+function validarNgruposEdit(e) {
+    let numgrupo = document.getElementById(`num_grupo-${e}`).value;
+    let div = document.getElementById(`div_grupo-${e}`);
+    // console.log(cuentas);
+    if (expresiones.numeros.test(numgrupo)) {
+        document.getElementById(`num_grupo-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`num_grupo-${e}`).classList.add('correcto') 
+        console.log('correcto');
+        div.innerHTML='';
+    }else{
+        document.getElementById(`num_grupo-${e}`).classList.add('incorrecto')
+        div.innerHTML='<font color="red"> <h5>Solo puedes ingresar numeros</h5></font>'
+        console.log('incorrecto');
+        
+    }
+}
+function validarLgruposEdit(e) {
+    let nom_grupo = document.getElementById(`nom_grupo-${e}`).value;
+    let div = document.getElementById(`div_nom-${e}`);
+
+    if (expresiones.nombre.test(nom_grupo)) {
+        document.getElementById(`nom_grupo-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`nom_grupo-${e}`).classList.add('correcto') 
+ 
+        div.innerHTML='';
+        console.log('correcto');
+    }else{
+        document.getElementById(`nom_grupo-${e}`).classList.add('incorrecto') 
+      
+        div.innerHTML='<font color="red"> <h5>Solo puedes ingresar letras</h5></font>'
+
+        console.log('incorrecto');
+
+    }
+    
+
+}
 // personas
 function validarEdad(e) {
     let edad = document.getElementById('edad').value;
@@ -150,7 +228,7 @@ function validarTel(e) {
 }
 
 
-//validar periodo
+//validar periodo insertar
 function Validarperiodo(e) {
     let periodo = document.getElementById('periodo_ins').value;
     let div = document.getElementById('divperiodo');
@@ -171,7 +249,22 @@ function Validarperiodo(e) {
     }
     
 }
-
 function ValidarperiodoEdit(e) {
-    
+    let periodo = document.getElementById(`periodo-edit-${e}`).value;
+    let div = document.getElementById(`div-periodo-${e}`);
+
+    if (expresiones.usuario.test(periodo)) {
+        document.getElementById(`periodo-edit-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`periodo-edit-${e}`).classList.add('correcto') 
+ 
+        div.innerHTML='';
+        console.log('correcto');
+    }else{
+        document.getElementById(`periodo-edit-${e}`).classList.add('incorrecto') 
+      
+        div.innerHTML='<font color="red"> <h5>Solo puedes ingresar letras</h5></font>'
+
+        console.log('incorrecto');
+
+    }
 }

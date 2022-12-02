@@ -62,17 +62,17 @@ function validardescripcion(e) {
 }
 
 function validareditarROL(e) {
-    let rol = document.getElementById('editrol').value;
-    let div = document.getElementById('divroledit');
+    let rol = document.getElementById(`editrol-${e}`).value;
+    let div = document.getElementById(`divroledit-${e}`);
 
     if (expresiones.nombre.test(rol)) {
-        document.getElementById('editrol').classList.remove('incorrecto') 
-        document.getElementById('editrol').classList.add('correcto') 
+        document.getElementById(`editrol-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`editrol-${e}`).classList.add('correcto') 
  
         div.innerHTML='';
         console.log('correcto');
     }else{
-        document.getElementById('editrol').classList.add('incorrecto') 
+        document.getElementById(`editrol-${e}`).classList.add('incorrecto') 
       
         div.innerHTML='<font color="red"> <h5>Solo puedes ingresar letras</h5></font>'
 
@@ -85,17 +85,16 @@ function validareditarROL(e) {
 
 
 function validareditarDES(e) {
-    let rol = document.getElementById('editres').value;
-    let div = document.getElementById('divrresedit');
+    let rol = document.getElementById(`editres-${e}`).value;
+    let div = document.getElementById(`divrresedit-${e}`);
 
     if (expresiones.nombre.test(rol)) {
-        document.getElementById('editres').classList.remove('incorrecto') 
-        document.getElementById('editres').classList.add('correcto') 
- 
+        document.getElementById(`editres-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`editres-${e}`).classList.add('correcto') 
         div.innerHTML='';
         console.log('correcto');
     }else{
-        document.getElementById('editres').classList.add('incorrecto') 
+        document.getElementById(`editres-${e}`).classList.add('incorrecto') 
       
         div.innerHTML='<font color="red"> <h5>Solo puedes ingresar letras</h5></font>'
 

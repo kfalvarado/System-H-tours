@@ -209,18 +209,18 @@
 
                                                                     <label class="form-label">
                                                                         Rol
-                                                                        <input type='text' name='ROL' id="editrol"
+                                                                        <input type='text' name='ROL' id="editrol-{{ $rols['COD_ROL']  }}"
                                                                             value="{{ $rols['ROL'] }}"
-                                                                            class="form-control text-white" onkeyup="validareditarROL(this)" required>
-                                                                            <div id="divroledit"></div>
+                                                                            class="form-control text-white" onkeyup="validareditarROL({{ $rols['COD_ROL']  }})" required>
+                                                                            <div id="divroledit-{{ $rols['COD_ROL']  }}"></div>
                                                                         </label>
                                                                     <br>
                                                                     <label class="form-label">
                                                                         Descripción
-                                                                        <input type='text' size="50" maxlength="50" id="editres"
+                                                                        <input type='text' size="50" maxlength="50" id="editres-{{ $rols['COD_ROL']  }}"
                                                                             name='DES_ROL' value="{{ $rols['DES_ROL'] }}"
-                                                                            class="form-control text-white" onkeyup="validareditarDES(this)" required>
-                                                                            <div id="divrresedit"></div>
+                                                                            class="form-control text-white" onkeyup="validareditarDES({{ $rols['COD_ROL']  }})" required>
+                                                                            <div id="divrresedit-{{ $rols['COD_ROL']  }}"></div>
                                                                     </label>
                                                                     <br>
 
