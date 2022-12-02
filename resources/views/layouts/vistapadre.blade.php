@@ -32,9 +32,21 @@
         function presioname() {
             r = {}
             r.ruta = '{{ route('cerrar.sesion') }}';
-            if (confirm('Estas Seguro que deseas salir?')) {
-                window.location = r.ruta;
-            }
+            Swal.fire({
+                title: 'Cerrar Sesion',
+                text: "Estas Seguro que deseas salir?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si',
+                cancelButtonText: 'No'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = r.ruta;
+                }
+            })
+
         }
     </script>
     <script src="https://use.fontawesome.com/73f69ada3d.js"></script>

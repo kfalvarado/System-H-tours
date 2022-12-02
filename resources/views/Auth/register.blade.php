@@ -9,6 +9,7 @@
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
   <link rel="stylesheet" href="{{asset('assets/vendors/css/vendor.bundle.base.css')}}">
+  <link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
   {{-- sweeralert2 --}}
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -101,15 +102,18 @@
                 @csrf
                 <div class="form-group" >
                   <label><H4><i class="mdi mdi-account"></i>Nombre Completo</H4></label>
-                  <input type="text" id="nombre" name="nombre" placeholder="Ingresa su nombre completo" class="form-control p_input text-dark bg-white" required>
+                  <input type="text" id="nombre" name="nombre" placeholder="Ingresa su nombre completo" class="form-control p_input text-dark bg-white" onkeyup="validarletrasNom(this)" required>
+                <div id="nomdiv"></div>
                 </div>
                 <div class="form-group" >
                   <label><H4><i class="mdi mdi-account"></i>Usuario</H4></label>
-                  <input type="text" style="text-transform:uppercase"  onkeyup="javascript:this.value=this.value.toUpperCase();" id="user" name="user" placeholder="Ingresa nombre de usuario" class="form-control p_input text-dark bg-white" required>
+                  <input type="text" style="text-transform:uppercase"  onkeyup="javascript:this.value=this.value.toUpperCase(); validarletrasUSR(this);" id="user" name="user" placeholder="Ingresa nombre de usuario" class="form-control p_input text-dark bg-white" required>
+                <div id="usrdiv"></div>
                 </div>
                 <div class="form-group">
                   <label><H4><i class="mdi mdi-email"></i> Email</H4></label>
-                  <input type="email" placeholder="Ingresa un Correo Electrónico"  id="correo" name="correo"  class="form-control p_input text-dark bg-white" required>
+                  <input type="email" placeholder="Ingresa un Correo Electrónico"  id="correo" name="correo"  class="form-control p_input text-dark bg-white" onkeyup="validarletrasEMAIL(this)" required>
+                  <div id="divCorreo"></div>
                 </div>
                <!-- CAMPO DE CONTRASEÑA DE LOGIN MOSTRAR MEDIANTE ICONO CANDADO -->
                 

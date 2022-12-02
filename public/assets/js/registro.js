@@ -3,6 +3,15 @@
     Detener el intento de registro tercer Bloque
  ============================================
 */
+const expresiones = {
+    usuario: /^[a-zA-Z0-9\_\-]{4,25}$/, // Letras, numeros, guion y guion_bajo
+    nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+    password: /^.{4,12}$/, // 4 a 12 digitos.
+    correo: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+    telefono: /^[+0-9 ]{2,5} [0-9-]{4,13}[0-9-]{4,13}$/, // telefonos numeros.
+    numeros: /^\d{1,10}$/, // 7 a 14 numeros.
+    identidad: /^[0-9]{4}-\d{4}-\d{5}$/ // 7 a 14 numeros.
+}
 function validacion() {
     let user = document.getElementById("user").value;
     let correo = document.getElementById("correo").value;
@@ -59,6 +68,73 @@ function go() {
 
 function donotgo() {
     return "!!Estas seguro de salir sin guardar se perderan los cambios realizados!!";
+}
+//validar letras de nombre
+function validarletrasNom(e) {
+    let nom = document.getElementById('nombre').value;
+    let div = document.getElementById('nomdiv');
+
+    if (expresiones.nombre.test(nom)) {
+        document.getElementById('nombre').classList.remove('incorrecto') 
+        document.getElementById('nombre').classList.add('correcto') 
+ 
+        div.innerHTML='';
+        // console.log('correcto');
+    }else{
+        document.getElementById('nombre').classList.add('incorrecto') 
+      
+        div.innerHTML='<font color="red"> <h5 style="background-color:pink;">Solo puedes ingresar letras</h5></font>'
+
+        // console.log('incorrecto');
+
+    }
+    
+
+}
+
+function validarletrasUSR(e) {
+    let cuentas = document.getElementById('user').value;
+    let div = document.getElementById('usrdiv');
+
+    if (expresiones.usuario.test(cuentas)) {
+        document.getElementById('user').classList.remove('incorrecto') 
+        document.getElementById('user').classList.add('correcto') 
+ 
+        div.innerHTML='';
+        console.log('correcto');
+    }else{
+        document.getElementById('user').classList.add('incorrecto') 
+      
+        div.innerHTML='<font color="red"> <h5 style="background-color:pink;">No puedes ingresar caracteres especiales</h5></font>'
+
+        console.log('incorrecto');
+
+    }
+    
+
+}
+
+
+function validarletrasEMAIL(e) {
+    let cuentas = document.getElementById('correo').value;
+    let div = document.getElementById('divCorreo');
+
+    if (expresiones.correo.test(cuentas)) {
+        document.getElementById('correo').classList.remove('incorrecto') 
+        document.getElementById('correo').classList.add('correcto') 
+ 
+        div.innerHTML='';
+        // console.log('correcto');
+    }else{
+        document.getElementById('correo').classList.add('incorrecto') 
+      
+        div.innerHTML='<font color="red"> <h5 style="background-color:pink;">Ingresa un correo valido</h5></font>'
+
+        // console.log('incorrecto');
+
+    }
+    
+
 }
 
 
