@@ -587,12 +587,7 @@
                                                                                 required>
                                                                                 <datalist id="lista-de-cuentas">
                                                                                     
-                                                                                  </datalist>                                                                            <!-- <select class="form-control text-white" >
-                                      <option value=""></option>
-                                      <option value="">Cheques</option>
-                                      <option value="">Depositos</option>
-                                      <option value="">Aportacions</option>
-                                    </select> -->
+                                                                                  </datalist>     
                                                                             <div id="divnom_edit-{{  $librodiario['COD_LIBDIARIO']  }}"></div>
                                                                         </label>
                                                                         <label class="form-label">
