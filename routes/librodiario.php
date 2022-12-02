@@ -23,6 +23,9 @@ use App\Http\Controllers\librodiario\LibrodiarioController;
 Route::get('/',[LibrodiarioController::class,'mostrar'])->middleware('CheckToken')->name('mostrar.librodiario');
 Route::post('/insertar',[LibrodiarioController::class,'insertar'])->middleware('CheckToken')->name('librodiario.insertar');
 Route::put('/actualizar',[LibrodiarioController::class,'actualizar'])->middleware('CheckToken')->name('librodiario.actualizar');
+Route::post('/buscaLibdiario',[LibrodiarioController::class,'buscaLibdiario'])->middleware('CheckToken')->name('busca.buscalibdiario');
+Route::post('/buscaEdit',[LibrodiarioController::class,'cuentEdit'])->middleware('CheckToken')->name('busca.cuentEdit');
+Route::post('/buscaEditsub',[LibrodiarioController::class,'cuentEditSUb'])->middleware('CheckToken')->name('busca.cuentEditSUb');
 
 Route::delete('/eliminar',[LibrodiarioController::class,'eliminar'])->middleware('CheckToken')->name('librodiario.eliminar');
 

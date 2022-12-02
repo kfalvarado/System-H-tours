@@ -39,9 +39,9 @@ class LibrodiarioController extends Controller
             return 'Error Libro Diario 39';
         }
 
-        
+
         if ($consultar == '1') {
-            
+
 
 
 
@@ -81,8 +81,6 @@ class LibrodiarioController extends Controller
             } catch (\Throwable $th) {
                 return 'Error Libro Mayor 77';
             }
-
-            
         } else {
             return view('Auth.no-auth');
         }
@@ -119,7 +117,7 @@ class LibrodiarioController extends Controller
             return 'Error Libro Diario 39';
         }
 
-        if ($insercion == '1' ) {
+        if ($insercion == '1') {
 
 
             // return $request;
@@ -231,7 +229,8 @@ class LibrodiarioController extends Controller
                 return 'Error Libro Diario 198';
             }
 
-            Session::flash('insertado',
+            Session::flash(
+                'insertado',
                 '1'
             );
         } else {
@@ -263,8 +262,6 @@ class LibrodiarioController extends Controller
     // ACTUALIZAR FUNCIONAL
     public function actualizar(Request $request)
     {
-
-
         /**
          * Seguridad de roles y perimisos metodo update
          */
@@ -285,7 +282,9 @@ class LibrodiarioController extends Controller
         }
 
 
-        if ($update == '1' ) {
+        if (
+            $update == '1'
+        ) {
 
             try {
                 if ($request->transaccion == '1') {
@@ -303,12 +302,12 @@ class LibrodiarioController extends Controller
                     $actualizar = Http::withToken(Cache::get('token'))->put($this->url . '/librodiario/actualizar/' . $request->f, [
 
 
-                        "COD_PERIODO" => $request->periodo,
-                        "NOM_CUENTA" => $request->cuenta,
-                        "NOM_SUBCUENTA" => $request->nombresubcuenta,
-                        "SAL_DEBE" => 0,
-                        "SAL_HABER" => $request->saldo,
-                    ]);
+                            "COD_PERIODO" => $request->periodo,
+                            "NOM_CUENTA" => $request->cuenta,
+                            "NOM_SUBCUENTA" => $request->nombresubcuenta,
+                            "SAL_DEBE" => 0,
+                            "SAL_HABER" => $request->saldo,
+                        ]);
                 }
 
                 # code...
@@ -384,7 +383,8 @@ class LibrodiarioController extends Controller
             return 'Error Libro Diario 39';
         }
 
-        if ($eliminacion == '1'
+        if (
+            $eliminacion == '1'
         ) {
 
             $delete = Http::withToken(Cache::get("Token"))->delete($this->url . '/librodiario/eliminar/' . $request->f,);
@@ -406,7 +406,8 @@ class LibrodiarioController extends Controller
             }
 
 
-            Session::flash('eliminado',
+            Session::flash(
+                'eliminado',
                 '1'
             );
         } else {
@@ -442,4 +443,31 @@ class LibrodiarioController extends Controller
 
         return view('librodiario.libroDpdf', compact('libro'));
     }
+    
+    public function buscaLibdiario(Request $request)
+    {
+        $librodiario = http::withToken(Cache::get('token'))->post($this->url . '/subcuentas/unidades',[
+            'NATURALEZA'=> $request->NATURALEZA,
+            'CUENTA'=> $request->CUENTA
+        ]);
+        
+        return $librodiario;
+    }
+    public function cuentEdit(Request $request)
+    {
+        $cuentas = http::withToken(Cache::get('token'))->post($this->url . '/libdiario/unidades/cuentas',[
+            'CUENTA'=> $request->CUENTA
+        ]);
+        
+        return $cuentas;
+    }
+
+    public function cuentEditSUb(Request $request)
+    {
+        $subcuentas = http::withToken(Cache::get('token'))->post($this->url . '/libdiario/unidades/subcuentas',[
+            'CUENTA'=> $request->CUENTA
+        ]);
+        return $subcuentas;
+    }
+
 }

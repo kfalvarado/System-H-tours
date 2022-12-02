@@ -33,7 +33,7 @@
 
 
 @section('encabezado')
-<link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/formularios.css') }}">
 @endsection
 
 
@@ -87,14 +87,14 @@
 
 
     @if (Session::has('sinpermiso'))
-<script>
-  Swal.fire({
-    icon: 'success',
-    text: 'No Cuentas con permiso para realizar esta accion'
-    // footer: '<a href="">Why do I have this issue?</a>'
-  })
-</script>
-@endif
+        <script>
+            Swal.fire({
+                icon: 'success',
+                text: 'No Cuentas con permiso para realizar esta accion'
+                // footer: '<a href="">Why do I have this issue?</a>'
+            })
+        </script>
+    @endif
 
 
 
@@ -135,7 +135,7 @@
         }
 
         /*<elemento class="oculto-impresion"><!-- AQUI EMPIEZA PARA OCULTAR EN LA IMPRESION INICIO-->
-                  </elemento><!-- AQUI SE QUITA PARA IMPRIMIR ESTO NO SALDRA FIN-->*/
+                          </elemento><!-- AQUI SE QUITA PARA IMPRIMIR ESTO NO SALDRA FIN-->*/
     </style>
 
 
@@ -210,7 +210,7 @@
 
 
     <!-- <div class="main-panel">
-                      <div class="content-wrapper"> -->
+                              <div class="content-wrapper"> -->
     <!--<center> <h1>Libro Diario</h1> </center>-->
     <center>
         <h1>Libro Diario</h1>
@@ -242,10 +242,11 @@
                                     <label class="form-label">
                                         Periodo
                                         <select class="form-control text-white" name="periodo" id="periodo"
-                                            onchange="datos();" required>
+                                            required>
                                             <option hidden selected>SELECCIONAR</option>
                                             @foreach ($periodoArr as $key)
-                                                <option value="{{ $key['COD_PERIODO'] }}">{{ $key['NOM_PERIODO'] }}</option>
+                                                <option value="{{ $key['COD_PERIODO'] }}">{{ $key['NOM_PERIODO'] }}
+                                                </option>
                                             @endforeach
 
                                         </select>
@@ -269,8 +270,8 @@
                                         <label class="form-label">
                                             Seleccionar Cuenta
 
-                                            <select class="form-control text-white" name="cuenta_cargo" id="cuenta"
-                                                required>
+                                            <select class="form-control text-white" name="cuenta_cargo" onchange="cuesub()"
+                                                id="cuenta" required>
                                                 <option hidden selected>SELECCIONAR</option>
                                                 @foreach ($nombrecuentaArr as $key)
                                                     <option value="{{ $key['NOM_CUENTA'] }}">{{ $key['NOM_CUENTA'] }}
@@ -306,9 +307,9 @@
                                         <label class="form-label">
                                             Cargo
                                             <input type='number' id="cargo" min="0" name='saldo_cargo'
-                                            onkeyup="validarnumeroscargo(this)"
-                                                class="form-control text-white" required></input>
-                                                <div id="divcargo"></div>
+                                                onkeyup="validarnumeroscargo(this)" class="form-control text-white"
+                                                required></input>
+                                            <div id="divcargo"></div>
                                         </label>
 
 
@@ -320,7 +321,7 @@
                                                 Clasificacion
 
                                                 <select class="form-control text-white" name="naturaleza_abono"
-                                                    id="clasificacion" onchange="datos();" required>
+                                                    id="clasificacion_abono" onchange="datosAbono();" required>
                                                     <option hidden selected>SELECCIONAR</option>
                                                     @foreach ($clasificacionArr as $key)
                                                         <option value="{{ $key['NATURALEZA'] }}">{{ $key['NATURALEZA'] }}
@@ -334,8 +335,8 @@
                                             <label class="form-label">
                                                 Seleccionar Cuenta
 
-                                                <select class="form-control text-white" name="cuenta_abono" id="cuenta"
-                                                    required>
+                                                <select class="form-control text-white" name="cuenta_abono"
+                                                    id="cuenta_abono" onchange="cuesubAbono()" required>
                                                     <option hidden selected>SELECCIONAR</option>
                                                     @foreach ($nombrecuentaArr as $key)
                                                         <option value="{{ $key['NOM_CUENTA'] }}">{{ $key['NOM_CUENTA'] }}
@@ -348,7 +349,7 @@
                                                 <label class="form-label">
                                                     Nombre de Sub Cuenta
                                                     <select class="form-control text-white" name="nombresubcuenta_abono"
-                                                        id="nombresubcuenta" required>
+                                                        id="nombresubcuenta_abono" required>
                                                         <option hidden selected>SELECCIONAR</option>
                                                         @foreach ($subcuentas as $key)
                                                             <option value="{{ $key['NOM_SUBCUENTA'] }}">
@@ -365,9 +366,9 @@
                                             <label class="form-label">
                                                 Abono
                                                 <input type='number' id="abono" min="0" name='saldo_abono'
-                                                onkeyup="validarnumerosabono(this)"
-                                                    class="form-control text-white" required></input>
-                                                    <div id="divabono"></div>
+                                                    onkeyup="validarnumerosabono(this)" class="form-control text-white"
+                                                    required></input>
+                                                <div id="divabono"></div>
                                             </label>
 
                                             <br>
@@ -401,92 +402,6 @@
             </div>
         </div>
         <!-- FIN DE MODAL PARA NUEVA  -->
-
-
-
-        <!-- INICIO MODAL PARA INGRESADA  -->
-        <div class="modal-container">
-            <div class="modal fade bd-example-modal-lg" id="dialogo5">
-                <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <!-- CABECERA DEL DIALOGO NUEVA-->
-                        <div class="modal-header">
-                            <h4 class="modal-title">Estado de la Sub Cuenta</h4>
-                        </div>
-                        <!-- CUERPO DEL DIALOGO INGRESADA -->
-                        <div class="modal-body">
-                            <center>
-                                <form action="" method="post">
-                                    <label class="form-label">
-                                        Esta Sub cuenta ha sido ingresada en el libro diario
-                                    </label>
-                                </form>
-                        </div>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                        </center>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- FIN DE MODAL PARA INGRESADA  -->
-
-        <!-- INICIO MODAL PARA PENDIENTE  -->
-        <div class="modal-container">
-            <div class="modal fade bd-example-modal-lg" id="dialogo6">
-                <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <!-- CABECERA DEL DIALOGO PENDIENTE-->
-                        <div class="modal-header">
-                            <h4 class="modal-title">Estado de la Sub Cuenta</h4>
-
-                        </div>
-
-                        <!-- CUERPO DEL DIALOGO PENDIENTE -->
-                        <div class="modal-body">
-                            <center>
-                                <form action="" method="post">
-                                    <label class="form-label">
-                                        Esta Sub cuenta esta pendiente, no ha sido totalizada por el libro Mayor
-                                    </label>
-                                </form>
-                        </div>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                        </center>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- FIN DE MODAL PARA PENDIENTE  -->
-
-        <!-- INICIO MODAL PARA PROCESADA  -->
-        <div class="modal-container">
-            <div class="modal fade bd-example-modal-lg" id="dialogo7">
-                <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <!-- CABECERA DEL DIALOGO PROCESADA-->
-                        <div class="modal-header">
-                            <h4 class="modal-title">Estado de la Sub Cuenta</h4>
-                        </div>
-                        <!-- CUERPO DEL DIALOGO PROCESADA -->
-                        <div class="modal-body">
-                            <center>
-                                <form action="" method="post">
-                                    <label class="form-label">
-                                        Esta Sub cuenta procesada, ha sido totalizada por el libro Mayor
-                                    </label>
-                                </form>
-                        </div>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                        </center>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- FIN DE MODAL PARA PROCESADA  -->
-
     </div>
     <p align="right" valign="baseline">
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button> <a
@@ -636,106 +551,93 @@
                                                                             @endforeach
 
                                                                         </select>
-
-
+                                                           
 
 
                                                                         <label class="form-label">
-                                                                            Numero de Cuenta
-                                                                            <input type='text'
+                                                                            Código
+                                                                            <input type='text' 
                                                                                 value="{{ $librodiario['NUM_SUBCUENTA'] }}"
-                                                                                name='cuenta'
-                                                                                id="num_cuenta"
+                                                                                name='cuenta' id="num_cuenta"
                                                                                 onkeyup="validarnumeros(this)"
-                                                                                class="form-control text-white" required>
-                                                                                <div id="divnum"></div>
+                                                                                class="form-control  text-white bg-dark" required readonly>
+                                                                            <div id="divnum"></div>
                                                                         </label>
-                                                                            <!-- <select class="form-control text-white" name="cuenta" id="">
-                              <option value=""></option>
-                              <option value="">Caja</option>
-                              <option value="">Proveedores</option>
-                              <option value="">Capital</option>
-                            </select> -->
-                                                                            <!-- </input>
-                          </label> -->
-                                                                            <label class="form-label">
-                                                                                Nombre de Sub Cuenta
-                                                                                <input type='text' list=""
-                                                                                    name="nombresubcuenta"
-                                                                                    id="nom_subcuenta"
-                                                                                    onkeyup="validarletras(this)"
-                                                                                    value="{{ $librodiario['NOM_SUBCUENTA'] }}"
-                                                                                    class="form-control text-white bg-dark"
-                                                                                    required>
+                                                                       
+
+                                                                        <label class="form-label">
+                                                                            Detalle
+                                                                            <input type='text' list="lista-de-cuentas"
+                                                                                name="nombresubcuenta" id="nom_subcuenta_edit-{{  $librodiario['COD_LIBDIARIO']  }}"
+                                                                                onkeyup="datosedit({{  $librodiario['COD_LIBDIARIO'] }})" onchange="datoseditSub({{ $librodiario['COD_LIBDIARIO'] }})"
+                                                                                value="{{ $librodiario['NOM_SUBCUENTA'] }}"
+                                                                                class="form-control text-white bg-dark"
+                                                                                required>
+                                                                                <datalist id="lista-de-cuentas">
                                                                                     
-                                                                                <!-- <select class="form-control text-white" >
-                              <option value=""></option>
-                              <option value="">Cheques</option>
-                              <option value="">Depositos</option>
-                              <option value="">Aportacions</option>
-                            </select> -->
-                                                                                <div id="divnom"></div>
-                                                                            </label>
-                                                                            <label class="form-label">
-                                                                            
-                                                                                Saldo
-                                                                                @if ($librodiario['SAL_DEBE'] > 0)
-                                                                                    <input type='number' min="0"
-                                                                                        name="saldo"
-                                                                                        id="saldo"
-                                                                                        
-                                                                                       
-                                                                                        onkeyup="validarnumerossaldo(this)"
-                                                                                        value="{{ $librodiario['SAL_DEBE'] }}"
-                                                                                        class="form-control text-white bg-dark"
-                                                                                        required></input>
-                                                                                        <div id="divsaldoe"></div>
-                                                                                @else
-                                                                                    <input type='number' min="0"
-                                                                                        name="saldo"
-                                                                                        id="saldo"
-                                                                                        onkeyup="validarnumerossaldo(this)"
-                                                                                        value="{{ $librodiario['SAL_HABER'] }}"
-                                                                                        class="form-control text-white bg-dark"
-                                                                                        
-                                                                                        required></input>
-                                                                                        <div id="divsaldoe"></div>
-                                                                                @endif
-                                                                                
-                                                                                
-                                                                            </label>
-                                                                            <br>
-                                                                            <label class="radio-inline">
-                                                                                <input type="radio" name="transaccion"
-                                                                                    value="1" required>Debe
-                                                                            </label>
-                                                                            &nbsp;&nbsp;
-                                                                            <label class="radio-inline">
-                                                                                <input type="radio" name="transaccion"
-                                                                                    value="0" required>Haber
-                                                                            </label>
-                                                                            <hr />
-                                                                            <label class="form-label">
-                                                                                Comprobante
-                                                                                <br>
-                                                                                <!-- <form> -->
-                                                                                <input type="file" id="fileUpload">
-                                                                                <!-- </form> -->
-                                                                            </label>
-                                                                            <label class="form-label">
-                                                                                Fecha
-                                                                                <input type='date' name="fecha"
-                                                                                    value="{{ substr($librodiario['FEC_LIBDIARIO'], 0, 10) }}"
-                                                                                    class="form-control text-white"
+                                                                                  </datalist>                                                                            <!-- <select class="form-control text-white" >
+                                      <option value=""></option>
+                                      <option value="">Cheques</option>
+                                      <option value="">Depositos</option>
+                                      <option value="">Aportacions</option>
+                                    </select> -->
+                                                                            <div id="divnom_edit"></div>
+                                                                        </label>
+                                                                        <label class="form-label">
+
+                                                                            Saldo
+                                                                            @if ($librodiario['SAL_DEBE'] > 0)
+                                                                                <input type='number' min="0"
+                                                                                    name="saldo" id="saldo"
+                                                                                    onkeyup="validarnumerossaldo(this)"
+                                                                                    value="{{ $librodiario['SAL_DEBE'] }}"
+                                                                                    class="form-control text-white bg-dark"
                                                                                     required></input>
+                                                                                <div id="divsaldoe"></div>
+                                                                            @else
+                                                                                <input type='number' min="0"
+                                                                                    name="saldo" id="saldo"
+                                                                                    onkeyup="validarnumerossaldo(this)"
+                                                                                    value="{{ $librodiario['SAL_HABER'] }}"
+                                                                                    class="form-control text-white bg-dark"
+                                                                                    required></input>
+                                                                                <div id="divsaldoe"></div>
+                                                                            @endif
 
-                                                                            </label>
+
+                                                                        </label>
+                                                                        <br>
+                                                                        <label class="radio-inline">
+                                                                            <input type="radio" name="transaccion"
+                                                                                value="1" required>Debe
+                                                                        </label>
+                                                                        &nbsp;&nbsp;
+                                                                        <label class="radio-inline">
+                                                                            <input type="radio" name="transaccion"
+                                                                                value="0" required>Haber
+                                                                        </label>
+                                                                        <hr />
+                                                                        <label class="form-label">
+                                                                            Comprobante
                                                                             <br>
+                                                                            <!-- <form> -->
+                                                                            <input type="file" id="fileUpload">
+                                                                            <!-- </form> -->
+                                                                        </label>
+                                                                        <label class="form-label">
+                                                                            Fecha
+                                                                            <input type='date' name="fecha"
+                                                                                value="{{ substr($librodiario['FEC_LIBDIARIO'], 0, 10) }}"
+                                                                                class="form-control text-white"
+                                                                                required></input>
 
-                                                                            <a href=""
-                                                                                class="btn btn-secondary">Cancelar</a>
-                                                                            <button type="submit"
-                                                                                class="btn btn-primary">Aceptar </button>
+                                                                        </label>
+                                                                        <br>
+
+                                                                        <a href=""
+                                                                            class="btn btn-secondary">Cancelar</a>
+                                                                        <button type="submit"
+                                                                            class="btn btn-primary">Aceptar </button>
                                                                 </form>
                                                         </div>
                                                         <button type="button" class="btn btn-danger"
@@ -814,8 +716,8 @@
 @section('js')
     <script src="{{ asset('assets/js/ab-buscador.js') }}"></script>
     <script src="{{ asset('assets/js/ab-page.js') }}"></script>
-   
-    <script src="{{ asset('assets/js/ab-librodiario.js')}}"></script>
+
+    <script src="{{ asset('assets/js/ab-librodiario.js') }}"></script>
 
 
     <script>
@@ -823,7 +725,7 @@
             let periodo = document.getElementById('periodo').value
             let clasificacion = document.getElementById('clasificacion').value
             let seleccionarcuenta = document.getElementById('cuenta').value
-            
+
 
 
             if (periodo == 'SELECCIONAR') {
@@ -894,60 +796,280 @@
                 .merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
         });
     </script>
-   @routes
+    {{-- insert --}}
+    @routes
     <script>
+        // funcio cuenta | clasificacion cargo
         function datos() {
-    window.CSRF_TOKEN = '{{ csrf_token() }}';
-    // const csrftoken = document.head.querySelector('[name~=csrf-token][content]').content;
-    //Vamos a rellenar el select automáticamente.
-    const select = document.getElementById("clasificacion").value;
-    var contenido = document.querySelector('#cuenta')
+            window.CSRF_TOKEN = '{{ csrf_token() }}';
+            // const csrftoken = document.head.querySelector('[name~=csrf-token][content]').content;
+            //Vamos a rellenar el select automáticamente.
+            const select = document.getElementById("clasificacion").value;
+            var contenido = document.querySelector('#cuenta')
 
-    // console.log(select);
-    var url = route('busca.subcuentas')
-    let data = {
-        NATURALEZA: select
-    }
-    fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': window.CSRF_TOKEN
+            // console.log(select);
+            var url = route('busca.subcuentas')
+            let data = {
+                NATURALEZA: select
             }
-        })
-        .then(resp => {
-            return resp.json()
-        })
-        .then(respuesta => {
-            // console.log(respuesta);
-            pinta(respuesta);
-            //   console.log(typeof respuesta);
-            //   const object = JSON.stringify(respuesta)
-            //   console.log(object.NOM_CUENTA[0]);
-            //   var opciones = "";
-            //   for(let i in object.NOM_CUENTA){
-            //     // console.log(object.NOM_CUENTA[]);
-            //     opciones+="<option value='"+object.NOM_CUENTA[i]+"'>"+object.NOM_CUENTA[i]+'</option>';
-            //   }
-            //   document.getElementById('cuentas').innerHTML = opciones;
-            function pinta(res) {
-                contenido.innerHTML = '';
-                contenido.innerHTML = ' <option hidden selected>SELECCIONAR</option>';
+            fetch(url, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': window.CSRF_TOKEN
+                    }
+                })
+                .then(resp => {
+                    return resp.json()
+                })
+                .then(respuesta => {
+                    // console.log(respuesta);
+                    pinta(respuesta);
+                    //   console.log(typeof respuesta);
+                    //   const object = JSON.stringify(respuesta)
+                    //   console.log(object.NOM_CUENTA[0]);
+                    //   var opciones = "";
+                    //   for(let i in object.NOM_CUENTA){
+                    //     // console.log(object.NOM_CUENTA[]);
+                    //     opciones+="<option value='"+object.NOM_CUENTA[i]+"'>"+object.NOM_CUENTA[i]+'</option>';
+                    //   }
+                    //   document.getElementById('cuentas').innerHTML = opciones;
+                    function pinta(res) {
+                        contenido.innerHTML = '';
+                        contenido.innerHTML = ' <option hidden selected>SELECCIONAR</option>';
 
-                for (let valor of res) {
-                    contenido.innerHTML += `
-                    
-    <option name="INV" value="${valor.NOM_CUENTA}">${valor.NOM_CUENTA}</option>   
-    `
-                }
+                        for (let valor of res) {
+                            contenido.innerHTML +=
+                                `<option name="INV" value="${valor.NOM_CUENTA}">${valor.NOM_CUENTA}</option>   `
+                        }
 
+                    }
+                }).catch(error => console.error(error))
+        }
+
+        //funcion cuenta | subcuenta cargo
+        function cuesub() {
+            window.CSRF_TOKEN = '{{ csrf_token() }}';
+            // const csrftoken = document.head.querySelector('[name~=csrf-token][content]').content;
+            //Vamos a rellenar el select automáticamente.
+            const select = document.getElementById("clasificacion").value;
+            const cuenta = document.getElementById("cuenta").value;
+            var contenido = document.querySelector('#nombresubcuenta1');
+
+            // console.log(select,cuenta);
+            var url = route('busca.buscalibdiario')
+            let data = {
+                NATURALEZA: select,
+                CUENTA: cuenta
             }
-        }).catch(error => console.error(error))
-}
+            fetch(url, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': window.CSRF_TOKEN
+                    }
+                })
+                .then(resp => {
+                    return resp.json()
+                })
+                .then(respuesta => {
+                    // console.log(respuesta);
+                    pinta(respuesta);
+
+                    function pinta(res) {
+                        contenido.innerHTML = '';
+                        contenido.innerHTML = ' <option hidden selected>SELECCIONAR</option>';
+
+                        for (let valor of res) {
+                            contenido.innerHTML +=
+                                `<option name="INV" value="${valor.NOM_SUBCUENTA}">${valor.NOM_SUBCUENTA}</option>   `
+                        }
+
+                    }
+                }).catch(error => console.error(error))
+        }
+
+        // funcio cuenta | clasificacion abono
+        function datosAbono() {
+            window.CSRF_TOKEN = '{{ csrf_token() }}';
+            // const csrftoken = document.head.querySelector('[name~=csrf-token][content]').content;
+            //Vamos a rellenar el select automáticamente.
+            const select = document.getElementById("clasificacion_abono").value;
+            var contenido = document.querySelector('#cuenta_abono')
+
+            // console.log(select);
+            var url = route('busca.subcuentas')
+            let data = {
+                NATURALEZA: select
+            }
+            fetch(url, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': window.CSRF_TOKEN
+                    }
+                })
+                .then(resp => {
+                    return resp.json()
+                })
+                .then(respuesta => {
+                    // console.log(respuesta);
+                    pinta(respuesta);
+                    //   console.log(typeof respuesta);
+                    //   const object = JSON.stringify(respuesta)
+                    //   console.log(object.NOM_CUENTA[0]);
+                    //   var opciones = "";
+                    //   for(let i in object.NOM_CUENTA){
+                    //     // console.log(object.NOM_CUENTA[]);
+                    //     opciones+="<option value='"+object.NOM_CUENTA[i]+"'>"+object.NOM_CUENTA[i]+'</option>';
+                    //   }
+                    //   document.getElementById('cuentas').innerHTML = opciones;
+                    function pinta(res) {
+                        contenido.innerHTML = '';
+                        contenido.innerHTML = ' <option hidden selected>SELECCIONAR</option>';
+
+                        for (let valor of res) {
+                            contenido.innerHTML +=
+                                `<option name="INV" value="${valor.NOM_CUENTA}">${valor.NOM_CUENTA}</option>   `
+                        }
+
+                    }
+                }).catch(error => console.error(error))
+        }
+
+        //funcion cuenta | subcuenta abono
+        function cuesubAbono() {
+            window.CSRF_TOKEN = '{{ csrf_token() }}';
+            // const csrftoken = document.head.querySelector('[name~=csrf-token][content]').content;
+            //Vamos a rellenar el select automáticamente.
+            const select = document.getElementById("clasificacion_abono").value;
+            const cuenta = document.getElementById("cuenta_abono").value;
+            var contenido = document.querySelector('#nombresubcuenta_abono');
+
+            // console.log(select,cuenta);
+            var url = route('busca.buscalibdiario')
+            let data = {
+                NATURALEZA: select,
+                CUENTA: cuenta
+            }
+            fetch(url, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': window.CSRF_TOKEN
+                    }
+                })
+                .then(resp => {
+                    return resp.json()
+                })
+                .then(respuesta => {
+                    // console.log(respuesta);
+                    pinta(respuesta);
+
+                    function pinta(res) {
+                        contenido.innerHTML = '';
+                        contenido.innerHTML = ' <option hidden selected>SELECCIONAR</option>';
+
+                        for (let valor of res) {
+                            contenido.innerHTML +=
+                                `<option name="INV" value="${valor.NOM_SUBCUENTA}">${valor.NOM_SUBCUENTA}</option>   `
+                        }
+
+                    }
+                }).catch(error => console.error(error))
+        }
     </script>
+{{-- edit --}}
+@routes
+<script>
+    // funcio cuenta editar | clasificacion cargo
+    function datosedit(e) {
+        window.CSRF_TOKEN = '{{ csrf_token() }}';
+        // const csrftoken = document.head.querySelector('[name~=csrf-token][content]').content;
+        //Vamos a rellenar el select automáticamente.
+        const select = document.getElementById(`nom_subcuenta_edit-${e}`).value;
+        var contenido = document.querySelector('#lista-de-cuentas')
 
+        console.log(select);
+        var url = route('busca.cuentEdit')
+        let data = {
+            CUENTA: select
+        }
+        fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': window.CSRF_TOKEN
+                }
+            })
+            .then(resp => {
+                return resp.json()
+            })
+            .then(respuesta => {
+                console.log(respuesta);
+                pinta(respuesta);
+                 function pinta(res) {
+                    contenido.innerHTML = '';
 
+                    for (let valor of res) {
+                       
+                        contenido.innerHTML +=
+                            `<option  value="${valor.nom_cuenta}"></option>   `
+                    }
+                   
+                    // for(let it of respuesta){
+                    //     contenido.innerHTML +=
+                    //         `<option  value="${valor.nom_cuenta}"></option>   `
+                    // }
+                    
+                }
+            }).catch(error => console.error(error))
+    }
+
+    function datoseditSub(e) {
+        window.CSRF_TOKEN = '{{ csrf_token() }}';
+        // const csrftoken = document.head.querySelector('[name~=csrf-token][content]').content;
+        //Vamos a rellenar el select automáticamente.
+        const select = document.getElementById(`nom_subcuenta_edit-${e}`).value;
+        var contenido = document.querySelector('#lista-de-cuentas')
+        console.log('subcuentas');
+        // console.log(select);
+        var url = route('busca.cuentEditSUb')
+        let data = {
+            CUENTA: select
+        }
+        fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': window.CSRF_TOKEN
+                }
+            })
+            .then(resp => {
+                return resp.json()
+            })
+            .then(respuesta => {
+                console.log(respuesta);
+                
+                pinta2(respuesta);
+                 function pinta2(res) {
+                    contenido.innerHTML = '';
+
+                    for (let valor of res) {
+                        contenido.innerHTML +=
+                            `<option  value="${valor.nom_subcuenta}"></option>   `
+                    }
+
+                }
+            }).catch(error => console.error(error))
+    }
+</script>
 @endsection
 
 

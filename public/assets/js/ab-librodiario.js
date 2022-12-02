@@ -30,17 +30,17 @@ function validarnumeros(e) {
 }  
 
 function validarletras(e) {
-    let nombresubcuentas = document.getElementById('nom_subcuenta').value;
-    let div = document.getElementById('divnom');
+    let nombresubcuentas = document.getElementById('nom_subcuenta_edit').value;
+    let div = document.getElementById('divnom_edit');
 // console.log(cuentas);
-    if (expresiones.nombre.test(nombresubcuentas)) {
-        document.getElementById('nom_subcuenta').classList.remove('incorrecto') 
-        document.getElementById('nom_subcuenta').classList.add('correcto') 
+    if (expresiones.usuario.test(nombresubcuentas)) {
+        document.getElementById('nom_subcuenta_edit').classList.remove('incorrecto') 
+        document.getElementById('nom_subcuenta_edit').classList.add('correcto') 
  
         div.innerHTML='';
         console.log('correcto');
     }else{
-        document.getElementById('nom_subcuenta').classList.add('incorrecto') 
+        document.getElementById('nom_subcuenta_edit').classList.add('incorrecto') 
       
         div.innerHTML='<font color="red"> <h5>Solo puedes ingresar letras</h5></font>'
 
