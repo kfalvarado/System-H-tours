@@ -61,7 +61,7 @@
         <script>
             Swal.fire({
                 icon: 'error',
-                text: 'No puedes eliminar ya se esta usando en libro diairo'
+                text: 'No puedes eliminar esta cuenta, se encuentra en uso'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>

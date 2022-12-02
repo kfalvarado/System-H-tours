@@ -250,16 +250,38 @@ class CuentasController extends Controller
         }
 
         if ($eliminacion == '1') {
+            $respuesta =0;
             try {
                 $eliminar = Http::withToken(Cache::get('token'))->delete(
                     $this->url . '/cuentas/eliminar/' . $request->f
                 );
+
+                $respuesta = strrpos($eliminar,'ESTA UTILIZADA');
+                if ($respuesta>0) {
+                    Session::flash('nopuedes', "1");
+                    $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                        "USR" => Cache::get('user'),
+                        "ACCION" => 'SE INTENTO ELIMINAR CUENTA EN USO',
+                        "DES" => Cache::get('user') . ' INTENTO ELIMININAR EL DATO  con codigo' . $request->f . ' EN LA PANTALLA DE CUENTAS',
+                        "OBJETO" => 'CUENTAS'
+    
+                    ]);
+                    return back();
+                }
+
             } catch (\Throwable $th) {
                 //throw $th;
                 return 'Error CUENTAS 250';
             }
 
             Session::flash('eliminado', "1");
+            $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                "USR" => Cache::get('user'),
+                "ACCION" => 'ELIMINACION DE CUENTA',
+                "DES" => Cache::get('user') . '  ELIMININO EL DATO  con codigo' . $request->f . ' EN LA PANTALLA DE CUENTAS',
+                "OBJETO" => 'CUENTAS'
+
+            ]);
         } else {
             # code...
             try {
