@@ -32,6 +32,7 @@ class LibrodiarioController extends Controller
             ]);
 
             $permisos = $search->json();
+            $consultar = 0;
             foreach ($permisos as $key) {
                 $consultar = $key['PER_CONSULTAR'];
             }
@@ -110,6 +111,7 @@ class LibrodiarioController extends Controller
             ]);
 
             $permisos = $search->json();
+            $insercion = 0;
             foreach ($permisos as $key) {
                 $insercion = $key['PER_INSERCION'];
             }
@@ -274,6 +276,7 @@ class LibrodiarioController extends Controller
             ]);
 
             $permisos = $search->json();
+            $update = 0;
             foreach ($permisos as $key) {
                 $update = $key['PER_ACTUALIZACION'];
             }
@@ -282,9 +285,7 @@ class LibrodiarioController extends Controller
         }
 
 
-        if (
-            $update == '1'
-        ) {
+        if ($update == '1') {
 
             try {
                 if ($request->transaccion == '1') {
@@ -376,6 +377,7 @@ class LibrodiarioController extends Controller
             ]);
 
             $permisos = $search->json();
+            $eliminacion = 0;
             foreach ($permisos as $key) {
                 $eliminacion = $key['PER_ELIMINACION'];
             }
