@@ -7,6 +7,8 @@ const expresiones = {
     numeros: /^\d{1,10}$/ // 1 a 10 numeros.
 }
 
+
+//insertar
 function validarnumeros(e) {
     let subcuentas = document.getElementById('num_subcuenta').value;
     let div = document.getElementById('divnum');
@@ -25,9 +27,6 @@ function validarnumeros(e) {
     
 }    
 
-
-
-
 function validarletras(e) {
     let cuentas = document.getElementById('nom_subcuenta').value;
     let div = document.getElementById('divsubcuenta');
@@ -40,6 +39,48 @@ function validarletras(e) {
         console.log('correcto');
     }else{
         document.getElementById('nom_subcuenta').classList.add('incorrecto') 
+      
+        div.innerHTML='<font color="red"> <h5>Solo puedes ingresar letras</h5></font>'
+
+        console.log('incorrecto');
+
+    }
+    
+
+}
+
+
+//editar
+function validarnumerosEDIT(e) {
+    let subcuentas = document.getElementById(`num_subcuenta-edit-${e}`).value;
+    let div = document.getElementById(`divnum-edit-${e}`);
+    // console.log(subcuentas);
+    if (expresiones.numeros.test(subcuentas)) {
+        document.getElementById(`num_subcuenta-edit-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`num_subcuenta-edit-${e}`).classList.add('correcto') 
+        console.log('correcto');
+        div.innerHTML='';
+    }else{
+        document.getElementById(`num_subcuenta-edit-${e}`).classList.add('incorrecto')
+        div.innerHTML='<font color="red"> <h5>Solo puedes ingresar numeros</h5></font>'
+        console.log('incorrecto');
+        
+    }
+    
+}    
+
+function validarletrasEDIT(e) {
+    let cuentas = document.getElementById(`nom_subcuenta-edit-${e}`).value;
+    let div = document.getElementById(`divnom-edit-${e}`);
+
+    if (expresiones.nombre.test(cuentas)) {
+        document.getElementById(`nom_subcuenta-edit-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`nom_subcuenta-edit-${e}`).classList.add('correcto') 
+ 
+        div.innerHTML='';
+        console.log('correcto');
+    }else{
+        document.getElementById(`nom_subcuenta-edit-${e}`).classList.add('incorrecto') 
       
         div.innerHTML='<font color="red"> <h5>Solo puedes ingresar letras</h5></font>'
 

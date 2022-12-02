@@ -180,17 +180,23 @@
                                                                         <label class="form-label">
                                                                             Número de la subcuenta
                                                                             <input type='text' min="0"
+                                                                            id="num_subcuenta-edit-{{ $subcuentas['COD_SUBCUENTA'] }}"
                                                                                 name='numerosubcuenta'
+                                                                                onkeyup="validarnumerosEDIT({{ $subcuentas['COD_SUBCUENTA'] }})"
                                                                                 value="{{ $subcuentas['NUM_SUBCUENTA'] }}"
                                                                                 class="form-control text-white"
-                                                                                required></input>
-                                                                        </label>
-                                                                        <label class="form-label">
-                                                                            Nombre de la subcuenta
-                                                                            <input type='text' name='nombresubcuenta'
+                                                                                required>
+                                                                                <div id="divnum-edit-{{ $subcuentas['COD_SUBCUENTA'] }}"></div>
+                                                                            </label>
+                                                                            <label class="form-label">
+                                                                                Nombre de la subcuenta
+                                                                                <input type='text' name='nombresubcuenta'
+                                                                                id="nom_subcuenta-edit-{{ $subcuentas['COD_SUBCUENTA'] }}"
+                                                                                onkeyup="validarletrasEDIT({{ $subcuentas['COD_SUBCUENTA'] }})"
                                                                                 value="{{ $subcuentas['NOM_SUBCUENTA'] }}"
                                                                                 class="form-control text-white"
-                                                                                required></input>
+                                                                                required>
+                                                                                <div id="divnom-edit-{{ $subcuentas['COD_SUBCUENTA'] }}"></div>
                                                                         </label>
 
 
