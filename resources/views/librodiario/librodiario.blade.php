@@ -581,6 +581,7 @@
                                                                             <input type='text' list="lista-de-cuentas"
                                                                                 name="nombresubcuenta" id="nom_subcuenta_edit-{{  $librodiario['COD_LIBDIARIO']  }}"
                                                                                 onkeyup="datosedit({{  $librodiario['COD_LIBDIARIO'] }})" onchange="datoseditSub({{ $librodiario['COD_LIBDIARIO'] }})"
+                                                                                onblur="validarletras({{  $librodiario['COD_LIBDIARIO']  }})"
                                                                                 value="{{ $librodiario['NOM_SUBCUENTA'] }}"
                                                                                 class="form-control text-white bg-dark"
                                                                                 required>
@@ -592,27 +593,27 @@
                                       <option value="">Depositos</option>
                                       <option value="">Aportacions</option>
                                     </select> -->
-                                                                            <div id="divnom_edit"></div>
+                                                                            <div id="divnom_edit-{{  $librodiario['COD_LIBDIARIO']  }}"></div>
                                                                         </label>
                                                                         <label class="form-label">
 
                                                                             Saldo
                                                                             @if ($librodiario['SAL_DEBE'] > 0)
                                                                                 <input type='number' min="0"
-                                                                                    name="saldo" id="saldo"
-                                                                                    onkeyup="validarnumerossaldo(this)"
+                                                                                    name="saldo" id="saldo-{{  $librodiario['COD_LIBDIARIO']  }}"
+                                                                                    onkeyup="validarnumerossaldo({{  $librodiario['COD_LIBDIARIO']  }})"
                                                                                     value="{{ $librodiario['SAL_DEBE'] }}"
                                                                                     class="form-control text-white bg-dark"
                                                                                     required></input>
                                                                                 <div id="divsaldoe"></div>
                                                                             @else
                                                                                 <input type='number' min="0"
-                                                                                    name="saldo" id="saldo"
-                                                                                    onkeyup="validarnumerossaldo(this)"
+                                                                                    name="saldo" id="saldo-{{  $librodiario['COD_LIBDIARIO']  }}"
+                                                                                    onkeyup="validarnumerossaldo({{  $librodiario['COD_LIBDIARIO']  }})"
                                                                                     value="{{ $librodiario['SAL_HABER'] }}"
                                                                                     class="form-control text-white bg-dark"
                                                                                     required></input>
-                                                                                <div id="divsaldoe"></div>
+                                                                                <div id="divsaldoe-{{  $librodiario['COD_LIBDIARIO']  }}"></div>
                                                                             @endif
 
 
@@ -999,6 +1000,7 @@
 <script>
     // funcio cuenta editar | clasificacion cargo
     function datosedit(e) {
+        // validarletras(e);
         window.CSRF_TOKEN = '{{ csrf_token() }}';
         // const csrftoken = document.head.querySelector('[name~=csrf-token][content]').content;
         //Vamos a rellenar el select automáticamente.

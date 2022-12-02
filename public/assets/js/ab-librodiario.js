@@ -10,6 +10,7 @@ const expresiones = {
 }
 
 // INICIO MODAL EDITAR 
+let valit2 = /^[\w ]*$/i;
 
 function validarnumeros(e) {
     let cuentas = document.getElementById('num_cuenta').value;
@@ -30,39 +31,40 @@ function validarnumeros(e) {
 }  
 
 function validarletras(e) {
-    let nombresubcuentas = document.getElementById('nom_subcuenta_edit').value;
-    let div = document.getElementById('divnom_edit');
-// console.log(cuentas);
-    if (expresiones.usuario.test(nombresubcuentas)) {
-        document.getElementById('nom_subcuenta_edit').classList.remove('incorrecto') 
-        document.getElementById('nom_subcuenta_edit').classList.add('correcto') 
- 
+    /* Expresión regular de ejemplo (letras, números, _ y espacios) */
+   
+    let nombresubcuentas = document.getElementById(`nom_subcuenta_edit-${e}`).value;
+    let div = document.getElementById(`divnom_edit-${e}`);
+
+    // console.log(nombresubcuentas,div);
+    if (expresiones.nombre.test(nombresubcuentas)) {
+        document.getElementById(`nom_subcuenta_edit-${e}`).classList.remove('incorrecto')
+        document.getElementById(`nom_subcuenta_edit-${e}`).classList.add('correcto')
+
         div.innerHTML='';
         console.log('correcto');
     }else{
-        document.getElementById('nom_subcuenta_edit').classList.add('incorrecto') 
-      
+        document.getElementById(`nom_subcuenta_edit-${e}`).classList.add('incorrecto')
+
         div.innerHTML='<font color="red"> <h5>Solo puedes ingresar letras</h5></font>'
 
         console.log('incorrecto');
 
     }
-    
-
 }
 
 
 function validarnumerossaldo(e) {
-    let saldoe = document.getElementById('saldo').value;
-    let dive = document.getElementById('divsaldoe');
+    let saldoe = document.getElementById(`saldo-${e}`).value;
+    let dive = document.getElementById(`divsaldoe-${e}`);
     // console.log(cuentas);
     if (expresiones.numeros.test(saldoe)) {
-        document.getElementById('saldo').classList.remove('incorrecto') 
-        document.getElementById('saldo').classList.add('correcto') 
+        document.getElementById(`saldo-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`saldo-${e}`).classList.add('correcto') 
         console.log('correcto');
         dive.innerHTML='';
     }else{
-        document.getElementById('saldo').classList.add('incorrecto')
+        document.getElementById(`saldo-${e}`).classList.add('incorrecto')
         dive.innerHTML='<font color="red"> <h5>Solo puedes ingresar numeros</h5></font>'
         console.log('incorrecto');
         
