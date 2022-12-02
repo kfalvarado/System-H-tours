@@ -178,18 +178,23 @@
 
                                                                         <label class="form-label">
                                                                             Numero de Cuenta
-                                                                            <input type='text' name='numero'
+                                                                            <input type='text' name='numero' id="num_cuenta-edit-{{ $cuentas['COD_CUENTA']  }}" 
+                                                                            onkeyup="validarnumerosEDIT({{ $cuentas['COD_CUENTA']  }})"
                                                                                 value="{{ $cuentas['NUM_CUENTA'] }}"
                                                                                 class="form-control text-white"
-                                                                                required></input>
-                                                                        </label>
-                                                                        <label class="form-label">
-                                                                            Nombre de la Cuenta
-                                                                            <input type='text' name='cuenta'
+                                                                                required>
+                                                                                <div id="divnumedit-{{ $cuentas['COD_CUENTA'] }}"></div>
+                                                                            </label>
+                                                                            <label class="form-label">
+                                                                                Nombre de la Cuenta
+                                                                                <input type='text' name='cuenta'
                                                                                 value="{{ $cuentas['NOM_CUENTA'] }}"
+                                                                                id="nom_cuenta-edit-{{ $cuentas['COD_CUENTA']  }}" 
+                                                                                onkeyup="validarletrasEDIT({{ $cuentas['COD_CUENTA']  }})"
                                                                                 min="0"
                                                                                 class="form-control text-white"
-                                                                                required></input>
+                                                                                required>
+                                                                                <div id="divnomedit-{{ $cuentas['COD_CUENTA'] }}"></div>
                                                                         </label>
 
 
