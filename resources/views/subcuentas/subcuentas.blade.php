@@ -42,27 +42,57 @@
 @endsection
 <!-- contenido de la pagina  -->
 @section('contenido')
-    @if (Session::has('insertado'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                text: 'La cuenta se registro correctamente'
-                // footer: '<a href="">Why do I have this issue?</a>'
-            })
-        </script>
-    @endif
-    <div class="content-wrapper">
+@if (Session::has('insertado'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        text: 'La subcuenta se registro correctamente'
+        // footer: '<a href="">Why do I have this issue?</a>'
+    })
+</script>
+@endif
+@if (Session::has('eliminado'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        text: 'La subcuenta se elimino Correctamente'
+        // footer: '<a href="">Why do I have this issue?</a>'
+    })
+</script>
+@endif
+@if (Session::has('nopuedes'))
+<script>
+    Swal.fire({
+        icon: 'error',
+        text: 'No puedes eliminar esta subcuenta, se encuentra en uso'
+        // footer: '<a href="">Why do I have this issue?</a>'
+    })
+</script>
+@endif
+@if (Session::has('sinpermiso'))
+<script>
+    Swal.fire({
+        icon: 'error',
+        text: 'No cuentas con  permiso para realizar esta accion'
+        // footer: '<a href="">Why do I have this issue?</a>'
+    })
+</script>
+@endif
+@if (Session::has('actualizado'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        text: 'La subcuenta se actualizo correctamente'
+        // footer: '<a href="">Why do I have this issue?</a>'
+    })
+</script>
+@endif
+<div class="content-wrapper">
         <div class="page-header">
             <center>
                 <h1> Gestión Subcuentas </h1>
             </center>
-            <!-- <h1 class="page-title"> Nombre de la Tabla </h1> -->
-            <!-- <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                      <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                                      <li class="breadcrumb-item active" aria-current="page">Basic tables</li>
-                                    </ol>
-                                  </nav> -->
+
         </div>
         <p align="right" valign="baseline">
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
@@ -180,23 +210,25 @@
                                                                         <label class="form-label">
                                                                             Número de la subcuenta
                                                                             <input type='text' min="0"
-                                                                            id="num_subcuenta-edit-{{ $subcuentas['COD_SUBCUENTA'] }}"
+                                                                                id="num_subcuenta-edit-{{ $subcuentas['COD_SUBCUENTA'] }}"
                                                                                 name='numerosubcuenta'
                                                                                 onkeyup="validarnumerosEDIT({{ $subcuentas['COD_SUBCUENTA'] }})"
                                                                                 value="{{ $subcuentas['NUM_SUBCUENTA'] }}"
-                                                                                class="form-control text-white"
-                                                                                required>
-                                                                                <div id="divnum-edit-{{ $subcuentas['COD_SUBCUENTA'] }}"></div>
-                                                                            </label>
-                                                                            <label class="form-label">
-                                                                                Nombre de la subcuenta
-                                                                                <input type='text' name='nombresubcuenta'
+                                                                                class="form-control text-white" required>
+                                                                            <div
+                                                                                id="divnum-edit-{{ $subcuentas['COD_SUBCUENTA'] }}">
+                                                                            </div>
+                                                                        </label>
+                                                                        <label class="form-label">
+                                                                            Nombre de la subcuenta
+                                                                            <input type='text' name='nombresubcuenta'
                                                                                 id="nom_subcuenta-edit-{{ $subcuentas['COD_SUBCUENTA'] }}"
                                                                                 onkeyup="validarletrasEDIT({{ $subcuentas['COD_SUBCUENTA'] }})"
                                                                                 value="{{ $subcuentas['NOM_SUBCUENTA'] }}"
-                                                                                class="form-control text-white"
-                                                                                required>
-                                                                                <div id="divnom-edit-{{ $subcuentas['COD_SUBCUENTA'] }}"></div>
+                                                                                class="form-control text-white" required>
+                                                                            <div
+                                                                                id="divnom-edit-{{ $subcuentas['COD_SUBCUENTA'] }}">
+                                                                            </div>
                                                                         </label>
 
 
@@ -231,16 +263,18 @@
                                                             <!-- CUERPO DEL DIALOGO BORRAR -->
                                                             <div class="modal-body">
                                                                 <center>
-                                                                    <form action="" method="post">
+                                                                    <form action="{{ route('subcuentas.eliminar') }}" method="post">
+                                                                        @csrf @method('DELETE')
                                                                         <label class="form-label">
+                                                                            <input type="hidden" name="f" value="{{ $subcuentas['COD_SUBCUENTA']  }}">
                                                                             <i class="mdi mdi-delete-forever"
                                                                                 style="font-size: 100px;"></i> <br>
                                                                             ¿ Desea Eliminar el Registro ?
 
                                                                         </label>
                                                                         <br>
-                                                                        <a href=""
-                                                                            class="btn btn btn-primary">SI</a>
+                                                                        <button type="submit"
+                                                                            class="btn btn btn-primary">SI</button>
                                                                         <a href="" class="btn btn-secondary">NO</a>
 
                                                                     </form>
