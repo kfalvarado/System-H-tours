@@ -179,16 +179,18 @@
                                                                         Numero de grupo
 
                                                                         <input type='text' name='grupo'
-                                                                            value="{{ $grupo['NUM_GRUPO'] }}"
+                                                                            value="{{ $grupo['NUM_GRUPO'] }}" id="num_grupo-{{ $grupo['COD_GRUPO'] }}" onkeyup="validarNgruposEdit({{  $grupo['COD_GRUPO'] }})"
                                                                             class="form-control text-white" maxlength="3"
-                                                                            required></input>
-                                                                    </label>
-                                                                    <label class="form-label">
-                                                                        Nombre del grupo
-                                                                        <input type='text' name='name'
-                                                                            value="{{ $grupo['NOM_GRUPO'] }}"
+                                                                            required>
+                                                                            <div id="div_grupo-{{ $grupo['COD_GRUPO'] }}"></div>
+                                                                        </label>
+                                                                        <label class="form-label">
+                                                                            Nombre del grupo
+                                                                            <input type='text' name='name'
+                                                                            value="{{ $grupo['NOM_GRUPO'] }}" id="nom_grupo-{{ $grupo['COD_GRUPO'] }}" onkeyup="validarLgruposEdit({{ $grupo['COD_GRUPO']  }})"
                                                                             min="0" class="form-control text-white"
                                                                             required></input>
+                                                                            <div id="div_nom-{{ $grupo['COD_GRUPO'] }}"></div>    
                                                                     </label>
 
                                                                     <button type="submit"
