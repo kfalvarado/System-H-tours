@@ -228,7 +228,7 @@ function validarTel(e) {
 }
 
 
-//validar periodo
+//validar periodo insertar
 function Validarperiodo(e) {
     let periodo = document.getElementById('periodo_ins').value;
     let div = document.getElementById('divperiodo');
@@ -249,7 +249,22 @@ function Validarperiodo(e) {
     }
     
 }
-
 function ValidarperiodoEdit(e) {
-    
+    let periodo = document.getElementById(`periodo-edit-${e}`).value;
+    let div = document.getElementById(`div-periodo-${e}`);
+
+    if (expresiones.usuario.test(periodo)) {
+        document.getElementById(`periodo-edit-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`periodo-edit-${e}`).classList.add('correcto') 
+ 
+        div.innerHTML='';
+        console.log('correcto');
+    }else{
+        document.getElementById(`periodo-edit-${e}`).classList.add('incorrecto') 
+      
+        div.innerHTML='<font color="red"> <h5>Solo puedes ingresar letras</h5></font>'
+
+        console.log('incorrecto');
+
+    }
 }

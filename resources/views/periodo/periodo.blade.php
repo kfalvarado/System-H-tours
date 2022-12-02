@@ -174,8 +174,11 @@
                                                                         <input type='text' list="lista-programacion"
                                                                             value="{{ $periodo['NOM_PERIODO'] }}"
                                                                             name='periodo'
+                                                                            id="periodo-edit-{{  $periodo['COD_PERIODO'] }}"
+                                                                            onkeyup="ValidarperiodoEdit({{ $periodo['COD_PERIODO']  }})"
                                                                             class="form-control text-white bg-dark"
                                                                             required>
+                                                                            <div id="div-periodo-{{ $periodo['COD_PERIODO'] }}"></div>
                                                                         <datalist id="lista-programacion">
                                                                             <option value="Periodo-2022-ene-1-004">
                                                                         </datalist>
