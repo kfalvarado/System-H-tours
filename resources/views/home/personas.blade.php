@@ -6,7 +6,7 @@
     <style>
         body {
             background-image: url('/assets/images/Login_bg.jpg');
-            background-size: cover;  
+            background-size: cover;
         }
     </style>
     <meta charset="UTF-8">
@@ -38,9 +38,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"
         integrity="sha512-+gShyB8GWoOiXNwOlBaYXdLTiZt10Iy6xjACGadpqMs20aJOoh+PJt3bwUVA6Cefe7yF7vblX6QwyXZiVwTWGg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      
+
     {{-- icono  --}}
-    <link rel="icon" href="{{ asset('assets/images/HTOURS.png') }}" />   
+    <link rel="icon" href="{{ asset('assets/images/HTOURS.png') }}" />
 </head>
 
 <body onbeforeunload="return donotgo();" oncopy="return false" onpaste="return false">
@@ -67,12 +67,13 @@
                         @csrf
                         <center>
 
-                            <div  class="row" style="background-color: #0778b199">
-                            <label for="">
+                            <div class="row" style="background-color: #0778b199">
+                                <label for="">
                                     <font color='white'>
                                         <h5> Género </h5>
                                     </font>
-                                    <select class="form-select form-select-md mb-3" name="genero" id="genero" required>
+                                    <select class="form-select form-select-md mb-3" name="genero" id="genero"
+                                        required>
                                         <option hidden selected>Seleccionar</option>
                                         <option value="F">Femenino</option>
                                         <option value="M">Masculino</option>
@@ -82,159 +83,169 @@
                         </center>
                         <br>
                         <center>
-                        <div  class="row" style="background-color: #0778b199">
+                            <div class="row" style="background-color: #0778b199">
 
-                            <label for="">
-                               
+                                <label for="">
+
                                     <font color='white'>
-                                            <h5>
-                                                Estado
-                                                Civil 
-                                            </h5>
+                                        <h5>
+                                            Estado
+                                            Civil
+                                        </h5>
                                     </font>
-                                            <Select id="civil" name="civil" class="form-select form-select-md mb-3"
-                                            required>
-                                            <option hidden selected>Seleccionar</option>
-                                            <option value="S">Soltero</option>
-                                            <option value="V">Viudo</option>
-                                            <option value="C">Casado</option>
-                                            <option value="D">Divorciado</option>
-                                        </Select>
-                                    </label>
-                        </div>
-                        </center>
-                                    <br>
-                                    <div class="row" style="background-color: #0778b199">
-
-                                   
-                                    <center>
-                                        <label>
-                                            <h5>
-
-                                                <font color='white'> Tipo de persona</font>
-                                            </h5>
-                                    </center>
-                                    <Select class="form-select form-select-md mb-3" id="tipoPersona" name="tipoPersona"
+                                    <Select id="civil" name="civil" class="form-select form-select-md mb-3"
                                         required>
                                         <option hidden selected>Seleccionar</option>
-                                        <option value="N">Normal</option>
-                                        <option value="J">Jurídica</option>
+                                        <option value="S">Soltero</option>
+                                        <option value="V">Viudo</option>
+                                        <option value="C">Casado</option>
+                                        <option value="D">Divorciado</option>
                                     </Select>
                                 </label>
                             </div>
-                            <br>
-                       
-                        <div class="row form-group" >
-                            <div class="col-3">
-                               
-                                <label for="" style="background-color: #0778b199">
-                                    <center>
+                        </center>
+                        <br>
+                        <div class="row" style="background-color: #0778b199">
 
-                                        <font color='white'>  Edad </font>
-                                    </center>
-                                            <input type="number" id="edad" name="edad" placeholder="0" onkeyup="myedad()" onclick="validarSelect()"
-                                            min="16" max="100" class="form-control" required>
-                                            <div id="divedad"></div>
-                                        </div>
+
+                            <center>
+                                <label>
+                                    <h5>
+
+                                        <font color='white'> Tipo de persona</font>
+                                    </h5>
+                            </center>
+                            <Select class="form-select form-select-md mb-3" id="tipoPersona" name="tipoPersona"
+                                required>
+                                <option hidden selected>Seleccionar</option>
+                                <option value="N">Normal</option>
+                                <option value="J">Jurídica</option>
+                            </Select>
                             </label>
-                          
-                            <div class="col-8" style="float:left;">
+                        </div>
+                        <br>
 
-                                <label for="" style="background-color: #0778b199">
-                                    <center>
+                        <div class="row">
+                            <center>
 
-                                        <font color='white'> Identidad </font>
-                                    </center>
-                                            <input type="tel" onclick="tipopersona();"minlength="0" min="0"
+
+                                <div class="col-6">
+
+                                    <label style="background-color: #0778b199">
+                                        <center>
+
+                                            <font color='white'>Teléfono </font>
+                                        </center>
+                                        <input type="tel" id="telefono" name="telefono"
+                                            class="form-control p_input text-dark bg-white" placeholder="+504 9021-3300"
+                                            pattern="[+0-9 ]{2,5} [0-9-]{4,13}[0-9-]{4,13}" required>
+                                    </label>
+                                </div>
+                            </center>
+                        </div>
+                        <br>
+                        <div class="row">
+                                <center>
+                                <div class="col-6">
+
+                                    <label for="" style="background-color: #0778b199">
+                                        <center>
+
+                                            <font color='white'> Identidad </font>
+                                        </center>
+                                        <input type="tel" onclick="tipopersona();"minlength="0" min="0"
                                             placeholder="0801-2000-09115"
                                             pattern="[0-9]{4}-[0-9]{4}-[0-9]{5}"id="identidad" name="identidad"
                                             onkeypress="return validarprimercampo(event);"
                                             class="form-control p_input text-dark bg-white" required>
-                                        </label>
-                                    </div>
-                                   
-                            
-                        </div>
+                                    </label>
+                                </div>
+                            </center>
+                            </div>
                         <br>
                         <center>
 
                             <div class="row">
-                                <div class="col-12">
-                            
+                                <div class="col-3">
 
-                                        
-                                <label style="background-color: #0778b199">
-                                    <center>
+                                    <label for="" style="background-color: #0778b199">
+                                        <center>
 
-                                        <font color='white'>Teléfono </font>
-                                    </center>
-                                    <input type="tel" id="telefono" name="telefono"
-                                    class="form-control p_input text-dark bg-white"
-                                    placeholder="+504 9021-3300" pattern="[+0-9 ]{2,5} [0-9-]{4,13}[0-9-]{4,13}" required>
+                                            <font color='white'> Edad </font>
+                                        </center>
+                                        <input type="number" id="edad" name="edad" placeholder="0"
+                                            onkeyup="myedad()" onclick="validarSelect()" min="16" max="100"
+                                            class="form-control" required>
+                                        <div id="divedad"></div>
+                                </div>
                                 </label>
+
                             </div>
-                         </div>
-                    </center>
-                    <br>
-                    <div class="row" style="background-color: #0778b199;">
+                </div>
+                </center>
+                <br>
+                <div class="row" style="background-color: #0778b199;">
+                    <label>
                         <center>
-                        <label>
+                            <h5>
+
                                 <font color='white'>Tipo de Teléfono</font>
-                            </center>
-                                <Select class="form-select form-select mb-3" id="tipotelefono" name="tipotelefono" required>
-                                    <option hidden selected>Seleccionar</option>
-                                <option value="C">Celular</option>
-                                <option value="T">Teléfono Fijo</option>
-                            </Select>
+                            </h5>
+                        </center>
+                        <Select class="form-select form-select mb-3" id="tipotelefono" name="tipotelefono" required>
+                            <option hidden selected>Seleccionar</option>
+                            <option value="C">Celular</option>
+                            <option value="T">Teléfono Fijo</option>
+                        </Select>
                     </label>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label style="background-color: #0778b199">
+                        <font color='white'>Ingresar una nueva Contraseña </font>
+
+                    </label>
+                    <div class="form-row">
+                        <div class="col">
+                            <input class="form-control p_input text-dark bg-white" onchange="Contraseña();"
+                                onkeyup="muestra_seguridad_clave(this.value, this.form)" placeholder="Contraseña"
+                                type="password" name="password1" id="password1" required>
+                            <span id="icon"
+                                style="color: black; position: absolute; display: block; bottom: .2rem; right: 1rem; user-select: none;cursor: pointer;">
+                                <i id="ojo2" class="mdi  mdi-eye-outline" onclick="mostrarContrasena()"></i>
+                            </span>
+                        </div>
                     </div>
-                        <div class="form-group">
-                            <label style="background-color: #0778b199">
-                                <font color='white'>Ingresar una nueva Contraseña </font>
+                    <label>
+                        <font color='white'><b> Seguridad de Contraseña</b> </font>
+                    </label>
+                    <input id="seguridad" name="seguridad" type="text"
+                        style="background: transparent; border: none; color: #ffffff; " onfocus="blur()">
 
-                            </label>
-                            <div class="form-row">
-                                <div class="col">
-                                    <input class="form-control p_input text-dark bg-white" onchange="Contraseña();"
-                                        onkeyup="muestra_seguridad_clave(this.value, this.form)"
+                    <br>
+                    <br>
+                    <!-- END CONTRASEÑA -->
+                    <!-- 2 CAMPO DE CONTRASEÑA DE LOGIN MOSTRAR MEDIANTE ICONO CANDADO -->
 
-                                        placeholder="Contraseña" type="password" name="password1" id="password1"
-                                        required>
-                                        <span id="icon" style="color: black; position: absolute; display: block; bottom: .2rem; right: 1rem; user-select: none;cursor: pointer;">
-                                            <i id="ojo2" class="mdi  mdi-eye-outline" onclick="mostrarContrasena()"></i>
-                                          </span>
-                                </div>
-                            </div>
-                            <label>
-                                <font color='white'><b> Seguridad de Contraseña</b> </font>
-                            </label>
-                            <input id="seguridad" name="seguridad" type="text"
-                                style="background: transparent; border: none; color: #ffffff; " onfocus="blur()">
+                    <label style="background-color: #0778b199">
+                        <font color='white'> Repetir Contraseña </font>
+                    </label>
+                    <div class="form-row">
+                        <div class="col">
+                            <input class="form-control p_input text-dark bg-white" placeholder="Repetir Contraseña"
+                                type="password" onchange="comparar();" name="password2" id="password2" required>
+                        </div>
+                        <span id="icon"
+                            style="color: black; position: absolute; display: block; bottom: .2rem; right: 1rem; user-select: none;cursor: pointer;">
+                            <i id="ojo2" class="mdi  mdi-eye-outline" onclick="mostrarContrasena()"></i>
+                        </span>
 
-                            <br>
-                            <br>
-                            <!-- END CONTRASEÑA -->
-                            <!-- 2 CAMPO DE CONTRASEÑA DE LOGIN MOSTRAR MEDIANTE ICONO CANDADO -->
-
-                            <label style="background-color: #0778b199">
-                                <font color='white'> Repetir Contraseña </font>
-                            </label>
-                            <div class="form-row">
-                                <div class="col">
-                                    <input class="form-control p_input text-dark bg-white"
-                                        placeholder="Repetir Contraseña" type="password" onchange="comparar();"
-                                        name="password2" id="password2" required>
-                                </div>
-                                <span id="icon" style="color: black; position: absolute; display: block; bottom: .2rem; right: 1rem; user-select: none;cursor: pointer;">
-                                    <i id="ojo2" class="mdi  mdi-eye-outline" onclick="mostrarContrasena()"></i>
-                                  </span>
-
-                            </div>
-                            <br>
-                            <center>
-                                <button class="btn btn-outline-info  text-white" onclick="validar();"
-                                    type="submit">Guardar</button>
-                            </center>
+                    </div>
+                    <br>
+                    <center>
+                        <button class="btn btn-outline-info  text-white" onclick="validar();"
+                            type="submit">Guardar</button>
+                    </center>
                     </form>
                 </div>
             </div>
