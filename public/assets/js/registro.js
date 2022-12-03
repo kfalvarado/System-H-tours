@@ -23,24 +23,28 @@ function validacion() {
         document.getElementById("user").className =
             "form-control p_input text-dark bg-warning";
         document.location.href = "#user";
+        event.preventDefault();
     }
     if (correo == "") {
         alert("No escribio su correo");
         document.getElementById("correo").className =
             "form-control p_input text-dark bg-warning";
         document.location.href = "#correo";
+        event.preventDefault();
     }
     if (password1 == "") {
         alert("No escribio una contraseña");
         document.getElementById("password1").className =
             "form-control p_input text-dark bg-warning";
         document.location.href = "#password1";
+        event.preventDefault();
     }
     if (password2 == "") {
         alert("No escribio una contraseña");
         document.getElementById("password2").className =
             "form-control p_input text-dark bg-warning";
         document.location.href = "#password2";
+        event.preventDefault();
     }
     if (seguridad != "100%") {
         alert("Por favor ingresa un Contraseña Segura");
@@ -48,6 +52,12 @@ function validacion() {
             "form-control p_input text-dark bg-warning";
             document.getElementById("password1").value = "";
         document.location.href = "#password1";
+        event.preventDefault();
+    }
+    if (password1 != password2 ) {
+        alert("Las contraseñas no coinciden");
+        document.location.href = "#password2";
+        event.preventDefault();
     }
 
 }
@@ -57,7 +67,10 @@ function comparar() {
     let password2 = document.getElementById("password2").value;
     if (password1 != password2) {
         alert("Las contraseña no Coinciden ");
-        document.getElementById("password2").value = "";
+        // document.getElementById("password2").value = "";
+        document.location.href = "#password2";
+        
+        
     }
 }
 

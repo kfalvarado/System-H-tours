@@ -12,6 +12,42 @@ function comparar() {
     }
 }
 
+function validarSelect() {
+    let genero = document.getElementById('genero').value
+    let civil = document.getElementById('civil').value
+    let tipoPersona = document.getElementById('tipoPersona').value
+    // alert(genero+civil+tipoPersona)
+
+    if (genero == 'Seleccionar') {
+        Swal.fire({
+            icon: 'warning',
+            text: 'No has seleccionado un genero'
+            // footer: '<a href="">Why do I have this issue?</a>'
+        })
+    }else{
+        // console.log('seleccionado esta');
+        if (civil == 'Seleccionar') {
+            Swal.fire({
+                icon: 'warning',
+                text: 'No has seleccionado un  estado civil'
+                // footer: '<a href="">Why do I have this issue?</a>'
+            })
+        }
+        else { 
+    
+            if(tipoPersona == 'Seleccionar') {
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'No has seleccionado un Tipo Persona'
+                    // footer: '<a href="">Why do I have this issue?</a>'
+                })
+            }
+        } 
+    }
+
+}
+
+
 function validar() {
     let genero = document.getElementById("genero").value;
     let civil = document.getElementById("civil").value;
@@ -65,6 +101,28 @@ function check() {
 function donotgo() {
     return "!!Estas seguro de salir sin guardar se perderan los cambios realizados!!";
 }
+/**
+ * Solo numeros edad
+ */
+function myedad() {
+    let edad = document.getElementById('num_cuenta').value;
+    let div = document.getElementById('divnum');
+    // console.log(cuentas);
+    if (expresiones.numeros.test(edad)) {
+        document.getElementById('num_cuenta').classList.remove('incorrecto') 
+        document.getElementById('num_cuenta').classList.add('correcto') 
+        console.log('correcto');
+        div.innerHTML='';
+    }else{
+        document.getElementById('num_cuenta').classList.add('incorrecto')
+        div.innerHTML='<font color="red"> <h5>Solo puedes ingresar numeros</h5></font>'
+        console.log('incorrecto');
+        
+    }
+    
+}
+
+
 
 
 /**
