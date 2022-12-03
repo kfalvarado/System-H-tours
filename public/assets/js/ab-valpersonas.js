@@ -7,8 +7,14 @@ function comparar() {
     let password1 = document.getElementById("password1").value;
     let password2 = document.getElementById("password2").value;
     if (password1 != password2) {
-        alert("Las contraseña no Coinciden ");
-        document.getElementById("password2").value = "";
+        swal.fire(
+            {
+                icon: 'error',
+                text: 'Las contraseña no Coinciden'
+            }
+        )
+        window.location.document.getElementById("password2").className =
+        "form-control p_input text-dark bg-warning";;
     }
 }
 
@@ -54,6 +60,8 @@ function validar() {
     let tipoPersona = document.getElementById("tipoPersona").value;
     let tipotelefono = document.getElementById("tipotelefono").value;
     let seguridad = document.getElementById("seguridad").value;
+    let password1 = document.getElementById("password1").value;
+    let password2 = document.getElementById("password2").value;
    
     if (genero == "Seleccionar") {
         alert("No selecciono un genero");
@@ -91,6 +99,16 @@ function validar() {
             document.getElementById("password1").value = "";
         document.location.href = "#password1";
     }
+    if (password1 != password2) {
+        swal.fire(
+            {
+                icon: 'error',
+                text: 'Las contraseña no Coinciden'
+            }
+        )
+        event.preventDefault()
+        document.location.href = "#password2";
+    }
     // desactivar proteccion anti cierre
     window.onbeforeunload = null;
 }
@@ -122,6 +140,34 @@ function myedad() {
     
 }
 
+
+function mostrarContra1 () {
+
+        var tipo = document.getElementById("password1");
+        var ojo = document.getElementById("ojo1");
+        if (tipo.type == "password") {
+            tipo.type = "text";
+            ojo.className = 'bi bi-eye-slash-fill';
+        } else {
+            tipo.type = "password";
+            ojo.className = 'bi bi-eye-fill';
+        }
+    
+}
+
+function mostrarContra2 () {
+
+    var tipo = document.getElementById("password2");
+    var ojo = document.getElementById("ojo2");
+    if (tipo.type == "password") {
+        tipo.type = "text";
+        ojo.className = 'bi bi-eye-slash-fill';
+    } else {
+        tipo.type = "password";
+        ojo.className = 'bi bi-eye-fill';
+    }
+
+}
 
 
 
