@@ -113,6 +113,26 @@ function validar() {
     window.onbeforeunload = null;
 }
 function check() {
+    let pregunta = document.getElementById('pregunta').value
+    let respuesta = document.getElementById('respuesta').value
+
+    if (pregunta == '') {
+        Swal.fire({
+            icon: 'warning',
+            text: 'No has ingresado una pregunta'
+            // footer: '<a href="">Why do I have this issue?</a>'
+        })
+        event.preventDefault()
+       
+    }
+    if (respuesta == '') {
+        Swal.fire({
+            icon: 'warning',
+            text: 'No has ingresado una respuesta'
+            // footer: '<a href="">Why do I have this issue?</a>'
+        })
+        event.preventDefault()
+    }
     window.onbeforeunload = null;
 }
 

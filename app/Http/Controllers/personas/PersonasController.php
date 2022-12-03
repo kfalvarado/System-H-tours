@@ -133,6 +133,7 @@ class PersonasController extends Controller
 
     public function ins_preguntas(Request $request)
     {
+        
         //traer la cantidad de preguntas permitidas
         $parametro = Http::withToken(Cache::get('token'))->post($this->url . '/parametros/buscar', [
             "PARAMETRO"=>"ADMIN_CANT_PREG"   

@@ -6,14 +6,17 @@
         <style>
             body{
                 background-image: url('/assets/images/Login_bg.jpg');
+                background-size: cover;
             }
         </style>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>HTOURS | Preguntas</title>
+        <title>HTOURS | Preguntas Seguridad</title>
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        {{-- iconos boostrap --}}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
         {{-- sweetalert2 --}}
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         {{-- icono  --}}
@@ -47,12 +50,12 @@
                         
                         <label for="">
                           <div style="background-color: #0778b199">
-                            <font color='white'><h5>Ingresa la Pregunta Secreta #{{ Cache::get('resp_preg') }}</h5></font>
+                            <font color='white'><h5> <i class="bi bi-question-octagon"></i> Ingresa la Pregunta Secreta #{{ Cache::get('resp_preg') }}</h5></font>
                             <input type="text" class="form-control" id="pregunta" name="pregunta" required>
                           </label>
                         </div>
                           <div style="background-color: #0778b199">
-                            <font color='white'><h5>Ingresa la respuesta </h5></font>
+                            <font color='white'><h5><i class="bi bi-r-circle"></i> Ingresa la respuesta </h5></font>
                             <input type="text" class="form-control" id="respuesta" name="respuesta" required>
                           </label>
                         </div>
