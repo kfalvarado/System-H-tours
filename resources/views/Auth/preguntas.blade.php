@@ -6,6 +6,7 @@
         <style>
             body{
                 background-image: url('/assets/images/auth/Login_bg.jpg');
+                background-size: cover;
             }
         </style>
         <meta charset="UTF-8">
@@ -13,8 +14,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>HTOURS | RECUPERACION</title>
         <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        {{-- iconos boostrap --}}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+      
     </head>
 
     <body onbeforeunload="return donotgo();" oncopy="return false" onpaste="return false">
@@ -99,17 +102,28 @@
                               </div>
                             @endif
                            
-                            <label for="user" class="form-label">Usuario</label>
+                            <label for="user" class="form-label"><i class="bi bi-person-fill"></i> Usuario</label>
                             <input type="text" id="user" name="user" class="form-control" value="{{Cache::get('usuario')}}" readonly>
-                            <label for="password1" class="form-label">Nueva Contraseña</label>
+                            <label for="password1" class="form-label"><i class="bi bi-clipboard-fill"></i> Nueva Contraseña</label>
+                           <br>
+                            <div class="input-group mb-3">
+                           
                             <input class="form-control" placeholder="Ingresa la nueva contraseña" onkeyup="muestra_seguridad_clave(this.value, this.form)" type="password" name="password1" id="password1" required>
-                            <label> <b> Seguridad de Contraseña</b></label>
+                            <span class="input-group-text" id="basic-addon1"> <i id="ojo1" class="bi bi-eye-fill" onclick="mostrarContra1()"></i></span>
+                                  
+                        </div>
+
+                            <label> Seguridad de Contraseña</b></label>
                             <input id="seguridad" name="seguridad" type="text" style="background: transparent; border: none; color: #000000; " onfocus="blur()">
              
                         </div class="mt-3">
                         <div class="mt-3">
-                            <label for="password2" class="form-label">Repite la Contraseña</label>
+                            <label for="password2" class="form-label"><i class="bi bi-clipboard-check-fill"></i> Repite la Contraseña</label>
+                            <div class="input-group mb-3">
                             <input class="form-control p_input text-dark bg-white" onchange="comparar();" placeholder="Ingresa de nuevo la contraseña" type="password" name="password2" id="password2" required>
+                            <span class="input-group-text" id="basic-addon1"> <i id="ojo2" class="bi bi-eye-fill" onclick="mostrarContra2()"></i></span>
+                                  
+                        </div>
                         </div class="mt-3">
                         <br>
                         <center>

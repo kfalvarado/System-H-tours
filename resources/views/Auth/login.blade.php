@@ -123,6 +123,7 @@
     <input type="hidden" value="{{ Cache::forget('token') }}">
     <input type="hidden" value="{{ Cache::forget('paso') }}">
     <input type="hidden" value="{{ Cache::forget('genero') }}">
+    <input type="hidden" value="{{ Cache::forget('usuario') }}">
     <div class="container-scroller">
         <div class="container-fluid page-body-wrapper full-page-wrapper">
             <div class="row w-100 m-0">

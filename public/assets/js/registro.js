@@ -12,6 +12,35 @@ const expresiones = {
     numeros: /^\d{1,10}$/, // 7 a 14 numeros.
     identidad: /^[0-9]{4}-\d{4}-\d{5}$/ // 7 a 14 numeros.
 }
+
+
+function mostrarContra1 () {
+
+    var tipo = document.getElementById("password1");
+    var ojo = document.getElementById("ojo1");
+    if (tipo.type == "password") {
+        tipo.type = "text";
+        ojo.className = 'bi bi-eye-slash-fill';
+    } else {
+        tipo.type = "password";
+        ojo.className = 'bi bi-eye-fill';
+    }
+
+}
+
+function mostrarContra2 () {
+
+var tipo = document.getElementById("password2");
+var ojo = document.getElementById("ojo2");
+if (tipo.type == "password") {
+    tipo.type = "text";
+    ojo.className = 'bi bi-eye-slash-fill';
+} else {
+    tipo.type = "password";
+    ojo.className = 'bi bi-eye-fill';
+}
+
+}
 function validacion() {
     let user = document.getElementById("user").value;
     let correo = document.getElementById("correo").value;
