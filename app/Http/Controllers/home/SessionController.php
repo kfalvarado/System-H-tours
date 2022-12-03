@@ -287,6 +287,28 @@ class SessionController extends Controller
             Cache::put('oneday','1');
         
         }
+        //correo de recuperacion
+        $correo = Http::withToken(Cache::get('token'))->post($this->url . '/parametros/buscar',[
+            "PARAMETRO"=> 'ADMIN_CORREO'
+        ]);
+
+        $correo = $correo->json();
+        foreach ($correo as $key ) {
+            $mycorreo = $key['VALOR'];
+        }
+        
+        Cache::forever('correo',  $mycorreo);
+        //contra de aplicacion
+        $app = Http::withToken(Cache::get('token'))->post($this->url . '/parametros/buscar',[
+            "PARAMETRO"=> 'ADMIN_APP_PASSWORD'
+        ]);
+
+        $app = $app->json();
+        foreach ($app as $key ) {
+            $myapp = $key['VALOR'];
+        }
+        
+        Cache::forever('app',  $myapp);
         
         return view('home.inicio', compact('newconteo'));
     }
@@ -432,13 +454,20 @@ class SessionController extends Controller
             foreach ($arreglo as $data) {
                 $correo = $data['CORREO'];
             }
-
+            $timeParametro = Http::post($this->url . '/seguridad/parametros/correo_time');
+            $timeParametro = $timeParametro->json();
+            $expiracion = '1d';
+            foreach ($timeParametro as $key ) {
+                $expiracion = $key['VALOR'];
+            }
+          
             $tokenCorreo = Http::post($this->url . '/seguridad/recuperarlogin', [
-                "user" => $request->user
+                "user" => $request->user,
+                "PARAMETRO"=> $expiracion
             ]);
             $mytoken =  $tokenCorreo->json();
 
-            // return $mytoken['token'];
+            
 
             require base_path("vendor/autoload.php");
             $mail = new PHPMailer(true);
@@ -449,12 +478,12 @@ class SessionController extends Controller
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';             //  smtp host
                 $mail->SMTPAuth = true;
-                $mail->Username = 'systemhtours@gmail.com';   //  Correo desde donde se enviara el Correo
-                $mail->Password = 'kmbyyqvcgkxfpluj';       // contraseña de Aplicacion
+                $mail->Username = Cache::get('correo');   //  Correo desde donde se enviara el Correo
+                $mail->Password = Cache::get('app');       // contraseña de Aplicacion
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;                  // encryption - ssl/tls
                 $mail->Port = 465;                          // port - 587/465
 
-                $mail->setFrom('systemhtours@gmail.com', 'Credenciales Htours');
+                $mail->setFrom(Cache::get('correo'), 'Credenciales Htours');
                 $mail->addAddress($correo, $request->user);
                 // $mail->addCC($request->emailCc);
                 // $mail->addBCC($request->emailBcc);
@@ -772,9 +801,13 @@ class SessionController extends Controller
         ]);
 
 
-        Cache::flush('token');
-        Cache::flush('user');
-        Cache::flush('genero');
+      
+        Cache::forget('rol') ;
+        Cache::forget('user') ;
+        Cache::forget('token') ;
+        Cache::forget('paso') ;
+        Cache::forget('genero') ;
+        Cache::forget('usuario') ;
         // Cache::flush('resp_preg');
         return redirect('/');
     }
