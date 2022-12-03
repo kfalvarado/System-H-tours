@@ -165,8 +165,11 @@
                                                                         Objeto
                                                                         <input type='text' list="lista-programacion"
                                                                             value="{{ $objeto['OBJETO'] }}" name='objetos'
+                                                                            id="objeto-edit-{{  $objeto['COD_OBJETO'] }}"
+                                                                            onkeyup="ValidarobjetoEdit({{ $objeto['COD_OBJETO']  }})"
                                                                             class="form-control text-white bg-dark"
                                                                             required>
+                                                                            <div id="divobjeto-{{ $objeto['OBJETO'] }}"></div>
                                                                         {{-- <datalist id="lista-programacion">
                              <option value="Periodo-2022-ene-1-004">
                            </datalist> --}}
@@ -178,8 +181,11 @@
                                                                         <input type='text' list="lista-programacion"
                                                                             value="{{ $objeto['DES_OBJETO'] }}"
                                                                             name='descripcion'
+                                                                            id="descripcion-edit-{{  $objeto['COD_OBJETO'] }}"
+                                                                            onkeyup="ValidardescripcionEdit({{ $objeto['COD_OBJETO']  }})"
                                                                             class="form-control text-white bg-dark"
                                                                             required>
+                                                                            <div id="divdescrip-{{ $objeto['OBJETO'] }}"></div>
                                                                         <datalist id="lista-programacion">
                                                                             <option value="Periodo-2022-ene-1-004">
                                                                         </datalist>
@@ -191,8 +197,11 @@
                                                                         <input type='text' list="lista-programacion"
                                                                             value="{{ $objeto['TIP_OBJETO'] }}"
                                                                             name='tipo'
+                                                                            id="tipoobjeto-edit-{{  $objeto['COD_OBJETO'] }}"
+                                                                            onkeyup="ValidartipoEdit({{ $objeto['COD_OBJETO']  }})"
                                                                             class="form-control text-white bg-dark"
                                                                             required>
+                                                                            <div id="divtipoob-{{ $objeto['OBJETO'] }}"></div>
                                                                         <datalist id="lista-programacion">
                                                                             <option value="Periodo-2022-ene-1-004">
                                                                         </datalist>

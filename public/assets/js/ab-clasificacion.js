@@ -33,3 +33,25 @@ function validarclasificacion(e) {
     
 
 }
+
+function validarclasificacionEDIT(e) {
+    let clasificacion = document.getElementById(`clasificacion-edit-${e}`).value;
+    let div = document.getElementById(`divclasificacion-${e}`);
+
+
+    if (expresiones.nombre.test(clasificacion)) {
+        document.getElementById(`clasificacion-edit-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`clasificacion-edit-${e}`).classList.add('correcto') 
+ 
+        div.innerHTML='';
+        console.log('correcto');
+    }else{
+        document.getElementById(`clasificacion-edit-${e}`).classList.add('incorrecto') 
+      
+        div.innerHTML='<font color="red"> <h5>Solo puedes ingresar letras</h5></font>'
+
+        console.log('incorrecto');
+
+    }
+
+}

@@ -173,8 +173,11 @@
                                                                         <input type='text' list="lista-programacion"
                                                                             value="{{ $parametros['PARAMETRO'] }}"
                                                                             name='parametro'
+                                                                            id="parametro-edit-{{  $parametros['COD_PARAMETRO'] }}"
+                                                                            onkeyup="ValidarparametrosEdit({{ $parametros['COD_PARAMETRO']  }})"
                                                                             class="form-control text-white bg-dark"
                                                                             required readonly>
+                                                                            <div id="divparametro-{{ $parametros['COD_PARAMETRO'] }}"></div>
                                                                         <datalist id="lista-programacion">
                                                                             <option value="Periodo-2022-ene-1-004">
                                                                         </datalist>
@@ -186,8 +189,11 @@
                                                                         <input type='text' list="lista-programacion"
                                                                             value="{{ $parametros['VALOR'] }}"
                                                                             name='valor'
+                                                                            id="valor-edit-{{  $parametros['COD_PARAMETRO'] }}"
+                                                                            onkeyup="ValidarvalorEdit({{ $parametros['COD_PARAMETRO']  }})"
                                                                             class="form-control text-white bg-dark"
                                                                             required>
+                                                                            <div id="divvalor-{{ $parametros['COD_PARAMETRO'] }}"></div>
                                                                         <datalist id="lista-programacion">
                                                                             <option value="Periodo-2022-ene-1-004">
                                                                         </datalist>
@@ -200,7 +206,10 @@
                                                                         Fecha creacion
                                                                         <input type="date"
                                                                             value="{{ substr($parametros['FEC_CREACION'], 0, 10) }}"
-                                                                            name="creacion" readonly>
+                                                                            name="creacion"
+                                                                            id="fecha-edit-{{  $parametros['COD_PARAMETRO'] }}"
+                                                                            onkeyup="ValidarfechacreacionEdit({{ $parametros['COD_PARAMETRO']  }})" readonly>
+                                                                            <div id="divfecha-{{ $parametros['COD_PARAMETRO'] }}"></div>
                                                                     </label>
                                                                    
                                                                     <br>

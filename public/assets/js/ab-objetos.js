@@ -77,3 +77,69 @@ function validartipo(e) {
     
 
 }
+
+function validarobjetoEDIT(e) {
+    let objeto = document.getElementById(`objeto-edit-${e}`).value;
+    let div = document.getElementById(`divobjeto-${e}`);
+
+
+    if (expresiones.nombre.test(objeto)) {
+        document.getElementById(`objeto-edit-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`objeto-edit-${e}`).classList.add('correcto') 
+ 
+        div.innerHTML='';
+        console.log('correcto');
+    }else{
+        document.getElementById(`objeto-edit-${e}`).classList.add('incorrecto') 
+      
+        div.innerHTML='<font color="red"> <h5>Solo puedes ingresar letras</h5></font>'
+
+        console.log('incorrecto');
+
+    }
+
+}
+
+function validardescripcionEDIT(e) {
+    let descripcion = document.getElementById(`descripcion-edit-${e}`).value;
+    let div = document.getElementById(`divdescrip-${e}`);
+
+
+    if (expresiones.nombre.test(descripcion)) {
+        document.getElementById(`descripcion-edit-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`descripcion-edit-${e}`).classList.add('correcto') 
+ 
+        div.innerHTML='';
+        console.log('correcto');
+    }else{
+        document.getElementById(`descripcion-edit-${e}`).classList.add('incorrecto') 
+      
+        div.innerHTML='<font color="red"> <h5>Solo puedes ingresar letras</h5></font>'
+
+        console.log('incorrecto');
+
+    }
+
+}
+
+function validartipoEDIT(e) {
+    let tipo = document.getElementById(`tipoobjeto-edit-${e}`).value;
+    let div = document.getElementById(`divtipoob-${e}`);
+
+
+    if (expresiones.nombre.test(tipo)) {
+        document.getElementById(`tipoobjeto-edit-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`tipoobjeto-edit-${e}`).classList.add('correcto') 
+ 
+        div.innerHTML='';
+        console.log('correcto');
+    }else{
+        document.getElementById(`tipoobjeto-edit-${e}`).classList.add('incorrecto') 
+      
+        div.innerHTML='<font color="red"> <h5>Solo puedes ingresar letras</h5></font>'
+
+        console.log('incorrecto');
+
+    }
+
+}

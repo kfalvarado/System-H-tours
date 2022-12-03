@@ -163,7 +163,11 @@ Clasificacion | inicio
                         <input type="hidden" name="f" value="{{ $clasificacion['COD_CLASIFICACION'] }}">
                          <label class="form-label">
                            Clasificacion
-                           <input type='text' list="lista-programacion" value="{{ $clasificacion['NATURALEZA'] }}" name='clasificacion' class="form-control text-white bg-dark" required>
+                           <input type='text' list="lista-programacion" value="{{ $clasificacion['NATURALEZA'] }}" name='clasificacion'
+                           id="clasificacion-edit-{{  $clasificacion['COD_CLASIFICACION'] }}"
+                             onkeyup="ValidarclasificacionEdit({{ $clasificacion['COD_CLASIFICACION']  }})"
+                            class="form-control text-white bg-dark" required>
+                            <div id="divclasificacion-{{ $clasificacion['COD_CLASIFICACION'] }}"></div>
                            <datalist id="lista-programacion">
                              <option value="Periodo-2022-ene-1-004">
                            </datalist>
