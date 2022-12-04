@@ -263,16 +263,16 @@ function validarDNIedit(e) {
 }
 
 function validarTeledit(e) {
-    let telefono = document.getElementById('telefono').value;
-    let div = document.getElementById('divtelefono');
+    let telefono = document.getElementById(`telefono-edit-${e}`).value;
+    let div = document.getElementById(`perteledit-${e}`);
     // console.log(cuentas);
     if (expresiones.telefono.test(telefono)) {
-        document.getElementById('telefono').classList.remove('incorrecto') 
-        document.getElementById('telefono').classList.add('correcto') 
+        document.getElementById(`telefono-edit-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`telefono-edit-${e}`).classList.add('correcto') 
         console.log('correcto');
         div.innerHTML='';
     }else{
-        document.getElementById('telefono').classList.add('incorrecto')
+        document.getElementById(`telefono-edit-${e}`).classList.add('incorrecto')
         div.innerHTML='<font color="yellow"> <h5>Ingresa un telefono</h5></font>'
         console.log('incorrecto');
     }

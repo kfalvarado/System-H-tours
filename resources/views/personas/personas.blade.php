@@ -290,6 +290,7 @@
                                                                     class="form-control p_input text-dark bg-white"
                                                                     placeholder="+504 9021-3300"
                                                                     pattern="[+0-9 ]{2,5} [0-9-]{4,13}[0-9-]{4,13}" required>
+                                                                    <div id="perteledit-{{ $persona['COD_PERSONA']}}"></div>
                                                                 </label>
                                                                
                                                                 <label style="background-color: #0778b199">
