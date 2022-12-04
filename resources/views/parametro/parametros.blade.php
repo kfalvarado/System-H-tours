@@ -2,7 +2,7 @@
 
 <!-- titulo de la pagina  -->
 @section('titulo')
-    Parametros | inicio
+Parámetros | inicio
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
@@ -60,7 +60,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                text: 'El parametro se actualizo correctamente'
+                text: 'El parametro se actualizó correctamente'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
@@ -69,7 +69,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                text: 'El parametro se elimino correctamente'
+                text: 'El parametro se eliminó correctamente'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
@@ -85,7 +85,7 @@
     @endif
 
     <center>
-        <h1> Parametros </h1>
+        <h1> Parámetros </h1>
     </center>
     <div class="page-header">
         </nav>
@@ -105,7 +105,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">
-                        <center>Parametros</center>
+                        <center>Parámetros</center>
                     </h4>
                     <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
                         <input class="form-control me-2 light-table-filter text-white" data-table="table_id" type="text"
@@ -116,7 +116,7 @@
                             <thead>
                                 <tr class="text-dark bg-white">
                                     <th class="text-dark bg-white">#</th>
-                                    <th class="text-dark bg-white">Parametros</th>
+                                    <th class="text-dark bg-white">Parámetros</th>
                                     <th class="text-dark bg-white">Valor</th>
                                     <th class="text-dark bg-white">Usuario</th>
                                     <th class="text-dark bg-white">Fecha de creación</th>
@@ -155,7 +155,7 @@
                                                     <div class="modal-content">
                                                         <!-- CABECERA DEL DIALOGO EDITAR -->
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Editar Parametro</h4>
+                                                            <h4 class="modal-title">Editar Parámetro</h4>
                                                             <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                                                         </div>
                                                         <!-- CUERPO DEL DIALOGO EDITAR -->
@@ -169,7 +169,7 @@
                                                                     <input type="hidden" name="f"
                                                                         value="{{ $parametros['COD_PARAMETRO'] }}">
                                                                     <label class="form-label">
-                                                                        Parametro
+                                                                        Parámetro
                                                                         <input type='text' list="lista-programacion"
                                                                             value="{{ $parametros['PARAMETRO'] }}"
                                                                             name='parametro'
@@ -241,7 +241,7 @@
                                                     <div class="modal-content">
                                                         <!-- CABECERA DEL DIALOGO EDITAR -->
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Eliminar Parametro</h4>
+                                                            <h4 class="modal-title">Eliminar Parámetro</h4>
                                                             <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                                                         </div>
                                                         <!-- CUERPO DEL DIALOGO BORRAR -->
@@ -297,7 +297,7 @@
                 <div class="modal-content">
                     <!-- CABECERA DEL DIALOGO NUEVA-->
                     <div class="modal-header">
-                        <h4 class="modal-title">Ingresar Nuevo Parametro</h4>
+                        <h4 class="modal-title">Ingresar Nuevo Parámetro</h4>
                         <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                     </div>
                     <!-- CUERPO DEL DIALOGO NUEVA -->
@@ -306,7 +306,7 @@
                             <form action="{{ route('parametro.insertar') }}" method="post">
                                 @csrf
                                 <label class="form-label">
-                                    Parametro
+                                    Parámetro
                                     <input type='text' list="lista-programacion" name='parametros'
                                         class="form-control text-white" id="parametro" onkeyup="validarparametro(this)"required>
                                         <div id="divparame"></div>
