@@ -55,7 +55,7 @@
 <script>
     Swal.fire({
         icon: 'success',
-        text: 'La subcuenta se elimino Correctamente'
+        text: 'La subcuenta se eliminó Correctamente'
         // footer: '<a href="">Why do I have this issue?</a>'
     })
 </script>
@@ -73,7 +73,7 @@
 <script>
     Swal.fire({
         icon: 'error',
-        text: 'No cuentas con  permiso para realizar esta accion'
+        text: 'No cuentas con  permiso para realizar esta acción'
         // footer: '<a href="">Why do I have this issue?</a>'
     })
 </script>
@@ -82,7 +82,7 @@
 <script>
     Swal.fire({
         icon: 'success',
-        text: 'La subcuenta se actualizo correctamente'
+        text: 'La subcuenta se actualizó  correctamente'
         // footer: '<a href="">Why do I have this issue?</a>'
     })
 </script>

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
-    <title>Periodo | PDF </title>
+    <title>Período | PDF </title>
         <!-- ESTE CSS ES PARA OCULTAR DATOS EN LA IMPRESION-->
   <style>
     
@@ -30,14 +30,14 @@
  
     <center>
 
-        <h1 id="titulo">Reporte Periodo</h1>
+        <h1 id="titulo">Reporte Período</h1>
         <br>
         <h2 id="fecha">Fecha:{{date('m/d/Y')}}</h2>
         <br>
         <table id="datos">
             <thead>
                 <th>#</th>
-                <th>Nombre de periodo</th>
+                <th>Nombre de período</th>
                 <th>Fecha inicial</th>
                 <th>Fechas final</th>
             </thead>

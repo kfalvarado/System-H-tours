@@ -51,7 +51,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                text: 'El grupo se actualizo correctamente'
+                text: 'El grupo se actualizó  correctamente'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
@@ -60,7 +60,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                text: 'El grupo se elimino correctamente'
+                text: 'El grupo se eliminó correctamente'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
@@ -87,7 +87,7 @@
         <script>
             Swal.fire({
                 icon: 'error',
-                text: 'No puedes eliminar esta clasificacion, se encuentra en uso'
+                text: 'No puedes eliminar este grupo, se encuentra en uso'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
@@ -172,7 +172,7 @@
                                                                         <input type="hidden" name="cod"
                                                                             value="{{ $grupo['COD_GRUPO'] }}">
                                                                         <label class="form-label">
-                                                                            Clasificacion
+                                                                            Clasificación
                                                                             <select class="form-control text-white"
                                                                                 name="clasificacion" id=""
                                                                                 required>
@@ -187,7 +187,7 @@
                                                                             </select>
                                                                         </label>
                                                                         <label class="form-label">
-                                                                            Numero de grupo
+                                                                            Número de grupo
 
                                                                             <input type='text' name='grupo'
                                                                                 value="{{ $grupo['NUM_GRUPO'] }}"
@@ -295,7 +295,7 @@
                                             @csrf
                                             <label class="form-label">
                                                 <label class="form-label">
-                                                    Clasificacion
+                                                    Clasificación
 
                                                     <select class="form-control text-white" name="clasificacion"
                                                         id="" onchange="valor();" required>
@@ -308,7 +308,7 @@
                                                 </label>
                                                 <br>
                                                 <label class="form-label">
-                                                    Numero de Grupo
+                                                    Número de Grupo
 
                                                     <input type='number' name='grupo' min="0" id="num_grupo"
                                                         class="form-control text-white" maxlength="3"

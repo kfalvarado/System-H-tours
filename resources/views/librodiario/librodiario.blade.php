@@ -67,7 +67,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                text: 'El libro diario se actualizo Correctamente'
+                text: 'El libro diario se actualizó  Correctamente'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
@@ -90,7 +90,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                text: 'El libro diario se elimino Correctamente'
+                text: 'El libro diario se eliminó Correctamente'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
@@ -101,7 +101,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                text: 'No Cuentas con permiso para realizar esta accion'
+                text: 'No Cuentas con permiso para realizar esta acción'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
@@ -251,7 +251,7 @@
 
 
                                     <label class="form-label">
-                                        Periodo
+                                        Período
                                         <select class="form-control text-white" name="periodo" id="periodo"
                                             required>
                                             <option hidden selected>SELECCIONAR</option>
@@ -264,7 +264,7 @@
 
 
                                         <label class="form-label">
-                                            Clasificacion
+                                            Clasificación
 
                                             <select class="form-control text-white" name="naturaleza_cargo"
                                                 id="clasificacion" onchange="datos();" required>
@@ -309,7 +309,7 @@
                                         </div>
                                         <br>
                                         <label for="">
-                                            ingresar subcuentas
+                                            Ingresar subcuentas
                                             <input type="checkbox" name="chkbx1" id="chkbx1" checked>
 
                                         </label>
@@ -329,7 +329,7 @@
                                         <br>
                                         <div style="background-color: #4154e14f">
                                             <label class="form-label">
-                                                Clasificacion
+                                                Clasificación
 
                                                 <select class="form-control text-white" name="naturaleza_abono"
                                                     id="clasificacion_abono" onchange="datosAbono();" required>
@@ -496,14 +496,14 @@
                                                     <div class="modal-content">
                                                         <!-- CABECERA DEL DIALOGO EDITAR -->
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Comprobante de Transaccion</h4>
+                                                            <h4 class="modal-title">Comprobante de Transacción</h4>
                                                             <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                                                         </div>
                                                         <!-- CUERPO DEL DIALOGO EDITAR -->
                                                         <div class="modal-body">
                                                             <center>
                                                                 @if ($librodiario['DIRRECCION'] == 'Transaccion sin compronte')
-                                                                    <h1>Sin Comprobante de Transaccion</h1>
+                                                                    <h1>Sin Comprobante de Transacción</h1>
                                                                 @else
                                                                     <img src="{{ $librodiario['DIRRECCION'] }}"
                                                                         alt="imagen comprobante" width="500"
@@ -548,7 +548,7 @@
                                                                         value="{{ $librodiario['COD_LIBDIARIO'] }}">
 
                                                                     <label class="form-label">
-                                                                        Periodo
+                                                                        Período
                                                                         <select class="form-control text-white"
                                                                             name="periodo" id="periodo"
                                                                             onchange="datos();" required>
@@ -679,7 +679,7 @@
 
                                                                         <input type="hidden" name="f"
                                                                             value="{{ $librodiario['COD_LIBDIARIO'] }}">
-                                                                        ¿ Desea Eliminar la Transaccion ?
+                                                                        ¿ Desea Eliminar la Transacción ?
                                                                     </label>
                                                                     <button type="submit" href=""
                                                                         class="btn btn btn-primary">SI</button>

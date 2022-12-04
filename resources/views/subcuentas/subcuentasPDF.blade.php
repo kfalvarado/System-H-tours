@@ -37,9 +37,9 @@
         <table id="datos" >
             <thead>
                 <th class="text-dark bg-white"> # </th>
-                <th class="text-dark bg-white"> <b>Clasificacion</b> </th>
+                <th class="text-dark bg-white"> <b>Clasificación</b> </th>
                 <th class="text-dark bg-white"> <b>Cuenta</b> </th>
-                <th class="text-dark bg-white"> </b>Codigo</b> </th>
+                <th class="text-dark bg-white"> </b>Código</b> </th>
                 <th class="text-dark bg-white"> </b>Nombre de Sub Cuentas</b> </th>
             </thead>
             <tbody>

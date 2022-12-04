@@ -2,7 +2,7 @@
 
 <!-- titulo de la pagina  -->
 @section('titulo')
-    Periodo | inicio
+Período | inicio
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
@@ -56,7 +56,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                text: 'El periodo se Actualizo Correctamente'
+                text: 'El periodo se actualizó  Correctamente'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
@@ -65,7 +65,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                text: 'El periodo se elimino Correctamente'
+                text: 'El periodo se eliminó Correctamente'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
@@ -74,7 +74,7 @@
         <script>
             Swal.fire({
                 icon: 'error',
-                text: 'No cuentas con  permiso para realizar esta accion'
+                text: 'No cuentas con  permiso para realizar esta acción'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
@@ -82,13 +82,13 @@
 
 
     <center>
-        <h1> Periodos Contables </h1>
+        <h1> Períodos Contables </h1>
     </center>
     <div class="page-header">
         </nav>
     </div>
     <nav class="nav nav-pills flex-column flex-sm-row">
-        <a class="flex-sm-fill text-sm-center nav-link active" href="#">Periodo</a>
+        <a class="flex-sm-fill text-sm-center nav-link active" href="#">Período</a>
         <a class="flex-sm-fill text-sm-center nav-link" aria-current="page" href="{{ route('mostrar.libromayor') }}">Libro
             Mayor</a>
     </nav>
@@ -106,7 +106,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 id="titulo" class="card-title">
-                        <center>Periodos Contables</center>
+                        <center>Períodos Contables</center>
                     </h4>
 
                     <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
@@ -119,10 +119,10 @@
                             <thead>
                                 <tr>
                                     <th class="text-dark bg-white">#</th>
-                                    <th class="text-dark bg-white"> Nombre de periodo</th>
+                                    <th class="text-dark bg-white"> Nombre de período</th>
                                     <th class="text-dark bg-white"> Fecha inicial</th>
                                     <th class="text-dark bg-white"> Fechas final </th>
-                                    <th class="text-dark bg-white"> Estado del periodo </th>
+                                    <th class="text-dark bg-white"> Estado del período </th>
                                     <th class="text-dark bg-white"> Acciones </th>
                                 </tr>
                             </thead>
@@ -156,7 +156,7 @@
                                                     <div class="modal-content">
                                                         <!-- CABECERA DEL DIALOGO EDITAR -->
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Editar Periodo</h4>
+                                                            <h4 class="modal-title">Editar Período</h4>
                                                             <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                                                         </div>
                                                         <!-- CUERPO DEL DIALOGO EDITAR -->
@@ -170,7 +170,7 @@
                                                                     <input type="hidden" name="f"
                                                                         value="{{ $periodo['COD_PERIODO'] }}">
                                                                     <label class="form-label">
-                                                                        Nombre del Periodo
+                                                                        Nombre del Período
                                                                         <input type='text' list="lista-programacion"
                                                                             value="{{ $periodo['NOM_PERIODO'] }}"
                                                                             name='periodo'
@@ -244,7 +244,7 @@
                                                     <div class="modal-content">
                                                         <!-- CABECERA DEL DIALOGO EDITAR -->
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Eliminar Periodo</h4>
+                                                            <h4 class="modal-title">Eliminar Período</h4>
                                                             <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                                                         </div>
                                                         <!-- CUERPO DEL DIALOGO BORRAR -->
@@ -300,7 +300,7 @@
                 <div class="modal-content">
                     <!-- CABECERA DEL DIALOGO NUEVA-->
                     <div class="modal-header">
-                        <h4 class="modal-title">Ingresar Nuevo Periodo</h4>
+                        <h4 class="modal-title">Ingresar Nuevo Período</h4>
                         <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                     </div>
                     <!-- CUERPO DEL DIALOGO NUEVA -->
@@ -309,7 +309,7 @@
                             <form action="{{ route('periodo.insertar') }}" method="post">
                                 @csrf
                                 <label class="form-label">
-                                    Nombre del Periodo
+                                    Nombre del Período
                                     <input type='text' list="lista" name='periodo' id="periodo_ins" class="form-control text-white" onkeyup="Validarperiodo(this)"
                                         required>
                                         <div id="divperiodo"></div>

@@ -60,7 +60,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                text: 'El libro mayor se actualizo Correctamente'
+                text: 'El libro mayor se actualizó  Correctamente'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
@@ -71,7 +71,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                text: 'El libro mayor se elimino Correctamente'
+                text: 'El libro mayor se eliminó Correctamente'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
@@ -81,7 +81,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                text: 'No Cuentas con permiso para realizar esta accion'
+                text: 'No Cuentas con permiso para realizar esta acción'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
@@ -189,7 +189,7 @@
                                     @csrf
 
                                     <label class="form-label">
-                                        Periodo
+                                        Período
                                         <select class="form-control text-white" name="periodo" id="periodo_nuevo" required>
                                             <option hidden selected>SELECCIONAR</option>
                                             @foreach ($periodoArr as $key)
@@ -200,7 +200,7 @@
                                         </select>
 
                                         <label class="form-label">
-                                            Clasificacion
+                                            Clasificación
                                             <select class="form-control text-white" name="naturaleza_cargo"
                                                 id="naturaleza_cargo" onchange="datos();" required>
                                                 <option hidden selected>SELECCIONAR</option>
@@ -237,7 +237,7 @@
                                         <br>
 
                                         <label class="form-label">
-                                            Clasificacion
+                                            Clasificación
                                             <select class="form-control text-white" name="naturaleza_abono"
                                                 id="naturaleza_abono" onchange="datosAbono();" required>
                                                 <option hidden selected>SELECCIONAR</option>
@@ -264,7 +264,7 @@
                                         </label>
 
                                         <label class="form-label">
-                                            abono
+                                            Abono
                                             <input type='number' min="0" name='saldo_abono' id="abono"
                                                 onkeyup="validarnumerosabono(this)" class="form-control text-white"
                                                 required></input>
@@ -301,7 +301,7 @@
                         <!-- CABECERA DEL DIALOGO MAYORIZACION-->
                         <div class="modal-header">
                             <h4 class="modal-title">
-                                <center> Seleccionar Periodo</center>
+                                <center> Seleccionar Período</center>
                             </h4>
                          
                         </div>
@@ -311,7 +311,7 @@
                                 <form action="{{ route('libromayor.mayorizacion') }}" method="post">
                                     @csrf
                                     <label class="form-label">
-                                        Periodo
+                                        Período
                                         <select class="form-control text-white" name="periodo" id="periodo_mayorizacion"
                                             onchange="datos();" required>
                                             <option hidden selected>SELECCIONAR</option>
@@ -324,7 +324,7 @@
 
 
                                         <label class="form-label">
-                                            Clasificacion
+                                            Clasificación
                                             <select class="form-control text-white" name="naturaleza"
                                                 id="clasificacion_mayorizacion" onchange="datosmayorizacion();" required>
                                                 <option hidden selected>SELECCIONAR</option>
@@ -452,7 +452,7 @@
     </div>
     <!-- Control de pestaña -->
     <nav class="nav nav-pills flex-column flex-sm-row">
-        <a class="flex-sm-fill text-sm-center nav-link" href="{{ route('periodo.inicio') }}">Periodo</a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="{{ route('periodo.inicio') }}">Período</a>
         <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#">Libro Mayor</a>
     </nav>
 
@@ -560,7 +560,7 @@
                                                                         value="{{ $libromayor['COD_LIBMAYOR'] }}">
 
                                                                     <label class="form-label">
-                                                                        Periodo
+                                                                        Período
                                                                         <select class="form-control text-white"
                                                                             name="periodo" id="periodo"
                                                                             required>
@@ -577,7 +577,7 @@
 
 
                                                                         <label class="form-label">
-                                                                            Clasificacion
+                                                                            Clasificación
                                                                             <select class="form-control text-white"
                                                                                 name="naturaleza" id="clasificacion-{{ $libromayor['COD_LIBMAYOR'] }}"
                                                                                 onchange="datosedit({{ $libromayor['COD_LIBMAYOR'] }});" required>
@@ -692,7 +692,7 @@
                                                                     <label class="form-label">
                                                                         <i class="mdi mdi-delete-forever"
                                                                             style="font-size: 100px;"></i> <br>
-                                                                        ¿ Desea Eliminar la Transaccion ?
+                                                                        ¿ Desea Eliminar la Transacción ?
                                                                     </label>
 
                                                                     <button type="submit" href=""

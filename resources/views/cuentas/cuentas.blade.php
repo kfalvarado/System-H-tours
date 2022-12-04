@@ -52,7 +52,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                text: 'La cuenta se elimino Correctamente'
+                text: 'La cuenta se eliminó Correctamente'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
@@ -70,7 +70,7 @@
         <script>
             Swal.fire({
                 icon: 'error',
-                text: 'No cuentas con  permiso para realizar esta accion'
+                text: 'No cuentas con  permiso para realizar esta acción'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
@@ -79,7 +79,7 @@
         <script>
             Swal.fire({
                 icon: 'success',
-                text: 'La cuenta se actualizo correctamente'
+                text: 'La cuenta se actualizó  correctamente'
                 // footer: '<a href="">Why do I have this issue?</a>'
             })
         </script>
@@ -161,7 +161,7 @@
                                                                         <input type="hidden" name="f"
                                                                             value="{{ $cuentas['COD_CUENTA'] }}">
                                                                         <label class="form-label">
-                                                                            Clasificacion
+                                                                            Clasificación
                                                                             <select class="form-control text-white"
                                                                                 name="naturaleza" id="" required>
                                                                                 <option value="{{ $cuentas['COD_NATU'] }}"
@@ -177,7 +177,7 @@
                                                                         </label>
 
                                                                         <label class="form-label">
-                                                                            Numero de Cuenta
+                                                                            Número de Cuenta
                                                                             <input type='text' name='numero' id="num_cuenta-edit-{{ $cuentas['COD_CUENTA']  }}" 
                                                                             onkeyup="validarnumerosEDIT({{ $cuentas['COD_CUENTA']  }})"
                                                                                 value="{{ $cuentas['NUM_CUENTA'] }}"
@@ -285,7 +285,7 @@
                                                             id="formulario">
                                                             @csrf
                                                             <label class="form-label">
-                                                                Clasificacion
+                                                                Clasificación
 
                                                                 <select class="form-control text-white" name="naturaleza"
                                                                     id="clasificacion" onchange="datos()" required>
@@ -320,7 +320,7 @@
 
                                         <label class="form-label">
 
-                                            Numero de Cuenta
+                                            Número de Cuenta
                                             <input title="Ingresar solo numeros" type='number' name='numerocuenta'
                                                 id="num_cuenta" onkeyup="validarnumeros(this)" oninvalid=""
                                                 min="0" class="form-control text-white " maxlength="3" required>
