@@ -116,14 +116,32 @@
 
        
         <br>
-        <p align="right" valign="baseline">
-            <a type="button" href="{{ route('mostrar.libromayor') }}" class="btn btn-info btn-sm"><i class="mdi mdi-eye"></i> Verificar</a>
-            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#dialogo1"><i class="mdi mdi-calendar-check"></i> Periodo</button>
-            <a type="button" href="{{route('periodo.pdf')}}" class="btn btn-danger btn-sm"  ><i class="mdi mdi-file-pdf"></i>Generar PDF</a>
-            <button id="btnExportar" class="btn btn-success btn-sm">
-                <i class="mdi mdi-file-excel"></i> Generar Excel
-            </button> 
-        </p>
+       
+        
+                <nav>
+                    <div class="container-fluid">
+                        @if (isset($pdf))
+                        <div class="pull-right">
+                            <form action="{{ route('balance.pdf') }}" method="post">
+                                @csrf 
+                                <input type="hidden" name="periodo" value="{{ $pdf }}"> 
+                                <button type="submit" class="btn btn-danger btn-sm"  ><i class="mdi mdi-file-pdf"></i>Generar PDF</button>
+                            </form>
+                        </div>
+                        @endif
+                        <p align="right" valign="baseline">
+                            <a type="button" href="{{ route('mostrar.libromayor') }}" class="btn btn-info btn-sm"><i class="mdi mdi-eye"></i> Verificar</a>
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#dialogo1"><i class="mdi mdi-calendar-check"></i> Periodo</button>
+                        <button id="btnExportar" class="btn btn-success btn-sm">
+                            <i class="mdi mdi-file-excel"></i> Generar Excel
+                        </button> 
+                        </p>
+                      
+                </p>
+            </div>
+            </nav>
+           
+       
         <ul class="nav nav-pills nav-stacked">
             <li class="active"><a href="#"></a></li>
         </ul>

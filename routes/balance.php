@@ -16,3 +16,4 @@ use App\Http\Controllers\balance\BalanceController;
 
 Route::get('/', [BalanceController::class,'mostrar'])->middleware('CheckToken')->name('balance.inicio');
 Route::post('/', [BalanceController::class,'insertar'])->middleware('CheckToken')->name('balance.insertar');
+Route::post('/pdfbal', [BalanceController::class,'pdf'])->middleware('CheckToken')->name('balance.pdf');
