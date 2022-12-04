@@ -46,7 +46,7 @@
                     <!-- CABECERA DEL DIALOGO NUEVA-->
                     <div class="modal-header">
                         <h4 class="modal-title">
-                            <center> Seleccionar Periodo</center>
+                            <center> Seleccionar Período</center>
                         </h4>
                         <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                     </div>
@@ -55,7 +55,7 @@
                         <center>
                             <form action="{{ route('balance.insertar') }}" method="post">
                                 @csrf
-                                <Label>Seleccionar periodo</Label>
+                                <Label>Seleccionar período</Label>
                                 <select class="form-control text-white" name="periodo" id="">
                                     <option value="" selected></option>
                                     @foreach ($personArr as $periodo)
@@ -107,7 +107,7 @@
                 </center>
                 @endforeach
             @else
-            <h1> Periodo </h1>
+            <h1> Período </h1>
             @endif
         </center>
         <!-- <ul class="nav nav-pills nav-stacked">

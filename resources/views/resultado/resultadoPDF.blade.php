@@ -71,7 +71,7 @@
 
                             </tr>
                             <tr >
-                                <td class="text-dark bg-gradient-secondary"><B>Utilidad/perdida bruta</B></td>
+                                <td class="text-dark bg-gradient-secondary"><B>Utilidad/Pérdida bruta</B></td>
                                 @if (count($resultado) <= 0)
                                     <td >0,000</td>
                                 @else
@@ -93,7 +93,7 @@
 
                             </tr>
                             <tr >
-                                <td class="text-dark bg-gradient-secondary"><b> Utilidad/Perdida Antes de
+                                <td class="text-dark bg-gradient-secondary"><b> Utilidad/Pérdida Antes de
                                         impuestos </b></td>
                                 @if (count($resultado) <= 0)
                                     <td >0,000</td>
@@ -114,7 +114,7 @@
                                 @endif
                             </tr>
                             <tr >
-                                <td class="text-dark bg-gradient-secondary"><b> Utilidad/Perdida Neta </b></td>
+                                <td class="text-dark bg-gradient-secondary"><b> Utilidad/Pérdida Neta </b></td>
                                 @if (count($resultado) <= 0)
                                     <td >0,000</td>
                                 @else

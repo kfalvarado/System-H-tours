@@ -36,7 +36,7 @@
                 <h3 id="titulo">Reporte de Balance General</h3>
                 <div class="row">
                     <h4>Generado por : {{ Cache::get('user') }} - {{ Cache::get('rol') }}</h4>
-                    <h6 id="fecha">Fecha de emision - {{date('d/m/Y')}} | Hora - {{date('H:i:s a')}}</h6>
+                    <h6 id="fecha">Fecha de emisión - {{date('d/m/Y')}} | Hora - {{date('H:i:s a')}}</h6>
                     <h6>Al {{ date('d') }} de {{ strftime('%B') }} del año {{ date('Y') }}</h6>
                 </div>
                 

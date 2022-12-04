@@ -158,7 +158,7 @@
                         </div>
                 </li>
                 <li class="nav-item nav-category">
-                    <span class="nav-link">Navegacion</span>
+                    <span class="nav-link">Navegación</span>
                 </li>
                 {{-- Comienza permisos --}}
 
@@ -221,7 +221,7 @@
                                 @endif
                                 @if ($accesos[$i] == 'PERIODO')
                                     <li class="nav-item"> <a class="nav-link"
-                                            href="{{ route('periodo.inicio') }}">Periodo/Libro Mayor</a></li>
+                                            href="{{ route('periodo.inicio') }}">Período/Libro Mayor</a></li>
                                 @endif
                                 @if ($accesos[$i] == 'BALANCE')
                                     <li class="nav-item"> <a class="nav-link"
@@ -251,7 +251,7 @@
                             @for ($i = 0; $i <= $largo; $i++)
                                 @if ($accesos[$i] == 'CLASIFICACION')
                                     <li class="nav-item"> <a class="nav-link"
-                                            href="{{ route('clasificacion.inicio') }}">Clasificacion</a></li>
+                                            href="{{ route('clasificacion.inicio') }}">Clasificación</a></li>
                                 @endif
                                 @if ($accesos[$i] == 'GRUPOS')
                                     <li class="nav-item"> <a class="nav-link"

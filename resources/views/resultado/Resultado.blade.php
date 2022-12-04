@@ -37,7 +37,7 @@
                     <!-- CABECERA DEL DIALOGO NUEVA-->
                     <div class="modal-header">
                         <h4 class="modal-title">
-                            <center> Seleccionar Periodo</center>
+                            <center> Seleccionar Período</center>
                         </h4>
                         <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                     </div>
@@ -46,7 +46,7 @@
                         <center>
                             <form action="{{ route('Resultado.insertar') }}" method="post">
                                 @csrf
-                                <Label>Seleccionar periodo</Label>
+                                <Label>Seleccionar período</Label>
                                 <select class="form-control text-white" name="periodo" id="">
                                     <option hidden selected>Seleccionar</option>
                                     @foreach ($periodo as $key)
@@ -102,7 +102,7 @@
                     </center>
                     @endforeach
                 @else
-                <h1> Periodo</h1>
+                <h1> Período</h1>
                 @endif
             </center>
 
@@ -123,7 +123,7 @@
                     <a type="button" href="{{ route('mostrar.libromayor') }}" class="btn btn-info btn-sm"><i
                         class="mdi mdi-eye"></i> Verificar</a>
                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#dialogo1"><i
-                        class="mdi mdi-calendar-check"></i> Periodo</button>
+                        class="mdi mdi-calendar-check"></i> Período</button>
                       
                         @if (!isset($pdf))
                             <a type="button" href="" class="btn btn-danger btn-sm"><i class="mdi mdi-file-pdf"></i>Generar PDF</a>
@@ -177,7 +177,7 @@
 
                                         </tr>
                                         <tr class="text-white bg-dark">
-                                            <td class="text-dark bg-gradient-secondary"><B>Utilidad/perdida bruta</B></td>
+                                            <td class="text-dark bg-gradient-secondary"><B>Utilidad/Pérdida bruta</B></td>
                                             @if (count($resultado) <= 0)
                                                 <td class="text-white bg-dark">0,000</td>
                                             @else
@@ -199,7 +199,7 @@
 
                                         </tr>
                                         <tr class="text-white bg-dark">
-                                            <td class="text-dark bg-gradient-secondary"><b> Utilidad/Perdida Antes de
+                                            <td class="text-dark bg-gradient-secondary"><b> Utilidad/Pérdida Antes de
                                                     impuestos </b></td>
                                             @if (count($resultado) <= 0)
                                                 <td class="text-white bg-dark">0,000</td>
@@ -220,7 +220,7 @@
                                             @endif
                                         </tr>
                                         <tr class="text-white bg-dark">
-                                            <td class="text-dark bg-gradient-secondary"><b> Utilidad/Perdida Neta </b></td>
+                                            <td class="text-dark bg-gradient-secondary"><b> Utilidad/Pérdida Neta </b></td>
                                             @if (count($resultado) <= 0)
                                                 <td class="text-white bg-dark">0,000</td>
                                             @else
