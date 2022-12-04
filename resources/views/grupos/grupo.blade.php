@@ -112,7 +112,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Gestion de Grupos</h4>
+                        <h4 class="card-title">Gestiónar Grupos</h4>
                         <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
                             <input class="form-control me-2 light-table-filter text-white" data-table="table_id"
                                 type="text" placeholder="Buscar un Grupos">
