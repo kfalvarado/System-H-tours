@@ -80,7 +80,7 @@ function validartipo(e) {
 
 function validarobjetoEDIT(e) {
     let objeto = document.getElementById(`objeto-edit-${e}`).value;
-    let div = document.getElementById(`divobjeto-${e}`);
+    let div = document.getElementById(`divobjeto-edit-${e}`);
 
 
     if (expresiones.nombre.test(objeto)) {
@@ -102,7 +102,7 @@ function validarobjetoEDIT(e) {
 
 function validardescripcionEDIT(e) {
     let descripcion = document.getElementById(`descripcion-edit-${e}`).value;
-    let div = document.getElementById(`divdescrip-${e}`);
+    let div = document.getElementById(`divdescrip-edit-${e}`);
 
 
     if (expresiones.nombre.test(descripcion)) {
