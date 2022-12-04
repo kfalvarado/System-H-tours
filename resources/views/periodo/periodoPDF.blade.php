@@ -22,19 +22,22 @@
 
 <body>
     
-    <img id="imagen"  style="float: right;" src="{{asset('assets\images\HTOURS.png')}}" alt="logo de Htours" height="500" width="500">
- 
-    <div class="d-grid gap-2 oculto-impresion">
-    <a class="btn btn btn-outline-dark" href="javascript:window.print();">Imprimir</a>
-    </div>
- 
+   <div class="container-fluid mt-3 mb-3">
+        <div class="d-grid gap-2 oculto-impresion">
+            <a class="btn btn btn-outline-primary " href="javascript:window.print();"><h3>Imprimir</h3></a>
+        </div>
+       </div>
+  
+       <img id="imagen"  style="float: right;" src="{{asset('assets\images\HTOURS.png')}}" alt="logo de Htours" height="100" width="100">
+    
     <center>
 
         <h1 id="titulo">Reporte Período</h1>
-        <br>
-        <h2 id="fecha">Fecha:{{date('m/d/Y')}}</h2>
-        <br>
-        <table id="datos">
+        <div class="row">
+            <h6>Generado por : {{ Cache::get('user') }} - {{ Cache::get('rol') }}</h6>
+            <h6 id="fecha">Fecha - {{date('d/m/Y')}} | Hora - {{date('H:i:s a')}}</h2>
+        </div>
+        <table id="datos" class="table table-bordered table-contextual table_id" style=" border: 1px ridge black;">
             <thead>
                 <th>#</th>
                 <th>Nombre de período</th>
@@ -54,11 +57,7 @@
                 
             </tbody>
         </table>
-        @if (count($periodo)> 12)
-
-        <img id="imagen"  style="float: right;position:relative;top: -760px;" src="{{asset('assets\images\HTOURS.png')}}" alt="logo de Htours" height="500" width="500">
-    
-        @endif
+      
     </center>
    
     
