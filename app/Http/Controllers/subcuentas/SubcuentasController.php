@@ -174,7 +174,7 @@ class SubcuentasController extends Controller
      */
     public function actualizar(Request $request)
     {
-             /**
+        /**
          * Seguridad de roles y perimisos metodo GET
          */
 
@@ -196,56 +196,56 @@ class SubcuentasController extends Controller
         }
         if ($update == '1') {
             try {
-        $actualizar = Http::withToken(Cache::get('token'))->put(
-            $this->url . '/subcuentas/actualizar/' . $request->f,
-            [
-                "NUM_SUBCUENTA" =>  $request->numerosubcuenta,
-                "NOM_SUBCUENTA" => $request->nombresubcuenta,
-                "NOM_CUENTA" =>  $request->nombrecuenta,
+                $actualizar = Http::withToken(Cache::get('token'))->put(
+                    $this->url . '/subcuentas/actualizar/' . $request->f,
+                    [
+                        "NUM_SUBCUENTA" =>  $request->numerosubcuenta,
+                        "NOM_SUBCUENTA" => $request->nombresubcuenta,
+                        "NOM_CUENTA" =>  $request->nombrecuenta,
 
 
-            ]
-        );
-        Session::flash('actualizado', "1");
-    } catch (\Throwable $th) {
-        //throw $th;
-        return 'error SUBCUENTAS 50';
-    }
+                    ]
+                );
+                Session::flash('actualizado', "1");
+            } catch (\Throwable $th) {
+                //throw $th;
+                return 'error SUBCUENTAS 50';
+            }
 
-    try {
-        $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
-            "USR" => Cache::get('user'),
-            "ACCION" => 'ACTUALIZO UN DATO EN PANTALLA ',
-            "DES" => Cache::get('user') . ' ACTUALIZO EL DATO DE ' . $request->cuenta . ' EN LA PANTALLA DE SUBCUENTAS',
-            "OBJETO" => 'SUBCUENTAS'
+            try {
+                $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                    "USR" => Cache::get('user'),
+                    "ACCION" => 'ACTUALIZO UN DATO EN PANTALLA ',
+                    "DES" => Cache::get('user') . ' ACTUALIZO EL DATO DE ' . $request->cuenta . ' EN LA PANTALLA DE SUBCUENTAS',
+                    "OBJETO" => 'SUBCUENTAS'
 
-        ]);
-    } catch (\Throwable $th) {
-        //throw $th;
-        return 'Error SUBCUENTAS 32';
-    }
-} else {
-    try {
-        $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
-            "USR" => Cache::get('user'),
-            "ACCION" => 'SIN PERMISO METODO PUT',
-            "DES" => Cache::get('user') . ' INTENTO ACTUALIZAR EL DATO ' . $request->cuenta . ' EN LA PANTALLA DE SUBCUENTAS',
-            "OBJETO" => 'SUBCUENTAS'
+                ]);
+            } catch (\Throwable $th) {
+                //throw $th;
+                return 'Error SUBCUENTAS 32';
+            }
+        } else {
+            try {
+                $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
+                    "USR" => Cache::get('user'),
+                    "ACCION" => 'SIN PERMISO METODO PUT',
+                    "DES" => Cache::get('user') . ' INTENTO ACTUALIZAR EL DATO ' . $request->cuenta . ' EN LA PANTALLA DE SUBCUENTAS',
+                    "OBJETO" => 'SUBCUENTAS'
 
-        ]);
+                ]);
 
-        Session::flash('sinpermiso', '1');
-    } catch (\Throwable $th) {
-        //throw $th;
-        return 'Error SUBCUENTAS 32';
-    }
-}
+                Session::flash('sinpermiso', '1');
+            } catch (\Throwable $th) {
+                //throw $th;
+                return 'Error SUBCUENTAS 32';
+            }
+        }
         return back();
     }
 
     public function eliminar(Request $request)
     {
-               /**
+        /**
          * Seguridad de roles y perimisos metodo delete
          */
         // return $request;
@@ -257,7 +257,7 @@ class SubcuentasController extends Controller
             ]);
 
             $permisos = $search->json();
-            $eliminacion =0;
+            $eliminacion = 0;
             foreach ($permisos as $key) {
                 $eliminacion = $key['PER_ELIMINACION'];
             }
@@ -267,26 +267,25 @@ class SubcuentasController extends Controller
         }
 
         if ($eliminacion == '1') {
-            $respuesta =0;
+            $respuesta = 0;
             try {
                 // return $request;
                 $eliminar = Http::withToken(Cache::get('token'))->delete(
                     $this->url . '/subcuentas/eliminar/' . $request->f
                 );
 
-                $respuesta = strrpos($eliminar,' NO SE PUEDE ELIMINAR');
-                if ($respuesta>0) {
+                $respuesta = strrpos($eliminar, ' NO SE PUEDE ELIMINAR');
+                if ($respuesta > 0) {
                     Session::flash('nopuedes', "1");
                     $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
                         "USR" => Cache::get('user'),
                         "ACCION" => 'SE INTENTO ELIMINAR SUBCUENTAS EN USO',
                         "DES" => Cache::get('user') . ' INTENTO ELIMININAR EL DATO  con codigo' . $request->f . ' EN LA PANTALLA DE SUBCUENTAS',
                         "OBJETO" => 'SUBCUENTAS'
-    
+
                     ]);
                     return back();
                 }
-
             } catch (\Throwable $th) {
                 //throw $th;
                 return 'Error SUBCUENTAS 250';
@@ -322,8 +321,9 @@ class SubcuentasController extends Controller
 
     public function pdf()
     {
-        $subcuentas = http::withToken(Cache::get('token'))->get($this->url . '/subcuentas');
+        $subcuentas = http::withToken(Cache::get('token'))->get($this->url . '/catalago/subcuentas');
         $subcuenta = $subcuentas->json();
+    
         return view('subcuentas.subcuentasPDF', compact('subcuenta'));
     }
 }

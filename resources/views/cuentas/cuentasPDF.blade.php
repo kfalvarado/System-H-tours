@@ -113,6 +113,7 @@
                         $pasivoscorr['NOM_GRUPO'] == 'Pasivo  corriente' ||
                         $pasivoscorr['NOM_GRUPO'] == 'PASIVO CORRIENTES' ||
                         $pasivoscorr['NOM_GRUPO'] == 'PASIVOS  CORRIENTE' ||
+                        $pasivoscorr['NOM_GRUPO'] == 'Pasivos corrientes' ||
                         $pasivoscorr['NOM_GRUPO'] == 'PASIVO  CORRIENTES' ||
                         $pasivoscorr['NOM_GRUPO'] == 'PASIVO  CORRIENTE' ||
                         $pasivoscorr['NOM_GRUPO'] == 'pasivo  corriente' ||

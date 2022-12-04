@@ -22,7 +22,7 @@
 
 <body>
     
-    <img id="imagen"  style="float: right;" src="{{asset('assets\images\HTOURS.png')}}" alt="logo de Htours" height="500" width="500">
+    <img id="imagen"  style="float: right;" src="{{asset('assets\images\HTOURS.png')}}" alt="logo de Htours" height="100" width="100">
  
     <div class="d-grid gap-2 oculto-impresion">
     <a class="btn btn btn-outline-dark" href="javascript:window.print();">Imprimir</a>
@@ -30,38 +30,176 @@
  
     <center>
 
-        <h1 id="titulo">Reporte Subuentas</h1>
-        <br>
-        <h2 id="fecha">Fecha:{{date('m/d/Y')}}</h2>
-        <br>
-        <table id="datos" >
+       
+        <h1 id="titulo">Catalago de Subuentas</h1>
+        <div class="row">
+            <h6>Generado por : {{ Cache::get('user') }} - {{ Cache::get('rol') }}</h6>
+            <h6 id="fecha">Fecha - {{date('d/m/Y')}} | Hora - {{date('H:i:s a')}}</h6>
+        </div>
+        <table id="datos" class="table table-bordered table-contextual table_id" style=" border: 1px ridge black;">
             <thead>
-                <th class="text-dark bg-white"> # </th>
-                <th class="text-dark bg-white"> <b>Clasificación</b> </th>
-                <th class="text-dark bg-white"> <b>Cuenta</b> </th>
-                <th class="text-dark bg-white"> </b>Código</b> </th>
-                <th class="text-dark bg-white"> </b>Nombre de Sub Cuentas</b> </th>
+                <th class="text-dark bg-white"> <b>Código</b> </th>
+                <th class="text-dark bg-white"> <b>Subcuenta</b> </th>
+                <th class="text-dark bg-white"> </b>Código Cuenta</b> </th>
+                <th class="text-dark bg-white"> </b>Cuenta</b> </th>
+                <th class="text-dark bg-white"> </b>Naturaleza</b> </th>
+                <th class="text-dark bg-white"> </b>Grupo</b> </th>
             </thead>
             <tbody>
-                @foreach ($subcuenta as $subcuentas)
-          
+                <tr>
+                    <td colspan="6"> <center>Activos Corrientes</center> </td>
+                </tr>
+               
                 
                 <tr>
-                    <td> {{$subcuentas ['COD_SUBCUENTA'] }}</td>
-                    <td> {{$subcuentas ['NATURALEZA'] }}</td>
-                    <td>{{$subcuentas ['COD_CUENTA'] }} </td>
-                    <td>{{$subcuentas ['NUM_SUBCUENTA'] }} </td>
+                    @foreach ($subcuenta as $subcuentas)
+                    @if ($subcuentas['NOM_GRUPO'] == 'Activos Corrientes' )      
+                    <td> {{$subcuentas ['NUM_SUBCUENTA'] }}</td>
                     <td> {{$subcuentas ['NOM_SUBCUENTA'] }}</td>
+                    <td>{{$subcuentas ['NUM_CUENTA'] }} </td>
+                    <td>{{$subcuentas ['NOM_CUENTA'] }} </td>
+                    <td> {{$subcuentas ['NATURALEZA'] }}</td>
+                    <td> {{$subcuentas ['NOM_GRUPO'] }}</td>
+                    @endif
+                    @endforeach
                 </tr>
-          @endforeach
-         
+                <tr>
+                    <td colspan="6"> <center> <b> Activos no corrientes </b></center> </td>
+                </tr>
+                    
+                @foreach ($subcuenta as $acnnocorrientes)
+                @if ($acnnocorrientes['NOM_GRUPO'] == 'Activo No Corriente' ||
+                    $acnnocorrientes['NOM_GRUPO'] == 'ACTIVOS NO CORRIENTES' ||
+                    $acnnocorrientes['NOM_GRUPO'] == 'ACTIVO NO CORRIENTE' ||
+                    $acnnocorrientes['NOM_GRUPO'] == 'ACTIVOS NO CORRIENTE' ||
+                    $acnnocorrientes['NOM_GRUPO'] == 'ACTIVO NO CORRIENTES' ||
+                    $acnnocorrientes['NOM_GRUPO'] == 'activo no corriente' ||
+                    $acnnocorrientes['NOM_GRUPO'] == 'Activo no corrientes' ||
+                    $acnnocorrientes['NOM_GRUPO'] == 'Activos no corrientes' ||
+                    $acnnocorrientes['NOM_GRUPO'] == 'Activo no corriente')
+                    <tr>
+
+                        <td> {{$acnnocorrientes ['NUM_SUBCUENTA'] }}</td>
+                    <td> {{$acnnocorrientes ['NOM_SUBCUENTA'] }}</td>
+                    <td>{{$acnnocorrientes ['NUM_CUENTA'] }} </td>
+                    <td>{{$acnnocorrientes ['NOM_CUENTA'] }} </td>
+                    <td> {{$acnnocorrientes ['NATURALEZA'] }}</td>
+                    <td> {{$acnnocorrientes ['NOM_GRUPO'] }}</td>
+
+                    </tr>
+                @endif
+            @endforeach
+            <tr>
+
+                <td colspan="6" style="  text-align: center;"> <b> Pasivos corrientes </b> </td>
+
+            </tr>
+            <thead>
+                <th class="text-dark bg-white"> <b>Código</b> </th>
+                <th class="text-dark bg-white"> <b>Subcuenta</b> </th>
+                <th class="text-dark bg-white"> </b>Código Cuenta</b> </th>
+                <th class="text-dark bg-white"> </b>Cuenta</b> </th>
+                <th class="text-dark bg-white"> </b>Naturaleza</b> </th>
+                <th class="text-dark bg-white"> </b>Grupo</b> </th>
+           
+            </thead>
+
+            @foreach ($subcuenta as $pasivoscorr)
+                @if ($pasivoscorr['NOM_GRUPO'] == 'Pasivo corriente' ||
+                    $pasivoscorr['NOM_GRUPO'] == 'Pasivo  corriente' ||
+                    $pasivoscorr['NOM_GRUPO'] == 'PASIVO CORRIENTES' ||
+                    $pasivoscorr['NOM_GRUPO'] == 'PASIVOS  CORRIENTE' ||
+                    $pasivoscorr['NOM_GRUPO'] == 'PASIVO  CORRIENTES' ||
+                    $pasivoscorr['NOM_GRUPO'] == 'PASIVO  CORRIENTE' ||
+                    $pasivoscorr['NOM_GRUPO'] == 'pasivo  corriente' ||
+                    $pasivoscorr['NOM_GRUPO'] == 'Pasivo  corrientes' ||
+                    $pasivoscorr['NOM_GRUPO'] == 'Pasivo  corrientes' ||
+                    $pasivoscorr['NOM_GRUPO'] == 'Pasivos  Corrientes' ||
+                    $pasivoscorr['NOM_GRUPO'] == 'Pasivos corrientes' ||
+                    $pasivoscorr['NOM_GRUPO'] == 'Pasivos  corrientes')
+                    <tr>
+
+                        <td> {{$pasivoscorr ['NUM_SUBCUENTA'] }}</td>
+                    <td> {{$pasivoscorr ['NOM_SUBCUENTA'] }}</td>
+                    <td>{{$pasivoscorr ['NUM_CUENTA'] }} </td>
+                    <td>{{$pasivoscorr ['NOM_CUENTA'] }} </td>
+                    <td> {{$pasivoscorr ['NATURALEZA'] }}</td>
+                    <td> {{$pasivoscorr ['NOM_GRUPO'] }}</td>
+
+                    </tr>
+                @endif
+            @endforeach
+            <tr>
+
+                <td colspan="6" style="  text-align: center;"> <b> Pasivos no corrientes </b> </td>
+
+            </tr>
+            <thead>
+                <th class="text-dark bg-white"> <b>Código</b> </th>
+                <th class="text-dark bg-white"> <b>Subcuenta</b> </th>
+                <th class="text-dark bg-white"> </b>Código Cuenta</b> </th>
+                <th class="text-dark bg-white"> </b>Cuenta</b> </th>
+                <th class="text-dark bg-white"> </b>Naturaleza</b> </th>
+                <th class="text-dark bg-white"> </b>Grupo</b> </th>
+           
+            </thead>
+            @foreach ($subcuenta as $pasivosnocorr)
+            @if ($pasivosnocorr['NOM_GRUPO'] == 'Pasivo no corriente' ||
+                $pasivosnocorr['NOM_GRUPO'] == 'Pasivo no corriente' ||
+                $pasivosnocorr['NOM_GRUPO'] == 'PASIVO NO CORRIENTES' ||
+                $pasivosnocorr['NOM_GRUPO'] == 'PASIVOS NO CORRIENTE' ||
+                $pasivosnocorr['NOM_GRUPO'] == 'PASIVO NO CORRIENTES' ||
+                $pasivosnocorr['NOM_GRUPO'] == 'PASIVO NO  CORRIENTE' ||
+                $pasivosnocorr['NOM_GRUPO'] == 'pasivo no corriente' ||
+                $pasivosnocorr['NOM_GRUPO'] == 'Pasivo no corrientes' ||
+                $pasivosnocorr['NOM_GRUPO'] == 'Pasivos no Corrientes' ||
+                $pasivosnocorr['NOM_GRUPO'] == 'Pasivos No Corrientes' ||
+                $pasivosnocorr['NOM_GRUPO'] == 'Pasivo No corriente' ||
+                $pasivosnocorr['NOM_GRUPO'] == 'Pasivos no corrientes')
+                <tr>
+
+                    <td> {{$pasivosnocorr ['NUM_SUBCUENTA'] }}</td>
+                    <td> {{$pasivosnocorr ['NOM_SUBCUENTA'] }}</td>
+                    <td>{{$pasivosnocorr ['NUM_CUENTA'] }} </td>
+                    <td>{{$pasivosnocorr ['NOM_CUENTA'] }} </td>
+                    <td> {{$pasivosnocorr ['NATURALEZA'] }}</td>
+                    <td> {{$pasivosnocorr ['NOM_GRUPO'] }}</td>
+
+                </tr>
+            @endif
+        @endforeach
+
+        <td colspan="6" style="  text-align: center;"> <b> Patrimonios </b> </td>
+
+    </tr>
+    <thead>
+        <th class="text-dark bg-white"> <b>Código</b> </th>
+        <th class="text-dark bg-white"> <b>Subcuenta</b> </th>
+        <th class="text-dark bg-white"> </b>Código Cuenta</b> </th>
+        <th class="text-dark bg-white"> </b>Cuenta</b> </th>
+        <th class="text-dark bg-white"> </b>Naturaleza</b> </th>
+        <th class="text-dark bg-white"> </b>Grupo</b> </th>
+    </thead>
+    @foreach ($subcuenta as $patrimonios)
+    @if ($patrimonios['NOM_GRUPO'] == 'Patrimonio' ||
+        $patrimonios['NOM_GRUPO'] == 'PATRIMONIO' ||
+        $patrimonios['NOM_GRUPO'] == 'Patrimonios' ||
+        $patrimonios['NOM_GRUPO'] == 'PATRIMONIOS')
+        <tr>
+
+            <td> {{$pasivosnocorr ['NUM_SUBCUENTA'] }}</td>
+            <td> {{$pasivosnocorr ['NOM_SUBCUENTA'] }}</td>
+            <td>{{$pasivosnocorr ['NUM_CUENTA'] }} </td>
+            <td>{{$pasivosnocorr ['NOM_CUENTA'] }} </td>
+            <td> {{$pasivosnocorr ['NATURALEZA'] }}</td>
+            <td> {{$pasivosnocorr ['NOM_GRUPO'] }}</td>
+
+        </tr>
+    @endif
+@endforeach
             </tbody>
         </table>
-        @if (count($subcuenta)> 12)
-
-        <img id="imagen"  style="float: right;position:relative;top: -760px;" src="{{asset('assets\images\HTOURS.png')}}" alt="logo de Htours" height="500" width="500">
-    
-        @endif
+ 
     </center>
     
     
