@@ -4,6 +4,11 @@
 @section('titulo')
     Balance General
 @endsection
+
+@section('encabezado')
+
+
+@endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
     @if (Cache::get('genero'))
@@ -125,6 +130,7 @@
         <div class="page-header">
 
         </div>
+        <div id="tabla">
         <div class="row">
             <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
@@ -135,7 +141,7 @@
 
                         </p>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-contextual">
+                            <table  class="table table-bordered table-contextual">
                                 <thead>
                                     <tr>
                                         <th class="text-dark bg-white" colspan="3">
@@ -159,7 +165,7 @@
                                             <tr class="text-white bg-dark">
                                                 <td>{{ $key['COD_CUENTA'] }}</td>
                                                 <td>{{ $key['NOM_CUENTA'] }}</td>
-                                                <td>{{ $key['SAL_DEBE'] }}</td>
+                                                <td>{{ number_format($key['SAL_DEBE']) }}</td>
                                             </tr>
                                         @endforeach
                                     @endif
@@ -179,7 +185,7 @@
                                             <tr class="text-white bg-dark">
                                                 <td>{{ $key['COD_CUENTA'] }}</td>
                                                 <td>{{ $key['NOM_CUENTA'] }}</td>
-                                                <td>{{ $key['SAL_DEBE'] }}</td>
+                                                <td>{{ number_format($key['SAL_DEBE'] )}}</td>
                                             </tr>
                                         @endforeach
                                     @endif
@@ -192,7 +198,7 @@
                                             <td class="text-dark bg-white"> <b>0.00</b> </td>
                                         @else
                                             @foreach ($balanceArr as $key)
-                                                <td class="text-dark bg-white"> <b>{{ $key['TOTAL_ACTIVOS'] }}</b> </td>
+                                                <td class="text-dark bg-white"> <b>{{ number_format( $key['TOTAL_ACTIVOS'] )}}</b> </td>
                                             @endforeach
                                         @endif
                                     </tr>
@@ -211,7 +217,7 @@
                         <!-- <p class="card-description"> Add class <code>.table-hover</code> -->
                         </p>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-contextual">
+                            <table  class="table table-bordered table-contextual">
                                 <thead>
                                     <tr>
                                         <th class="text-dark bg-white" colspan="3">
@@ -235,7 +241,7 @@
                                             <tr class="text-white bg-dark">
                                                 <td>{{ $key['COD_CUENTA'] }}</td>
                                                 <td>{{ $key['NOM_CUENTA'] }}</td>
-                                                <td>{{ $key['SAL_HABER'] }}</td>
+                                                <td>{{ number_format( $key['SAL_HABER'] )}}</td>
                                             </tr>
                                         @endforeach
                                     @endif
@@ -254,7 +260,7 @@
                                             <tr class="text-white bg-dark">
                                                 <td>{{ $key['COD_CUENTA'] }}</td>
                                                 <td>{{ $key['NOM_CUENTA'] }}</td>
-                                                <td>{{ $key['SAL_HABER'] }}</td>
+                                                <td>{{ number_format($key['SAL_HABER']) }}</td>
                                             </tr>
                                         @endforeach
                                     @endif
@@ -267,7 +273,7 @@
                                             <td class="text-dark bg-white"> <b>0.00</b> </td>
                                         @else
                                             @foreach ($balanceArr as $key)
-                                                <td class="text-dark bg-white"> <b>{{ $key['TOTAL_PASIVOS'] }}</b> </td>
+                                                <td class="text-dark bg-white"> <b>{{ number_format( $key['TOTAL_PASIVOS']) }}</b> </td>
                                             @endforeach
                                         @endif
                                     </tr>
@@ -281,12 +287,12 @@
                 <div class="card">
                     <div class="card-body">
                         <center>
-                            <h4 class="card-title">Patrimonio</h4>
+                            <h4 class="card-title">Patrimonios</h4>
                         </center>
                         <!-- <p class="card-description"> Add class <code>.table-striped</code> -->
                         </p>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-contextual">
+                            <table  class="table table-bordered table-contextual">
                                 <thead>
                                     <tr class="text-dark bg-white">
                                         <th class="text-dark bg-white">#</th>
@@ -304,7 +310,7 @@
                                             <tr class="text-white bg-dark">
                                                 <td>{{ $key['COD_CUENTA'] }}</td>
                                                 <td>{{ $key['NOM_CUENTA'] }}</td>
-                                                <td>{{ $key['SAL_HABER'] }}</td>
+                                                <td>{{ number_format($key['SAL_HABER']) }}</td>
                                             </tr>
                                         @endforeach
                                     @endif
@@ -317,7 +323,7 @@
                                             <td class="text-dark bg-white"> <b>0.00</b> </td>
                                         @else
                                             @foreach ($balanceArr as $key)
-                                                <td class="text-dark bg-white"> <b>{{ $key['TOTAL_PATRIMONIOS'] }}</b> </td>
+                                                <td class="text-dark bg-white"> <b>{{ number_format( $key['TOTAL_PATRIMONIOS']) }}</b> </td>
                                             @endforeach
                                         @endif
                                     </tr>
@@ -336,7 +342,7 @@
                         <!-- <p class="card-description"> Add class <code>.table-striped</code> -->
                         </p>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-contextual">
+                            <table  class="table table-bordered table-contextual">
                                 <thead>
                                     <tr class="text-dark bg-white">
                                         <th class="text-dark bg-white">#</th>
@@ -360,9 +366,9 @@
                                         @foreach ($balanceArr as $key)
                                         <td>{{ $key['PERIODO'] }}</td>
                                         
-                                        <td>{{ $key['TOTAL_ACTIVOS'] }}</td>
+                                        <td>{{ number_format($key['TOTAL_ACTIVOS']) }}</td>
                                         
-                                        <td>{{ $key['TOTAL_PASIVOS'] + $key['TOTAL_PATRIMONIOS']}}</td>
+                                        <td>{{ number_format($key['TOTAL_PASIVOS'] + $key['TOTAL_PATRIMONIOS'])}}</td>
                                         @endforeach
                                         @endif
                                     </tr>
@@ -372,4 +378,30 @@
                 </div>
             </div>
         </div>
+    </div>
+    @endsection
+
+
+    @section('js')
+    <script>
+        const $btnExportar = document.querySelector("#btnExportar"),
+            $tabla = document.querySelector("#tabla");
+            // $tabla = document.getElementsByClassName("excel");
+        
+
+        $btnExportar.addEventListener("click", function() {
+      
+            let tableExport = new TableExport($tabla, {
+                exportButtons: false, // No queremos botones
+                filename: "Reporte de balance", //Nombre del archivo de Excel
+                sheetname: "Reporte de balance", //Título de la hoja
+                ignoreCols: 5,
+            });
+            let datos = tableExport.getExportData();
+            let preferenciasDocumento = datos.tabla.xlsx;
+            tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType,
+                preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento
+                .merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
+        });
+    </script>
     @endsection
