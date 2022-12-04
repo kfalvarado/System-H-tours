@@ -174,7 +174,7 @@
                                                                             value="{{ $parametros['PARAMETRO'] }}"
                                                                             name='parametro'
                                                                             id="parametro-edit-{{  $parametros['COD_PARAMETRO'] }}"
-                                                                            onkeyup="ValidarparametrosEdit({{ $parametros['COD_PARAMETRO']  }})"
+                                                                            onkeyup="validarparametrosEDIT({{ $parametros['COD_PARAMETRO']  }})"
                                                                             class="form-control text-white bg-dark"
                                                                             required readonly>
                                                                             <div id="divparametro-{{ $parametros['COD_PARAMETRO'] }}"></div>
@@ -190,7 +190,7 @@
                                                                             value="{{ $parametros['VALOR'] }}"
                                                                             name='valor'
                                                                             id="valor-edit-{{  $parametros['COD_PARAMETRO'] }}"
-                                                                            onkeyup="ValidarvalorEdit({{ $parametros['COD_PARAMETRO']  }})"
+                                                                            onkeyup="validarvalorEDIT({{ $parametros['COD_PARAMETRO']  }})"
                                                                             class="form-control text-white bg-dark"
                                                                             required>
                                                                             <div id="divvalor-{{ $parametros['COD_PARAMETRO'] }}"></div>
@@ -208,7 +208,7 @@
                                                                             value="{{ substr($parametros['FEC_CREACION'], 0, 10) }}"
                                                                             name="creacion"
                                                                             id="fecha-edit-{{  $parametros['COD_PARAMETRO'] }}"
-                                                                            onkeyup="ValidarfechacreacionEdit({{ $parametros['COD_PARAMETRO']  }})" readonly>
+                                                                            onkeyup="validarfechacreacionEDIT({{ $parametros['COD_PARAMETRO']  }})" readonly>
                                                                             <div id="divfecha-{{ $parametros['COD_PARAMETRO'] }}"></div>
                                                                     </label>
                                                                    

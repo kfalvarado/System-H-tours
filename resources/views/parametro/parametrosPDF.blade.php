@@ -31,10 +31,10 @@
     <center>
 
         <h1 id="titulo">Reporte Parametros</h1>
-        <br>
-        <h2 id="fecha">Fecha:{{date('m/d/Y')}}</h2>
-        <br>
-        <table id="datos" >
+        <h2>Generado por : {{ Cache::get('user') }} - {{ Cache::get('rol') }}</h2>
+        <h2 id="fecha">Fecha - {{date('d/m/Y')}} | Hora - {{date('H:i:s a')}}</h2>
+      
+        <table id="datos"  class="table table-bordered table-contextual table_id" style=" border: 1px ridge black;">
             <thead>
                 <th class="text-dark bg-white">#</th>
                 <th class="text-dark bg-white">Parametros</th>
