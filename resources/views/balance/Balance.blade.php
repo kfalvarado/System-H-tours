@@ -145,13 +145,13 @@
                                 <thead>
                                     <tr>
                                         <th class="text-dark bg-white" colspan="3">
-                                            <center> Activo Corriente</center>
+                                            <center> Activos Corrientes</center>
                                         </th>
                                     </tr>
                                     <tr class="text-dark bg-white">
-                                        <th class="text-dark bg-white">#</th>
-                                        <th class="text-dark bg-white">Cuenta</th>
-                                        <th class="text-dark bg-white">Total</th>
+                                        <td class="text-dark bg-white">#</td>
+                                        <td class="text-dark bg-white">Cuenta</td>
+                                        <td class="text-dark bg-white">Total</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -208,6 +208,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -218,18 +219,18 @@
                         </p>
                         <div class="table-responsive">
                             <table  class="table table-bordered table-contextual">
-                                <thead>
+                                {{-- <thead> --}}
                                     <tr>
-                                        <th class="text-dark bg-white" colspan="3">
-                                            <center> Pasivos Corrientes</center>
-                                        </th>
+                                        <td class="text-dark bg-white" colspan="3">
+                                            <center> <b>Pasivos Corrientes </b> </center>
+                                        </td>
                                     </tr>
                                     <tr class="text-dark bg-white">
-                                        <th class="text-dark bg-white">#</th>
-                                        <th class="text-dark bg-white">Cuentas</th>
-                                        <th class="text-dark bg-white">Total</th>
+                                        <td class="text-dark bg-white">#</td>
+                                        <td class="text-dark bg-white">Cuentas</td>
+                                        <td class="text-dark bg-white">Total</td>
                                     </tr>
-                                </thead>
+                                {{-- </thead> --}}
                                 <tbody>
                                     @if ($pasivoc <= 0)
                                         <tr class="text-white bg-dark">
@@ -248,7 +249,7 @@
 
                                     <tr>
                                         <td class="text-dark bg-white" colspan="3">
-                                            <center>Pasivos no corrientes</center>
+                                            <center> <b> Pasivos no corrientes </b></center>
                                         </td>
                                     </tr>
                                     @if ($pasivon <= 0)
@@ -293,13 +294,17 @@
                         </p>
                         <div class="table-responsive">
                             <table  class="table table-bordered table-contextual">
-                                <thead>
+                                
+                                <tr class="text-dark bg-white">
+                                <td class="text-dark bg-white" colspan="3"> <center> <b> Patrimonios</b> </center></td>
+                            </tr>
                                     <tr class="text-dark bg-white">
-                                        <th class="text-dark bg-white">#</th>
-                                        <th class="text-dark bg-white">Cuentas</th>
-                                        <th class="text-dark bg-white">Total</th>
+
+                                        <td class="text-dark bg-white">#</td>
+                                        <td class="text-dark bg-white">Cuentas</td>
+                                        <td class="text-dark bg-white">Total</td>
                                     </tr>
-                                </thead>
+                               
                                 <tbody>
                                     @if ($patrimonio <= 0)
                                         <tr class="text-white bg-dark">
@@ -343,15 +348,20 @@
                         </p>
                         <div class="table-responsive">
                             <table  class="table table-bordered table-contextual">
-                                <thead>
+                                
                                     <tr class="text-dark bg-white">
-                                        <th class="text-dark bg-white">#</th>
-                                        <th class="text-dark bg-white">Periodo</th>
+                                        <td  class="text-dark bg-white" colspan="4">
+                                           <center> <b>Saldos</b> </center>
+                                            </td>
+                                        </tr>
+                                            <tr class="text-dark bg-white">
+                                        <td class="text-dark bg-white">#</td>
+                                        <td class="text-dark bg-white">Periodo</td>
                                  
-                                        <th class="text-dark bg-white">Total Activo</th>
-                                        <th class="text-dark bg-white">Total Pasivo + Patrimonio</th>
+                                        <td class="text-dark bg-white">Total Activo</td>
+                                        <td class="text-dark bg-white">Total Pasivo + Patrimonio</td>
                                     </tr>
-                                </thead>
+                             
                                 <tbody>
                                     <tr class="text-white bg-dark">
                                         <td>1</td>
