@@ -21,31 +21,33 @@
 </head>
 
 <body>
-    
-    <img id="imagen"  style="float: right;" src="{{asset('assets\images\HTOURS.png')}}" alt="logo de Htours" height="500" width="500">
- 
+     
+    <img id="imagen"  style="float: right;" src="{{asset('assets\images\HTOURS.png')}}" alt="logo de Htours" height="100" width="100">
+    <div class="container-fluid mt-3 mb-3">
     <div class="d-grid gap-2 oculto-impresion">
     <a class="btn btn btn-outline-dark" href="javascript:window.print();">Imprimir</a>
+    </div>
     </div>
  
     <center>
 
-        <h1 id="titulo">Reporte Clasificacion</h1>
-        <br>
-        <h2 id="fecha">Fecha:{{date('m/d/Y')}}</h2>
-        <br>
-        <table id="datos" >
+        <h1 id="titulo">Reporte Clasificación </h1>
+        <div class="row">
+            <h2>Generado por : {{ Cache::get('user') }} - {{ Cache::get('rol') }}</h2>
+            <h2 id="fecha">Fecha - {{date('d/m/Y')}} | Hora - {{date('H:i:s a')}}</h2>
+        </div>
+        <table id="datos" class="table table-bordered table-contextual table_id" style=" border: 1px ridge black;" >
             <thead>
-                <th class="text-dark bg-white">#</th>
-                <th class="text-dark bg-white">Clasificacion</th>
+                <th class="text-dark bg-white"> <center> #</center></th>
+                <th class="text-dark bg-white"><center> Clasificación </center></th>
             </thead>
             <tbody>
                 @foreach ($clasificacion as $clasificacion)
           
                 
                 <tr>
-                    <td> {{ $clasificacion['COD_CLASIFICACION'] }} </td>
-                    <td>{{ $clasificacion['NATURALEZA'] }}</td>
+                    <td> <center> {{ $clasificacion['COD_CLASIFICACION'] }}</center> </td>
+                    <td> <center> {{ $clasificacion['NATURALEZA'] }}</center></td>
                 </tr>
           @endforeach
          

@@ -2,7 +2,7 @@
 
 <!-- titulo de la pagina  -->
 @section('titulo')
-Clasificacion | inicio
+Clasificación | inicio
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
@@ -52,7 +52,7 @@ Clasificacion | inicio
   <script>
     Swal.fire({
     icon: 'success',
-    text: 'La clasificacion se inserto Correctamente'
+    text: 'La Clasificación se inserto Correctamente'
     // footer: '<a href="">Why do I have this issue?</a>'
   })
   </script>
@@ -61,7 +61,7 @@ Clasificacion | inicio
   <script>
     Swal.fire({
     icon: 'success',
-    text: 'La clasificacion se Actualizo Correctamente'
+    text: 'La Clasificación se Actualizo Correctamente'
     // footer: '<a href="">Why do I have this issue?</a>'
   })
   </script>
@@ -70,7 +70,7 @@ Clasificacion | inicio
   <script>
     Swal.fire({
     icon: 'success',
-    text: 'La clasificacion se elimino Correctamente'
+    text: 'La Clasificación se elimino Correctamente'
     // footer: '<a href="">Why do I have this issue?</a>'
   })
   </script>
@@ -88,13 +88,13 @@ Clasificacion | inicio
 <script>
     Swal.fire({
         icon: 'error',
-        text: 'No puedes eliminar esta clasificacion, se encuentra en uso'
+        text: 'No puedes eliminar esta Clasificación, se encuentra en uso'
         // footer: '<a href="">Why do I have this issue?</a>'
     })
 </script>
 @endif
 
-<center><h1> Clasificacion  </h1></center> 
+<center><h1> Clasificación  </h1></center> 
             <div class="page-header">
               </nav>
             </div>
@@ -111,7 +111,7 @@ Clasificacion | inicio
               <div class="col-lg-12 stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title"> <center>Clasificacion</center></h4>
+                    <h4 class="card-title"> <center>Clasificación</center></h4>
                     <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
                       <input class="form-control me-2 light-table-filter text-white" data-table="table_id" type="text" 
                       placeholder="Buscar una clasificacion">
@@ -121,7 +121,7 @@ Clasificacion | inicio
                         <thead>
                         <tr class="text-dark bg-white">
                   <th class="text-dark bg-white">#</th>
-                  <th class="text-dark bg-white">Clasificacion</th>
+                  <th class="text-dark bg-white">Clasificación</th>
                    <th class="text-dark bg-white">Acciones</th>
                     </tr>
                         </thead>
@@ -150,7 +150,7 @@ Clasificacion | inicio
                    <div class="modal-content">
                         <!-- CABECERA DEL DIALOGO EDITAR -->
                    <div class="modal-header">
-                   <h4 class="modal-title">Editar Clasificacion</h4>
+                   <h4 class="modal-title">Editar Clasificación</h4>
                         <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                    </div>
                         <!-- CUERPO DEL DIALOGO EDITAR -->
@@ -199,7 +199,7 @@ Clasificacion | inicio
               <div class="modal-content">
                    <!-- CABECERA DEL DIALOGO EDITAR -->
               <div class="modal-header">
-              <h4 class="modal-title">Eliminar Clasificacion</h4>
+              <h4 class="modal-title">Eliminar Clasificación</h4>
                    <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
               </div>
                    <!-- CUERPO DEL DIALOGO BORRAR -->
@@ -250,7 +250,7 @@ Clasificacion | inicio
                       <div class="modal-content">
                         <!-- CABECERA DEL DIALOGO NUEVA-->
                         <div class="modal-header">
-                          <h4 class="modal-title">Ingresar Nueva clasificacion</h4>
+                          <h4 class="modal-title">Ingresar Nueva Clasificación</h4>
                           <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
                         </div>
                         <!-- CUERPO DEL DIALOGO NUEVA -->
@@ -259,7 +259,7 @@ Clasificacion | inicio
                             <form action="{{ route('clasificacion.insertar') }}" method="post">
                              @csrf
                               <label class="form-label">
-                                Clasificacion
+                                Clasificación
                                 <input type='text' list="lista-programacion" name='clasificacion' class="form-control text-white" id="clasificacion" onkeyup="validarclasificacion(this)" required>
                                 <div id="divclasi"></div>
                                 <datalist id="lista-programacion">

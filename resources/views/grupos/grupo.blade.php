@@ -99,7 +99,7 @@
             </center>
         </div>
         <p align="right" valign="baseline">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
             <a type="button" href="{{ route('pdf.grupos') }}" class="btn btn-danger btn-sm"><i
                     class="mdi mdi-file-pdf"></i>Generar PDF</a>
             <button id="btnExportar" class="btn btn-success btn-sm">
@@ -122,8 +122,8 @@
                                 <thead>
                                     <tr>
                                         <th class="text-dark bg-white"> # </th>
-                                        <th class="text-dark bg-white"> <b>Clasificacion</b> </th>
-                                        <th class="text-dark bg-white"> <b>Codigo</b> </th>
+                                        <th class="text-dark bg-white"> <b>Clasificación</b> </th>
+                                        <th class="text-dark bg-white"> <b>Código</b> </th>
                                         <th class="text-dark bg-white"> <b>Nombre Grupo</b> </th>
                                         <th class="text-dark bg-white"> </b>Acciones</b> </th>
                                     </tr>
@@ -141,9 +141,11 @@
                                                 <td> {{ $grupo['NUM_GRUPO'] }} </td>
                                                 <td> {{ $grupo['NOM_GRUPO'] }}</td>
                                                 <td><button type="button" class="btn btn-info" data-toggle="modal"
-                                                        data-target="#modal-editar-{{ $grupo['COD_GRUPO'] }}">Editar</button>
+                                                        data-target="#modal-editar-{{ $grupo['COD_GRUPO'] }}"> <i
+                                                        class="mdi mdi-table-edit"></i>Editar</button>
                                                     <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                        data-target="#modal-eliminar-{{ $grupo['COD_GRUPO'] }}">Eliminar</button>
+                                                        data-target="#modal-eliminar-{{ $grupo['COD_GRUPO'] }}"><i
+                                                        class="mdi mdi-delete-forever"></i>Eliminar</button>
                                                 </td>
                                             </tr>
 

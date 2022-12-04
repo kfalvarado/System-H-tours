@@ -43,7 +43,7 @@
             <div class="table">
                 <table id="datos" class="table table-bordered table-contextual table_id" style=" border: 1px ridge black;">
                     <thead>
-                        <th class="text-dark bg-white"># Codigo</th>
+                        <th class="text-dark bg-white"># Código</th>
                         <th class="text-dark bg-white">Usuario</th>
                         <th class="text-dark bg-white">Nombre usuario</th>
                         <th class="text-dark bg-white">Estado</th>

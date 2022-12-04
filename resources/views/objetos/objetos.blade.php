@@ -89,7 +89,7 @@
     </div>
 
     <p align="right" valign="baseline">
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
+        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#dialogo1">(+) Nuevo</button>
         <a type="button" href="{{ route('objetos.pdf') }}" class="btn btn-danger btn-sm"><i
                 class="mdi mdi-file-pdf"></i>Generar PDF</a>
         <button id="btnExportar" class="btn btn-success btn-sm">
