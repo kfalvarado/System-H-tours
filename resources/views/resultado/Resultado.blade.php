@@ -47,8 +47,8 @@
                             <form action="{{ route('Resultado.insertar') }}" method="post">
                                 @csrf
                                 <Label>Seleccionar período</Label>
-                                <select class="form-control text-white" name="periodo" id="">
-                                    <option hidden selected>Seleccionar</option>
+                                <select class="form-control text-white" name="periodo" id="periodo">
+                                    <option value="" hidden selected>Seleccionar</option>
                                     @foreach ($periodo as $key)
                                         <option value="{{ $key['COD_PERIODO'] }}">{{ $key['NOM_PERIODO'] }}</option>
                                     @endforeach
@@ -57,7 +57,7 @@
                                 <br>
                                 <br>
 
-                                <button class="btn btn-primary">Aceptar</button>
+                                <button class="btn btn-primary"onclick="validar()">Aceptar</button>
                             </form>
                     </div>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -237,6 +237,18 @@
                 </div>
             </div>
             @section('js')
+            <script>
+                function validar() {
+                    let periodo =  document.getElementById('periodo').value;
+                    if (periodo == '') {
+                        swal.fire({
+                            icon:"warning",
+                            text:"No selecciono un período "
+                        })
+                        event.preventDefault();
+                    }
+                }
+            </script>
             <script>
                 const $btnExportar = document.querySelector("#btnExportar"),
                     $tabla = document.querySelector("#tabla");

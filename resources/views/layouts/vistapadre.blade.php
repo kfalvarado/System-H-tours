@@ -299,11 +299,11 @@
                                 @endif
                                 @if ($accesos[$i] == 'BITACORAS')
                                     <li class="nav-item"> <a class="nav-link"
-                                            href="{{ route('mostrar.bitacoras') }}"> Bitacoras </a></li>
+                                            href="{{ route('mostrar.bitacoras') }}"> Bitácoras </a></li>
                                 @endif
                                 @if ($accesos[$i] == 'PARAMETROS')
                                     <li class="nav-item"> <a class="nav-link"
-                                            href="{{ route('parametro.inicio') }}"> Parametros </a></li>
+                                            href="{{ route('parametro.inicio') }}"> Parámetros </a></li>
                                 @endif
 
                                 @if ($accesos[$i] == 'PREGUNTAS')

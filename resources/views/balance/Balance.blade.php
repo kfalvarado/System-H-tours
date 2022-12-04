@@ -56,8 +56,8 @@
                             <form action="{{ route('balance.insertar') }}" method="post">
                                 @csrf
                                 <Label>Seleccionar período</Label>
-                                <select class="form-control text-white" name="periodo" id="">
-                                    <option value="" selected></option>
+                                <select class="form-control text-white" name="periodo" id="periodo">
+                                    <option value="" selected>Seleccionar</option>
                                     @foreach ($personArr as $periodo)
                                         <option value="{{ $periodo['COD_PERIODO'] }}">{{ $periodo['NOM_PERIODO'] }}</option>
                                     @endforeach
@@ -65,7 +65,7 @@
                                 <br>
                                 <br>
                                 <a href="" class="btn btn-secondary">Cancelar</a>
-                                <button class="btn btn-primary">Aceptar</button>
+                                <button class="btn btn-primary" onclick="validar()">Aceptar</button>
                             </form>
                     </div>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -411,6 +411,18 @@
 
 
     @section('js')
+    <script>
+        function validar() {
+            let periodo =  document.getElementById('periodo').value;
+            if (periodo == '') {
+                swal.fire({
+                    icon:"warning",
+                    text:"No selecciono un período "
+                })
+                event.preventDefault();
+            }
+        }
+    </script>
     <script>
         const $btnExportar = document.querySelector("#btnExportar"),
             $tabla = document.querySelector("#tabla");

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
-    <title>Bitacoras | PDF </title>
+    <title>Bitácora | PDF </title>
         <!-- ESTE CSS ES PARA OCULTAR DATOS EN LA IMPRESION-->
   <style>
     
@@ -34,7 +34,7 @@
         <div class="container">
             <center>
 
-                <h1 id="titulo">Reporte Actividad del sistema (bitacoras)</h1>
+                <h1 id="titulo">Reporte Actividad del sistema (Bitácoras)</h1>
                 <div class="row">
                     <h2>Generado por : {{ Cache::get('user') }} - {{ Cache::get('rol') }}</h2>
                     <h2 id="fecha">Fecha - {{date('d/m/Y')}} | Hora - {{date('H:i:s a')}}</h2>
@@ -44,11 +44,11 @@
                 <div class="table">
                     <table id="datos" class="table table-bordered table-contextual table_id" style=" border: 1px ridge black;">
                         <thead>
-                            <th class="text-dark bg-white"># Codigo</th>
+                            <th class="text-dark bg-white"># Código</th>
                             <th class="text-dark bg-white">Fecha Registro</th>
                             <th class="text-dark bg-white">Usuario Registro</th>
                             <th class="text-dark bg-white">Acciones Sistema</th>
-                            <th class="text-dark bg-white">Descripcion Bitacora</th>
+                            <th class="text-dark bg-white">Descripción Bitácora</th>
                             <th class="text-dark bg-white">Objeto</th>     
                         </thead>
                         <tbody>

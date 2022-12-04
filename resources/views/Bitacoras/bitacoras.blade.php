@@ -2,7 +2,7 @@
 
 <!-- titulo de la pagina  -->
 @section('titulo')
-Bitacora | inicio
+Bitácora | inicio
 @endsection
 <!-- foto de la barra lateral debajo del nombre HTOURS  -->
 @section('foto-user1')
@@ -250,7 +250,7 @@ Bitacora | inicio
 
 
           <div class="content-wrapper p-1">
-            <center> <h1>Bitacora H Tours Honduras</h1> </center>
+            <center> <h1>Bitácora H Tours Honduras</h1> </center>
             <!-- <ul class="nav nav-pills nav-stacked">
               <li class="active"><a href="#"></a></li>
             </ul> -->
@@ -280,7 +280,7 @@ Bitacora | inicio
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <center><h4 class="card-title">Registros de bitacora</h4></center>
+                    <center><h4 class="card-title">Registros de bitácora</h4></center>
                     <!-- <p class="card-description"> Add class <code>.table-striped</code> -->
                     {{-- </p> --}}
                     <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
@@ -291,11 +291,11 @@ Bitacora | inicio
                       <table id="tabla" class="table table-bordered table-contextual table_id">
                         <thead>
                           <tr class="text-dark bg-white">
-                            <th class="text-dark bg-white"># Codigo</th>
+                            <th class="text-dark bg-white"># Código</th>
                             <th class="text-dark bg-white">Fecha Registro</th>
                             <th class="text-dark bg-white">Usuario Registro</th>
                             <th class="text-dark bg-white">Acciones Sistema</th>
-                            <th class="text-dark bg-white">Descripcion Bitacora</th>
+                            <th class="text-dark bg-white">Descripción Bitácora</th>
                             <th class="text-dark bg-white">Objeto</th>          
                           </tr>
                         </thead>
