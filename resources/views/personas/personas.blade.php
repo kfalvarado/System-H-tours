@@ -109,12 +109,12 @@
 
                                     <th class="text-dark bg-white">#</th>
                                     <th class="text-dark bg-white"> Usuario</th>
-                                    <th class="text-dark bg-white"> Genero</th>
+                                    <th class="text-dark bg-white"> Género</th>
                                     <th class="text-dark bg-white"> Edad </th>
                                     <th class="text-dark bg-white"> Civil </th>
                                     <th class="text-dark bg-white"> Tipo </th>
                                     <th class="text-dark bg-white"> Identidad </th>
-                                    <th class="text-dark bg-white"> Telefono </th>
+                                    <th class="text-dark bg-white"> Teléfono </th>
                                     <th class="text-dark bg-white"> Tipo </th>
                                     <th class="text-dark bg-white"> Estado </th>
                                     <th class="text-dark bg-white"> Registro</th>

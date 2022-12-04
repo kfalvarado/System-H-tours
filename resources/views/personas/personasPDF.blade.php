@@ -32,19 +32,19 @@
 
         <h1 id="titulo">Reporte Personas</h1>
         <div class="row">
-            <h2>Generado por : {{ Cache::get('user') }} - {{ Cache::get('rol') }}</h2>
-            <h2 id="fecha">Fecha - {{date('d/m/Y')}} | Hora - {{date('H:i:s a')}}</h2>
+            <h6>Generado por : {{ Cache::get('user') }} - {{ Cache::get('rol') }}</h6>
+            <h6 id="fecha">Fecha - {{date('d/m/Y')}} | Hora - {{date('H:i:s a')}}</h6>
         </div>
         <table id="datos"  class="table table-bordered table-contextual table_id" style=" border: 1px ridge black;">
             <thead>
                 <th class="text-dark bg-white">#</th>
                 <th class="text-dark bg-white"> Usuario</th>
-                <th class="text-dark bg-white"> Genero</th>
+                <th class="text-dark bg-white"> Género</th>
                 <th class="text-dark bg-white"> Edad </th>
                 <th class="text-dark bg-white"> Civil </th>
                 <th class="text-dark bg-white"> Tipo </th>
                 <th class="text-dark bg-white"> Identidad </th>
-                <th class="text-dark bg-white"> Telefono </th>
+                <th class="text-dark bg-white"> Teléfono </th>
                 <th class="text-dark bg-white"> Tipo </th>
                 <th class="text-dark bg-white"> Estado </th>
                 <th class="text-dark bg-white"> Registro</th>
@@ -70,11 +70,7 @@
          
             </tbody>
         </table>
-        @if (count($personasArray)> 12)
-
-        <img id="imagen"  style="float: right;position:relative;top: -760px;" src="{{asset('assets\images\HTOURS.png')}}" alt="logo de Htours" height="500" width="500">
     
-        @endif
     </center>
     
     
