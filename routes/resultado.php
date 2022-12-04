@@ -17,5 +17,6 @@ use App\Http\Controllers\resultado\ResultadoController;
 
 Route::get('/', [ResultadoController::class,'mostrar'])->middleware('CheckToken')->name('Resultado.mostrar');
 Route::post('/ins_resul', [ResultadoController::class,'insertar'])->middleware('CheckToken')->name('Resultado.insertar');
+Route::post('/pdf_resul', [ResultadoController::class,'pdf'])->middleware('CheckToken')->name('Resultado.pdf');
 
 

@@ -110,14 +110,24 @@
             <p align="right" valign="baseline">
 
             </p>
-
-            <p align="right" valign="baseline">
-                <a type="button" href="{{ route('mostrar.libromayor') }}" class="btn btn-info btn-sm"><i
+            <div class="pull-right">
+                @if (isset($pdf))
+                <form action="{{ route('Resultado.pdf') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="periodo" value="{{ $pdf }}">
+            <button type="submit" class="btn btn-danger btn-sm"><i class="mdi mdi-file-pdf"></i>Generar PDF</button>
+        </form>
+        @endif
+            </div>
+                <p align="right" valign="baseline">
+                    <a type="button" href="{{ route('mostrar.libromayor') }}" class="btn btn-info btn-sm"><i
                         class="mdi mdi-eye"></i> Verificar</a>
-                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#dialogo1"><i
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#dialogo1"><i
                         class="mdi mdi-calendar-check"></i> Periodo</button>
-                <a type="button" href="{{ route('periodo.pdf') }}" class="btn btn-danger btn-sm"><i
-                        class="mdi mdi-file-pdf"></i>Generar PDF</a>
+                      
+                        @if (!isset($pdf))
+                            <a type="button" href="" class="btn btn-danger btn-sm"><i class="mdi mdi-file-pdf"></i>Generar PDF</a>
+                        @endif
                 <button id="btnExportar" class="btn btn-success btn-sm">
                     <i class="mdi mdi-file-excel"></i> Generar Excel
                 </button>
@@ -140,7 +150,7 @@
                             <!-- <p class="card-description"> Add class <code>.table-striped</code> -->
                             </p>
                             <div class="table-responsive">
-                                <table class="table table-condensed table-bordered table-hover ">
+                                <table id="tabla" class="table table-condensed table-bordered table-hover ">
                                     <thead>
                                         <tr class="text-dark">
                                             <th class="text-dark bg-gradient-secondary"><b>Ventas Netas</b></th>
@@ -226,4 +236,27 @@
                     </div>
                 </div>
             </div>
+            @section('js')
+            <script>
+                const $btnExportar = document.querySelector("#btnExportar"),
+                    $tabla = document.querySelector("#tabla");
+                    // $tabla = document.getElementsByClassName("excel");
+                
+        
+                $btnExportar.addEventListener("click", function() {
+              
+                    let tableExport = new TableExport($tabla, {
+                        exportButtons: false, // No queremos botones
+                        filename: "Reporte de Estado de resultado", //Nombre del archivo de Excel
+                        sheetname: "Reporte de Estado de resultado", //Título de la hoja
+                        ignoreCols: 5,
+                    });
+                    let datos = tableExport.getExportData();
+                    let preferenciasDocumento = datos.tabla.xlsx;
+                    tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType,
+                        preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento
+                        .merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
+                });
+            </script>
+            @endsection
         @endsection

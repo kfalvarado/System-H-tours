@@ -292,21 +292,20 @@
 
 
 
-        <!-- INICIO MODAL PARA PERIODO  -->
+        <!-- INICIO MODAL PARA MAYORIZACION  -->
         <div class="modal-container">
             <div class="modal fade bd-example-modal-lg" id="dialogo4">
                 <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
-                        <!-- CABECERA DEL DIALOGO PERIODO-->
+                        <!-- CABECERA DEL DIALOGO MAYORIZACION-->
                         <div class="modal-header">
                             <h4 class="modal-title">
                                 <center> Seleccionar Periodo</center>
                             </h4>
-                            <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
-
+                         
                         </div>
-                        <!-- CUERPO DEL DIALOGO PERIODO -->
+                        <!-- CUERPO DEL DIALOGO MAYORIZACION -->
                         <div class="modal-body">
                             <center>
                                 <form action="{{ route('libromayor.mayorizacion') }}" method="post">
@@ -327,7 +326,7 @@
                                         <label class="form-label">
                                             Clasificacion
                                             <select class="form-control text-white" name="naturaleza"
-                                                id="clasificacion_mayorizacion" onchange="datos();" required>
+                                                id="clasificacion_mayorizacion" onchange="datosmayorizacion();" required>
                                                 <option hidden selected>SELECCIONAR</option>
                                                 @foreach ($clasificacionArr as $key)
                                                     <option value="{{ $key['NATURALEZA'] }}">{{ $key['NATURALEZA'] }}
@@ -987,6 +986,48 @@
             //Vamos a rellenar el select automáticamente.
             const select = document.getElementById(`clasificacion-${e}`).value;
             var contenido = document.querySelector(`#cuenta-${e}`)
+
+            // console.log(select);
+            var url = route('busca.subcuentas')
+            let data = {
+                NATURALEZA: select
+            }
+            fetch(url, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': window.CSRF_TOKEN
+                    }
+                })
+                .then(resp => {
+                    return resp.json()
+                })
+                .then(respuesta => {
+                  
+                    pinta(respuesta);
+                   
+                    function pinta(res) {
+                        contenido.innerHTML = '';
+                        contenido.innerHTML = ' <option hidden selected>SELECCIONAR</option>';
+
+                        for (let valor of res) {
+                            contenido.innerHTML +=
+                                `<option name="INV" value="${valor.NOM_CUENTA}">${valor.NOM_CUENTA}</option>   `
+                        }
+
+                    }
+                }).catch(error => console.error(error))
+        
+    }
+
+    //funcion | mayorizacion
+    function datosmayorizacion(e) {
+      window.CSRF_TOKEN = '{{ csrf_token() }}';
+            // const csrftoken = document.head.querySelector('[name~=csrf-token][content]').content;
+            //Vamos a rellenar el select automáticamente.
+            const select = document.getElementById(`clasificacion_mayorizacion`).value;
+            var contenido = document.querySelector(`#cuenta_mayorizacion`)
 
             // console.log(select);
             var url = route('busca.subcuentas')
