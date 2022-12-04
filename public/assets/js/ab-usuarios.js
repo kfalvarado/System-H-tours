@@ -28,17 +28,17 @@ const campos = {
 //usuario
 
 function validarNomUsuario(e) {
-    let usuario_usuario = document.getElementById('nom_usuario').value;
-    let div = document.getElementById('divnomusuario');
+    let usuario_usuario = document.getElementById(`nom_usuario-edit-${e}`).value;
+    let div = document.getElementById(`divnomusuario-edt-${e}`);
 
     if (expresiones.usuario.test(usuario_usuario)) {
-        document.getElementById('nom_usuario').classList.remove('incorrecto') 
-        document.getElementById('nom_usuario').classList.add('correcto') 
+        document.getElementById(`nom_usuario-edit-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`nom_usuario-edit-${e}`).classList.add('correcto') 
  
         div.innerHTML='';
         console.log('correcto');
     }else{
-        document.getElementById('usr_usuario').classList.add('incorrecto') 
+        document.getElementById(`nom_usuario-edit-${e}`).classList.add('incorrecto') 
       
         div.innerHTML='<font color="red"> <h5>Solo puedes ingresar letras</h5></font>'
 
@@ -50,19 +50,41 @@ function validarNomUsuario(e) {
 
 // nombre usuario
 function validarUsrUsuario(e) {
-    let usuario_usuario = document.getElementById('usr_usuario').value;
-    let div = document.getElementById('divusrusuario');
+    let usuario_usuario = document.getElementById(`usr_usuario-edit-${e}`).value;
+    let div = document.getElementById(`divusrusuario-edit-${e}`);
 
     if (expresiones.usuario.test(usuario_usuario)) {
-        document.getElementById('usr_usuario').classList.remove('incorrecto') 
-        document.getElementById('usr_usuario').classList.add('correcto') 
+        document.getElementById(`usr_usuario-edit-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`usr_usuario-edit-${e}`).classList.add('correcto') 
  
         div.innerHTML='';
         console.log('correcto');
     }else{
-        document.getElementById('usr_usuario').classList.add('incorrecto') 
+        document.getElementById(`usr_usuario-edit-${e}`).classList.add('incorrecto') 
       
         div.innerHTML='<font color="red"> <h5>Solo puedes ingresar letras</h5></font>'
+
+        console.log('incorrecto');
+
+    }
+    
+}
+
+//correo usuarios editar
+function validarCorreoEdit(e) {
+    let correo_config = document.getElementById(`correo_usuario-edit-${e}`).value;
+    let div = document.getElementById(`divcorreo-edit-${e}`);
+
+    if (expresiones.correo.test(correo_config)) {
+        document.getElementById(`correo_usuario-edit-${e}`).classList.remove('incorrecto') 
+        document.getElementById(`correo_usuario-edit-${e}`).classList.add('correcto') 
+ 
+        div.innerHTML='';
+        console.log('correcto');
+    }else{
+        document.getElementById(`correo_usuario-edit-${e}`).classList.add('incorrecto') 
+      
+        div.innerHTML='<font color="red"> <h5>Debe ingresar un correo valido</h5></font>'
 
         console.log('incorrecto');
 

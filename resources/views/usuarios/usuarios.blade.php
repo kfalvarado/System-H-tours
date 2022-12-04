@@ -174,24 +174,24 @@
                                                                                 Usuario
                                                                                 <input type='text' name='USUARIO'
                                                                                     class="form-control text-white"
-                                                                                    id="nom_usuario" maxlength="50"
-                                                                                    onkeyup="validarNomUsuario(this)"
+                                                                                    id="nom_usuario-edit-{{ $usuario['CODIGO_USUARIO'] }}" maxlength="50"
+                                                                                    onkeyup="validarNomUsuario({{ $usuario['CODIGO_USUARIO'] }})"
                                                                                     value="{{ $usuario['USUARIO'] }}"
                                                                                     required>
                                                                                     <center>
-                                                                                        <div style="background-color: white; opacity: 0.5;" id="divnomusuario"></div>
+                                                                                        <div style="background-color: white; opacity: 0.5;" id="divnomusuario-edt-{{ $usuario['CODIGO_USUARIO'] }}"></div>
                                                                                     </center>
                                                                             </label>
                                                                             <label class="form-label">
                                                                                 Nombre del usuario
                                                                                 <input type='text' name='NOMBRE_USUARIO'
                                                                                     class="form-control text-white"
-                                                                                    id="usr_usuario" maxlength="100"
-                                                                                    onkeyup="validarUsrUsuario(this)"
+                                                                                    id="usr_usuario-edit-{{  $usuario['CODIGO_USUARIO']  }}" maxlength="100"
+                                                                                    onkeyup="validarUsrUsuario({{  $usuario['CODIGO_USUARIO']  }})"
                                                                                     value="{{ $usuario['NOMBRE_USUARIO'] }} "
                                                                                     required>
                                                                                     <center>
-                                                                                        <div style="background-color: white; opacity: 0.5;" id="divusrusuario"></div>
+                                                                                        <div style="background-color: white; opacity: 0.5;" id="divusrusuario-edit-{{  $usuario['CODIGO_USUARIO']  }}"></div>
                                                                                     </center>
                                                                             </label>
                                                                             <label class="form-label">
@@ -230,12 +230,12 @@
                                                                                 Correo Electronico
                                                                                 <input type='email' name='CORREO'
                                                                                     class="form-control text-white"
-                                                                                    id="correo_usuario" 
-                                                                                    onkeyup="validarCorreoConfig(this)"
+                                                                                    id="correo_usuario-edit-{{  $usuario['CODIGO_USUARIO']  }}" 
+                                                                                    onkeyup="validarCorreoEdit({{  $usuario['CODIGO_USUARIO']  }})"
                                                                                     value="{{ $usuario['CORREO_ELECTRONICO'] }}"
                                                                                     required>
                                                                                     <center>
-                                                                                        <div style="background-color: white; opacity: 0.5;" id="divcorreoconfig"></div>
+                                                                                        <div style="background-color: white; opacity: 0.5;" id="divcorreo-edit-{{ $usuario['CODIGO_USUARIO']  }}"></div>
                                                                                     </center>
                                                                             </label>
                                                                             <br>
