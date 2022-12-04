@@ -34,14 +34,14 @@
     <center>
 
         <h1 id="titulo">Catalago de Cuentas</h1>
-        <br>
-        <h2 id="fecha">Fecha:{{ date('m/d/Y') }}</h2>
-        <br>
-        <table id="datos">
+        <div class="row">
+            <h6>Generado por : {{ Cache::get('user') }} - {{ Cache::get('rol') }}</h6>
+            <h6 id="fecha">Fecha - {{date('d/m/Y')}} | Hora - {{date('H:i:s a')}}</h6>
+        </div>
+        
+        <table id="datos" class="table table-bordered table-contextual table_id" style=" border: 1px ridge black;">
             <thead>
-                <th class="text-dark bg-white">  </th>
-                <th class="text-dark bg-white"> <b></b> </th>
-                <th class="text-dark bg-white"> </b></b> </th>
+           
            
             </thead>
             <tbody>
@@ -238,33 +238,9 @@
                 @endforeach
             </tbody>
         </table>
-        @if (count($cuentas) > 12)
-            <img id="imagen" style="float: right;position:relative;top: -760px;"
-                src="{{ asset('assets\images\HTOURS.png') }}" alt="logo de Htours" height="500" width="500">
-        @endif
+  
     </center>
 
-
-    <script>
-        function imprimir() {
-            var titulo = document.getElementById('titulo').innerText,
-                data = document.getElementById('datos').innerText,
-                fecha = document.getElementById('fecha').innerText;
-            var img = document.getElementById('imagen');
-
-            var doc = new jsPDF();
-            doc.setFontSize(22);
-            doc.text('Empresa H Tours S. de R. L', 60, 10);
-            doc.setFontSize(22);
-            doc.text(titulo, 80, 20);
-            doc.setFontSize(11);
-            doc.text(fecha, 10, 30);
-            doc.setFontSize(16);
-            doc.addImage(img, 150, 10, 60, 30)
-            doc.text(data, 10, 60);
-            doc.save('Reporte-Periodo.pdf');
-        }
-    </script>
 
 </body>
 
