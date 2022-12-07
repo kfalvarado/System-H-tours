@@ -85,7 +85,7 @@
           <div class="card col-lg-4 mx-auto border border-info" style="background-color:#008a60a1;">
             <div class="card-body px-3 py-2">
             <center>
-              <img class="img-md" width="110" height="110"  src="../../assets/images/HTOURS.png" alt="">
+              <img class="img-md" width="110" height="110"  src="{{ asset("assets/images/HTOURS.png") }}" alt="">
               <h1 class="card-title text-center mb-2">System H tours</h1>
               <nav class="nav nav-pills flex-column flex-sm-row">
                 <a class="flex-sm-fill text-sm-center text-white nav-link" href="{{ route('Auth.login') }}">INGRESA</a>
