@@ -110,15 +110,15 @@
             <p align="right" valign="baseline">
 
             </p>
+            @if (isset($pdf))
             <div class="pull-right">
-                @if (isset($pdf))
                 <form action="{{ route('Resultado.pdf') }}" method="post">
                     @csrf
                     <input type="hidden" name="periodo" value="{{ $pdf }}">
             <button type="submit" class="btn btn-danger btn-sm"><i class="mdi mdi-file-pdf"></i>Generar PDF</button>
         </form>
-        @endif
-            </div>
+    </div>
+    @endif
                 <p align="right" valign="baseline">
                     <a type="button" href="{{ route('mostrar.libromayor') }}" class="btn btn-info btn-sm"><i
                         class="mdi mdi-eye"></i> Verificar</a>
