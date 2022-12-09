@@ -70,7 +70,7 @@ class BitacoraController extends Controller
             ]);
             return view('Auth.no-auth');
         }
-        return view('bitacoras.bitacoras', compact('bitacoraArr'));
+        return view('Bitacoras.bitacoras', compact('bitacoraArr'));
     }
     public function pdf()
     {
@@ -78,6 +78,6 @@ class BitacoraController extends Controller
         //return $bitacora;
         $bitacoraArr = $bitacora->json();
 
-        return view('bitacoras.bitacoraspdf', compact('bitacoraArr'));
+        return view('Bitacoras.bitacoraspdf', compact('bitacoraArr'));
     }
 }
