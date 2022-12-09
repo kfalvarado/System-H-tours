@@ -188,15 +188,18 @@ class PeriodoController extends Controller
         if ($update == '1') {
             try {
                 //code...
-                $actualizar = Http::withToken(Cache::get('token'))->put($this->url . '/periodo/actualizar/' . $request->f, [
-                    "USUARIO" => Cache::get('user'),
-                    "NOM_PERIODO" => $request->periodo,
-                    "FEC_INI" => $request->inicial,
-                    "FEC_FIN" => $request->final,
-                    "ESTADO" => $request->estado
-                ]);
-
-                if (!isset($request->estado)) {
+              
+                if ($request->estado == 'ACTIVO') {
+                    # code...
+                    $actualizar = Http::withToken(Cache::get('token'))->put($this->url . '/periodo/actualizar/' . $request->f, [
+                        "USUARIO" => Cache::get('user'),
+                        "NOM_PERIODO" => $request->periodo,
+                        "FEC_INI" => $request->inicial,
+                        "FEC_FIN" => $request->final,
+                        "ESTADO" => $request->estado
+                    ]);
+                }else {
+                    # code...
                     $actualizar = Http::withToken(Cache::get('token'))->put($this->url . '/periodo/actualizar/' . $request->f, [
                         "USUARIO" => Cache::get('user'),
                         "NOM_PERIODO" => $request->periodo,
@@ -205,6 +208,8 @@ class PeriodoController extends Controller
                         "ESTADO" => 'CERRADO'
                     ]);
                 }
+                
+
             } catch (\Throwable $th) {
                 //throw $th;
                 return 'error periodo 50';
