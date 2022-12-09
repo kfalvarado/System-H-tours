@@ -436,6 +436,19 @@ class SessionController extends Controller
             return back();
         }
 
+        $estado = 0;
+        $est = Http::post($this->url . '/seguridad/estadousr', [
+            "user" => $request->user
+        ]);
+
+        $inactivo = strrpos($est, "INACTIVO");
+
+        if ($inactivo > 0) {
+            Session::flash('desactivado', 'tu usuario a sido bloqueado');
+            return back();
+        }
+
+
 
         //método de recuperación por correo unido a PHP MAILER para enviar un correo de recuperación
         //falta método para generar un token de expiración

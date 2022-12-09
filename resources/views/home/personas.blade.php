@@ -3,12 +3,7 @@
 
 <head>
 
-    <style>
-        body {
-            background-image: url('/assets/images/Login_bg.jpg');
-            background-size: cover;
-        }
-    </style>
+  
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,7 +40,7 @@
     <link rel="icon" href="{{ asset('assets/images/HTOURS.png') }}" />
 </head>
 
-<body onbeforeunload="return donotgo();" oncopy="return false" onpaste="return false">
+<body onbeforeunload="return donotgo();" oncopy="return false" onpaste="return false" style="background-color: #145666">
 
     @if (Session::has('misma'))
         <script>
