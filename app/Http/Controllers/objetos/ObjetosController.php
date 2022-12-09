@@ -98,7 +98,7 @@ class ObjetosController extends Controller
             try {
                 $insertar = Http::withToken(Cache::get('token'))->post($this->url . '/objetos/insertar', [
                     "USR" => Cache::get('user'),
-                    "OBJETOS" => $request->objetos,
+                    "OBJETO" => $request->objetos,
                     "DES_OBJETO" => $request->descripcion,
                     "TIP_OBJETO" => $request->tipo,
                    
