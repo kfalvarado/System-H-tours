@@ -106,18 +106,9 @@
                 <h1> Período </h1>
             @endif
         </center>
-        <!-- <ul class="nav nav-pills nav-stacked">
-                                                    <li class="active"><a href="#"></a></li>
-                                                  </ul> -->
-
-
         <br>
-
-
-
         <div class="container">
             <div class="row">
-                {{-- <p align="right" valign="baseline"> --}}
                 <div class="col-3">
                     <a type="button" href="{{ route('mostrar.libromayor') }}" class="btn btn-info btn-sm"><i
                             class="mdi mdi-eye"></i> Verificar</a>
@@ -251,11 +242,10 @@
                             <center>
                                 <h4 class="card-title">Pasivos</h4>
                             </center>
-                            <!-- <p class="card-description"> Add class <code>.table-hover</code> -->
                             </p>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-contextual">
-                                    {{-- <thead> --}}
+                                 
                                     <tr>
                                         <td class="text-dark bg-white" colspan="3">
                                             <center> <b>Pasivos Corrientes </b> </center>
@@ -266,7 +256,7 @@
                                         <td class="text-dark bg-white">Cuentas</td>
                                         <td class="text-dark bg-white">Total</td>
                                     </tr>
-                                    {{-- </thead> --}}
+                                   
                                     <tbody>
                                         @if ($pasivoc <= 0)
                                             <tr class="text-white bg-dark">
@@ -328,7 +318,7 @@
                             <center>
                                 <h4 class="card-title">Patrimonios</h4>
                             </center>
-                            <!-- <p class="card-description"> Add class <code>.table-striped</code> -->
+                         
                             </p>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-contextual">
@@ -386,7 +376,6 @@
                             <center>
                                 <h4 class="card-title">Saldos Balance</h4>
                             </center>
-                            <!-- <p class="card-description"> Add class <code>.table-striped</code> -->
                             </p>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-contextual">
@@ -448,9 +437,6 @@
         <script>
             const $btnExportar = document.querySelector("#btnExportar"),
                 $tabla = document.querySelector("#tabla");
-            // $tabla = document.getElementsByClassName("excel");
-
-
             $btnExportar.addEventListener("click", function() {
 
                 let tableExport = new TableExport($tabla, {
