@@ -71,204 +71,218 @@
 
 
     <div class="content-wrapper">
-        @if (count($resultado)>0)
-        
-        @foreach ($resultado as $key)
-        <center>
-            <h1>Estado de Resultado Empresa {{ $key['EMPRESA'] }}</h1>
-        </center>
-        @endforeach
-
+        @if (count($resultado) > 0)
+            @foreach ($resultado as $key)
+                <center>
+                    <h1>Estado de Resultado Empresa {{ $key['EMPRESA'] }}</h1>
+                </center>
+            @endforeach
         @else
-        <center>
-            <h1>Estado de Resultado </h1>
-        </center>
+            <center>
+                <h1>Estado de Resultado </h1>
+            </center>
         @endif
         <h5>________________________________________________________________________________________________________________
         </h5>
         <!-- <ul class="nav nav-pills nav-stacked">
-                                  <li class="active"><a href="#"></a></li>
-                                </ul> -->
-        
-            <center>
-                @if (count($resultado) >0 )
-                    @foreach ($resultado as $key)
-                        
+                                      <li class="active"><a href="#"></a></li>
+                                    </ul> -->
+
+        <center>
+            @if (count($resultado) > 0)
+                @foreach ($resultado as $key)
                     <h1 id="nombre-periodo">{{ $key['PERIODO'] }}</h1>
                     <center>
                         <br>
-                        <h3>Desde: <input type="date" aria-label="Disabled input example" value="{{ substr($key['FECHA_INICIAL'],0,10)}}" readonly> Hasta: <input
-                                type="date" value="{{ substr($key['FECHA_FINAL'],0,10)}}" readonly></h3>
+                        <h3>Desde: <input type="date" aria-label="Disabled input example"
+                                value="{{ substr($key['FECHA_INICIAL'], 0, 10) }}" readonly> Hasta: <input type="date"
+                                value="{{ substr($key['FECHA_FINAL'], 0, 10) }}" readonly></h3>
                     </center>
-                    @endforeach
-                @else
+                @endforeach
+            @else
                 <h1> Período</h1>
+            @endif
+        </center>
+
+
+        <div class="container">
+            <div class="row">
+            <div class="col-3">
+                <a type="button" href="{{ route('mostrar.libromayor') }}" class="btn btn-info btn-sm"><i
+                        class="mdi mdi-eye"></i> Verificar</a>
+            </div>
+            <div class="col-3">
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#dialogo1"><i
+                        class="mdi mdi-calendar-check"></i> Período</button>
+            </div>
+
+            {{-- <div class="col-3">
+                @if (!isset($pdf))
+                    <a type="button" href="" class="btn btn-danger btn-sm"><i class="mdi mdi-file-pdf"></i>Generar
+                        PDF</a>
                 @endif
-            </center>
-
-     
-            <p align="right" valign="baseline">
-
-            </p>
-            @if (isset($pdf))
-            <div class="pull-right">
+            </div> --}}
+            <div class="col-3">
+                @if (isset($pdf))
                 <form action="{{ route('Resultado.pdf') }}" method="post">
                     @csrf
                     <input type="hidden" name="periodo" value="{{ $pdf }}">
-            <button type="submit" class="btn btn-danger btn-sm"><i class="mdi mdi-file-pdf"></i>Generar PDF</button>
-        </form>
-    </div>
-    @endif
-                <p align="right" valign="baseline">
-                    <a type="button" href="{{ route('mostrar.libromayor') }}" class="btn btn-info btn-sm"><i
-                        class="mdi mdi-eye"></i> Verificar</a>
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#dialogo1"><i
-                        class="mdi mdi-calendar-check"></i> Período</button>
-                      
-                        @if (!isset($pdf))
-                            <a type="button" href="" class="btn btn-danger btn-sm"><i class="mdi mdi-file-pdf"></i>Generar PDF</a>
-                        @endif
+                    <button type="submit" class="btn btn-danger btn-sm"><i class="mdi mdi-file-pdf"></i>Generar
+                        PDF</button>
+                </form>
+                @else
+                <a type="button" href="" class="btn btn-danger btn-sm"><i class="mdi mdi-file-pdf"></i>Generar
+                    PDF</a>
+                @endif
+            </div>
+            <div class="col-3">
                 <button id="btnExportar" class="btn btn-success btn-sm">
                     <i class="mdi mdi-file-excel"></i> Generar Excel
                 </button>
-            </p>
-            <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"></a></li>
-            </ul>
-            <div class="page-header">
-
             </div>
-            <div class="row">
+            {{-- </p> --}}
+
+        </div>
+        </div>
+        <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a href="#"></a></li>
+        </ul>
+        <div class="page-header">
+
+        </div>
+        <div class="row">
 
 
-                <div class="col-lg-12 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body">
-                            <center>
-                                <h3 class="card-title">Detalle</h3>
-                            </center>
-                            <!-- <p class="card-description"> Add class <code>.table-striped</code> -->
-                            </p>
-                            <div class="table-responsive">
-                                <table id="tabla" class="table table-condensed table-bordered table-hover ">
-                                    <thead>
-                                        <tr class="text-dark">
-                                            <th class="text-dark bg-gradient-secondary"><b>Ventas Netas</b></th>
-                                            @if (count($resultado) <= 0)
-                                                <th class="text-white bg-dark">0,000</th>
-                                            @else
-                                                @foreach ($resultado as $key)
-                                                    <th class="text-white bg-dark">{{ number_format($key['VENTAS_NETAS']) }}</th>
-                                                @endforeach
-                                            @endif
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <center>
+                            <h3 class="card-title">Detalle</h3>
+                        </center>
+                        <!-- <p class="card-description"> Add class <code>.table-striped</code> -->
+                        </p>
+                        <div class="table-responsive">
+                            <table id="tabla" class="table table-condensed table-bordered table-hover ">
+                                <thead>
+                                    <tr class="text-dark">
+                                        <th class="text-dark bg-gradient-secondary"><b>Ventas Netas</b></th>
+                                        @if (count($resultado) <= 0)
+                                            <th class="text-white bg-dark">0,000</th>
+                                        @else
+                                            @foreach ($resultado as $key)
+                                                <th class="text-white bg-dark">{{ number_format($key['VENTAS_NETAS']) }}
+                                                </th>
+                                            @endforeach
+                                        @endif
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="text-white bg-dark">
-                                            <td class="text-dark bg-gradient-secondary"> <b>Costos de ventas</b> </td>
-                                            @if (count($resultado) <= 0)
-                                                <td class="text-white bg-dark">0,000</td>
-                                            @else
-                                                @foreach ($resultado as $key)
-                                                    <td class="text-white bg-dark">{{ number_format($key['COS_VENTAS']) }}</td>
-                                                @endforeach
-                                            @endif
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-white bg-dark">
+                                        <td class="text-dark bg-gradient-secondary"> <b>Costos de ventas</b> </td>
+                                        @if (count($resultado) <= 0)
+                                            <td class="text-white bg-dark">0,000</td>
+                                        @else
+                                            @foreach ($resultado as $key)
+                                                <td class="text-white bg-dark">{{ number_format($key['COS_VENTAS']) }}</td>
+                                            @endforeach
+                                        @endif
 
-                                        </tr>
-                                        <tr class="text-white bg-dark">
-                                            <td class="text-dark bg-gradient-secondary"><B>Utilidad/Pérdida bruta</B></td>
-                                            @if (count($resultado) <= 0)
-                                                <td class="text-white bg-dark">0,000</td>
-                                            @else
-                                                @foreach ($resultado as $key)
-                                                    <td class="text-white bg-dark">{{ number_format($key['UTI_BRUTA'] )}}</td>
-                                                @endforeach
-                                            @endif
+                                    </tr>
+                                    <tr class="text-white bg-dark">
+                                        <td class="text-dark bg-gradient-secondary"><B>Utilidad/Pérdida bruta</B></td>
+                                        @if (count($resultado) <= 0)
+                                            <td class="text-white bg-dark">0,000</td>
+                                        @else
+                                            @foreach ($resultado as $key)
+                                                <td class="text-white bg-dark">{{ number_format($key['UTI_BRUTA']) }}</td>
+                                            @endforeach
+                                        @endif
 
-                                        </tr>
-                                        <tr class="text-white bg-dark">
-                                            <td class="text-dark bg-gradient-secondary"><b> Total Gastos </b></td>
-                                            @if (count($resultado) <= 0)
-                                                <td class="text-white bg-dark">0,000</td>
-                                            @else
-                                                @foreach ($resultado as $key)
-                                                    <td class="text-white bg-dark">{{ number_format($key['TOT_GASTOS']) }}</td>
-                                                @endforeach
-                                            @endif
+                                    </tr>
+                                    <tr class="text-white bg-dark">
+                                        <td class="text-dark bg-gradient-secondary"><b> Total Gastos </b></td>
+                                        @if (count($resultado) <= 0)
+                                            <td class="text-white bg-dark">0,000</td>
+                                        @else
+                                            @foreach ($resultado as $key)
+                                                <td class="text-white bg-dark">{{ number_format($key['TOT_GASTOS']) }}</td>
+                                            @endforeach
+                                        @endif
 
-                                        </tr>
-                                        <tr class="text-white bg-dark">
-                                            <td class="text-dark bg-gradient-secondary"><b> Utilidad/Pérdida Antes de
-                                                    impuestos </b></td>
-                                            @if (count($resultado) <= 0)
-                                                <td class="text-white bg-dark">0,000</td>
-                                            @else
-                                                @foreach ($resultado as $key)
-                                                    <td class="text-white bg-dark">{{ number_format($key['UTI_ANTIMP']) }}</td>
-                                                @endforeach
-                                            @endif
-                                        </tr>
-                                        <tr class="text-white bg-dark">
-                                            <td class="text-dark bg-gradient-secondary"><b>Impuesto a utilidad </b></td>
-                                            @if (count($resultado) <= 0)
-                                                <td class="text-white bg-dark">0,000</td>
-                                            @else
-                                                @foreach ($resultado as $key)
-                                                    <td class="text-white bg-dark">{{ number_format($key['IMP_UTILIDAD'] )}}</td>
-                                                @endforeach
-                                            @endif
-                                        </tr>
-                                        <tr class="text-white bg-dark">
-                                            <td class="text-dark bg-gradient-secondary"><b> Utilidad/Pérdida Neta </b></td>
-                                            @if (count($resultado) <= 0)
-                                                <td class="text-white bg-dark">0,000</td>
-                                            @else
-                                                @foreach ($resultado as $key)
-                                                    <td class="text-white bg-dark">{{ number_format($key['UTI_NETA']) }}</td>
-                                                @endforeach
-                                            @endif
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                    </tr>
+                                    <tr class="text-white bg-dark">
+                                        <td class="text-dark bg-gradient-secondary"><b> Utilidad/Pérdida Antes de
+                                                impuestos </b></td>
+                                        @if (count($resultado) <= 0)
+                                            <td class="text-white bg-dark">0,000</td>
+                                        @else
+                                            @foreach ($resultado as $key)
+                                                <td class="text-white bg-dark">{{ number_format($key['UTI_ANTIMP']) }}</td>
+                                            @endforeach
+                                        @endif
+                                    </tr>
+                                    <tr class="text-white bg-dark">
+                                        <td class="text-dark bg-gradient-secondary"><b>Impuesto a utilidad </b></td>
+                                        @if (count($resultado) <= 0)
+                                            <td class="text-white bg-dark">0,000</td>
+                                        @else
+                                            @foreach ($resultado as $key)
+                                                <td class="text-white bg-dark">{{ number_format($key['IMP_UTILIDAD']) }}
+                                                </td>
+                                            @endforeach
+                                        @endif
+                                    </tr>
+                                    <tr class="text-white bg-dark">
+                                        <td class="text-dark bg-gradient-secondary"><b> Utilidad/Pérdida Neta </b></td>
+                                        @if (count($resultado) <= 0)
+                                            <td class="text-white bg-dark">0,000</td>
+                                        @else
+                                            @foreach ($resultado as $key)
+                                                <td class="text-white bg-dark">{{ number_format($key['UTI_NETA']) }}</td>
+                                            @endforeach
+                                        @endif
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-            @section('js')
-            <script>
-                function validar() {
-                    let periodo =  document.getElementById('periodo').value;
-                    if (periodo == '') {
-                        swal.fire({
-                            icon:"warning",
-                            text:"No selecciono un período "
-                        })
-                        event.preventDefault();
-                    }
+        </div>
+    @section('js')
+        <script>
+            function validar() {
+                let periodo = document.getElementById('periodo').value;
+                if (periodo == '') {
+                    swal.fire({
+                        icon: "warning",
+                        text: "No selecciono un período "
+                    })
+                    event.preventDefault();
                 }
-            </script>
-            <script>
-                const $btnExportar = document.querySelector("#btnExportar"),
-                    $tabla = document.querySelector("#tabla");
-                    // $tabla = document.getElementsByClassName("excel");
-                
-        
-                $btnExportar.addEventListener("click", function() {
-              
-                    let tableExport = new TableExport($tabla, {
-                        exportButtons: false, // No queremos botones
-                        filename: "Reporte de Estado de resultado", //Nombre del archivo de Excel
-                        sheetname: "Reporte de Estado de resultado", //Título de la hoja
-                        ignoreCols: 5,
-                    });
-                    let datos = tableExport.getExportData();
-                    let preferenciasDocumento = datos.tabla.xlsx;
-                    tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType,
-                        preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento
-                        .merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
+            }
+        </script>
+        <script>
+            const $btnExportar = document.querySelector("#btnExportar"),
+                $tabla = document.querySelector("#tabla");
+            // $tabla = document.getElementsByClassName("excel");
+
+
+            $btnExportar.addEventListener("click", function() {
+
+                let tableExport = new TableExport($tabla, {
+                    exportButtons: false, // No queremos botones
+                    filename: "Reporte de Estado de resultado", //Nombre del archivo de Excel
+                    sheetname: "Reporte de Estado de resultado", //Título de la hoja
+                    ignoreCols: 5,
                 });
-            </script>
-            @endsection
-        @endsection
+                let datos = tableExport.getExportData();
+                let preferenciasDocumento = datos.tabla.xlsx;
+                tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType,
+                    preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento
+                    .merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
+            });
+        </script>
+    @endsection
+@endsection
