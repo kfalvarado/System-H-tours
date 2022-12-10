@@ -229,7 +229,7 @@ class ObjetosController extends Controller
             //code...
             $search = Http::withToken(Cache::get('token'))->post($this->url . '/permisos/sel_per_obj', [
                 "PV_ROL" => Cache::get('rol'),
-                "PV_OBJ" => "OBJETO"
+                "PV_OBJ" => "OBJETOS"
             ]);
 
             $permisos = $search->json();
@@ -270,7 +270,7 @@ class ObjetosController extends Controller
                     "USR" => Cache::get('user'),
                     "ACCION" => 'SIN PERMISO METODO DELETE',
                     "DES" => Cache::get('user') . ' INTENTO ELIMININAR EL DATO  con codigo' . $request->f . ' EN LA PANTALLA DE POBJETO',
-                    "OBJETO" => 'OBJETO'
+                    "OBJETO" => 'OBJETOS'
 
                 ]);
 
