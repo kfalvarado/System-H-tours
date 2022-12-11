@@ -335,7 +335,7 @@
                                             <label for=""id="divcuenta"></label>
                                         </label>
                                         <br>
-                                        <button type="submit" class="btn btn-primary">Registrar </button>
+                                        <button type="submit" onclick="validarINScuentas()" class="btn btn-primary">Registrar </button>
                                         </form>
                                 </div>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -396,6 +396,43 @@
 
                     }
                 }).catch(error => console.error(error))
+        }
+        function validarINScuentas() {
+            let clasificacion = document.getElementById('clasificacion').value 
+            let grupos = document.getElementById('grupos').value 
+            let num_cuenta = document.getElementById('num_cuenta').value 
+            let nom_cuenta = document.getElementById('nom_cuenta').value 
+            if (clasificacion == "SELECCIONAR") {
+                Swal.fire({
+                icon: 'error',
+                text: 'No selecciono una clasificacion'
+                })
+                event.preventDefault()
+            }else{
+                if (grupos == "SELECCIONAR") {
+                Swal.fire({
+                icon: 'error',
+                text: 'No ingreso un grupo'
+                })
+                event.preventDefault()
+            }else{
+                if (num_cuenta == "") {
+                Swal.fire({
+                icon: 'error',
+                text: 'No ingreso un  numero de cuenta'
+                })
+                event.preventDefault()
+            }else{
+                if (nom_cuenta == "") {
+                    Swal.fire({
+                icon: 'error',
+                text: 'No ingreso un  nombre de cuenta'
+                })
+                event.preventDefault()
+                }
+            }
+            }
+            }
         }
     </script>
 @endsection
