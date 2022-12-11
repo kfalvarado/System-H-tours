@@ -169,12 +169,12 @@
                                                                     <form action="{{ route('grupo.actualizar') }}"
                                                                         method="post">
                                                                         @csrf @method('PUT')
-                                                                        <input type="hidden" name="cod"
+                                                                        <input type="hidden" name="cod" id=""
                                                                             value="{{ $grupo['COD_GRUPO'] }}">
                                                                         <label class="form-label">
                                                                             Clasificación
                                                                             <select class="form-control text-white"
-                                                                                name="clasificacion" id=""
+                                                                                name="clasificacion" id="edit_clasificacion"
                                                                                 required>
                                                                                 <option value="{{ $grupo['NATURALEZA'] }}"
                                                                                     hidden selected>
@@ -298,7 +298,7 @@
                                                     Clasificación
 
                                                     <select class="form-control text-white" name="clasificacion"
-                                                        id="" onchange="valor();" required>
+                                                        id="ins_clasificaion" onchange="valor();" required>
                                                         <option hidden selected>Seleccionar</option>
                                                         @foreach ($clasificacionArr as $key)
                                                             <option value="{{ $key['NATURALEZA'] }}">
@@ -310,7 +310,7 @@
                                                 <label class="form-label">
                                                     Número de Grupo
 
-                                                    <input type='number' name='grupo' min="0" id="num_grupo"
+                                                    <input type='number' name='grupo' min="0" id="ins_um_grupo"
                                                         class="form-control text-white" maxlength="3"
                                                         onkeyup="validarNgrupos(this)" required>
                                                 </label>
@@ -320,11 +320,11 @@
                                                 <label class="form-label">
                                                     Nombre de grupo
                                                     <input type='text' name='name' class="form-control text-white"
-                                                        id="nom_grupo" onkeyup="validarLgrupos(this)" required>
+                                                        id="ins_nom_grupo" onkeyup="validarLgrupos(this)" required>
                                                     <div id="divgrupo"></div>
                                                 </label>
                                                 <br>
-                                                <button type="submit" class="btn btn-primary">Registrar </button>
+                                                <button type="submit" onclick="verificarData();" class="btn btn-primary">Registrar </button>
                                         </form>
                                 </div>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -360,6 +360,58 @@
                 preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento
                 .merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
         });
+        function verificarData() {
+            let clasificacion = document.getElementById('ins_clasificaion').value 
+            let ins_um_grupo = document.getElementById('ins_um_grupo').value 
+            let ins_nom_grupo = document.getElementById('ins_nom_grupo').value 
+            if (clasificacion == "Seleccionar") {
+                Swal.fire({
+                icon: 'error',
+                text: 'No selecciono una clasificacion'
+                })
+                
+            }else{
+                if (ins_um_grupo == "") {
+                Swal.fire({
+                icon: 'error',
+                text: 'No ingreso un numero grupo'
+                })
+            }else{
+                if (ins_nom_grupo == "") {
+                Swal.fire({
+                icon: 'error',
+                text: 'No ingreso un  nombre de grupo'
+                })
+            }
+            }
+            }
+        }
+        function verificarDataEdit() {
+            let clasificacion = document.getElementById('ins_clasificaion').value 
+            let ins_um_grupo = document.getElementById('ins_um_grupo').value 
+            let ins_nom_grupo = document.getElementById('ins_nom_grupo').value 
+            if (clasificacion == "Seleccionar") {
+                Swal.fire({
+                icon: 'error',
+                text: 'No selecciono una clasificacion'
+                })
+                
+            }else{
+                if (ins_um_grupo == "") {
+                Swal.fire({
+                icon: 'error',
+                text: 'No ingreso un numero grupo'
+                })
+            }else{
+                if (ins_nom_grupo == "") {
+                Swal.fire({
+                icon: 'error',
+                text: 'No ingreso un  nombre de grupo'
+                })
+            }
+            }
+            }
+        }
     </script>
 @endsection
 @endsection

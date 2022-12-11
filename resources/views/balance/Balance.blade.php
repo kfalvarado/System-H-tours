@@ -190,7 +190,12 @@
                                                 <tr class="text-white bg-dark">
                                                     <td>{{ $key['COD_CUENTA'] }}</td>
                                                     <td>{{ $key['NOM_CUENTA'] }}</td>
+                                                    @if ($key['SAL_DEBE'] >0)
                                                     <td>{{ number_format($key['SAL_DEBE']) }}</td>
+                                                    @else
+                                                    <td>{{ number_format($key['SAL_HABER']) }}</td>
+                                                        
+                                                    @endif
                                                 </tr>
                                             @endforeach
                                         @endif

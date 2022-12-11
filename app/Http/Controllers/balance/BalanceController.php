@@ -278,6 +278,6 @@ class BalanceController extends Controller
             ]);
             return view('Auth.no-auth');
         }
-        return view("balance.balancePDF", compact('balanceArr', 'personArr', 'activoc', 'activon', 'pasivoc', 'pasivon', 'patrimonio'));
+        return view("balance.balancePDF2", compact('balanceArr', 'personArr', 'activoc', 'activon', 'pasivoc', 'pasivon', 'patrimonio'));
     }
 }
