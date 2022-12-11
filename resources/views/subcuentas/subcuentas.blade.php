@@ -360,7 +360,7 @@
                                                 <div id="divsubcuenta"></div>
                                             </label>
 
-                                            <button type="submit" class="btn btn-primary">NUEVO</button>
+                                            <button type="submit" onclick="validarINsubcuentas()" class="btn btn-primary">NUEVO</button>
                                         </form>
                                 </div>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -485,6 +485,44 @@
 
                     }
                 }).catch(error => console.error(error))
+        }
+
+         function validarINsubcuentas() {
+            let clasificacion = document.getElementById('clasificacion').value 
+            let cuentas = document.getElementById('cuentas').value 
+            let num_subcuenta = document.getElementById('num_subcuenta').value 
+            let nom_subcuenta = document.getElementById('nom_subcuenta').value 
+            if (clasificacion == "SELECCIONAR") {
+                Swal.fire({
+                icon: 'error',
+                text: 'No selecciono una clasificacion'
+                })
+                event.preventDefault()
+            }else{
+                if (cuentas == "SELECCIONAR") {
+                Swal.fire({
+                icon: 'error',
+                text: 'No ingreso un grupo'
+                })
+                event.preventDefault()
+            }else{
+                if (num_subcuenta == "") {
+                Swal.fire({
+                icon: 'error',
+                text: 'No ingreso un  numero de subcuenta'
+                })
+                event.preventDefault()
+            }else{
+                if (nom_subcuenta == "") {
+                    Swal.fire({
+                icon: 'error',
+                text: 'No ingreso un  nombre de subcuenta'
+                })
+                event.preventDefault()
+                }
+            }
+            }
+            }
         }
     </script>
 @endsection
