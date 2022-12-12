@@ -37,7 +37,7 @@
 <body>
     <div class="container-fluid mt-3 mb-3">
         <div class="d-grid gap-2 oculto-impresion">
-            <a class="btn btn btn-outline-primary " href="javascript:window.print();">
+            <a class="btn btn btn-outline-primary " onclick="imprimir()">
                 <h3>Imprimir</h3>
             </a>
         </div>
@@ -438,9 +438,6 @@
         </div>
     </div>
 
-    <div>
-        <button onclick="imprimir()">Crear PDF</button>
-    </div>
 
     <script>
         var maintable = document.getElementById('contenido'),

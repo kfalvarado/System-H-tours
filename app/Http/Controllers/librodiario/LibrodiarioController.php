@@ -403,12 +403,7 @@ class LibrodiarioController extends Controller
         if (
             $eliminacion == '1'
         ) {
-
-            $delete = Http::withToken(Cache::get("Token"))->delete($this->url . '/librodiario/eliminar/' . $request->f,);
-
-
-
-
+            $delete = Http::withToken(Cache::get("token"))->delete($this->url . '/librodiario/eliminar/' . $request->f);
             try {
                 $bitacora = Http::withToken(Cache::get('token'))->post($this->url . '/seguridad/bitacora/insertar', [
 
