@@ -199,12 +199,12 @@
                                             @endif
                                         </tr>
                                     <tr class="text-dark">
-                                        <th class="text-dark bg-gradient-secondary"><b>Ventas Netas</b></th>
+                                        <th class="text-dark bg-gradient-success"><b>Ventas Netas</b></th>
                                         @if (count($resultado) <= 0)
-                                            <th class="text-white bg-dark">0,000</th>
+                                            <th class="text-white bg-success">0,000</th>
                                         @else
                                             @foreach ($resultado as $key)
-                                                <th class="text-white bg-dark">{{ number_format($key['VENTAS_NETAS']) }}
+                                                <th class="text-white bg-gradient-success  ">{{ number_format($key['VENTAS_NETAS']) }}
                                                 </th>
                                             @endforeach
                                         @endif
@@ -249,23 +249,23 @@
 
                                     </tr>
                                     <tr class="text-white bg-dark">
-                                        <td class="text-dark bg-gradient-secondary"> <b>Costos de ventas</b> </td>
+                                        <td class="text-dark bg-gradient-success"> <b>Costos de ventas</b> </td>
                                         @if (count($resultado) <= 0)
                                             <td class="text-white bg-dark">0,000</td>
                                         @else
                                             @foreach ($resultado as $key)
-                                                <td class="text-white bg-dark">{{ number_format($key['COS_VENTAS']) }}</td>
+                                                <td class="text-white bg-success">{{ number_format($key['COS_VENTAS']) }}</td>
                                             @endforeach
                                         @endif
 
                                     </tr>
                                     <tr class="text-white bg-dark">
-                                        <td class="text-dark bg-gradient-secondary"><B>Utilidad/Pérdida bruta</B></td>
+                                        <td class="text-dark bg-gradient-primary"><B>Utilidad/Pérdida bruta</B></td>
                                         @if (count($resultado) <= 0)
-                                            <td class="text-white bg-dark">0,000</td>
+                                            <td class="text-white bg-primary">0,000</td>
                                         @else
                                             @foreach ($resultado as $key)
-                                                <td class="text-white bg-dark">{{ number_format($key['UTI_BRUTA']) }}</td>
+                                                <td class="text-white bg-primary">{{ number_format($key['UTI_BRUTA']) }}</td>
                                             @endforeach
                                         @endif
 
@@ -305,12 +305,12 @@
                                     </tr>
 
                                     <tr class="text-white bg-dark">
-                                        <td class="text-dark bg-gradient-secondary"><b> Total Gastos </b></td>
+                                        <td class="text-dark bg-gradient-success"><b> Total Gastos </b></td>
                                         @if (count($resultado) <= 0)
-                                            <td class="text-white bg-dark">0,000</td>
+                                            <td class="text-white bg-success">0,000</td>
                                         @else
                                             @foreach ($resultado as $key)
-                                                <td class="text-white bg-dark">{{ number_format($key['TOT_GASTOS']) }}</td>
+                                                <td class="text-white bg-success">{{ number_format($key['TOT_GASTOS']) }}</td>
                                             @endforeach
                                         @endif
 
@@ -337,13 +337,13 @@
                                             @endforeach
                                         @endif
                                     </tr>
-                                    <tr class="text-white bg-dark">
-                                        <td class="text-dark bg-gradient-secondary"><b> Utilidad/Pérdida Neta </b></td>
+                                    <tr class="text-white bg-success">
+                                        <td class="text-dark bg-gradient-success"><b> Utilidad/Pérdida Neta </b></td>
                                         @if (count($resultado) <= 0)
-                                            <td class="text-white bg-dark">0,000</td>
+                                            <td class="text-white bg-success">0,000</td>
                                         @else
                                             @foreach ($resultado as $key)
-                                                <td class="text-white bg-dark">{{ number_format($key['UTI_NETA']) }}</td>
+                                                <td class="text-dark bg-success">{{ number_format($key['UTI_NETA']) }}</td>
                                             @endforeach
                                         @endif
                                     </tr>
