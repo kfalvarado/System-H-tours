@@ -309,8 +309,9 @@ class SessionController extends Controller
         }
         
         Cache::forever('app',  $myapp);
-        
-        return view('home.inicio', compact('newconteo'));
+        $newusr = Http::withToken(Cache::get('token'))->get($this->url . '/sel_newusr');
+        $newusr = $newusr->json();
+        return view('home.inicio', compact('newconteo','newusr'));
     }
 
     /*
