@@ -472,6 +472,7 @@
                                     <th class="text-dark bg-white"> Saldo Debe </th>
                                     <th class="text-dark bg-white"> Saldo Haber </th>
                                     <th class="text-dark bg-white"> Comprobantes </th>
+                                    <th class= "text-dark bg-white"> Descripcion</th>
                                     <th class="text-dark bg-white"> Fecha </th>
                                     <th class="text-dark bg-white"> Estado </th>
                                     <th class="text-dark bg-white"> Acciones </th>
@@ -495,7 +496,9 @@
                                             <td> <a href="" data-toggle="modal"
                                                     data-target="#comprobante-{{ $librodiario['COD_LIBDIARIO'] }}">
                                                     Ver imagen</a> </td>
+                                            <td>{{$librodiario['DES_TRAN']}}</td>        
                                             <td> {{ substr($librodiario['FEC_LIBDIARIO'], 0, 10) }} </td>
+                                            
                                             <td><button type="button" class="btn btn-primary" data-toggle="modal"
                                                     data-target="#dialogo5">Ingresada</button>
                                             <td><button type="button" class="btn btn-info" data-toggle="modal"
