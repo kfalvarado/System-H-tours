@@ -33,8 +33,9 @@
     
         <div class="container">
             <center>
-
-                <h1 id="titulo">Reporte Estado de Resultado</h1>
+                @foreach ($resultado as $key)
+                <h1 id="titulo">Reporte Estado de Resultado EMPRESA {{ $key['EMPRESA'] }}</h1>
+                @endforeach
                 <div class="row">
                     <h4>Generado por : {{ Cache::get('user') }} - {{ Cache::get('rol') }}</h4>
                     <h6 id="fecha">Fecha - {{date('d/m/Y')}} | Hora - {{date('H:i:s a')}}</h6>
