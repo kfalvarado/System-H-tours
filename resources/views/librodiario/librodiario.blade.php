@@ -393,8 +393,7 @@
                                             <label class="form-label">
                                                 Descripción Transacción
                                                 <br>
-                                                <textarea class="form-control text-white" name="des" id="des" cols="15" rows="3">
-                                            </textarea>
+                                                <textarea class="form-control text-white" name="des" id="des" cols="15" rows="3" required></textarea>
                                             </label>
 
                                         </th>
