@@ -47,8 +47,8 @@
 
     <!-- Contenido de la página -->
     <div class="container" id="contenido">
-        {{-- <img id="imagen" style="float: right;" src="{{ asset('assets\images\HTOURS.png') }}" alt="logo de Htours"
-        height="100" width="100"> --}}
+        <img id="imagen" style="float: right;" src="{{ asset('assets\images\HTOURS.png') }}" alt="logo de Htours"
+            height="100" width="100">
         <div class="row row-offcanvas row-offcanvas-right">
             <div class="col-xs-12 col-sm-9">
 
@@ -62,30 +62,28 @@
                                         <tr>
                                             <th colspan="4">
                                                 @foreach ($balanceArr as $key)
-                                                    <h2 class="text-center">{{ $key['NOMBRE_EMPRESA'] }}</h2>
+                                                    <h2 id="empresa" class="text-center">{{ $key['NOMBRE_EMPRESA'] }}
+                                                    </h2>
                                                 @endforeach
-                                                <p align="center">
-                                                    <strong>Balance General</strong>
-                                                    <br>
-                                                    <strong>Al {{ date('d') }} de {{ strftime('%B') }} del año
-                                                        {{ date('Y') }}</strong>
-                                                </p>
+                                                <div id="titulo">
 
-                                                <p align="center">
-                                                    <br>
-                                                </p>
+                                                    <p align="center">
+                                                        <strong>Balance General</strong>
+                                                        <br>
+                                                        <strong>Al {{ date('d') }} de {{ strftime('%B') }} del año
+                                                            {{ date('Y') }}</strong>
+                                                    </p>
+
+                                                </div>
+
                                                 <div class="row">
-
-
                                                     <div class="container">
                                                         <div class="row">
                                                             <div class="col-lg-6">
                                                                 <div>
                                                                     <div class="row">
-                                                                        <div class="col-lg-12">
-
-                                                                            <table class="table "
-                                                                                style=" border: 1px ridge black;">
+                                                                        <div class="">
+                                                                            <table id="tabla1" class="table ">
                                                                                 <tr>
                                                                                     <th colspan="2">Activos</th>
 
@@ -201,8 +199,7 @@
                                                                     <div class="row">
                                                                         <div class="col-lg-12">
 
-                                                                            <table class="table "
-                                                                                style=" border: 1px ridge black;">
+                                                                            <table class="table ">
                                                                                 <tr>
                                                                                     <th>Pasivos</th>
                                                                                 </tr>
@@ -254,8 +251,7 @@
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-lg-12">
-                                                                            <table class="table  "
-                                                                                style=" border: 1px ridge black;">
+                                                                            <table class="table  ">
 
                                                                                 <tr class="text-white bg-dark">
                                                                                     <td colspan="3">
@@ -319,8 +315,7 @@
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-lg-12">
-                                                                            <table class="table"
-                                                                                style=" border: 1px ridge black;">
+                                                                            <table class="table">
                                                                                 <tr class="text-white bg-dark">
                                                                                     <td colspan="3">
                                                                                         <center> <u> <b> Patrimonios</b>
@@ -386,84 +381,50 @@
                                         </tr>
                                     </thead>
                                 </table>
-
                             </div>
+                            <div class="row">
+                     
 
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div>
-                                            <div class="row">
-                                                <div class="col-lg-12">
+                                            <table>
+                                                <tr>
+                                                    <th colspan="2">Total Activos</th>
+                                              
+                                                @if (count($balanceArr) <= 0)
+                                                    <th>
+                                                        <b>0.00</b>
+                                                    </th>
+                                                @else
+                                                    @foreach ($balanceArr as $key)
+                                                        <th>
+                                                            <b>{{ number_format($key['TOTAL_ACTIVOS']) }}</b>
+                                                        </th>
+                                                    @endforeach
+                                                @endif
 
-                                                    <table class="table table-condensed table-hover ">
-                                                        <tr>
-                                                            <th colspan="2">Total Activos</th>
-                                                        </tr>
-                                                        @if (count($balanceArr) <= 0)
-                                                            <td>
-                                                                <b>0.00</b>
-                                                            </td>
-                                                        @else
-                                                            @foreach ($balanceArr as $key)
-                                                                <td>
-                                                                    <b>{{ number_format($key['TOTAL_ACTIVOS']) }}</b>
-                                                                </td>
-                                                            @endforeach
-                                                        @endif
-
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-
-                                                    <table class="table ">
-                                                        <tr>
-                                                            <th>Total Pasivos + Capital:</th>
-                                                        </tr>
-                                                        @if (count($balanceArr) <= 0)
-                                                            <td>
-                                                                <b>0.00</b>
-                                                            </td>
-                                                        @else
-                                                            @foreach ($balanceArr as $key)
-                                                                <td>
-                                                                    <b>{{ number_format($key['TOTAL_PASIVOS'] + $key['TOTAL_PATRIMONIOS'])   }}</b>
-                                                                </td>
-                                                            @endforeach
-                                                        @endif
-
-
-
-                                                    </table>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <table class="table">
-                                                    <?php
+                                   
+                     
                                                     
-                                                    // echo '<tr>';
-                                                    // echo "<td class='text-right'><strong>Total Pasivos + Capital:</strong></td>";
-                                                    // echo "<td align='right'>" . number_format($total_pasivos + $total_capital, 2) . '</td>';
-                                                    // echo '</tr>';
-                                                    ?>
+                                                        <th>Total Pasivos + Capital:</th>
+                                               
+                                                    @if (count($balanceArr) <= 0)
+                                                        <th>
+                                                            <b>0.00</b>
+                                                        </th>
+                                                    @else
+                                                        @foreach ($balanceArr as $key)
+                                                            <th>
+                                                                <b>{{ number_format($key['TOTAL_PASIVOS'] + $key['TOTAL_PATRIMONIOS']) }}</b>
+                                                            </th>
+                                                        @endforeach
+                                                    @endif
+                                                </tr>
                                                 </table>
 
-                                            </div>
-                                        </div>
-                                    </div>
+                                      
+
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -524,18 +485,20 @@
         // }
     </script>
 
+
+
     <script>
         function imprimir() {
             console.log('object');
             var maintable = document.getElementById('impresion');
-            var margin = 0;
+            var margin = 20;
             // var scale = (doc.internal.pageSize. widthmargin 2) / document.body.clientWidth;
             // var scale_mobile = (doc.internal.pageSize.width - margin * 2)/ document.body.getBoundingClientRect();
 
             var img = document.getElementById('imagen');
 
 
-            var doc = new jsPDF('l', 'pt', 'letter');
+            var doc = new jsPDF('l', 'pt', 'a4');
 
             doc.html(maintable, {
                 x: margin,
