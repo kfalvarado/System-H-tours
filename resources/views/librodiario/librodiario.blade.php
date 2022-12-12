@@ -133,7 +133,7 @@
         }
 
         /*<elemento class="oculto-impresion"><!-- AQUI EMPIEZA PARA OCULTAR EN LA IMPRESION INICIO-->
-                                  </elemento><!-- AQUI SE QUITA PARA IMPRIMIR ESTO NO SALDRA FIN-->*/
+                                                          </elemento><!-- AQUI SE QUITA PARA IMPRIMIR ESTO NO SALDRA FIN-->*/
     </style>
 
 
@@ -200,7 +200,7 @@
         }
     </style>
     <!-- <div class="main-panel">
-                                      <div class="content-wrapper"> -->
+                                                              <div class="content-wrapper"> -->
     <!--<center> <h1>Libro Diario</h1> </center>-->
     <center>
         <h1>Libro Diario</h1>
@@ -213,9 +213,9 @@
     <div class="page-header">
         <!-- INICIO MODAL PARA NUEVA  -->
         <div class="modal-container">
-            <div class="modal fade bd-example-modal-lg" id="dialogo1">
+            <div class="modal fade bd-example-modal-md" id="dialogo1">
                 <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-                <div class="modal-dialog modal-lg">
+                <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <!-- CABECERA DEL DIALOGO NUEVA-->
                         <div class="modal-header">
@@ -228,7 +228,7 @@
                                     enctype="multipart/form-data" id="formulario">
                                     @csrf
                                     <div class="row">
-                                        <div class="col-3">
+                                        <div class="col-6">
                                             <label class="form-label">
                                                 Período
                                                 <select class="form-control text-white" name="periodo" id="periodo"
@@ -241,22 +241,24 @@
                                                     @endforeach
 
                                                 </select>
+
+                                                <label class="form-label">
+                                                    Clasificación
+
+                                                    <select class="form-control text-white" name="naturaleza_cargo"
+                                                        id="clasificacion" onchange="datos();" required>
+                                                        <option hidden selected>SELECCIONAR</option>
+                                                        @foreach ($clasificacionArr as $key)
+                                                            <option value="{{ $key['NATURALEZA'] }}">
+                                                                {{ $key['NATURALEZA'] }}
+                                                            </option>
+                                                        @endforeach
+
+                                                    </select>
+                                                </label>
                                         </div>
-                                        <div class="col-3">
+                                        <div class="col-6">
 
-                                            <label class="form-label">
-                                                Clasificación
-
-                                                <select class="form-control text-white" name="naturaleza_cargo"
-                                                    id="clasificacion" onchange="datos();" required>
-                                                    <option hidden selected>SELECCIONAR</option>
-                                                    @foreach ($clasificacionArr as $key)
-                                                        <option value="{{ $key['NATURALEZA'] }}">{{ $key['NATURALEZA'] }}
-                                                        </option>
-                                                    @endforeach
-
-                                                </select>
-                                            </label>
 
                                             <label class="form-label">
                                                 Seleccionar Cuenta
@@ -291,46 +293,28 @@
                                                 <input type="checkbox" name="chkbx1" id="chkbx1" checked>
                                             </label>
                                         </div>
-                                        &nbsp;
-                                        &nbsp;
-                                        &nbsp;
-                                        &nbsp;
-                                        &nbsp;
-                                        &nbsp;
-                                        &nbsp;
-                                        &nbsp;
-                                        &nbsp;
-                                        &nbsp;
-                                        &nbsp;
-                                        &nbsp;
-                                        <label class="form-label">
-                                            Cargo
-                                            <input type='number' id="cargo" min="0" name='saldo_cargo' step="any" 
-                                                onkeyup="validarnumeroscargo(this)" class="form-control text-white"
-                                                required></input>
-                                            <div id="divcargo"></div>
-                                        </label>
                                     </div>
 
-                                    <br>
                         </div>
+                        <center>
+                            <div class="row">
+                                <div class="col-12">
+
+                                    <label class="form-label">
+                                        Cargo
+                                        <input type='number' id="cargo" min="0" name='saldo_cargo'
+                                            step="any" onkeyup="validarnumeroscargo(this)"
+                                            class="form-control text-white" required>
+                                        <div id="divcargo"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </center>
                         <br>
                         <div style="background-color: #4154e14f">
                             <div class="row">
-                                <div class="col-3"></div>
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                &nbsp;
-                                <div class="col-3">
+                                <div class="col-1"></div>
+                                <div class="col-6">
                                     <label class="form-label">
                                         Clasificación
                                         <select class="form-control text-white" name="naturaleza_abono"
@@ -374,61 +358,69 @@
                                         </label>
                                     </div>
                                 </div>
-                                <label class="form-label">
-                                    Abono
-                                    <input type='number' id="abono" min="0" name='saldo_abono' step="any" 
-                                        onkeyup="validarnumerosabono(this)" class="form-control text-white"
-                                        required></input>
-                                    <div id="divabono"></div>
-                                </label>
-
                                 <br>
-                                <hr />
-                                <label class="form-label">
-                                    Comprobante
+
+                                <div class="row">
+                                    <div class="col-4"></div>
                                     <br>
-
-                                    <input type="file" name="comprobante" id="fileUpload" accept="image/*">
-                                    @error('comprobante')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </label>
-                                <br>
-                                <div  style="width: 400px; margin: 0 auto; ">
+                                    <div class="col-8">
+                                        <label class="form-label">
+                                            Abono
+                                            <input type='number' id="abono" min="0" name='saldo_abono'
+                                                step="any" onkeyup="validarnumerosabono(this)"
+                                                class="form-control text-white" required></input>
+                                            <div id="divabono"></div>
+                                        </label> 
+                                    </div>
+                                    &nbsp;
+                                    &nbsp;
+                                    &nbsp;
+                                    &nbsp;
+                                    <label class="form-label">
+                                        Comprobante
+                                        <br>
+                                        <input type="file" name="comprobante" id="fileUpload" accept="image/*">
+                                        @error('comprobante')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </label>
+                                </div>
+                                <div style="width: 400px; margin: 0 auto; ">
+                                    
                                     <table>
                                         <th>
 
                                             <label class="form-label">
                                                 Descripción Transacción
                                                 <br>
-                                            <textarea class="form-control text-white" name="des" id="des" cols="15" rows="3">
+                                                <textarea class="form-control text-white" name="des" id="des" cols="15" rows="3">
                                             </textarea>
-                                    </label>
-                                    
-                                </th>
-                                <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                                <th>
+                                            </label>
 
-                                    <label class="form-label">
-                                        Fecha
-                                        <input type='date' name='fecha' class="form-control  text-white"
-                                        required>
-                                    </label>
-                                </th>
-                            </table>
+                                        </th>
+                                        <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                        <th>
 
-                                   
-                                 
-                        </div>
-                        
-                        
-                    </div>
-                    <center>
+                                            <label class="form-label">
+                                                Fecha
+                                                <input type='date' name='fecha' class="form-control  text-white"
+                                                    required>
+                                            </label>
+                                        </th>
+                                    </table>
 
-                        <button type="submit" class="btn btn-lg btn-primary " onclick="validar(); ">Registrar
-                        </button>
-                     
-                    </center>
+
+
+                                </div>
+
+
+                            </div>
+                            <center>
+
+                                <button type="submit" class="btn btn-lg btn-primary " onclick="validar(); ">Registrar
+                                </button>
+
+                            </center>
 
 
 
