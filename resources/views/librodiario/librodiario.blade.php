@@ -73,9 +73,9 @@
         </script>
     @endif
     @if (Session::has('No_encontrada'))
-    <input type="hidden" id="no_found" value="{{ Session::get('No_encontrada') }}">
+        <input type="hidden" id="no_found" value="{{ Session::get('No_encontrada') }}">
         <script>
-     let no = document.getElementById('no_found').value
+            let no = document.getElementById('no_found').value
             Swal.fire({
                 icon: 'error',
                 text: `La Cuenta ${no} no existe`
@@ -106,19 +106,6 @@
             })
         </script>
     @endif
-
-
-
-
-
-
-
-
-
-
-
-
-
     <style>
         input[type=file]::file-selector-button {
             border: 2px solid #6c5ce7;
@@ -146,7 +133,7 @@
         }
 
         /*<elemento class="oculto-impresion"><!-- AQUI EMPIEZA PARA OCULTAR EN LA IMPRESION INICIO-->
-                          </elemento><!-- AQUI SE QUITA PARA IMPRIMIR ESTO NO SALDRA FIN-->*/
+                                  </elemento><!-- AQUI SE QUITA PARA IMPRIMIR ESTO NO SALDRA FIN-->*/
     </style>
 
 
@@ -183,8 +170,6 @@
             text-shadow: 0 0 0px green;
         }
 
-
-
         .btnprueba {
 
             /*width:8000;*/
@@ -214,14 +199,8 @@
             text-shadow: 0 0 0px green;
         }
     </style>
-
-
-
-
-
-
     <!-- <div class="main-panel">
-                              <div class="content-wrapper"> -->
+                                      <div class="content-wrapper"> -->
     <!--<center> <h1>Libro Diario</h1> </center>-->
     <center>
         <h1>Libro Diario</h1>
@@ -236,7 +215,7 @@
         <div class="modal-container">
             <div class="modal fade bd-example-modal-lg" id="dialogo1">
                 <!-- COLOCARLE UN lg PARA TAMANO MEDIANO COLOCARLE UN sm PARA TAMANO PEQUENO -->
-                <div class="modal-dialog modal-md">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <!-- CABECERA DEL DIALOGO NUEVA-->
                         <div class="modal-header">
@@ -248,91 +227,28 @@
                                 <form action="{{ route('librodiario.insertar') }}" method="post"
                                     enctype="multipart/form-data" id="formulario">
                                     @csrf
-
-
-                                    <label class="form-label">
-                                        Período
-                                        <select class="form-control text-white" name="periodo" id="periodo"
-                                            required>
-                                            <option hidden selected>SELECCIONAR</option>
-                                            @foreach ($periodoArr as $key)
-                                                <option value="{{ $key['COD_PERIODO'] }}">{{ $key['NOM_PERIODO'] }}
-                                                </option>
-                                            @endforeach
-
-                                        </select>
-
-
-                                        <label class="form-label">
-                                            Clasificación
-
-                                            <select class="form-control text-white" name="naturaleza_cargo"
-                                                id="clasificacion" onchange="datos();" required>
-                                                <option hidden selected>SELECCIONAR</option>
-                                                @foreach ($clasificacionArr as $key)
-                                                    <option value="{{ $key['NATURALEZA'] }}">{{ $key['NATURALEZA'] }}
-                                                    </option>
-                                                @endforeach
-
-                                            </select>
-                                        </label>
-
-
-                                        <label class="form-label">
-                                            Seleccionar Cuenta
-
-                                            <select class="form-control text-white" name="cuenta_cargo" onchange="cuesub()"
-                                                id="cuenta" required>
-                                                <option hidden selected>SELECCIONAR</option>
-                                                @foreach ($nombrecuentaArr as $key)
-                                                    <option value="{{ $key['NOM_CUENTA'] }}">{{ $key['NOM_CUENTA'] }}
-                                                    </option>
-                                                @endforeach
-
-                                            </select>
-                                        </label>
-                                        <div id="subcuentas1">
-
+                                    <div class="row">
+                                        <div class="col-3">
                                             <label class="form-label">
-                                                Nombre de Sub Cuenta
-                                                <select class="form-control text-white" name="nombresubcuenta_cargo"
-                                                    id="nombresubcuenta1" required>
+                                                Período
+                                                <select class="form-control text-white" name="periodo" id="periodo"
+                                                    required>
                                                     <option hidden selected>SELECCIONAR</option>
-                                                    @foreach ($subcuentas as $key)
-                                                        <option value="{{ $key['NOM_SUBCUENTA'] }}">
-                                                            {{ $key['NOM_SUBCUENTA'] }}
+                                                    @foreach ($periodoArr as $key)
+                                                        <option value="{{ $key['COD_PERIODO'] }}">
+                                                            {{ $key['NOM_PERIODO'] }}
                                                         </option>
                                                     @endforeach
 
                                                 </select>
-                                            </label>
                                         </div>
-                                        <br>
-                                        <label for="">
-                                            Ingresar subcuentas
-                                            <input type="checkbox" name="chkbx1" id="chkbx1" checked>
+                                        <div class="col-3">
 
-                                        </label>
-                                        <br>
-
-                                        <label class="form-label">
-                                            Cargo
-                                            <input type='number' id="cargo" min="0" name='saldo_cargo'
-                                                onkeyup="validarnumeroscargo(this)" class="form-control text-white"
-                                                required></input>
-                                            <div id="divcargo"></div>
-                                        </label>
-
-
-
-
-                                        <br>
-                                        <div style="background-color: #4154e14f">
                                             <label class="form-label">
                                                 Clasificación
 
-                                                <select class="form-control text-white" name="naturaleza_abono"
-                                                    id="clasificacion_abono" onchange="datosAbono();" required>
+                                                <select class="form-control text-white" name="naturaleza_cargo"
+                                                    id="clasificacion" onchange="datos();" required>
                                                     <option hidden selected>SELECCIONAR</option>
                                                     @foreach ($clasificacionArr as $key)
                                                         <option value="{{ $key['NATURALEZA'] }}">{{ $key['NATURALEZA'] }}
@@ -342,12 +258,10 @@
                                                 </select>
                                             </label>
 
-
                                             <label class="form-label">
                                                 Seleccionar Cuenta
-
-                                                <select class="form-control text-white" name="cuenta_abono"
-                                                    id="cuenta_abono" onchange="cuesubAbono()" required>
+                                                <select class="form-control text-white" name="cuenta_cargo"
+                                                    onchange="cuesub()" id="cuenta" required>
                                                     <option hidden selected>SELECCIONAR</option>
                                                     @foreach ($nombrecuentaArr as $key)
                                                         <option value="{{ $key['NOM_CUENTA'] }}">{{ $key['NOM_CUENTA'] }}
@@ -356,11 +270,11 @@
 
                                                 </select>
                                             </label>
-                                            <div id="subcuentas2">
+                                            <div id="subcuentas1">
                                                 <label class="form-label">
                                                     Nombre de Sub Cuenta
-                                                    <select class="form-control text-white" name="nombresubcuenta_abono"
-                                                        id="nombresubcuenta_abono" required>
+                                                    <select class="form-control text-white" name="nombresubcuenta_cargo"
+                                                        id="nombresubcuenta1" required>
                                                         <option hidden selected>SELECCIONAR</option>
                                                         @foreach ($subcuentas as $key)
                                                             <option value="{{ $key['NOM_SUBCUENTA'] }}">
@@ -369,42 +283,156 @@
                                                         @endforeach
 
                                                     </select>
-                                                </label>
                                             </div>
-
-                                            <br>
-
-                                            <label class="form-label">
-                                                Abono
-                                                <input type='number' id="abono" min="0" name='saldo_abono'
-                                                    onkeyup="validarnumerosabono(this)" class="form-control text-white"
-                                                    required></input>
-                                                <div id="divabono"></div>
                                             </label>
 
-                                            <br>
-                                            <hr />
-                                            <label class="form-label">
-                                                Comprobante
-                                                <br>
-
-                                                <input type="file" name="comprobante" id="fileUpload" accept="image/*">
-                                                @error('comprobante')
-                                                    <small class="text-danger">{{ $message }}</small>
-                                                @enderror
+                                            <label for="">
+                                                Ingresar subcuentas
+                                                <input type="checkbox" name="chkbx1" id="chkbx1" checked>
                                             </label>
-                                            <label class="form-label">
-                                                Fecha
-                                                <input type='date' name='fecha' class="form-control  text-white"
-                                                    required></input>
-                                            </label>
-                                            <br>
-
                                         </div>
-                                        <button type="submit" class="btn btn-primary" onclick="validar(); ">Registrar
-                                        </button>
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        <label class="form-label">
+                                            Cargo
+                                            <input type='number' id="cargo" min="0" name='saldo_cargo' step="any" 
+                                                onkeyup="validarnumeroscargo(this)" class="form-control text-white"
+                                                required></input>
+                                            <div id="divcargo"></div>
+                                        </label>
+                                    </div>
 
-                                </form>
+                                    <br>
+                        </div>
+                        <br>
+                        <div style="background-color: #4154e14f">
+                            <div class="row">
+                                <div class="col-3"></div>
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                <div class="col-3">
+                                    <label class="form-label">
+                                        Clasificación
+                                        <select class="form-control text-white" name="naturaleza_abono"
+                                            id="clasificacion_abono" onchange="datosAbono();" required>
+                                            <option hidden selected>SELECCIONAR</option>
+                                            @foreach ($clasificacionArr as $key)
+                                                <option value="{{ $key['NATURALEZA'] }}">{{ $key['NATURALEZA'] }}
+                                                </option>
+                                            @endforeach
+
+                                        </select>
+                                    </label>
+
+                                    <label class="form-label">
+                                        Seleccionar Cuenta
+
+                                        <select class="form-control text-white" name="cuenta_abono" id="cuenta_abono"
+                                            onchange="cuesubAbono()" required>
+                                            <option hidden selected>SELECCIONAR</option>
+                                            @foreach ($nombrecuentaArr as $key)
+                                                <option value="{{ $key['NOM_CUENTA'] }}">{{ $key['NOM_CUENTA'] }}
+                                                </option>
+                                            @endforeach
+
+                                        </select>
+                                    </label>
+
+                                    <div id="subcuentas2">
+                                        <label class="form-label">
+                                            Nombre de Sub Cuenta
+                                            <select class="form-control text-white" name="nombresubcuenta_abono"
+                                                id="nombresubcuenta_abono" required>
+                                                <option hidden selected>SELECCIONAR</option>
+                                                @foreach ($subcuentas as $key)
+                                                    <option value="{{ $key['NOM_SUBCUENTA'] }}">
+                                                        {{ $key['NOM_SUBCUENTA'] }}
+                                                    </option>
+                                                @endforeach
+
+                                            </select>
+                                        </label>
+                                    </div>
+                                </div>
+                                <label class="form-label">
+                                    Abono
+                                    <input type='number' id="abono" min="0" name='saldo_abono' step="any" 
+                                        onkeyup="validarnumerosabono(this)" class="form-control text-white"
+                                        required></input>
+                                    <div id="divabono"></div>
+                                </label>
+
+                                <br>
+                                <hr />
+                                <label class="form-label">
+                                    Comprobante
+                                    <br>
+
+                                    <input type="file" name="comprobante" id="fileUpload" accept="image/*">
+                                    @error('comprobante')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </label>
+                                <br>
+                                <div  style="width: 400px; margin: 0 auto; ">
+                                    <table>
+                                        <th>
+
+                                            <label class="form-label">
+                                                Descripción Transacción
+                                                <br>
+                                            <textarea class="form-control text-white" name="des" id="des" cols="15" rows="3">
+                                            </textarea>
+                                    </label>
+                                    
+                                </th>
+                                <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th>
+
+                                    <label class="form-label">
+                                        Fecha
+                                        <input type='date' name='fecha' class="form-control  text-white"
+                                        required>
+                                    </label>
+                                </th>
+                            </table>
+
+                                   
+                                 
+                        </div>
+                        
+                        
+                    </div>
+                    <center>
+
+                        <button type="submit" class="btn btn-lg btn-primary " onclick="validar(); ">Registrar
+                        </button>
+                     
+                    </center>
+
+
+
+                            </form>
                         </div>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                         </center>
@@ -562,53 +590,62 @@
                                                                             @endforeach
 
                                                                         </select>
-                                                           
+
 
 
                                                                         <label class="form-label">
                                                                             Código
-                                                                            <input type='text' 
+                                                                            <input type='text'
                                                                                 value="{{ $librodiario['NUM_SUBCUENTA'] }}"
                                                                                 name='cuenta' id="num_cuenta"
                                                                                 onkeyup="validarnumeros(this)"
-                                                                                class="form-control  text-white bg-dark" required readonly>
+                                                                                class="form-control  text-white bg-dark"
+                                                                                required readonly>
                                                                             <div id="divnum"></div>
                                                                         </label>
-                                                                       
+
 
                                                                         <label class="form-label">
                                                                             Detalle
                                                                             <input type='text' list="lista-de-cuentas"
-                                                                                name="nombresubcuenta" id="nom_subcuenta_edit-{{  $librodiario['COD_LIBDIARIO']  }}"
-                                                                                onkeyup="datosedit({{  $librodiario['COD_LIBDIARIO'] }})" onchange="datoseditSub({{ $librodiario['COD_LIBDIARIO'] }})"
-                                                                                onblur="validarletras({{  $librodiario['COD_LIBDIARIO']  }})"
+                                                                                name="nombresubcuenta"
+                                                                                id="nom_subcuenta_edit-{{ $librodiario['COD_LIBDIARIO'] }}"
+                                                                                onkeyup="datosedit({{ $librodiario['COD_LIBDIARIO'] }})"
+                                                                                onchange="datoseditSub({{ $librodiario['COD_LIBDIARIO'] }})"
+                                                                                onblur="validarletras({{ $librodiario['COD_LIBDIARIO'] }})"
                                                                                 value="{{ $librodiario['NOM_SUBCUENTA'] }}"
                                                                                 class="form-control text-white bg-dark"
                                                                                 required>
-                                                                                <datalist id="lista-de-cuentas">
-                                                                                    
-                                                                                  </datalist>     
-                                                                            <div id="divnom_edit-{{  $librodiario['COD_LIBDIARIO']  }}"></div>
+                                                                            <datalist id="lista-de-cuentas">
+
+                                                                            </datalist>
+                                                                            <div
+                                                                                id="divnom_edit-{{ $librodiario['COD_LIBDIARIO'] }}">
+                                                                            </div>
                                                                         </label>
                                                                         <label class="form-label">
 
                                                                             Saldo
                                                                             @if ($librodiario['SAL_DEBE'] > 0)
                                                                                 <input type='number' min="0"
-                                                                                    name="saldo" id="saldo-{{  $librodiario['COD_LIBDIARIO']  }}"
-                                                                                    onkeyup="validarnumerossaldo({{  $librodiario['COD_LIBDIARIO']  }})"
+                                                                                    name="saldo"
+                                                                                    id="saldo-{{ $librodiario['COD_LIBDIARIO'] }}"
+                                                                                    onkeyup="validarnumerossaldo({{ $librodiario['COD_LIBDIARIO'] }})"
                                                                                     value="{{ $librodiario['SAL_DEBE'] }}"
                                                                                     class="form-control text-white bg-dark"
                                                                                     required></input>
                                                                                 <div id="divsaldoe"></div>
                                                                             @else
                                                                                 <input type='number' min="0"
-                                                                                    name="saldo" id="saldo-{{  $librodiario['COD_LIBDIARIO']  }}"
-                                                                                    onkeyup="validarnumerossaldo({{  $librodiario['COD_LIBDIARIO']  }})"
+                                                                                    name="saldo"
+                                                                                    id="saldo-{{ $librodiario['COD_LIBDIARIO'] }}"
+                                                                                    onkeyup="validarnumerossaldo({{ $librodiario['COD_LIBDIARIO'] }})"
                                                                                     value="{{ $librodiario['SAL_HABER'] }}"
                                                                                     class="form-control text-white bg-dark"
                                                                                     required></input>
-                                                                                <div id="divsaldoe-{{  $librodiario['COD_LIBDIARIO']  }}"></div>
+                                                                                <div
+                                                                                    id="divsaldoe-{{ $librodiario['COD_LIBDIARIO'] }}">
+                                                                                </div>
                                                                             @endif
 
 
@@ -990,94 +1027,96 @@
                 }).catch(error => console.error(error))
         }
     </script>
-{{-- edit --}}
-@routes
-<script>
-    // funcio cuenta editar | clasificacion cargo
-    function datosedit(e) {
-        // validarletras(e);
-        window.CSRF_TOKEN = '{{ csrf_token() }}';
-        // const csrftoken = document.head.querySelector('[name~=csrf-token][content]').content;
-        //Vamos a rellenar el select automáticamente.
-        const select = document.getElementById(`nom_subcuenta_edit-${e}`).value;
-        var contenido = document.querySelector('#lista-de-cuentas')
+    {{-- edit --}}
+    @routes
+    <script>
+        // funcio cuenta editar | clasificacion cargo
+        function datosedit(e) {
+            // validarletras(e);
+            window.CSRF_TOKEN = '{{ csrf_token() }}';
+            // const csrftoken = document.head.querySelector('[name~=csrf-token][content]').content;
+            //Vamos a rellenar el select automáticamente.
+            const select = document.getElementById(`nom_subcuenta_edit-${e}`).value;
+            var contenido = document.querySelector('#lista-de-cuentas')
 
-        console.log(select);
-        var url = route('busca.cuentEdit')
-        let data = {
-            CUENTA: select
-        }
-        fetch(url, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': window.CSRF_TOKEN
-                }
-            })
-            .then(resp => {
-                return resp.json()
-            })
-            .then(respuesta => {
-                console.log(respuesta);
-                pinta(respuesta);
-                 function pinta(res) {
-                    contenido.innerHTML = '';
-
-                    for (let valor of res) {
-                       
-                        contenido.innerHTML +=
-                            `<option  value="${valor.nom_cuenta}"></option>   `
+            console.log(select);
+            var url = route('busca.cuentEdit')
+            let data = {
+                CUENTA: select
+            }
+            fetch(url, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': window.CSRF_TOKEN
                     }
-                   
-                    // for(let it of respuesta){
-                    //     contenido.innerHTML +=
-                    //         `<option  value="${valor.nom_cuenta}"></option>   `
-                    // }
-                    
-                }
-            }).catch(error => console.error(error))
-    }
+                })
+                .then(resp => {
+                    return resp.json()
+                })
+                .then(respuesta => {
+                    console.log(respuesta);
+                    pinta(respuesta);
 
-    function datoseditSub(e) {
-        window.CSRF_TOKEN = '{{ csrf_token() }}';
-        // const csrftoken = document.head.querySelector('[name~=csrf-token][content]').content;
-        //Vamos a rellenar el select automáticamente.
-        const select = document.getElementById(`nom_subcuenta_edit-${e}`).value;
-        var contenido = document.querySelector('#lista-de-cuentas')
-        console.log('subcuentas');
-        // console.log(select);
-        var url = route('busca.cuentEditSUb')
-        let data = {
-            CUENTA: select
-        }
-        fetch(url, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': window.CSRF_TOKEN
-                }
-            })
-            .then(resp => {
-                return resp.json()
-            })
-            .then(respuesta => {
-                console.log(respuesta);
-                
-                pinta2(respuesta);
-                 function pinta2(res) {
-                    contenido.innerHTML = '';
+                    function pinta(res) {
+                        contenido.innerHTML = '';
 
-                    for (let valor of res) {
-                        contenido.innerHTML +=
-                            `<option  value="${valor.nom_subcuenta}"></option>   `
+                        for (let valor of res) {
+
+                            contenido.innerHTML +=
+                                `<option  value="${valor.nom_cuenta}"></option>   `
+                        }
+
+                        // for(let it of respuesta){
+                        //     contenido.innerHTML +=
+                        //         `<option  value="${valor.nom_cuenta}"></option>   `
+                        // }
+
                     }
+                }).catch(error => console.error(error))
+        }
 
-                }
-            }).catch(error => console.error(error))
-    }
-</script>
+        function datoseditSub(e) {
+            window.CSRF_TOKEN = '{{ csrf_token() }}';
+            // const csrftoken = document.head.querySelector('[name~=csrf-token][content]').content;
+            //Vamos a rellenar el select automáticamente.
+            const select = document.getElementById(`nom_subcuenta_edit-${e}`).value;
+            var contenido = document.querySelector('#lista-de-cuentas')
+            console.log('subcuentas');
+            // console.log(select);
+            var url = route('busca.cuentEditSUb')
+            let data = {
+                CUENTA: select
+            }
+            fetch(url, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': window.CSRF_TOKEN
+                    }
+                })
+                .then(resp => {
+                    return resp.json()
+                })
+                .then(respuesta => {
+                    console.log(respuesta);
+
+                    pinta2(respuesta);
+
+                    function pinta2(res) {
+                        contenido.innerHTML = '';
+
+                        for (let valor of res) {
+                            contenido.innerHTML +=
+                                `<option  value="${valor.nom_subcuenta}"></option>   `
+                        }
+
+                    }
+                }).catch(error => console.error(error))
+        }
+    </script>
 @endsection
 
 

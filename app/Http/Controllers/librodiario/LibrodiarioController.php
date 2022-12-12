@@ -120,8 +120,7 @@ class LibrodiarioController extends Controller
         }
 
         if ($insercion == '1') {
-
-
+        
             // return $request;
             if (isset($request->comprobante)) {
                 $request->validate([
@@ -150,7 +149,8 @@ class LibrodiarioController extends Controller
                         "NOM_SUBCUENTA" => $request->nombresubcuenta_cargo,
                         "SAL_DEBE" => $request->saldo_cargo,
                         "SAL_HABER" => 0,
-
+                        "DES"=>'',
+                        "FEC"=>$request->fecha
 
                     ]);
 
@@ -164,7 +164,8 @@ class LibrodiarioController extends Controller
                         "NOM_SUBCUENTA" => $request->nombresubcuenta_abono,
                         "SAL_DEBE" => 0,
                         "SAL_HABER" => $request->saldo_abono,
-
+                        "DES"=>$request->des,
+                        "FEC"=>$request->fecha
 
                     ]);
                 } catch (\Throwable $e) {
@@ -177,14 +178,18 @@ class LibrodiarioController extends Controller
                         "COD_PERIODO" => $request->periodo,
                         "NOM_CUENTA" =>  $request->cuenta_cargo,
                         "SAL_DEBE" => $request->saldo_cargo,
-                        "SAL_HABER" => 0
+                        "SAL_HABER" => 0,
+                        "DES"=>'',
+                        "FEC"=>$request->fecha
                     ]);
 
                     $abono = Http::withToken(Cache::get('token'))->post($this->url . '/librodiario/insertar_s_cuentas', [
                         "COD_PERIODO" => $request->periodo,
                         "NOM_CUENTA" =>  $request->cuenta_abono,
                         "SAL_DEBE" => 0,
-                        "SAL_HABER" => $request->saldo_abono
+                        "SAL_HABER" => $request->saldo_abono,
+                        "DES"=>$request->des,
+                        "FEC"=>$request->fecha
                     ]);
                 } catch (\Throwable $th) {
                     throw $th;
