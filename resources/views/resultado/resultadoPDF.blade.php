@@ -47,82 +47,190 @@
                         <thead>
                         <th colspan="2">REPORTE DE ESTADO RESULTADO</th>
                         </thead>
-                        <tbody>
+                        <tr class="text-dark">
+                            <th ><b>Ventas Totales</b></th>
+                            @if (count($resultado) <= 0)
+                                <th>0,000</th>
+                            @else
+                                @foreach ($resultado as $key)
+                                    <th>{{ number_format($key['VENTAS_TOTALES']) }}
+                                    </th>
+                                @endforeach
+                            @endif
+                        </tr>
+                        <thead>
                             <tr class="text-dark">
-                                <td class="text-dark bg-gradient-secondary"><b>Ventas Netas</b></td>
+                                <th ><b>Descuentos Ventas</b></th>
                                 @if (count($resultado) <= 0)
-                                    <td class="text-white bg-dark">0,000</td>
+                                    <th>0,000</th>
                                 @else
                                     @foreach ($resultado as $key)
-                                        <td >{{ number_format($key['VENTAS_NETAS']) }}</td>
+                                        <th>{{ number_format($key['DES_VENTAS']) }}
+                                        </th>
                                     @endforeach
                                 @endif
+                            </tr>
+                            <tr class="text-dark">
+                                <th ><b>Devoluciones Ventas</b></th>
+                                @if (count($resultado) <= 0)
+                                    <th>0,000</th>
+                                @else
+                                    @foreach ($resultado as $key)
+                                        <th>{{ number_format($key['DEV_VENTAS']) }}
+                                        </th>
+                                    @endforeach
+                                @endif
+                            </tr>
+                        <tr class="text-dark">
+                            <th ><b>Ventas Netas</b></th>
+                            @if (count($resultado) <= 0)
+                                <th class="text-white bg-success">0,000</th>
+                            @else
+                                @foreach ($resultado as $key)
+                                    <th >{{ number_format($key['VENTAS_NETAS']) }}
+                                    </th>
+                                @endforeach
+                            @endif
 
-                            </tr>
-                            <tr >
-                                <td class="text-dark bg-gradient-secondary"> <b>Costos de ventas</b> </td>
-                                @if (count($resultado) <= 0)
-                                    <td >0,000</td>
-                                @else
-                                    @foreach ($resultado as $key)
-                                        <td >{{ number_format($key['COS_VENTAS']) }}</td>
-                                    @endforeach
-                                @endif
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-dark">
+                            <th class="text-dark bg-gradient-secondary"><b>Compras Totales</b></th>
+                            @if (count($resultado) <= 0)
+                                <th>0,000</th>
+                            @else
+                                @foreach ($resultado as $key)
+                                    <th>{{ number_format($key['COMPRAS_TOTALES']) }}
+                                    </th>
+                                @endforeach
+                            @endif
 
-                            </tr>
-                            <tr >
-                                <td class="text-dark bg-gradient-secondary"><B>Utilidad/Pérdida bruta</B></td>
-                                @if (count($resultado) <= 0)
-                                    <td >0,000</td>
-                                @else
-                                    @foreach ($resultado as $key)
-                                        <td >{{ number_format($key['UTI_BRUTA'] )}}</td>
-                                    @endforeach
-                                @endif
+                        </tr>
+                        <tr class="text-dark">
+                            <th class="text-dark bg-gradient-secondary"><b>Descuentos Compras</b></th>
+                            @if (count($resultado) <= 0)
+                                <th>0,000</th>
+                            @else
+                                @foreach ($resultado as $key)
+                                    <th>{{ number_format($key['DES_COMPRAS']) }}
+                                    </th>
+                                @endforeach
+                            @endif
 
-                            </tr>
-                            <tr >
-                                <td class="text-dark bg-gradient-secondary"><b> Total Gastos </b></td>
-                                @if (count($resultado) <= 0)
-                                    <td >0,000</td>
-                                @else
-                                    @foreach ($resultado as $key)
-                                        <td >{{ number_format($key['TOT_GASTOS']) }}</td>
-                                    @endforeach
-                                @endif
+                        </tr>
+                        <tr class="text-dark">
+                            <th class="text-dark bg-gradient-secondary"><b>Devoluciones Compras</b></th>
+                            @if (count($resultado) <= 0)
+                                <th>0,000</th>
+                            @else
+                                @foreach ($resultado as $key)
+                                    <th>{{ number_format($key['DEV_COMPRAS']) }}
+                                    </th>
+                                @endforeach
+                            @endif
 
-                            </tr>
-                            <tr >
-                                <td class="text-dark bg-gradient-secondary"><b> Utilidad/Pérdida Antes de
-                                        impuestos </b></td>
-                                @if (count($resultado) <= 0)
-                                    <td >0,000</td>
-                                @else
-                                    @foreach ($resultado as $key)
-                                        <td >{{ number_format($key['UTI_ANTIMP']) }}</td>
-                                    @endforeach
-                                @endif
-                            </tr>
-                            <tr >
-                                <td class="text-dark bg-gradient-secondary"><b>Impuesto a utilidad </b></td>
-                                @if (count($resultado) <= 0)
-                                    <td >0,000</td>
-                                @else
-                                    @foreach ($resultado as $key)
-                                        <td >{{ number_format($key['IMP_UTILIDAD'] )}}</td>
-                                    @endforeach
-                                @endif
-                            </tr>
-                            <tr >
-                                <td class="text-dark bg-gradient-secondary"><b> Utilidad/Pérdida Neta </b></td>
-                                @if (count($resultado) <= 0)
-                                    <td >0,000</td>
-                                @else
-                                    @foreach ($resultado as $key)
-                                        <td>{{ number_format($key['UTI_NETA']) }}</td>
-                                    @endforeach
-                                @endif
-                            </tr>
+                        </tr>
+                        <tr>
+                            <td class="text-dark bg-gradient-success"> <b>Costos de ventas</b> </td>
+                            @if (count($resultado) <= 0)
+                                <td>0,000</td>
+                            @else
+                                @foreach ($resultado as $key)
+                                    <td class="text-white bg-success">{{ number_format($key['COS_VENTAS']) }}</td>
+                                @endforeach
+                            @endif
+
+                        </tr>
+                        <tr>
+                            <td class="text-dark bg-gradient-primary"><B>Utilidad/Pérdida bruta</B></td>
+                            @if (count($resultado) <= 0)
+                                <td class="text-white bg-primary">0,000</td>
+                            @else
+                                @foreach ($resultado as $key)
+                                    <td class="text-white bg-primary">{{ number_format($key['UTI_BRUTA']) }}</td>
+                                @endforeach
+                            @endif
+
+                        </tr>
+                        <tr>
+                            <td class="text-dark bg-gradient-secondary"><b> Sueldos y Salarios </b></td>
+                            @if (count($resultado) <= 0)
+                                <td>0,000</td>
+                            @else
+                                @foreach ($resultado as $key)
+                                    <td>{{ number_format($key['SUEL_SALARI']) }}</td>
+                                @endforeach
+                            @endif
+
+                        </tr>
+                        <tr>
+                            <td class="text-dark bg-gradient-secondary"><b> Gastos Ventas </b></td>
+                            @if (count($resultado) <= 0)
+                                <td>0,000</td>
+                            @else
+                                @foreach ($resultado as $key)
+                                    <td>{{ number_format($key['GAST_VENTAS']) }}</td>
+                                @endforeach
+                            @endif
+
+                        </tr>
+                        <tr>
+                            <td class="text-dark bg-gradient-secondary"><b> Gastos Administración </b></td>
+                            @if (count($resultado) <= 0)
+                                <td>0,000</td>
+                            @else
+                                @foreach ($resultado as $key)
+                                    <td>{{ number_format($key['GAST_ADMINIS']) }}</td>
+                                @endforeach
+                            @endif
+
+                        </tr>
+
+                        <tr>
+                            <td class="text-dark bg-gradient-success"><b> Total Gastos </b></td>
+                            @if (count($resultado) <= 0)
+                                <td class="text-white bg-success">0,000</td>
+                            @else
+                                @foreach ($resultado as $key)
+                                    <td class="text-white bg-success">{{ number_format($key['TOT_GASTOS']) }}</td>
+                                @endforeach
+                            @endif
+
+                        </tr>
+                        <tr>
+                            <td class="text-dark bg-gradient-secondary"><b> Utilidad/Pérdida Antes de
+                                    impuestos </b></td>
+                            @if (count($resultado) <= 0)
+                                <td>0,000</td>
+                            @else
+                                @foreach ($resultado as $key)
+                                    <td>{{ number_format($key['UTI_ANTIMP']) }}</td>
+                                @endforeach
+                            @endif
+                        </tr>
+                        <tr>
+                            <td class="text-dark bg-gradient-secondary"><b>Impuesto a utilidad </b></td>
+                            @if (count($resultado) <= 0)
+                                <td>0,000</td>
+                            @else
+                                @foreach ($resultado as $key)
+                                    <td>{{ number_format($key['IMP_UTILIDAD']) }}
+                                    </td>
+                                @endforeach
+                            @endif
+                        </tr>
+                        <tr class="text-white bg-success">
+                            <td class="text-dark bg-gradient-success"><b> Utilidad/Pérdida Neta </b></td>
+                            @if (count($resultado) <= 0)
+                                <td class="text-white bg-success">0,000</td>
+                            @else
+                                @foreach ($resultado as $key)
+                                    <td class="text-dark bg-success">{{ number_format($key['UTI_NETA']) }}</td>
+                                @endforeach
+                            @endif
+                        </tr>
+                       
                     
                         </tbody>
                     </table>
